@@ -9,20 +9,26 @@ pres.company = "CAMP Digital";
 pres.title = "Enterprise TV Advertising. Direct Publisher Costs. Zero Markups.";
 
 /* ---------------------------------------------------------------- system */
+/* CAMP Digital brand: forest green + lime, read off the supplied logo.
+   Adjust these two values if the official hex codes differ. */
+const BRAND_GREEN = "0F8140"; // C / M / P
+const BRAND_LIME = "A9C63C";  // the A, and DIGITAL
+
 const C = {
-  ink: "0E1F1A",
-  green: "006A49",
-  greenMid: "0B5E44",
-  greenDeep: "052C21",
-  greenPanel: "0A3A2C",
-  mint: "7FDCBB",
-  mintSoft: "B2E5D5",
-  mintPale: "EDF7F3",
-  tint: "F3F7F5",
-  line: "DDE7E3",
-  lineDark: "16513D",
-  body: "56645F",
-  bodyDark: "9FC4B7",
+  ink: "0D1F14",
+  green: BRAND_GREEN,
+  lime: BRAND_LIME,
+  greenMid: "0C6A35",
+  greenDeep: "06301A",
+  greenPanel: "0B4526",
+  mint: BRAND_LIME,
+  mintSoft: "D3E4A4",
+  mintPale: "EEF5E4",
+  tint: "F4F7F2",
+  line: "DEE6DE",
+  lineDark: "1A5E34",
+  body: "555F57",
+  bodyDark: "A8C09B",
   white: "FFFFFF",
 };
 
@@ -45,10 +51,13 @@ const shadowSoft = () => ({ type: "outer", color: "0E1F1A", blur: 14, offset: 3,
 
 /* wordmark: CAMP (bold) DIGITAL (letterspaced light) — swap for the official logo file later */
 function wordmark(s, x, y, size, dark, w) {
+  const word = dark ? C.white : C.green;
   s.addText(
     [
-      { text: "CAMP", options: { bold: true, charSpacing: size * 0.09, color: dark ? C.white : C.ink } },
-      { text: "  DIGITAL", options: { bold: false, charSpacing: size * 0.22, color: dark ? C.mint : C.green } },
+      { text: "C", options: { bold: true, charSpacing: size * 0.09, color: word } },
+      { text: "A", options: { bold: true, charSpacing: size * 0.09, color: C.lime } },
+      { text: "MP", options: { bold: true, charSpacing: size * 0.09, color: word } },
+      { text: "  DIGITAL", options: { bold: false, charSpacing: size * 0.22, color: C.lime } },
     ],
     { x, y, w: w || 2.6, h: size / 40, fontFace: F, fontSize: size, align: "left", valign: "middle", margin: 0 }
   );
@@ -74,7 +83,7 @@ function title(s, text, opts = {}) {
 function card(s, x, y, w, h, variant) {
   const v = variant || "plain";
   const fill = v === "accent" ? C.mintPale : v === "muted" ? C.tint : C.white;
-  const line = v === "accent" ? C.B2 || "CDE8DE" : C.line;
+  const line = v === "accent" ? "CFE2B8" : C.line;
   s.addShape(pres.ShapeType.roundRect, {
     x, y, w, h, rectRadius: 0.06,
     fill: { color: fill },
@@ -96,7 +105,7 @@ function band(s, x, y, w, h, text, dark) {
   s.addShape(pres.ShapeType.roundRect, {
     x, y, w, h, rectRadius: 0.05,
     fill: { color: dark ? C.greenPanel : C.green },
-    line: { color: dark ? C.lineDark : C.green, width: 0.75 },
+    line: { type: "none" },
   });
   s.addText(text, {
     x: x + 0.34, y: y + 0.06, w: w - 0.68, h: h - 0.12, valign: "middle", margin: 0,
@@ -110,7 +119,7 @@ function iconChip(s, x, y, d, icon, tone) {
   s.addShape(pres.ShapeType.ellipse, {
     x, y, w: d, h: d,
     fill: { color: dark ? C.greenPanel : C.mintPale },
-    line: { color: dark ? C.mint : "CDE8DE", width: 0.9 },
+    line: { color: dark ? C.lime : "CFE2B8", width: 0.9 },
   });
   const p = d * 0.3;
   s.addImage({ path: `${P}/ico/${icon}-${dark ? "mint" : "green"}.png`, x: x + p, y: y + p, w: d - 2 * p, h: d - 2 * p });
@@ -185,7 +194,7 @@ function dot(s, x, y, tone) {
       { text: "100% of your media spend", options: { bold: true, color: C.green } },
       { text: " goes straight to buying impressions inside your local service territory — no intermediaries, no hidden fees." },
     ],
-    { x: rx + 0.36, y: cy + 0.86, w: cw - 0.72, h: 1.4, margin: 0, valign: "top", ...T.body, fontSize: 11, color: "3F5B51" }
+    { x: rx + 0.36, y: cy + 0.86, w: cw - 0.72, h: 1.4, margin: 0, valign: "top", ...T.body, fontSize: 11, color: "44543F" }
   );
 
   band(s, M, 5.2, CW, 1.0, "Your local homeowners spend their evenings on streaming platforms — not cable. Your advertising strategy should follow them there.");
@@ -217,7 +226,7 @@ function dot(s, x, y, tone) {
   card(s, M, 4.88, 6.6, 1.28, "accent");
   s.addText("Unbiased Platform Access", { x: M + 0.28, y: 5.12, w: 6.04, h: 0.26, margin: 0, valign: "top", ...T.cardH, fontSize: 12.5, color: C.green });
   s.addText("Agnostic placement across both Microsoft Advertising and Google Ads networks — we optimize for your results, not platform commissions.", {
-    x: M + 0.28, y: 5.46, w: 6.04, h: 0.5, margin: 0, valign: "top", ...T.body, fontSize: 10, color: "3F5B51",
+    x: M + 0.28, y: 5.46, w: 6.04, h: 0.5, margin: 0, valign: "top", ...T.body, fontSize: 10, color: "44543F",
   });
   footer(s, 3, false, true);
 }
@@ -413,7 +422,7 @@ function dot(s, x, y, tone) {
   right.forEach((t, i) => {
     const y = cy + 0.9 + i * 0.6;
     s.addImage({ path: `${P}/ico/check-green.png`, x: rx + 0.36, y: y + 0.03, w: 0.19, h: 0.19 });
-    s.addText(t, { x: rx + 0.68, y, w: cw - 1.04, h: 0.56, margin: 0, valign: "top", ...T.body, fontSize: 10.5, color: "3F5B51" });
+    s.addText(t, { x: rx + 0.68, y, w: cw - 1.04, h: 0.56, margin: 0, valign: "top", ...T.body, fontSize: 10.5, color: "44543F" });
   });
 
   band(s, M, 5.8, CW, 0.9, "Our incentive is making your campaign work — not burning media budget to inflate a commission check.");

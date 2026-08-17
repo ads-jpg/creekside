@@ -26,9 +26,9 @@ const SET = {
 };
 
 const COLORS = {
-  green: "#006A49",
+  green: "#0F8140",
   white: "#FFFFFF",
-  mint: "#7FDCBB",
+  mint: "#A9C63C",
 };
 
 async function render(name, Comp, colorName) {

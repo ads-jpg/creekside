@@ -16,9 +16,12 @@ only layout, typography, colour, and hierarchy were reworked.
 ## Design system
 
 - **Canvas** 13.333 × 7.5 in, 0.8 in page margins on every slide.
-- **Palette** deep green `052C21` / `0A3A2C` (dark slides), CAMP green `006A49`,
-  mint `7FDCBB` and `B2E5D5` (accents on dark), `EDF7F3` / `F3F7F5` surfaces,
-  ink `0E1F1A`, body `56645F`.
+- **Palette** built from the CAMP logo's two brand tones — forest green
+  `0F8140` and lime `A9C63C` (`BRAND_GREEN` / `BRAND_LIME` at the top of
+  `build.js`). Supporting values: deep green `06301A` and panel `0B4526` for dark
+  slides, `EEF5E4` / `F4F7F2` surfaces, ink `0D1F14`, body `555F57`. Lime is the
+  sharp accent only — key figures, emphasis runs, the CTA band, page numbers on
+  dark. Green carries structure.
 - **Type** Arial throughout — 27 pt bold titles (33 pt cover), 13 pt bold card headings,
   10.5 pt body, 8 pt letterspaced footer.
 - **Structure** dark cover and dark proof/CTA slides sandwich light content slides.
@@ -28,11 +31,21 @@ only layout, typography, colour, and hierarchy were reworked.
 
 ## Logo
 
-The wordmark is set typographically in `wordmark()` in `build.js` (CAMP bold +
-DIGITAL letterspaced) because campdigital.com was unreachable from the build
-environment. To drop in the official logo, replace the `wordmark()` body with an
-`addImage()` call — the call sites on the cover, slide 7, slide 12, and the shared
-`footer()` already reserve the space.
+`wordmark()` in `build.js` sets the lockup typographically in the brand's two-tone
+arrangement — CAMP with the A in lime, DIGITAL letterspaced in lime — because the
+official artwork was not available as a file to the build environment
+(campdigital.com is blocked by the egress policy).
+
+To drop in the real logo, save it as `assets/logo-dark.png` and
+`assets/logo-light.png` and replace the `wordmark()` body with:
+
+```js
+s.addImage({ path: `${P}/assets/logo-${dark ? "dark" : "light"}.png`,
+             x, y: y - size / 90, h: size / 26, w: (size / 26) * ASPECT });
+```
+
+Every call site — the cover, slide 7, slide 12, and the shared `footer()` — already
+reserves horizontal space, so no layout changes are needed.
 
 ## Rebuilding
 
