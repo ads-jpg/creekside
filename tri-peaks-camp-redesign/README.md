@@ -32,14 +32,17 @@ also uses it.
 
 ## Slide-specific work
 
-**Slide 2 — rebuilt natively.** The cycle diagram was a flat JPEG, so its labels could not
-be selected, searched or recoloured. It is now three CAMP cards (lime dot, forest heading,
-gray caption) joined by lime chevrons, with a return arrow closing the loop, a lime takeaway
-banner for *Search & TV Working Together* and a bordered card for *Cross-Channel Retargeting*.
-Every label — including the six lifted out of the JPEG — is unchanged wording. `image1.jpg`
-and its relationship are dropped, and the slide now points at `slideLayout12` (the clean
-layout the rest of the deck uses; `slideLayout13` carried a stray rule along the bottom edge).
-See `slide2.py`.
+**Slide 2 — cycle redrawn natively.** The three-stage cycle was a flat JPEG, so its labels
+could not be selected, searched or recoloured, and it stayed gray-and-teal through the
+restyle. The same circular composition is now real PowerPoint shapes: three nodes on a
+triangle, each a white circle with a lime outline, a lime dotted ring, an outline icon
+(diamond / hexagon / triangle), a forest heading and a gray caption — joined clockwise by
+forest `arc` shapes with arrowheads and lime/green accent dots riding the arcs and rings.
+The two text blocks sit to the right as a lime takeaway banner and a bordered card. Every
+label is unchanged wording, including the six lifted out of the JPEG. `image1.jpg` and its
+relationship are dropped, and the slide now points at `slideLayout12` (the clean layout the
+rest of the deck uses; `slideLayout13` carried a stray rule along the bottom edge).
+See `slide2.py` — geometry is driven by `R` / `RING` / `INNER` / `GAP`.
 
 **Slide 6 — DEVICE SCOPE.** `Cross Device` replaced with `42+ inch TV Screens`. The card's
 caption (`CTV-led, cross-screen`) is untouched. Slide 7's own `Cross Device` cell is untouched.
