@@ -1,6 +1,7 @@
 import os, shutil, glob, re, zipfile
 from lxml import etree
 import restyle as R
+import slide2 as S2
 q=R.q; EMU=R.EMU
 
 SRC='trix'; OUT='outx'
@@ -16,6 +17,29 @@ for path in sorted(glob.glob(OUT+'/ppt/slides/slide*.xml'), key=lambda p:int(re.
     for c in tree.getroot().iter(q('p:cNvPr')):
         try: maxid=max(maxid,int(c.get('id')))
         except: pass
+
+    # ---- slide 2: native rebuild of the cycle diagram (was a flat JPEG) ----
+    if n == 2:
+        for el in list(spTree):
+            if el.tag in (q('p:sp'), q('p:pic'), q('p:grpSp'), q('p:graphicFrame')):
+                spTree.remove(el)
+        for el in S2.build(maxid):
+            spTree.append(el)
+        maxid += 200
+        rp = OUT + '/ppt/slides/_rels/slide2.xml.rels'
+        s = open(rp).read()
+        s = re.sub(r'<Relationship Id="rId3"[^>]*/>', '', s)
+        # use the clean layout the rest of the deck uses (13 carries a stray edge rule)
+        s = s.replace('slideLayout13.xml', 'slideLayout12.xml')
+        open(rp, 'w').write(s)
+        if os.path.exists(OUT + '/ppt/media/image1.jpg'):
+            os.remove(OUT + '/ppt/media/image1.jpg')
+
+    # ---- slide 6: DEVICE SCOPE value ----
+    if n == 6:
+        for t in tree.iter('{http://schemas.openxmlformats.org/drawingml/2006/main}t'):
+            if (t.text or '').strip() == 'Cross Device':
+                t.text = '42+ inch TV Screens'
 
     # ---- eyebrow -> lime pill ----
     made=[]

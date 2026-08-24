@@ -30,11 +30,25 @@ also uses it.
 * Navy panels and table headers → `003726` with white text and lime labels.
 * Blue callout bars and CTA blocks → `A7C142` banners with `003726` text.
 
+## Slide-specific work
+
+**Slide 2 — rebuilt natively.** The cycle diagram was a flat JPEG, so its labels could not
+be selected, searched or recoloured. It is now three CAMP cards (lime dot, forest heading,
+gray caption) joined by lime chevrons, with a return arrow closing the loop, a lime takeaway
+banner for *Search & TV Working Together* and a bordered card for *Cross-Channel Retargeting*.
+Every label — including the six lifted out of the JPEG — is unchanged wording. `image1.jpg`
+and its relationship are dropped, and the slide now points at `slideLayout12` (the clean
+layout the rest of the deck uses; `slideLayout13` carried a stray rule along the bottom edge).
+See `slide2.py`.
+
+**Slide 6 — DEVICE SCOPE.** `Cross Device` replaced with `42+ inch TV Screens`. The card's
+caption (`CTV-led, cross-screen`) is untouched. Slide 7's own `Cross Device` cell is untouched.
+
 ## Rebuilding
 
 ```
 python3 build.py     # reads ./trix (unpacked source), writes the styled .pptx
 ```
 
-`restyle.py` holds the palette maps and the geometry-aware recolouring pass
+`slide2.py` generates the rebuilt slide 2. `restyle.py` holds the palette maps and the geometry-aware recolouring pass
 (fills, outlines, table cells, on-dark and on-lime text contrast rules, pill builder).
