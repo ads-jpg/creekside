@@ -1,0 +1,1029 @@
+/* ==========================================================================
+   Vida Dentistry — Veneers Landing Page
+   Conversion-optimized stylesheet. Mobile-first, luxury cosmetic dentistry.
+   Scoped under .vd- prefixes so it can be dropped into an existing site
+   without colliding with the theme's global styles.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Design tokens
+   -------------------------------------------------------------------------- */
+.vd-page {
+  /* Warm luxury neutrals — deliberately not "clinical dental blue" */
+  --vd-ink:        #17140F;
+  --vd-ink-soft:   #4A443C;
+  --vd-muted:      #7C7268;
+  --vd-cream:      #FBF7F2;
+  --vd-sand:       #F3EBE1;
+  --vd-line:       #E5DACB;
+  --vd-white:      #FFFFFF;
+
+  /* Champagne / antique gold accent */
+  --vd-gold:       #A9855A;
+  --vd-gold-deep:  #86663F;
+  --vd-gold-tint:  #F7EFE3;
+
+  --vd-star:       #E0A94B;
+  --vd-success:    #2E5A46;
+  --vd-error:      #A6392F;
+
+  /* Typography */
+  --vd-serif: "Cormorant Garamond", "Didot", "Georgia", "Times New Roman", serif;
+  --vd-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+             "Helvetica Neue", Arial, sans-serif;
+
+  /* Spatial rhythm */
+  --vd-gutter: 1.25rem;
+  --vd-max: 1200px;
+  --vd-max-narrow: 760px;
+  --vd-section-y: clamp(3.5rem, 8vw, 7rem);
+  --vd-radius: 4px;
+  --vd-radius-lg: 8px;
+
+  --vd-shadow-sm: 0 1px 2px rgba(23, 20, 15, .06),
+                  0 4px 12px rgba(23, 20, 15, .05);
+  --vd-shadow-md: 0 2px 6px rgba(23, 20, 15, .07),
+                  0 18px 40px -12px rgba(23, 20, 15, .16);
+  --vd-shadow-lg: 0 30px 70px -24px rgba(23, 20, 15, .3);
+
+  --vd-ease: cubic-bezier(.22, .61, .36, 1);
+
+  /* Height of the mobile sticky CTA bar — used to pad the page bottom */
+  --vd-sticky-h: 4.5rem;
+
+  font-family: var(--vd-sans);
+  color: var(--vd-ink);
+  background: var(--vd-white);
+  font-size: 17px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* --------------------------------------------------------------------------
+   2. Base / reset (scoped)
+   -------------------------------------------------------------------------- */
+.vd-page *,
+.vd-page *::before,
+.vd-page *::after { box-sizing: border-box; }
+
+.vd-page img,
+.vd-page picture,
+.vd-page video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.vd-page h1, .vd-page h2, .vd-page h3, .vd-page h4 {
+  font-family: var(--vd-serif);
+  font-weight: 400;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  margin: 0 0 .5em;
+  color: var(--vd-ink);
+}
+
+.vd-page p { margin: 0 0 1.1em; color: var(--vd-ink-soft); }
+.vd-page p:last-child { margin-bottom: 0; }
+
+/* Zero-specificity default so any .vd- component class overrides it. Without
+   :where(), `.vd-page a` (0,1,1) would beat `.vd-btn--primary` (0,1,0) and paint
+   gold text onto gold buttons. */
+:where(.vd-page a) { color: var(--vd-gold-deep); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+
+/* Visible focus for keyboard users — required for accessibility, and it also
+   keeps the CTAs usable for screen-reader / keyboard traffic from Ads. */
+.vd-page :focus-visible {
+  outline: 2px solid var(--vd-gold-deep);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.vd-visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0);
+  white-space: nowrap; border: 0;
+}
+
+/* --------------------------------------------------------------------------
+   3. Layout primitives
+   -------------------------------------------------------------------------- */
+.vd-container {
+  width: 100%;
+  max-width: var(--vd-max);
+  margin-inline: auto;
+  padding-inline: var(--vd-gutter);
+}
+.vd-container--narrow { max-width: var(--vd-max-narrow); }
+
+.vd-section { padding-block: var(--vd-section-y); }
+.vd-section--cream { background: var(--vd-cream); }
+.vd-section--sand  { background: var(--vd-sand); }
+.vd-section--ink   { background: var(--vd-ink); }
+.vd-section--tight { padding-block: clamp(2.5rem, 5vw, 4rem); }
+
+.vd-section--ink h2,
+.vd-section--ink h3 { color: var(--vd-white); }
+.vd-section--ink p  { color: rgba(255,255,255,.76); }
+
+/* --------------------------------------------------------------------------
+   4. Type helpers
+   -------------------------------------------------------------------------- */
+.vd-eyebrow {
+  font-family: var(--vd-sans);
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--vd-gold-deep);
+  margin: 0 0 1rem;
+  display: block;
+}
+.vd-section--ink .vd-eyebrow { color: var(--vd-gold); }
+
+.vd-h1 { font-size: clamp(2.6rem, 6.2vw, 4.4rem); font-weight: 300; }
+.vd-h2 { font-size: clamp(2rem, 4.2vw, 3.1rem); }
+.vd-h3 { font-size: clamp(1.3rem, 2.2vw, 1.7rem); }
+
+.vd-lede {
+  font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+  line-height: 1.65;
+  color: var(--vd-ink-soft);
+}
+
+.vd-section-head { max-width: 44rem; margin-bottom: clamp(2.25rem, 4vw, 3.25rem); }
+.vd-section-head--center { margin-inline: auto; text-align: center; }
+
+.vd-rule {
+  width: 44px; height: 1px;
+  background: var(--vd-gold);
+  border: 0; margin: 0 0 1.5rem;
+}
+.vd-section-head--center .vd-rule { margin-inline: auto; }
+
+/* --------------------------------------------------------------------------
+   5. Buttons — the conversion workhorses
+   -------------------------------------------------------------------------- */
+.vd-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .6rem;
+  font-family: var(--vd-sans);
+  font-size: .82rem;
+  font-weight: 600;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+  text-decoration: none;
+  line-height: 1;
+  padding: 1.15rem 1.9rem;
+  border: 1px solid transparent;
+  border-radius: var(--vd-radius);
+  cursor: pointer;
+  transition: background-color .25s var(--vd-ease),
+              color .25s var(--vd-ease),
+              border-color .25s var(--vd-ease),
+              transform .25s var(--vd-ease),
+              box-shadow .25s var(--vd-ease);
+  /* Comfortable tap target on mobile — Google Ads traffic is majority mobile */
+  min-height: 52px;
+  text-align: center;
+}
+.vd-btn:hover { transform: translateY(-2px); }
+.vd-btn:active { transform: translateY(0); }
+
+.vd-btn--primary {
+  background: var(--vd-gold-deep);
+  color: var(--vd-white);
+  box-shadow: var(--vd-shadow-sm);
+}
+.vd-btn--primary:hover { background: var(--vd-ink); box-shadow: var(--vd-shadow-md); }
+
+.vd-btn--secondary {
+  background: transparent;
+  color: var(--vd-ink);
+  border-color: var(--vd-ink);
+}
+.vd-btn--secondary:hover { background: var(--vd-ink); color: var(--vd-white); }
+
+.vd-btn--light {
+  background: var(--vd-white);
+  color: var(--vd-ink);
+  border-color: var(--vd-white);
+}
+.vd-btn--light:hover { background: var(--vd-gold-tint); border-color: var(--vd-gold-tint); }
+
+.vd-btn--outline-light {
+  background: transparent;
+  color: var(--vd-white);
+  border-color: rgba(255,255,255,.45);
+}
+.vd-btn--outline-light:hover { background: var(--vd-white); color: var(--vd-ink); border-color: var(--vd-white); }
+
+.vd-btn--block { width: 100%; }
+.vd-btn--sm { padding: .8rem 1.25rem; min-height: 44px; font-size: .74rem; }
+
+.vd-btn__icon { width: 1.05em; height: 1.05em; flex: none; }
+
+/* Paired CTA group: phone + form, side by side wherever a decision is made */
+.vd-cta-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .85rem;
+}
+.vd-cta-group .vd-btn { flex: 1 1 15rem; }
+
+.vd-cta-note {
+  margin-top: 1rem;
+  font-size: .85rem;
+  color: var(--vd-muted);
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+}
+.vd-section--ink .vd-cta-note { color: rgba(255,255,255,.62); }
+
+/* --------------------------------------------------------------------------
+   6. Top utility bar
+   -------------------------------------------------------------------------- */
+.vd-topbar {
+  background: var(--vd-ink);
+  color: rgba(255,255,255,.85);
+  font-size: .78rem;
+  letter-spacing: .04em;
+}
+.vd-topbar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  min-height: 40px;
+  padding-block: .4rem;
+  text-align: center;
+}
+.vd-topbar a { color: var(--vd-white); text-decoration: none; font-weight: 600; }
+.vd-topbar a:hover { text-decoration: underline; }
+.vd-topbar__sep { opacity: .35; }
+.vd-topbar__item--hide-sm { display: none; }
+
+/* --------------------------------------------------------------------------
+   7. Sticky header
+   -------------------------------------------------------------------------- */
+.vd-header {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  background: rgba(255,255,255,.94);
+  backdrop-filter: saturate(180%) blur(12px);
+  -webkit-backdrop-filter: saturate(180%) blur(12px);
+  border-bottom: 1px solid var(--vd-line);
+  transition: box-shadow .3s var(--vd-ease);
+}
+.vd-header.is-stuck { box-shadow: var(--vd-shadow-sm); }
+
+.vd-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 68px;
+  padding-block: .6rem;
+}
+
+.vd-logo {
+  font-family: var(--vd-serif);
+  font-size: 1.5rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--vd-ink);
+  text-decoration: none;
+  line-height: 1;
+  flex: none;
+}
+.vd-logo small {
+  display: block;
+  font-family: var(--vd-sans);
+  font-size: .55rem;
+  letter-spacing: .28em;
+  color: var(--vd-muted);
+  margin-top: .35rem;
+}
+.vd-logo img { max-height: 46px; width: auto; }
+
+.vd-header__actions { display: flex; align-items: center; gap: .6rem; }
+
+/* Phone shown as text on desktop, as an icon button on small screens */
+.vd-header__phone {
+  display: none;
+  align-items: center;
+  gap: .5rem;
+  font-weight: 600;
+  font-size: .95rem;
+  color: var(--vd-ink);
+  text-decoration: none;
+  letter-spacing: .02em;
+  white-space: nowrap;
+}
+.vd-header__phone:hover { color: var(--vd-gold-deep); }
+.vd-header__phone svg { width: 1.05rem; height: 1.05rem; color: var(--vd-gold-deep); }
+
+.vd-header__cta { display: none; }
+
+/* --------------------------------------------------------------------------
+   8. Hero — above the fold
+   -------------------------------------------------------------------------- */
+.vd-hero {
+  position: relative;
+  background: var(--vd-cream);
+  overflow: hidden;
+}
+.vd-hero__inner {
+  display: grid;
+  gap: clamp(2rem, 5vw, 3.5rem);
+  padding-block: clamp(2.5rem, 6vw, 5rem);
+  align-items: center;
+}
+
+.vd-hero__content { max-width: 34rem; }
+
+.vd-hero__title { margin-bottom: 1rem; }
+.vd-hero__title em {
+  font-style: italic;
+  color: var(--vd-gold-deep);
+}
+
+.vd-hero__lede { margin-bottom: 1.75rem; }
+
+/* Location + specialty line: answers "is this near me / is this the right place" */
+.vd-hero__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .5rem .9rem;
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--vd-muted);
+  margin-bottom: 1.35rem;
+}
+.vd-hero__meta span { display: inline-flex; align-items: center; gap: .45rem; }
+.vd-hero__meta svg { width: .95rem; height: .95rem; color: var(--vd-gold); }
+
+.vd-hero__media { position: relative; }
+.vd-hero__media img {
+  width: 100%;
+  border-radius: var(--vd-radius-lg);
+  box-shadow: var(--vd-shadow-lg);
+  object-fit: cover;
+  aspect-ratio: 4 / 5;
+}
+
+/* Floating credential card over the hero image */
+.vd-hero__badge {
+  position: absolute;
+  left: 50%;
+  bottom: -1.5rem;
+  transform: translateX(-50%);
+  background: var(--vd-white);
+  border: 1px solid var(--vd-line);
+  border-radius: var(--vd-radius);
+  box-shadow: var(--vd-shadow-md);
+  padding: .9rem 1.25rem;
+  text-align: center;
+  width: max-content;
+  max-width: calc(100% - 2rem);
+}
+.vd-hero__badge strong {
+  display: block;
+  font-family: var(--vd-serif);
+  font-size: 1.15rem;
+}
+.vd-hero__badge span {
+  font-size: .68rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--vd-muted);
+}
+
+/* Consultation offer strip directly under the hero CTAs */
+.vd-offer {
+  margin-top: 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  gap: .85rem;
+  padding: 1rem 1.15rem;
+  background: var(--vd-gold-tint);
+  border: 1px solid var(--vd-line);
+  border-radius: var(--vd-radius);
+  font-size: .92rem;
+  line-height: 1.55;
+  color: var(--vd-ink-soft);
+}
+.vd-offer svg { width: 1.25rem; height: 1.25rem; color: var(--vd-gold-deep); flex: none; margin-top: .12rem; }
+.vd-offer strong { color: var(--vd-ink); }
+
+/* --------------------------------------------------------------------------
+   9. Google rating badge (clickable → Google Business Profile)
+   -------------------------------------------------------------------------- */
+.vd-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: .75rem;
+  padding: .7rem 1.05rem;
+  background: var(--vd-white);
+  border: 1px solid var(--vd-line);
+  border-radius: var(--vd-radius);
+  text-decoration: none;
+  color: var(--vd-ink);
+  box-shadow: var(--vd-shadow-sm);
+  transition: border-color .25s var(--vd-ease), box-shadow .25s var(--vd-ease), transform .25s var(--vd-ease);
+}
+.vd-rating:hover {
+  border-color: var(--vd-gold);
+  box-shadow: var(--vd-shadow-md);
+  transform: translateY(-1px);
+}
+.vd-rating__g { width: 22px; height: 22px; flex: none; }
+.vd-rating__body { display: flex; flex-direction: column; gap: .18rem; line-height: 1; }
+.vd-rating__top { display: flex; align-items: center; gap: .45rem; }
+.vd-rating__score { font-weight: 700; font-size: .98rem; letter-spacing: .01em; }
+.vd-rating__stars { display: inline-flex; gap: 1px; color: var(--vd-star); }
+.vd-rating__stars svg { width: 14px; height: 14px; }
+.vd-rating__label { font-size: .72rem; color: var(--vd-muted); letter-spacing: .02em; }
+
+.vd-rating--lg { padding: .95rem 1.35rem; }
+.vd-rating--lg .vd-rating__g { width: 28px; height: 28px; }
+.vd-rating--lg .vd-rating__score { font-size: 1.15rem; }
+.vd-rating--lg .vd-rating__stars svg { width: 17px; height: 17px; }
+
+/* --------------------------------------------------------------------------
+   10. Trust bar
+   -------------------------------------------------------------------------- */
+.vd-trustbar { background: var(--vd-white); border-block: 1px solid var(--vd-line); }
+.vd-trustbar__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--vd-line);
+}
+.vd-trust {
+  background: var(--vd-white);
+  padding: 1.5rem 1rem;
+  text-align: center;
+}
+.vd-trust svg { width: 1.6rem; height: 1.6rem; color: var(--vd-gold); margin: 0 auto .6rem; }
+.vd-trust strong {
+  display: block;
+  font-family: var(--vd-serif);
+  font-size: 1.35rem;
+  line-height: 1.15;
+  margin-bottom: .2rem;
+}
+.vd-trust span {
+  font-size: .72rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--vd-muted);
+  line-height: 1.4;
+  display: block;
+}
+
+/* --------------------------------------------------------------------------
+   11. Editorial content blocks (existing page copy lives here)
+   -------------------------------------------------------------------------- */
+.vd-split {
+  display: grid;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+}
+.vd-split__media img {
+  border-radius: var(--vd-radius-lg);
+  box-shadow: var(--vd-shadow-md);
+  width: 100%;
+  object-fit: cover;
+}
+
+.vd-prose > * + * { margin-top: 1.1em; }
+.vd-prose h3 { margin-top: 2rem; }
+
+/* Feature list with gold ticks */
+.vd-ticks { list-style: none; padding: 0; margin: 1.5rem 0 0; display: grid; gap: .8rem; }
+.vd-ticks li {
+  display: flex;
+  gap: .75rem;
+  align-items: flex-start;
+  color: var(--vd-ink-soft);
+  line-height: 1.55;
+}
+.vd-ticks svg { width: 1.15rem; height: 1.15rem; color: var(--vd-gold-deep); flex: none; margin-top: .2rem; }
+.vd-ticks strong { color: var(--vd-ink); }
+
+/* --------------------------------------------------------------------------
+   12. Before / after gallery
+   -------------------------------------------------------------------------- */
+.vd-ba-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+.vd-ba {
+  background: var(--vd-white);
+  border: 1px solid var(--vd-line);
+  border-radius: var(--vd-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--vd-shadow-sm);
+}
+.vd-ba__pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--vd-line); }
+.vd-ba__cell { position: relative; background: var(--vd-sand); }
+.vd-ba__cell img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; }
+.vd-ba__tag {
+  position: absolute;
+  top: .65rem; left: .65rem;
+  background: rgba(23,20,15,.82);
+  color: #fff;
+  font-size: .62rem;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  padding: .3rem .55rem;
+  border-radius: 2px;
+}
+.vd-ba__caption { padding: .9rem 1.1rem; font-size: .88rem; color: var(--vd-muted); }
+
+/* --------------------------------------------------------------------------
+   13. Process steps
+   -------------------------------------------------------------------------- */
+.vd-steps { display: grid; gap: 1.25rem; counter-reset: vdstep; }
+.vd-step {
+  position: relative;
+  background: var(--vd-white);
+  border: 1px solid var(--vd-line);
+  border-radius: var(--vd-radius-lg);
+  padding: 2rem 1.5rem 1.6rem;
+}
+.vd-step::before {
+  counter-increment: vdstep;
+  content: "0" counter(vdstep);
+  position: absolute;
+  top: 1.1rem; right: 1.25rem;
+  font-family: var(--vd-serif);
+  font-size: 2.4rem;
+  line-height: 1;
+  color: var(--vd-sand);
+}
+.vd-step h3 { font-size: 1.3rem; margin-bottom: .5rem; }
+.vd-step p { font-size: .95rem; margin: 0; }
+
+/* --------------------------------------------------------------------------
+   14. Reviews
+   -------------------------------------------------------------------------- */
+.vd-reviews__head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  text-align: center;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.vd-review-grid { display: grid; gap: 1.25rem; }
+
+.vd-review {
+  background: var(--vd-white);
+  border: 1px solid var(--vd-line);
+  border-radius: var(--vd-radius-lg);
+  padding: 1.6rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .9rem;
+  box-shadow: var(--vd-shadow-sm);
+}
+.vd-review__stars { display: inline-flex; gap: 2px; color: var(--vd-star); }
+.vd-review__stars svg { width: 16px; height: 16px; }
+.vd-review__text {
+  font-family: var(--vd-serif);
+  font-size: 1.18rem;
+  line-height: 1.5;
+  color: var(--vd-ink);
+  margin: 0;
+  flex: 1;
+}
+.vd-review__meta { display: flex; align-items: center; gap: .7rem; }
+.vd-review__avatar {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  background: var(--vd-sand);
+  display: grid; place-items: center;
+  font-size: .8rem; font-weight: 700; color: var(--vd-gold-deep);
+  flex: none; overflow: hidden;
+}
+.vd-review__avatar img { width: 100%; height: 100%; object-fit: cover; }
+.vd-review__name { display: block; font-size: .88rem; font-weight: 600; line-height: 1.3; }
+.vd-review__date { display: block; font-size: .76rem; color: var(--vd-muted); }
+
+/* Skeleton shown while the Places API request is in flight */
+.vd-review--skeleton { pointer-events: none; }
+.vd-skel {
+  background: linear-gradient(90deg, var(--vd-sand) 25%, #f8f2ea 50%, var(--vd-sand) 75%);
+  background-size: 200% 100%;
+  animation: vd-shimmer 1.4s infinite linear;
+  border-radius: 3px;
+  height: .8rem;
+}
+.vd-skel--title { height: 1.1rem; width: 85%; }
+.vd-skel--short { width: 55%; }
+@keyframes vd-shimmer { to { background-position: -200% 0; } }
+
+.vd-reviews__foot {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+}
+.vd-reviews__disclaimer { font-size: .78rem; color: var(--vd-muted); }
+/* Keep the paired CTAs side by side; the column flex parent would otherwise
+   shrink-wrap the group and force them to stack. */
+.vd-reviews__foot .vd-cta-group { width: 100%; max-width: 34rem; }
+
+/* --------------------------------------------------------------------------
+   15. Instagram
+   -------------------------------------------------------------------------- */
+.vd-ig__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+.vd-ig__handle {
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  font-weight: 600;
+  font-size: .95rem;
+  text-decoration: none;
+  color: var(--vd-ink);
+}
+.vd-ig__handle svg { width: 1.25rem; height: 1.25rem; }
+.vd-section--ink .vd-ig__handle { color: var(--vd-white); }
+
+.vd-ig-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: .6rem;
+}
+.vd-ig-item {
+  position: relative;
+  display: block;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: var(--vd-radius);
+  background: var(--vd-sand);
+  text-decoration: none;
+}
+.vd-ig-item img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform .5s var(--vd-ease);
+}
+.vd-ig-item:hover img { transform: scale(1.06); }
+.vd-ig-item__overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(23,20,15,.55), rgba(23,20,15,0) 55%);
+  opacity: 0;
+  transition: opacity .35s var(--vd-ease);
+  display: flex; align-items: flex-end;
+  padding: .75rem;
+}
+.vd-ig-item:hover .vd-ig-item__overlay { opacity: 1; }
+.vd-ig-item__overlay span {
+  color: #fff; font-size: .72rem; line-height: 1.35;
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+}
+.vd-ig__foot { margin-top: 1.75rem; text-align: center; }
+
+/* --------------------------------------------------------------------------
+   16. FAQ (native details/summary — zero JS, accessible, SEO-friendly)
+   -------------------------------------------------------------------------- */
+.vd-faq { border-top: 1px solid var(--vd-line); }
+.vd-faq__item { border-bottom: 1px solid var(--vd-line); }
+.vd-faq__q {
+  cursor: pointer;
+  list-style: none;
+  padding: 1.35rem 2.5rem 1.35rem 0;
+  position: relative;
+  font-family: var(--vd-serif);
+  font-size: clamp(1.12rem, 1.9vw, 1.35rem);
+  line-height: 1.35;
+  color: var(--vd-ink);
+}
+.vd-faq__q::-webkit-details-marker { display: none; }
+.vd-faq__q::after {
+  content: "";
+  position: absolute;
+  right: .35rem; top: 50%;
+  width: 12px; height: 12px;
+  border-right: 1.5px solid var(--vd-gold-deep);
+  border-bottom: 1.5px solid var(--vd-gold-deep);
+  transform: translateY(-65%) rotate(45deg);
+  transition: transform .3s var(--vd-ease);
+}
+.vd-faq__item[open] .vd-faq__q::after { transform: translateY(-30%) rotate(-135deg); }
+.vd-faq__a { padding: 0 0 1.5rem; max-width: 60ch; }
+.vd-faq__a p { font-size: .97rem; }
+
+/* --------------------------------------------------------------------------
+   17. Lead form
+   -------------------------------------------------------------------------- */
+.vd-form-card {
+  background: var(--vd-white);
+  border: 1px solid var(--vd-line);
+  border-radius: var(--vd-radius-lg);
+  box-shadow: var(--vd-shadow-md);
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+}
+.vd-form-card__title { font-size: clamp(1.45rem, 2.4vw, 1.9rem); margin-bottom: .35rem; }
+.vd-form-card__sub { font-size: .92rem; color: var(--vd-muted); margin-bottom: 1.5rem; }
+
+.vd-field { margin-bottom: 1rem; }
+.vd-field > label {
+  display: block;
+  font-size: .74rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--vd-ink-soft);
+  margin-bottom: .45rem;
+}
+.vd-input, .vd-select, .vd-textarea {
+  width: 100%;
+  font-family: inherit;
+  font-size: 1rem;              /* 16px+ prevents iOS Safari zoom-on-focus */
+  color: var(--vd-ink);
+  background: var(--vd-white);
+  border: 1px solid var(--vd-line);
+  border-radius: var(--vd-radius);
+  padding: .9rem 1rem;
+  min-height: 50px;
+  transition: border-color .2s var(--vd-ease), box-shadow .2s var(--vd-ease);
+  -webkit-appearance: none;
+  appearance: none;
+}
+.vd-textarea { min-height: 96px; resize: vertical; line-height: 1.5; }
+.vd-select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath fill='none' stroke='%237C7268' stroke-width='1.5' d='M1 1.5 6 6.5l5-5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 12px 8px;
+  padding-right: 2.5rem;
+}
+.vd-input:focus, .vd-select:focus, .vd-textarea:focus {
+  outline: none;
+  border-color: var(--vd-gold);
+  box-shadow: 0 0 0 3px rgba(169,133,90,.16);
+}
+.vd-input[aria-invalid="true"], .vd-select[aria-invalid="true"] { border-color: var(--vd-error); }
+
+.vd-field__error {
+  display: none;
+  font-size: .78rem;
+  color: var(--vd-error);
+  margin-top: .35rem;
+}
+.vd-field.has-error .vd-field__error { display: block; }
+
+.vd-field-row { display: grid; gap: 1rem; }
+
+/* Honeypot — hidden from humans, catches naive bots without a CAPTCHA */
+.vd-hp {
+  position: absolute !important;
+  left: -9999px;
+  opacity: 0;
+  height: 0;
+  width: 0;
+  pointer-events: none;
+}
+
+.vd-form__consent {
+  font-size: .74rem;
+  line-height: 1.5;
+  color: var(--vd-muted);
+  margin-top: 1rem;
+}
+.vd-form__consent a { color: var(--vd-muted); }
+
+.vd-form__alt {
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--vd-line);
+  text-align: center;
+  font-size: .9rem;
+  color: var(--vd-muted);
+}
+.vd-form__alt a { font-weight: 700; color: var(--vd-ink); text-decoration: none; white-space: nowrap; }
+.vd-form__alt a:hover { color: var(--vd-gold-deep); }
+
+.vd-form__status { margin-top: 1rem; font-size: .9rem; }
+.vd-form__status[data-state="error"] { color: var(--vd-error); }
+
+.vd-form-success { text-align: center; padding: 1rem 0; }
+.vd-form-success svg { width: 3rem; height: 3rem; color: var(--vd-success); margin: 0 auto 1rem; }
+.vd-form-success h3 { font-size: 1.6rem; margin-bottom: .5rem; }
+
+.vd-btn[aria-busy="true"] { opacity: .65; pointer-events: none; }
+
+/* --------------------------------------------------------------------------
+   18. Mid-page CTA bands
+   -------------------------------------------------------------------------- */
+.vd-cta-band {
+  background: var(--vd-ink);
+  color: var(--vd-white);
+  text-align: center;
+}
+.vd-cta-band h2 { color: var(--vd-white); }
+.vd-cta-band .vd-cta-group { justify-content: center; max-width: 34rem; margin-inline: auto; }
+
+/* Slimmer inline CTA used after informational sections */
+.vd-cta-inline {
+  margin-top: clamp(2rem, 4vw, 3rem);
+  padding: clamp(1.5rem, 3vw, 2rem);
+  background: var(--vd-gold-tint);
+  border: 1px solid var(--vd-line);
+  border-radius: var(--vd-radius-lg);
+  display: grid;
+  gap: 1.25rem;
+  align-items: center;
+  text-align: center;
+}
+.vd-cta-inline p { margin: 0; font-size: 1.02rem; color: var(--vd-ink); }
+.vd-cta-inline strong { font-family: var(--vd-serif); font-size: 1.25rem; display: block; margin-bottom: .25rem; }
+
+/* --------------------------------------------------------------------------
+   19. Location / final conversion block
+   -------------------------------------------------------------------------- */
+.vd-location { display: grid; gap: 2rem; }
+.vd-nap { font-style: normal; }
+.vd-nap dl { display: grid; gap: 1.1rem; margin: 0; }
+.vd-nap dt {
+  font-size: .7rem;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--vd-muted);
+  margin-bottom: .3rem;
+}
+.vd-nap dd { margin: 0; font-size: 1rem; line-height: 1.6; color: var(--vd-ink); }
+.vd-nap dd a { color: var(--vd-ink); text-decoration: none; font-weight: 600; }
+.vd-nap dd a:hover { color: var(--vd-gold-deep); }
+.vd-nap__hours { display: grid; gap: .2rem; font-size: .95rem; }
+.vd-nap__hours div { display: flex; justify-content: space-between; gap: 1rem; max-width: 18rem; }
+.vd-nap__hours span:last-child { color: var(--vd-muted); }
+
+/* --------------------------------------------------------------------------
+   20. Footer
+   -------------------------------------------------------------------------- */
+.vd-footer {
+  background: var(--vd-ink);
+  color: rgba(255,255,255,.7);
+  padding-block: clamp(2.5rem, 5vw, 4rem) 2rem;
+  font-size: .9rem;
+}
+.vd-footer a { color: rgba(255,255,255,.85); text-decoration: none; }
+.vd-footer a:hover { color: #fff; text-decoration: underline; }
+.vd-footer__grid { display: grid; gap: 2rem; margin-bottom: 2.5rem; }
+.vd-footer h4 {
+  color: #fff;
+  font-family: var(--vd-sans);
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+.vd-footer ul { list-style: none; padding: 0; margin: 0; display: grid; gap: .55rem; }
+.vd-footer__bottom {
+  border-top: 1px solid rgba(255,255,255,.14);
+  padding-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+  font-size: .8rem;
+  color: rgba(255,255,255,.5);
+}
+.vd-footer__social { display: flex; gap: 1rem; }
+.vd-footer__social a { display: inline-flex; }
+.vd-footer__social svg { width: 1.15rem; height: 1.15rem; }
+
+/* --------------------------------------------------------------------------
+   21. Sticky mobile CTA bar
+   -------------------------------------------------------------------------- */
+.vd-sticky-cta {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  z-index: 300;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .5rem;
+  padding: .6rem .75rem calc(.6rem + env(safe-area-inset-bottom, 0px));
+  background: rgba(255,255,255,.97);
+  backdrop-filter: saturate(180%) blur(12px);
+  -webkit-backdrop-filter: saturate(180%) blur(12px);
+  border-top: 1px solid var(--vd-line);
+  box-shadow: 0 -6px 24px -8px rgba(23,20,15,.18);
+  transform: translateY(110%);
+  transition: transform .35s var(--vd-ease);
+}
+.vd-sticky-cta.is-visible { transform: translateY(0); }
+.vd-sticky-cta .vd-btn {
+  padding: .95rem .75rem;
+  font-size: .74rem;
+  letter-spacing: .08em;
+  min-height: 50px;
+}
+
+/* Give the page bottom room so the bar never covers the footer's last line */
+.vd-page.has-sticky-cta { padding-bottom: var(--vd-sticky-h); }
+
+/* --------------------------------------------------------------------------
+   22. Responsive
+   -------------------------------------------------------------------------- */
+@media (min-width: 480px) {
+  .vd-topbar__item--hide-sm { display: inline; }
+  .vd-ba-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 640px) {
+  .vd-page { --vd-gutter: 2rem; }
+  .vd-field-row { grid-template-columns: 1fr 1fr; }
+  .vd-trustbar__grid { grid-template-columns: repeat(4, 1fr); }
+  .vd-ig-grid { grid-template-columns: repeat(3, 1fr); }
+  .vd-cta-inline { grid-template-columns: 1fr auto; text-align: left; }
+  .vd-cta-inline .vd-cta-group { flex-wrap: nowrap; }
+  .vd-steps { grid-template-columns: repeat(2, 1fr); }
+  .vd-review-grid { grid-template-columns: repeat(2, 1fr); }
+  .vd-footer__grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (min-width: 900px) {
+  .vd-header__phone { display: inline-flex; }
+  .vd-header__cta { display: inline-flex; }
+  .vd-hero__inner { grid-template-columns: 1.05fr .95fr; }
+  .vd-hero__content { max-width: none; }
+  .vd-split { grid-template-columns: 1fr 1fr; }
+  .vd-split--reverse .vd-split__media { order: 2; }
+  .vd-steps { grid-template-columns: repeat(4, 1fr); }
+  .vd-review-grid { grid-template-columns: repeat(3, 1fr); }
+  .vd-ig-grid { grid-template-columns: repeat(6, 1fr); }
+  .vd-location { grid-template-columns: 1fr 1.1fr; align-items: start; gap: 3.5rem; }
+  .vd-footer__grid { grid-template-columns: 1.4fr 1fr 1fr 1fr; }
+  .vd-reviews__head { flex-direction: row; justify-content: space-between; text-align: left; align-items: flex-end; }
+  .vd-reviews__head .vd-section-head { margin-bottom: 0; }
+
+  /* Desktop has the header CTA + inline form, so the bar is mobile-only */
+  .vd-sticky-cta { display: none; }
+  .vd-page.has-sticky-cta { padding-bottom: 0; }
+}
+
+/* Hero form sits beside the copy on large screens, below it on tablet */
+@media (min-width: 1024px) {
+  .vd-hero__inner { grid-template-columns: 1.15fr .85fr; gap: 4rem; }
+}
+
+/* --------------------------------------------------------------------------
+   23. Motion & print
+   -------------------------------------------------------------------------- */
+.vd-reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .7s var(--vd-ease), transform .7s var(--vd-ease);
+  will-change: opacity, transform;
+}
+.vd-reveal.is-in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .vd-page *,
+  .vd-page *::before,
+  .vd-page *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .vd-reveal { opacity: 1; transform: none; }
+  .vd-btn:hover { transform: none; }
+}
+
+@media print {
+  .vd-sticky-cta, .vd-header, .vd-topbar { display: none !important; }
+  .vd-page { font-size: 12pt; }
+}
