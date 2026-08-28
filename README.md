@@ -10,6 +10,8 @@ veneers/
   assets/css/veneers.css        design system (all classes .vd- prefixed)
   assets/js/veneers.js          tracking, form, reviews + Instagram loaders
   assets/img/*.svg              labelled placeholders for the real photography
+tools/
+  audit-page.js                 pre-launch audit — run before every deploy
 server/
   verify-lead.js                lead intake + reCAPTCHA verification + spam scoring
   verify-lead.test.js           policy tests — run before tuning thresholds
@@ -131,19 +133,27 @@ integration degrades to a real link rather than fake content.
 
 ## Verification run
 
-`node` structural check over the built page:
+`node tools/audit-page.js` — run this before every deploy:
 
 ```
 tag balance ................ 13/13 element types balanced
 headings ................... one H1, no skipped levels
 images ..................... 7/7 with alt, width and height
-form fields ................ 10/10 labelled; 3 required per form
-FAQ schema parity .......... 7 schema questions ↔ 7 on page, all matching
+assets ..................... all local references resolve
 tel: links ................. 14, all +19492098889
-tracked CTAs ............... 34 (32 unique), no conversion link untracked
-fabricated social proof .... none found
+tracked CTAs ............... no conversion link untracked
+FAQ schema parity .......... 7 schema questions ↔ 7 on page, all matching
 aggregateRating ............ absent (correct)
+fabricated social proof .... none found
+reCAPTCHA attribution ...... present while the badge is hidden
+text contrast .............. 50 desktop / 49 mobile elements, all above 3:1
 ```
+
+**The contrast pass is not decorative.** A CSS specificity collision can render
+a button's label invisible — white text on a white button — while the markup
+reads perfectly correctly. It has happened twice here (`.vd-page a` beating
+`.vd-btn--primary`, and `.vd-footer a` beating `.vd-btn--light`), and both were
+invisible in code review. The audit catches it; a diff does not.
 
 `node server/verify-lead.test.js` — spam policy:
 

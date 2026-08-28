@@ -935,8 +935,12 @@
   padding-block: clamp(2.5rem, 5vw, 4rem) 2rem;
   font-size: .9rem;
 }
-.vd-footer a { color: rgba(255,255,255,.85); text-decoration: none; }
-.vd-footer a:hover { color: #fff; text-decoration: underline; }
+/* Zero-specificity so button classes inside the footer keep their own colours.
+   As a plain `.vd-footer a` (0,1,1) this beat `.vd-btn--light` (0,1,0) and
+   painted white text onto the white phone button — invisible. Same reason
+   `.vd-page a` is wrapped in :where() up in the base styles. */
+:where(.vd-footer a) { color: rgba(255,255,255,.85); text-decoration: none; }
+:where(.vd-footer a:hover) { color: #fff; text-decoration: underline; }
 .vd-footer__grid { display: grid; gap: 2rem; margin-bottom: 2.5rem; }
 .vd-footer h4 {
   color: #fff;
