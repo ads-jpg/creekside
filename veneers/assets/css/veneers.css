@@ -572,7 +572,16 @@
 }
 .vd-ba__pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--vd-line); }
 .vd-ba__cell { position: relative; background: var(--vd-sand); }
-.vd-ba__cell img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; }
+/* 4:3, not square. Smile-gallery close-ups are wide (~1.7:1); a square cell
+   would crop them to 59% of their width and cut the corners of the mouth off.
+   4:3 keeps 78% and holds the whole smile. Tokenised so it can be retuned. */
+.vd-ba__cell img {
+  width: 100%;
+  aspect-ratio: var(--vd-ba-ratio, 4 / 3);
+  object-fit: cover;
+  object-position: var(--vd-ba-focus, 50% 50%);
+  background: var(--vd-sand);
+}
 .vd-ba__tag {
   position: absolute;
   top: .65rem; left: .65rem;

@@ -25,8 +25,8 @@ caption naming what belongs there, so nothing looks broken while you swap them.
 | File | Where | What belongs there |
 | --- | --- | --- |
 | `hero-vida.webp` | Hero, right column | **Installed** — portrait of Dr. Vida. See §1a on resolution |
-| `ba-1-before.svg` · `ba-1-after.svg` | Results gallery, pair 1 | Existing before/after pair |
-| `ba-2-before.svg` · `ba-2-after.svg` | Results gallery, pair 2 | Existing before/after pair |
+| `ba-1-before.jpg` · `ba-1-after.jpg` | Results gallery, pair 1 | Smile Gallery — see §1b |
+| `ba-2-before.jpg` · `ba-2-after.jpg` | Results gallery, pair 2 | Smile Gallery — see §1b |
 | `approach.svg` | "The Vida Difference" | Existing technique / close-up / studio photo |
 | `candidacy.svg` | "Am I a candidate?" | Existing consultation or patient-facing photo |
 
@@ -72,6 +72,50 @@ Two tokens tune the crop without touching component CSS:
 The credential card floats over the photo's lower edge on desktop (12% overlap)
 and sits **below** the photo on mobile, where the shorter frame meant it was
 covering her hands.
+
+### 1b. Before/after gallery — from the Smile Gallery
+
+Four files, each placeholder naming the case and the filename to overwrite.
+
+| File | Case |
+| --- | --- |
+| `ba-1-before.jpg` · `ba-1-after.jpg` | **Minimal-prep porcelain veneers, upper arch** |
+| `ba-2-before.jpg` · `ba-2-after.jpg` | **Ultra-natural veneers, Invisalign alignment first** — the Smile Gallery pair whose BEFORE shows orthodontic brackets |
+
+**Export settings:**
+
+| | |
+| --- | --- |
+| Dimensions | **800 × 600 minimum**. Cells render 238 × 178 on desktop, so this is comfortably past the ~476 px needed for 2× |
+| Aspect | Roughly 4:3. Wider is fine — see the crop note below |
+| Format | JPEG quality 82, or WebP (rename the four `src` values if you switch) |
+| Weight | Under ~120 KB each. Four of them load together |
+| Colour | sRGB |
+
+**Get the originals, not screenshots.** Right-click each image in the Smile
+Gallery and "Open image in new tab" to reach the full-resolution file, or export
+from the CMS media library. A crop taken from a screenshot of the gallery lands
+around 340 × 200 — below 1× for these slots, and visibly soft on the one section
+whose entire job is showing off the quality of the work.
+
+**The cells are 4:3, not square.** Smile-gallery close-ups are wide, around
+1.7:1. A square cell would crop to 59% of the width and cut the corners of the
+mouth off; 4:3 keeps 78% and holds the whole smile. If a particular photo sits
+off-centre, tune it per-image:
+
+```css
+--vd-ba-ratio: 4 / 3;      /* frame shape */
+--vd-ba-focus: 50% 50%;    /* focal point */
+```
+
+**Consent.** Patient before/after photography needs written release before it
+goes on an advertising landing page. Presumably these already carry it if they
+are on the live Smile Gallery, but confirm it covers paid advertising use.
+
+**More than two pairs?** Duplicate a `<figure class="vd-ba">` block in
+`index.html` and add the matching files. The grid reflows on its own. Two strong
+pairs generally beat six average ones, but if the gallery has an especially
+dramatic case, that is the one worth adding.
 
 **When swapping:**
 
