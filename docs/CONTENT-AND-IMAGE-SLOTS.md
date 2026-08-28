@@ -24,49 +24,54 @@ caption naming what belongs there, so nothing looks broken while you swap them.
 
 | File | Where | What belongs there |
 | --- | --- | --- |
-| `hero-vida.jpg` | Hero, right column | **The portrait of Dr. Vida** — see §1a below |
+| `hero-vida.webp` | Hero, right column | **Installed** — portrait of Dr. Vida. See §1a on resolution |
 | `ba-1-before.svg` · `ba-1-after.svg` | Results gallery, pair 1 | Existing before/after pair |
 | `ba-2-before.svg` · `ba-2-after.svg` | Results gallery, pair 2 | Existing before/after pair |
 | `approach.svg` | "The Vida Difference" | Existing technique / close-up / studio photo |
 | `candidacy.svg` | "Am I a candidate?" | Existing consultation or patient-facing photo |
 
-### 1a. The hero portrait — `hero-vida.jpg`
+### 1a. The hero portrait — `hero-vida.webp` (installed)
 
-The photo identified for this slot is the environmental portrait of Dr. Vida in
-black scrubs, smiling, standing in the studio hallway. Roughly 4:3 landscape,
-subject centred, bright high-key background.
+The portrait of Dr. Vida in black scrubs is **in place and rendering**. This is
+the only slot currently filled with a real photo.
 
-**Just overwrite `veneers/assets/img/hero-vida.jpg`.** The filename and the
-markup do not change, so no code edit is needed.
+**One caveat: resolution.** The copy installed is **893 × 696**, which is what
+was available. That gives:
 
-**Export settings:**
+| Breakpoint | Displayed | Pixel density |
+| --- | --- | --- |
+| Mobile | 334 × 284 | **2.45×** — sharp |
+| Desktop | 456 × 569 | **1.22×** — acceptable at 1×, soft on Retina |
 
-| | |
-| --- | --- |
-| Dimensions | **1200 × 1500** minimum (the frame renders ~456 px wide on desktop, so this is ~2.6× — sharp on Retina) |
-| Format | WebP preferred, JPEG fine. Quality 80–85 |
-| Target weight | Under ~250 KB. This is the Largest Contentful Paint element, so it directly moves the Ads landing page experience score |
-| Colour | sRGB, not Adobe RGB — Adobe RGB shifts dull in browsers |
+Mobile is genuinely fine. **Desktop will look slightly soft on a Retina screen**,
+because the hero is the largest image on the page and 1.22× is below the ~2×
+that keeps a photo crisp there.
 
-**How the crop works.** The frame is portrait (4:5) and the source is landscape
-(4:3), so `object-fit: cover` keeps the **full height** and trims to the
-**centred ~62% of the width**. Dr. Vida sits centred, so she is retained in full
-and the crop removes the empty hallway on either side — which tightens the
-composition rather than harming it.
+**To fix, export the original from the live page at 1200 × 1500 or larger** and
+overwrite `veneers/assets/img/hero-vida.webp`. Nothing else changes — same
+filename, same markup. Update the `width`/`height` attributes on the `<img>` in
+`index.html` to the new dimensions so the layout-shift protection stays accurate.
 
-**If the crop is not quite right**, two tokens in `veneers.css` tune it without
-touching component CSS:
+Export settings: WebP quality 80–85, under ~250 KB, **sRGB not Adobe RGB**
+(Adobe RGB renders dull in browsers). This is the Largest Contentful Paint
+element, so its weight feeds the Ads landing page experience score.
+
+**How the crop works.** The source is 4:3 landscape and the desktop frame is 4:5
+portrait, so `object-fit: cover` keeps the **full height** and the **centred 62%
+of the width** — verified: she is fully retained, hair included, and the crop
+just trims the hallway. Mobile uses a shorter `4 / 3.4` frame that keeps 92% of
+the width.
+
+Two tokens tune the crop without touching component CSS:
 
 ```css
---vd-hero-ratio: 4 / 5;      /* taller = more side crop; try 4 / 4.4 to keep more width */
---vd-hero-focus: 50% 50%;    /* nudge horizontally, e.g. 54% 50%, if she sits off-centre */
+--vd-hero-ratio: 4 / 5;      /* taller = more side crop; 4 / 4.4 keeps more width */
+--vd-hero-focus: 50% 50%;    /* nudge horizontally if the subject sits off-centre */
 ```
 
-Mobile already overrides the ratio to `4 / 3.4`, a shorter frame that keeps the
-headline and CTAs higher in the fold.
-
-**Check after swapping** that her hair is not clipped at the right edge on
-desktop — that is the one thing most likely to need a nudge.
+The credential card floats over the photo's lower edge on desktop (12% overlap)
+and sits **below** the photo on mobile, where the shorter frame meant it was
+covering her hands.
 
 **When swapping:**
 
@@ -74,8 +79,8 @@ desktop — that is the one thing most likely to need a nudge.
    descriptive alt text as a stand-in — replace it with the real one so no
    accessibility or image-SEO value is lost.
 2. Keep the `width`/`height` attributes accurate to the real file. They prevent
-   layout shift; wrong values are worse than none. The hero is already set to
-   `1200 × 1500` — update it if you export at a different size.
+   layout shift; wrong values are worse than none. The hero is set to
+   `893 × 696` — update it when you swap in a higher-resolution export.
 3. Keep `loading="lazy" decoding="async"` on everything except the hero, which
    is intentionally `fetchpriority="high"` and not lazy.
 4. Export as WebP or AVIF. See `TRACKING-SETUP.md` §8.
