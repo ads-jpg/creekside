@@ -10,11 +10,15 @@ veneers/
   assets/css/veneers.css        design system (all classes .vd- prefixed)
   assets/js/veneers.js          tracking, form, reviews + Instagram loaders
   assets/img/*.svg              labelled placeholders for the real photography
+server/
+  verify-lead.js                lead intake + reCAPTCHA verification + spam scoring
+  verify-lead.test.js           policy tests — run before tuning thresholds
 docs/
   CRO-CHANGES.md                what changed and why
   CONTENT-AND-IMAGE-SLOTS.md    what to swap in — read this first
   GOOGLE-REVIEWS-AND-INSTAGRAM.md   what these integrations can actually do
   TRACKING-SETUP.md             GTM / GA4 / Google Ads conversion tracking
+  SPAM-PROTECTION.md            reCAPTCHA v3 setup and the scoring policy
 ```
 
 Open `veneers/index.html` in a browser to view it. No build step, no dependencies.
@@ -55,7 +59,7 @@ restores the exact original copy, headings and image references.
    container ID.
 2. `veneers/assets/js/veneers.js` — set `formEndpoint`. **Leads go nowhere until
    this is set**, and the form will say so rather than showing a false thank-you.
-3. Same file, optional — `reviewsEndpoint` and `instagramEndpoint`.
+3. Same file, optional — `recaptchaSiteKey`, `reviewsEndpoint`, `instagramEndpoint`.
 
 Then swap the seven placeholder images. See `docs/CONTENT-AND-IMAGE-SLOTS.md`.
 
@@ -103,6 +107,14 @@ Live Google rating badge linking to the Business Profile · trust bar · live Go
 reviews · Instagram feed from @veneergoddess · named doctor with credentials ·
 before/after gallery · transparent pricing
 
+**Spam protection**
+Honeypot, submission-timing signal, and reCAPTCHA v3 — all invisible to a real
+patient. The library loads only on first form interaction, so it costs nothing
+on page load. Verification and scoring happen server-side in `server/`, where
+they actually count. The policy deliberately flags rather than rejects: a low
+score alone never blocks a lead, because real patients on VPNs and privacy
+browsers score low. See `docs/SPAM-PROTECTION.md`.
+
 **Technical**
 `Dentist` + `FAQPage` + `BreadcrumbList` + `WebPage` schema · FAQ schema validated
 against the visible FAQ question-for-question · gclid/UTM capture for offline
@@ -131,6 +143,14 @@ tel: links ................. 14, all +19492098889
 tracked CTAs ............... 34 (32 unique), no conversion link untracked
 fabricated social proof .... none found
 aggregateRating ............ absent (correct)
+```
+
+`node server/verify-lead.test.js` — spam policy:
+
+```
+12/12 policy cases behave as intended
+key property ............... a low reCAPTCHA score alone never rejects a lead
+fail-open .................. Google outage, ad blocker, missing key -> flagged, delivered
 ```
 
 ---

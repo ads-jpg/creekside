@@ -863,6 +863,13 @@
 .vd-form__alt a { font-weight: 700; color: var(--vd-ink); text-decoration: none; white-space: nowrap; }
 .vd-form__alt a:hover { color: var(--vd-gold-deep); }
 
+/* reCAPTCHA v3's floating badge is position:fixed bottom-right, where it
+   collides with the sticky mobile CTA bar and undercuts the premium look.
+   Google permits hiding it provided the attribution text below is shown in
+   the form flow — which it is, in .vd-form__consent. Do not remove one
+   without the other. */
+.grecaptcha-badge { visibility: hidden; }
+
 .vd-form__status { margin-top: 1rem; font-size: .9rem; }
 .vd-form__status[data-state="error"] { color: var(--vd-error); }
 

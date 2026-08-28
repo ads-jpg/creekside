@@ -42,6 +42,7 @@ In `veneers/assets/js/veneers.js`, set:
 
 ```js
 formEndpoint:      'https://…',   // required — leads go nowhere without it
+recaptchaSiteKey:  '6L…',         // spam filtering — see SPAM-PROTECTION.md
 reviewsEndpoint:   'https://…',   // optional — see GOOGLE-REVIEWS-AND-INSTAGRAM.md
 instagramEndpoint: 'https://…',   // optional — see GOOGLE-REVIEWS-AND-INSTAGRAM.md
 ```
@@ -209,6 +210,9 @@ number that matters; placeholder SVGs will flatter you.
 
 - [ ] `GTM-XXXXXXX` replaced in both places in `index.html`
 - [ ] `formEndpoint` set, and a real test lead received end-to-end
+- [ ] `recaptchaSiteKey` set and `RECAPTCHA_SECRET` configured server-side
+- [ ] `node server/verify-lead.test.js` passes
+- [ ] A test lead logs `"decision":"accept"` with a score
 - [ ] Test lead's stored record contains the `gclid`
 - [ ] GTM Preview shows all six event types firing correctly
 - [ ] Google Ads shows both conversion actions as "Recording conversions"

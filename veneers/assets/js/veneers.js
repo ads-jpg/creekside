@@ -7,9 +7,10 @@
      2. Analytics: dataLayer events for every conversion action
      3. Google Ads attribution: capture gclid / UTMs for offline import
      4. UI: sticky header, sticky mobile CTA, reveal-on-scroll, anchor offset
-     5. Lead form: validation, submission, success state, conversion event
-     6. Google reviews: live rating + reviews, honest fallback
-     7. Instagram: live recent posts, honest fallback
+     5. reCAPTCHA v3: lazy-loaded, fail-open token generation
+     6. Lead form: validation, submission, success state, conversion event
+     7. Google reviews: live rating + reviews, honest fallback
+     8. Instagram: live recent posts, honest fallback
    ============================================================================= */
 (function () {
   'use strict';
@@ -41,6 +42,15 @@
                                 thumbnail_url, permalink } ] } */
     instagramEndpoint: null,
     instagramCount: 6,
+
+    /* reCAPTCHA v3 site key. v3 is score-based and invisible — no checkbox and
+       no image puzzle, so it costs nothing in conversion, unlike v2.
+       While null, the form still submits and the honeypot and timing signals
+       still apply; only the reCAPTCHA score is absent.
+       The score is meaningless unless the token is verified SERVER-SIDE.
+       See docs/SPAM-PROTECTION.md. */
+    recaptchaSiteKey: null,
+    recaptchaAction: 'veneers_lead',
 
     /* Canonical Google Business Profile link used by every review CTA. */
     googleProfileUrl: 'https://www.google.com/maps/search/?api=1&query=Vida%20Dentistry%2025270%20Marguerite%20Pkwy%20Mission%20Viejo%20CA'
@@ -236,7 +246,58 @@
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
   /* ---------------------------------------------------------------------------
-     5. LEAD FORM
+     5. reCAPTCHA v3
+     Loaded lazily on first form interaction. The library is ~130 KB and most
+     visitors never touch the form, so loading it upfront would cost Largest
+     Contentful Paint — and therefore Ads Quality Score — for no benefit.
+
+     Every failure path resolves to null rather than rejecting. A reCAPTCHA
+     outage, an ad blocker, or a strict privacy extension must never stop a
+     real patient from submitting: the server decides what to do with a
+     missing score.
+     --------------------------------------------------------------------------- */
+  var recaptcha = (function () {
+    var loadPromise = null;
+
+    function load() {
+      if (loadPromise) return loadPromise;
+      if (!CONFIG.recaptchaSiteKey) return Promise.resolve(null);
+
+      loadPromise = new Promise(function (resolve) {
+        var s = d.createElement('script');
+        s.src = 'https://www.google.com/recaptcha/api.js?render=' +
+                encodeURIComponent(CONFIG.recaptchaSiteKey);
+        s.async = true;
+        s.onload = function () { resolve(window.grecaptcha || null); };
+        s.onerror = function () { resolve(null); };
+        d.head.appendChild(s);
+      });
+      return loadPromise;
+    }
+
+    function token() {
+      return load().then(function (g) {
+        if (!g || !g.execute) return null;
+        return new Promise(function (resolve) {
+          var settled = false;
+          var done = function (v) { if (!settled) { settled = true; resolve(v); } };
+
+          /* Don't let a hanging challenge strand the submit button. */
+          window.setTimeout(function () { done(null); }, 6000);
+
+          g.ready(function () {
+            g.execute(CONFIG.recaptchaSiteKey, { action: CONFIG.recaptchaAction })
+              .then(done, function () { done(null); });
+          });
+        });
+      }).catch(function () { return null; });
+    }
+
+    return { preload: load, token: token };
+  })();
+
+  /* ---------------------------------------------------------------------------
+     6. LEAD FORM
      --------------------------------------------------------------------------- */
   var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i;
 
@@ -293,6 +354,11 @@
     var status = $('.vd-form__status', form);
     var submitBtn = $('button[type="submit"]', form);
     var startedTracked = false;
+    var startedAt = null;
+
+    /* Warm reCAPTCHA as soon as there's intent to fill the form, so the token
+       is ready by the time they hit submit and adds no perceptible delay. */
+    form.addEventListener('focusin', function () { recaptcha.preload(); }, { once: true });
 
     inputs.forEach(function (input) {
       /* Fire form_start once, on first real interaction — a strong
@@ -300,6 +366,7 @@
       input.addEventListener('input', function () {
         if (!startedTracked) {
           startedTracked = true;
+          startedAt = Date.now();
           track('form_start', { form_location: location });
         }
       });
@@ -340,7 +407,14 @@
         service: 'Veneers',
         form_location: location,
         page_url: window.location.href,
-        attribution: attribution
+        attribution: attribution,
+        /* Anti-spam signals. The server decides what to do with them — see
+           docs/SPAM-PROTECTION.md. A human filling three fields essentially
+           never completes in under ~3 seconds; scripted submissions routinely
+           do. Sent as a signal, never enforced here, so a fast legitimate
+           autofill is not silently rejected in the browser. */
+        fill_ms: startedAt ? (Date.now() - startedAt) : null,
+        recaptcha_action: CONFIG.recaptchaAction
       };
 
       if (submitBtn) {
@@ -381,23 +455,35 @@
         return;
       }
 
-      fetch(CONFIG.formEndpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      })
-        .then(function (res) {
+      /* Attach a fresh reCAPTCHA token, then post. Resolves to null on any
+         reCAPTCHA failure so the lead still reaches the practice; the server
+         treats a missing token as unscored rather than as spam. */
+      recaptcha.token().then(function (token) {
+        payload.recaptcha_token = token;
+
+        return fetch(CONFIG.formEndpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        }).then(function (res) {
+          if (res.status === 403) {
+            /* The server rejected this as spam. Say so plainly and give a
+               human route through, rather than a dead end. */
+            throw new Error('rejected');
+          }
           if (!res.ok) throw new Error('HTTP ' + res.status);
           succeed();
-        })
-        .catch(function () {
-          fail('Something went wrong sending your request. Please call (949) 209-8889 and we will get you scheduled.');
         });
+      }).catch(function (err) {
+        fail(err && err.message === 'rejected'
+          ? 'We could not verify this submission. Please call (949) 209-8889 and we will get you scheduled right away.'
+          : 'Something went wrong sending your request. Please call (949) 209-8889 and we will get you scheduled.');
+      });
     });
   });
 
   /* ---------------------------------------------------------------------------
-     6. GOOGLE REVIEWS
+     7. GOOGLE REVIEWS
      Renders only what the API actually returns. If the endpoint is missing or
      errors, the skeletons are removed and the section falls back to a plain,
      truthful link to the Google Business Profile.
@@ -518,7 +604,7 @@
   })();
 
   /* ---------------------------------------------------------------------------
-     7. INSTAGRAM
+     8. INSTAGRAM
      Lazily fetched: the request only fires when the section approaches the
      viewport, so it costs nothing on first paint or for visitors who convert
      before scrolling that far.
