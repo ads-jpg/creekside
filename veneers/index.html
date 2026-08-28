@@ -280,11 +280,14 @@ j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNo
     </div>
 
     <div class="vd-hero__media">
-      <!-- IMAGE SLOT 1 (hero): use the existing hero/portrait photo from the
-           live veneers page. Keep its original alt text. -->
-      <img src="assets/img/hero-veneers.svg"
-           alt="Dr. Jocelynn Vida Sustaita of Vida Dentistry with a patient's finished porcelain veneer smile"
-           width="800" height="1000" fetchpriority="high" decoding="async">
+      <!-- IMAGE SLOT 1 (hero): overwrite assets/img/hero-vida.jpg with the
+           portrait of Dr. Vida from the live page. Keep the filename and no
+           markup change is needed. Export at 1200x1500 or larger — see
+           docs/CONTENT-AND-IMAGE-SLOTS.md for the crop and quality notes.
+           Not lazy-loaded: this is the Largest Contentful Paint element. -->
+      <img src="assets/img/hero-vida.jpg"
+           alt="Dr. Jocelynn Vida Sustaita, DMD, cosmetic dentist and founder of Vida Dentistry in Mission Viejo"
+           width="1200" height="1500" fetchpriority="high" decoding="async">
       <div class="vd-hero__badge">
         <strong>Jocelynn Vida Sustaita, DMD</strong>
         <span>Biomimetic &amp; Cosmetic Dentistry</span>

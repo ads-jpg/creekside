@@ -51,6 +51,13 @@
   /* Height of the mobile sticky CTA bar — used to pad the page bottom */
   --vd-sticky-h: 4.5rem;
 
+  /* Hero photo framing. Tokenised so the crop can be tuned per-photo without
+     touching component CSS. The portrait frame trims the wide clinic
+     background out of a landscape source and keeps the subject full-height;
+     nudge --vd-hero-focus horizontally if the subject sits off-centre. */
+  --vd-hero-ratio: 4 / 5;
+  --vd-hero-focus: 50% 50%;
+
   font-family: var(--vd-sans);
   color: var(--vd-ink);
   background: var(--vd-white);
@@ -381,7 +388,15 @@
   border-radius: var(--vd-radius-lg);
   box-shadow: var(--vd-shadow-lg);
   object-fit: cover;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: var(--vd-hero-ratio);
+  object-position: var(--vd-hero-focus);
+  background: var(--vd-sand);   /* holds the frame while the photo decodes */
+}
+
+/* On narrow screens a shorter frame keeps the hero copy and CTAs closer to
+   the top of the fold, where they convert. */
+@media (max-width: 899px) {
+  .vd-hero__media img { --vd-hero-ratio: 4 / 3.4; }
 }
 
 /* Floating credential card over the hero image */
