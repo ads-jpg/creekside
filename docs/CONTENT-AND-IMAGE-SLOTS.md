@@ -26,7 +26,8 @@ caption naming what belongs there, so nothing looks broken while you swap them.
 | --- | --- | --- |
 | `hero-vida.webp` | Hero, right column | **Installed** — portrait of Dr. Vida. See §1a on resolution |
 | `ba-1-*.jpg` · `ba-2-*.jpg` (+ `-400w`) | Results gallery | **Installed** — two real cases. See §1b |
-| `approach.svg` | "The Vida Difference" | Existing technique / close-up / studio photo |
+| `approach.svg` | "The Vida Difference" | **Still needed** — a close-up of the WORK, see §1c |
+| `dr-vida-recognition.jpg` | "Recognized for Excellence" | **Installed** — from the About page |
 | `candidacy.svg` | "Am I a candidate?" | Existing consultation or patient-facing photo |
 
 ### 1a. The hero portrait — `hero-vida.webp` (installed)
@@ -116,6 +117,27 @@ it extends to **paid advertising**, which is a separate use.
 it the same way, or drop in pre-split halves as `ba-N-before.jpg` /
 `ba-N-after.jpg` at ~620 px wide plus a 400 px variant. Duplicate a
 `<figure class="vd-ba">` block to add a third pair.
+
+### 1c. Two notes on the remaining photo slots
+
+**`approach.svg` — "The Vida Difference".** This section's copy is entirely
+about the craft: light reflection, enamel preservation, longevity. It wants a
+photo of **the work**, not the practitioner — a close-up of finished veneers
+showing translucency and texture, or Dr. Vida chairside mid-treatment. A
+portrait does not carry that copy.
+
+The 40 Under 40 photo was considered for this slot and **placed elsewhere
+instead**. It communicates accolades, not craftsmanship, so beside copy about
+how porcelain reflects light it competed with the message rather than
+supporting it. It also introduces a cool white-and-lavender palette plus a busy
+magazine cover into an otherwise warm cream-and-gold page. In the new
+"Recognized for Excellence" section it does exactly the job it is good at.
+
+**`dr-vida-recognition.jpg` — resolution.** Cropped from a screenshot of the
+About page at 880 × 990, which renders at **1.64×** in the 536 px desktop slot.
+Mobile is fine at 2.63×; desktop will look slightly soft on a Retina screen.
+Export the original from the About page at **1100 × 1240 or larger** and
+overwrite the file to fix it — same filename, no markup change.
 
 **When swapping:**
 
