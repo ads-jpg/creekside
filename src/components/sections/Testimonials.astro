@@ -1,0 +1,32 @@
+---
+import site from '../../lib/config.js';
+import Icon from '../Icon.astro';
+
+const testimonials = site.testimonials;
+const items = testimonials.items ?? [];
+---
+
+<section class="section bg-subtle">
+  <div class="shell">
+    {testimonials.headline && <h2 class="h2 text-center">{testimonials.headline}</h2>}
+
+    <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        items.map((item) => (
+          <figure class="card flex flex-col">
+            <div class="flex gap-0.5 text-accent" aria-label="Five out of five stars">
+              {[0, 1, 2, 3, 4].map(() => (
+                <Icon name="star" class="h-4 w-4 fill-current" />
+              ))}
+            </div>
+            <blockquote class="mt-4 flex-1 leading-relaxed">{item.quote}</blockquote>
+            <figcaption class="mt-5 border-t border-black/5 pt-4 text-sm">
+              <span class="font-semibold text-ink">{item.name}</span>
+              {item.detail && <span class="text-muted"> &middot; {item.detail}</span>}
+            </figcaption>
+          </figure>
+        ))
+      }
+    </div>
+  </div>
+</section>

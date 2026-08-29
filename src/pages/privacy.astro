@@ -1,0 +1,67 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import site, { on } from '../lib/config.js';
+
+/*
+  A placeholder privacy notice so the footer link never 404s and the page stays
+  compliant with Google Ads landing page policy. Replace the body text with the
+  client's own policy, or point footer.links at their existing one and delete this file.
+*/
+const name = site.footer?.legalName || site.client.name;
+---
+
+<Base title={`Privacy Policy | ${site.client.name}`} description={`How ${name} collects and uses the information you submit.`} noindex={true}>
+  {on(site.header) && <Header />}
+
+  <main id="main" class="section">
+    <div class="shell max-w-3xl">
+      <h1 class="text-3xl font-bold sm:text-4xl">Privacy Policy</h1>
+      <p class="mt-2 text-sm text-muted">Last updated {new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}</p>
+
+      <div class="mt-8 space-y-6 leading-relaxed text-muted">
+        <p>
+          This page is operated by {name}. This notice explains what we collect when you use the
+          form on this page and what we do with it.
+        </p>
+
+        <div>
+          <h2 class="text-xl font-bold text-ink">What we collect</h2>
+          <p class="mt-2">
+            The details you type into the form, such as your name, phone number and a description of
+            what you need. We also record standard technical information about your visit, including
+            the pages you viewed and the advertisement or search that brought you here.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-xl font-bold text-ink">How we use it</h2>
+          <p class="mt-2">
+            To contact you about your enquiry and to provide the service you asked about. We measure
+            which advertisements lead to enquiries so we can spend our advertising budget sensibly.
+            We do not sell your information.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-xl font-bold text-ink">Cookies and measurement</h2>
+          <p class="mt-2">
+            We use analytics and advertising cookies to understand how this page performs. You can
+            block cookies in your browser settings; the form will still work.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-xl font-bold text-ink">Contacting us</h2>
+          <p class="mt-2">
+            To ask what we hold about you, or to have it deleted, contact us
+            {site.contact.email ? <> at <a class="text-brand underline" href={`mailto:${site.contact.email}`}>{site.contact.email}</a></> : <> on <a class="text-brand underline" href={`tel:${site.contact.phone}`}>{site.contact.phoneDisplay}</a></>}.
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  {on(site.footer) && <Footer />}
+</Base>

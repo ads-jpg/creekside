@@ -1,0 +1,31 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+
+  // `npm run new-client` rewrites name, routes and vars. Do not edit those by hand.
+  "name": "demo-client-ad-page",
+  "main": "worker/index.js",
+  "compatibility_date": "2026-08-01",
+
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "not_found_handling": "404-page"
+  },
+
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1
+  },
+
+  "vars": {
+    "CLIENT_SLUG": "demo-client",
+    "SITE_URL": "https://demo-client.ad-pages.com",
+    "SUCCESS_PATH": "/thanks"
+  },
+
+  // The zone ad-pages.com must already exist in this Cloudflare account.
+  // Commented out for the template itself; new-client fills it in.
+  // "routes": [{ "pattern": "demo-client.ad-pages.com", "custom_domain": true }],
+
+  "placement": { "mode": "smart" }
+}

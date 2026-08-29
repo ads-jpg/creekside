@@ -1,0 +1,11 @@
+# The landing page lead reviews every change before it reaches production.
+# Replace the handle below with their GitHub username when you create a client repo,
+# then turn on "Require review from Code Owners" in branch protection for main.
+
+* @REPLACE-WITH-LANDING-PAGE-LEAD
+
+# These decide how every client page behaves, so they always need the lead's eyes.
+/worker/            @REPLACE-WITH-LANDING-PAGE-LEAD
+/wrangler.jsonc     @REPLACE-WITH-LANDING-PAGE-LEAD
+/.github/           @REPLACE-WITH-LANDING-PAGE-LEAD
+/scripts/           @REPLACE-WITH-LANDING-PAGE-LEAD

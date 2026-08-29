@@ -1,0 +1,41 @@
+---
+import site from '../../lib/config.js';
+
+const bar = site.trustBar;
+const stats = bar.stats ?? [];
+const logos = bar.logos ?? [];
+---
+
+<section class="border-y border-black/5 bg-subtle py-8">
+  <div class="shell">
+    {bar.headline && <p class="mb-6 text-center font-semibold text-muted">{bar.headline}</p>}
+
+    {
+      stats.length > 0 && (
+        <dl class="grid grid-cols-2 gap-6 text-center sm:grid-cols-4">
+          {stats.map((stat) => (
+            <div>
+              <dt class="sr-only">{stat.label}</dt>
+              <dd>
+                <span class="block text-2xl font-bold text-brand sm:text-3xl">{stat.value}</span>
+                <span class="mt-1 block text-sm text-muted">{stat.label}</span>
+              </dd>
+            </div>
+          ))}
+        </dl>
+      )
+    }
+
+    {
+      logos.length > 0 && (
+        <ul class="flex flex-wrap items-center justify-center gap-x-10 gap-y-6">
+          {logos.map((logo) => (
+            <li>
+              <img src={logo.src} alt={logo.alt} height="40" class="h-9 w-auto opacity-70" loading="lazy" decoding="async" />
+            </li>
+          ))}
+        </ul>
+      )
+    }
+  </div>
+</section>

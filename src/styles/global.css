@@ -1,0 +1,149 @@
+@import 'tailwindcss';
+
+/*
+  Brand tokens are emitted as CSS variables by src/layouts/Base.astro, straight from
+  site.config.json. `@theme inline` points Tailwind's utilities at those variables, so
+  `bg-brand` and friends follow whatever colours the account manager set.
+*/
+@theme inline {
+  --color-brand: var(--brand-primary);
+  --color-brand-dark: var(--brand-primary-dark);
+  --color-accent: var(--brand-accent);
+  --color-ink: var(--brand-ink);
+  --color-muted: var(--brand-muted);
+  --color-surface: var(--brand-surface);
+  --color-subtle: var(--brand-subtle);
+  --radius-brand: var(--brand-radius);
+  --font-sans: var(--brand-font);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    background: var(--color-surface);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+    letter-spacing: -0.02em;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-brand);
+    outline-offset: 2px;
+  }
+
+  /* Anchor links must clear the sticky header. */
+  [id] {
+    scroll-margin-top: 5.5rem;
+  }
+}
+
+@layer components {
+  .shell {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+  }
+
+  .section {
+    @apply py-16 sm:py-24;
+  }
+
+  .eyebrow {
+    @apply text-sm font-semibold uppercase tracking-wider text-brand;
+  }
+
+  .h2 {
+    @apply text-3xl font-bold sm:text-4xl;
+  }
+
+  .lede {
+    @apply text-lg leading-relaxed text-muted;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-[var(--radius-brand)]
+      border-2 border-transparent px-6 py-3.5
+      text-base font-semibold no-underline transition
+      focus-visible:outline-3 focus-visible:outline-offset-2;
+    min-height: 3rem; /* comfortable tap target on phones */
+  }
+
+  .btn-primary {
+    @apply bg-brand text-white shadow-sm hover:bg-brand-dark active:translate-y-px;
+  }
+
+  .btn-accent {
+    @apply bg-accent text-ink shadow-sm hover:brightness-95 active:translate-y-px;
+  }
+
+  .btn-ghost {
+    @apply border-current bg-transparent text-brand hover:bg-brand/5 active:translate-y-px;
+  }
+
+  .btn-lg {
+    @apply px-8 py-4 text-lg;
+  }
+
+  .card {
+    @apply rounded-[var(--radius-brand)] border border-black/5 bg-white p-6 shadow-sm;
+  }
+
+  .field-label {
+    @apply mb-1.5 block text-sm font-semibold text-ink;
+  }
+
+  .field-input {
+    @apply w-full rounded-[calc(var(--radius-brand)*0.6)] border border-black/15 bg-white px-4 py-3
+      text-base text-ink shadow-sm transition
+      placeholder:text-muted/60
+      focus:border-brand focus:ring-2 focus:ring-brand/25 focus:outline-none;
+    min-height: 3rem;
+  }
+
+  .field-error {
+    @apply mt-1.5 hidden text-sm font-medium text-red-700;
+  }
+
+  [data-invalid='true'] .field-error {
+    @apply block;
+  }
+
+  [data-invalid='true'] .field-input {
+    @apply border-red-600 ring-2 ring-red-600/20;
+  }
+}
+
+/* Visually hidden but still read aloud — used for the honeypot and skip link. */
+.sr-only-field {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}

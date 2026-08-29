@@ -1,0 +1,23 @@
+---
+import site from '../../lib/config.js';
+import Button from '../Button.astro';
+
+const final = site.finalCta;
+---
+
+<section class="section bg-surface">
+  <div class="shell max-w-3xl text-center">
+    {final.headline && <h2 class="h2">{final.headline}</h2>}
+    {final.body && <p class="lede mt-4">{final.body}</p>}
+    <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap">
+      {final.primaryCta && <Button {...final.primaryCta} size="lg" track="cta-final" />}
+      <a
+        href={`tel:${site.contact.phone}`}
+        data-track="call"
+        class="btn btn-ghost btn-lg"
+      >
+        Call {site.contact.phoneDisplay}
+      </a>
+    </div>
+  </div>
+</section>

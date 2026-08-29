@@ -1,0 +1,46 @@
+---
+import site from '../lib/config.js';
+
+const footer = site.footer ?? {};
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-black/5 bg-subtle">
+  <div class="shell flex flex-col gap-6 py-10 sm:flex-row sm:items-start sm:justify-between">
+    <div class="space-y-1.5 text-sm text-muted">
+      <p class="text-base font-semibold text-ink">{footer.legalName || site.client.name}</p>
+      {site.contact.addressLine && <p>{site.contact.addressLine}</p>}
+      <p>
+        <a href={`tel:${site.contact.phone}`} data-track="call" class="font-medium text-ink hover:text-brand">
+          {site.contact.phoneDisplay}
+        </a>
+        {site.contact.email && <> &middot; <a href={`mailto:${site.contact.email}`} class="hover:text-brand">{site.contact.email}</a></>}
+      </p>
+      {site.contact.hours && <p>{site.contact.hours}</p>}
+      {footer.license && <p>{footer.license}</p>}
+    </div>
+
+    <div class="space-y-3 text-sm text-muted sm:text-right">
+      {
+        footer.links?.length > 0 && (
+          <nav class="flex flex-wrap gap-x-5 gap-y-2 sm:justify-end">
+            {footer.links.map((link) => (
+              <a href={link.href} class="hover:text-brand">
+                {link.label}
+              </a>
+            ))}
+          </nav>
+        )
+      }
+      <p>&copy; {year} {footer.legalName || site.client.name}. All rights reserved.</p>
+    </div>
+  </div>
+
+  {
+    footer.disclaimer && (
+      <div class="shell border-t border-black/5 py-5">
+        <p class="text-xs leading-relaxed text-muted">{footer.disclaimer}</p>
+      </div>
+    )
+  }
+</footer>
