@@ -1,0 +1,52 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Icon from '../components/Icon.astro';
+import site, { on } from '../lib/config.js';
+
+const title = `Thank you | ${site.client.name}`;
+---
+
+<Base title={title} description="Your request has been received." noindex={true}>
+  {on(site.header) && <Header />}
+
+  <main id="main" class="section">
+    <div class="shell max-w-2xl text-center">
+      <span
+        class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-brand/10 text-brand"
+      >
+        <Icon name="check" class="h-8 w-8" />
+      </span>
+
+      <h1 class="mt-6 text-3xl font-bold sm:text-4xl">Thanks — we have got your request</h1>
+      <p class="lede mt-4">
+        A member of the {site.client.name} team will call you back within one business hour. If it is
+        urgent, calling us is the fastest way to reach someone.
+      </p>
+
+      <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap">
+        <a href={`tel:${site.contact.phone}`} class="btn btn-primary btn-lg" data-track="call">
+          Call {site.contact.phoneDisplay}
+        </a>
+        <a href="/" class="btn btn-ghost btn-lg">Back to the homepage</a>
+      </div>
+    </div>
+  </main>
+
+  {on(site.footer) && <Footer />}
+
+  {/*
+    Conversion tracking fires here rather than on the form itself, so a lead is only
+    counted once it has actually been accepted. Leave this page as the successRedirect.
+  */}
+  <script is:inline>
+    if (typeof window.reportConversion === 'function') {
+      window.reportConversion();
+    } else {
+      window.addEventListener('load', function () {
+        if (typeof window.reportConversion === 'function') window.reportConversion();
+      });
+    }
+  </script>
+</Base>

@@ -1,0 +1,20 @@
+---
+const {
+  href,
+  label,
+  variant = 'primary',
+  size = 'md',
+  track = null,
+  class: className = '',
+} = Astro.props;
+
+const isPhone = typeof href === 'string' && href.startsWith('tel:');
+---
+
+<a
+  href={href}
+  class:list={['btn', `btn-${variant}`, size === 'lg' && 'btn-lg', className]}
+  data-track={track ?? (isPhone ? 'call' : null)}
+>
+  {label}
+</a>

@@ -1,0 +1,32 @@
+---
+import site from '../../lib/config.js';
+import Button from '../Button.astro';
+
+const offer = site.offer;
+---
+
+<section class="section bg-surface">
+  <div class="shell">
+    <div
+      class="rounded-[var(--radius-brand)] bg-brand px-6 py-12 text-center text-white sm:px-12 sm:py-16"
+    >
+      {
+        offer.badge && (
+          <span class="inline-block rounded-full bg-accent px-4 py-1.5 text-sm font-bold text-ink">
+            {offer.badge}
+          </span>
+        )
+      }
+      {offer.headline && <h2 class="mt-5 text-3xl font-bold sm:text-4xl">{offer.headline}</h2>}
+      {offer.body && <p class="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-white/90">{offer.body}</p>}
+      {
+        offer.cta && (
+          <div class="mt-8">
+            <Button {...offer.cta} variant="accent" size="lg" track="cta-offer" />
+          </div>
+        )
+      }
+      {offer.finePrint && <p class="mt-6 text-sm text-white/70">{offer.finePrint}</p>}
+    </div>
+  </div>
+</section>

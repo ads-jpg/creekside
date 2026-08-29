@@ -1,0 +1,333 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Creekside ad-pages landing config",
+  "description": "The single file account managers edit. Every visible word, colour and toggle on the landing page comes from here.",
+  "type": "object",
+  "required": ["client", "brand", "seo", "contact", "hero", "leadForm"],
+  "additionalProperties": false,
+  "definitions": {
+    "cta": {
+      "type": "object",
+      "required": ["label", "href"],
+      "additionalProperties": false,
+      "properties": {
+        "label": { "type": "string", "minLength": 1, "description": "Button text. Keep it under 28 characters." },
+        "href": { "type": "string", "description": "#lead-form to scroll to the form, tel:+15555550123 to dial, or a full URL." }
+      }
+    },
+    "hex": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" }
+  },
+  "properties": {
+    "$schema": { "type": "string" },
+    "client": {
+      "type": "object",
+      "required": ["slug", "name", "domain", "accountManager"],
+      "additionalProperties": false,
+      "properties": {
+        "slug": { "type": "string", "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$", "description": "Lowercase, hyphens only. Becomes the subdomain and the Worker name." },
+        "name": { "type": "string", "minLength": 1, "description": "Client business name as it should appear on the page." },
+        "domain": { "type": "string", "pattern": "^[a-z0-9-]+\\.ad-pages\\.com$", "description": "Always <slug>.ad-pages.com." },
+        "accountManager": { "type": "string", "format": "email", "description": "Owner of this page. Used for the CODEOWNERS handoff and deploy notifications." },
+        "campaign": { "type": "string", "description": "Optional. Which ad campaign drives traffic here." }
+      }
+    },
+    "brand": {
+      "type": "object",
+      "required": ["colors"],
+      "additionalProperties": false,
+      "properties": {
+        "logo": { "type": "string", "description": "Path under /public, e.g. /images/logo.svg. Leave blank to show the client name as text." },
+        "logoWidth": { "type": "integer", "minimum": 60, "maximum": 400, "description": "Rendered logo width in pixels." },
+        "colors": {
+          "type": "object",
+          "required": ["primary", "primaryDark", "accent", "ink", "muted", "surface", "subtle"],
+          "additionalProperties": false,
+          "properties": {
+            "primary": { "$ref": "#/definitions/hex", "description": "Buttons and links. Must pass contrast against white." },
+            "primaryDark": { "$ref": "#/definitions/hex", "description": "Hover state and dark section backgrounds." },
+            "accent": { "$ref": "#/definitions/hex", "description": "Offer badges and highlights. Used sparingly." },
+            "ink": { "$ref": "#/definitions/hex", "description": "Headline and body text." },
+            "muted": { "$ref": "#/definitions/hex", "description": "Secondary text." },
+            "surface": { "$ref": "#/definitions/hex", "description": "Page background, normally #ffffff." },
+            "subtle": { "$ref": "#/definitions/hex", "description": "Alternating section background." }
+          }
+        },
+        "font": { "enum": ["system", "serif", "geometric"], "description": "Type treatment. All three are self-hosted-free system stacks, so they cost nothing in load time." },
+        "radius": { "type": "string", "description": "Corner rounding, e.g. 0px for sharp, 16px for soft." }
+      }
+    },
+    "seo": {
+      "type": "object",
+      "required": ["title", "description"],
+      "additionalProperties": false,
+      "properties": {
+        "title": { "type": "string", "minLength": 10, "maxLength": 70 },
+        "description": { "type": "string", "minLength": 50, "maxLength": 165 },
+        "ogImage": { "type": "string", "description": "Social share image, 1200x630. Path under /public." },
+        "noindex": { "type": "boolean", "description": "true keeps the page out of Google. Recommended for paid-only landing pages." },
+        "canonical": { "type": "string", "description": "Optional. Point at the client's main site page if this duplicates it." }
+      }
+    },
+    "analytics": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "ga4Id": { "type": "string", "description": "G-XXXXXXXXXX. Leave blank to skip." },
+        "gtmId": { "type": "string", "description": "GTM-XXXXXXX. Use this OR ga4Id, not both." },
+        "googleAdsId": { "type": "string", "description": "AW-XXXXXXXXX." },
+        "googleAdsConversionLabel": { "type": "string", "description": "The label from the conversion action. Fires on form submit and phone tap." },
+        "metaPixelId": { "type": "string" },
+        "callRailId": { "type": "string", "description": "CallRail swap script id, if the client uses dynamic number insertion." }
+      }
+    },
+    "contact": {
+      "type": "object",
+      "required": ["phone", "phoneDisplay"],
+      "additionalProperties": false,
+      "properties": {
+        "phone": { "type": "string", "pattern": "^\\+[1-9][0-9]{7,14}$", "description": "E.164 format for the tel: link, e.g. +15555550123." },
+        "phoneDisplay": { "type": "string", "description": "How the number is shown, e.g. (555) 555-0123." },
+        "email": { "type": "string" },
+        "addressLine": { "type": "string" },
+        "hours": { "type": "string" }
+      }
+    },
+    "header": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "sticky": { "type": "boolean" },
+        "showPhone": { "type": "boolean" },
+        "ctaLabel": { "type": "string" },
+        "ctaHref": { "type": "string" }
+      }
+    },
+    "hero": {
+      "type": "object",
+      "required": ["headline", "subhead", "primaryCta"],
+      "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "eyebrow": { "type": "string", "description": "Small line above the headline. Credentials work well here." },
+        "headline": { "type": "string", "minLength": 10, "maxLength": 90, "description": "The single most important line on the page. Match the ad's promise." },
+        "subhead": { "type": "string", "maxLength": 220 },
+        "image": { "type": "string" },
+        "imageAlt": { "type": "string", "description": "Describe the image for screen readers. Required whenever image is set." },
+        "primaryCta": { "$ref": "#/definitions/cta" },
+        "secondaryCta": { "$ref": "#/definitions/cta" },
+        "bullets": { "type": "array", "maxItems": 4, "items": { "type": "string" } }
+      }
+    },
+    "trustBar": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "headline": { "type": "string" },
+        "stats": {
+          "type": "array",
+          "maxItems": 4,
+          "items": {
+            "type": "object",
+            "required": ["value", "label"],
+            "additionalProperties": false,
+            "properties": { "value": { "type": "string" }, "label": { "type": "string" } }
+          }
+        },
+        "logos": {
+          "type": "array",
+          "description": "Optional partner or certification logos instead of stats.",
+          "items": {
+            "type": "object",
+            "required": ["src", "alt"],
+            "additionalProperties": false,
+            "properties": { "src": { "type": "string" }, "alt": { "type": "string" } }
+          }
+        }
+      }
+    },
+    "benefits": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "headline": { "type": "string" },
+        "subhead": { "type": "string" },
+        "items": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 4,
+          "items": {
+            "type": "object",
+            "required": ["title", "body"],
+            "additionalProperties": false,
+            "properties": {
+              "icon": { "enum": ["clock", "tag", "shield", "star", "check", "phone", "wrench", "leaf", "truck", "heart"] },
+              "title": { "type": "string", "maxLength": 48 },
+              "body": { "type": "string", "maxLength": 220 }
+            }
+          }
+        }
+      }
+    },
+    "howItWorks": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "headline": { "type": "string" },
+        "steps": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 4,
+          "items": {
+            "type": "object",
+            "required": ["title", "body"],
+            "additionalProperties": false,
+            "properties": { "title": { "type": "string" }, "body": { "type": "string" } }
+          }
+        }
+      }
+    },
+    "gallery": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "headline": { "type": "string" },
+        "images": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["src", "alt"],
+            "additionalProperties": false,
+            "properties": { "src": { "type": "string" }, "alt": { "type": "string" }, "caption": { "type": "string" } }
+          }
+        }
+      }
+    },
+    "testimonials": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "headline": { "type": "string" },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["quote", "name"],
+            "additionalProperties": false,
+            "properties": {
+              "quote": { "type": "string", "maxLength": 320, "description": "Must be a real review. Never invent testimonials." },
+              "name": { "type": "string" },
+              "detail": { "type": "string", "description": "City, service, or date. Adds credibility." }
+            }
+          }
+        }
+      }
+    },
+    "offer": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "badge": { "type": "string" },
+        "headline": { "type": "string" },
+        "body": { "type": "string" },
+        "cta": { "$ref": "#/definitions/cta" },
+        "finePrint": { "type": "string", "description": "Any conditions on the offer. Required if the offer has conditions." }
+      }
+    },
+    "faq": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "headline": { "type": "string" },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["q", "a"],
+            "additionalProperties": false,
+            "properties": { "q": { "type": "string" }, "a": { "type": "string" } }
+          }
+        }
+      }
+    },
+    "leadForm": {
+      "type": "object",
+      "required": ["headline", "fields"],
+      "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "headline": { "type": "string" },
+        "subhead": { "type": "string" },
+        "submitLabel": { "type": "string" },
+        "successRedirect": { "type": "string", "description": "Where to send people after a successful submit. Keep /thanks so conversion tracking fires." },
+        "consentText": { "type": "string", "description": "Required whenever you collect a phone number." },
+        "fields": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 8,
+          "description": "Every extra field costs conversions. Five or fewer is the house standard.",
+          "items": {
+            "type": "object",
+            "required": ["name", "label", "type"],
+            "additionalProperties": false,
+            "properties": {
+              "name": { "type": "string", "pattern": "^[a-z][a-zA-Z0-9_]*$" },
+              "label": { "type": "string" },
+              "type": { "enum": ["text", "tel", "email", "select", "textarea", "checkbox"] },
+              "required": { "type": "boolean" },
+              "placeholder": { "type": "string" },
+              "autocomplete": { "type": "string" },
+              "options": { "type": "array", "items": { "type": "string" }, "description": "Required for select fields." }
+            }
+          }
+        }
+      }
+    },
+    "finalCta": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "headline": { "type": "string" },
+        "body": { "type": "string" },
+        "primaryCta": { "$ref": "#/definitions/cta" }
+      }
+    },
+    "stickyCta": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean", "description": "Mobile-only bar pinned to the bottom of the screen." },
+        "label": { "type": "string" },
+        "href": { "type": "string" },
+        "showCall": { "type": "boolean" }
+      }
+    },
+    "footer": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "legalName": { "type": "string" },
+        "license": { "type": "string" },
+        "links": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["label", "href"],
+            "additionalProperties": false,
+            "properties": { "label": { "type": "string" }, "href": { "type": "string" } }
+          }
+        },
+        "disclaimer": { "type": "string" }
+      }
+    }
+  }
+}

@@ -1,0 +1,76 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# Never let two deploys of the same page overlap.
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Deploy to Cloudflare
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - id: identity
+        run: |
+          slug=$(node -p "require('./site.config.json').client.slug")
+          echo "slug=$slug" >> "$GITHUB_OUTPUT"
+          if [ "$slug" = "demo-client" ]; then
+            echo "::notice::This is the template repository, so there is nothing to deploy."
+            echo "deployable=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "deployable=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/setup-node@v4
+        if: steps.identity.outputs.deployable == 'true'
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - run: npm ci
+        if: steps.identity.outputs.deployable == 'true'
+
+      # Strict mode blocks the deploy on leftover placeholders, a missing consent
+      # notice, unreadable brand colours, or absent conversion tracking.
+      - name: Launch checks
+        if: steps.identity.outputs.deployable == 'true'
+        run: npm run validate -- --strict
+
+      - name: Build
+        if: steps.identity.outputs.deployable == 'true'
+        run: npx astro build
+
+      - name: Deploy
+        if: steps.identity.outputs.deployable == 'true'
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: deploy
+
+      - name: Confirm the page is up
+        if: steps.identity.outputs.deployable == 'true'
+        run: |
+          domain="${{ steps.identity.outputs.slug }}.ad-pages.com"
+          echo "Waiting for https://$domain to answer..."
+          for attempt in 1 2 3 4 5 6; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' "https://$domain" || echo 000)
+            if [ "$code" = "200" ]; then
+              echo "::notice::https://$domain is live."
+              exit 0
+            fi
+            echo "attempt $attempt: HTTP $code"
+            sleep 10
+          done
+          echo "::error::https://$domain did not return 200 after the deploy. Check the custom domain is attached in Cloudflare."
+          exit 1

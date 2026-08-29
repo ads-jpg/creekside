@@ -1,0 +1,135 @@
+---
+import site, { ATTRIBUTION_FIELDS } from '../../lib/config.js';
+
+const form = site.leadForm;
+const fields = form.fields ?? [];
+---
+
+<section id="lead-form" class="section bg-brand-dark">
+  <div class="shell max-w-3xl">
+    <div class="rounded-[var(--radius-brand)] bg-white p-6 shadow-xl sm:p-10">
+      <div class="text-center">
+        <h2 class="h2">{form.headline}</h2>
+        {form.subhead && <p class="lede mt-3">{form.subhead}</p>}
+      </div>
+
+      <form
+        id="lead-form-el"
+        class="mt-8 grid gap-5 sm:grid-cols-2"
+        action="/api/lead"
+        method="POST"
+        data-success={form.successRedirect ?? '/thanks'}
+      >
+        {
+          fields.map((field) => {
+            const wide = field.type === 'textarea' || field.type === 'select' || fields.length % 2 === 1;
+            const id = `field-${field.name}`;
+            const describedBy = `${id}-error`;
+            return (
+              <div class:list={['field', wide && 'sm:col-span-2']} data-field data-invalid="false">
+                {field.type === 'checkbox' ? (
+                  <label class="flex items-start gap-3 text-sm leading-relaxed">
+                    <input
+                      type="checkbox"
+                      id={id}
+                      name={field.name}
+                      required={field.required}
+                      aria-describedby={describedBy}
+                      class="mt-0.5 h-5 w-5 shrink-0 rounded border-black/25 text-brand focus:ring-brand"
+                    />
+                    <span>
+                      {field.label}
+                      {field.required && <span class="text-red-700" aria-hidden="true"> *</span>}
+                    </span>
+                  </label>
+                ) : (
+                  <>
+                    <label class="field-label" for={id}>
+                      {field.label}
+                      {field.required && <span class="text-red-700" aria-hidden="true"> *</span>}
+                      {!field.required && <span class="font-normal text-muted"> (optional)</span>}
+                    </label>
+
+                    {field.type === 'select' ? (
+                      <select
+                        id={id}
+                        name={field.name}
+                        required={field.required}
+                        aria-describedby={describedBy}
+                        class="field-input"
+                      >
+                        <option value="">Please choose&hellip;</option>
+                        {(field.options ?? []).map((option) => (
+                          <option value={option}>{option}</option>
+                        ))}
+                      </select>
+                    ) : field.type === 'textarea' ? (
+                      <textarea
+                        id={id}
+                        name={field.name}
+                        rows="4"
+                        required={field.required}
+                        placeholder={field.placeholder}
+                        aria-describedby={describedBy}
+                        class="field-input"
+                        maxlength="2000"
+                      />
+                    ) : (
+                      <input
+                        type={field.type}
+                        id={id}
+                        name={field.name}
+                        required={field.required}
+                        placeholder={field.placeholder}
+                        autocomplete={field.autocomplete}
+                        inputmode={field.type === 'tel' ? 'tel' : undefined}
+                        aria-describedby={describedBy}
+                        class="field-input"
+                        maxlength="200"
+                      />
+                    )}
+                  </>
+                )}
+                <p class="field-error" id={describedBy} role="alert" />
+              </div>
+            );
+          })
+        }
+
+        {/* Spam trap. Real people never see this, so anything that fills it in is a bot. */}
+        <div class="sr-only-field" aria-hidden="true">
+          <label>
+            Company website
+            <input type="text" name="company_website" tabindex="-1" autocomplete="off" />
+          </label>
+        </div>
+
+        <input type="hidden" name="form_rendered_at" value="" />
+        <input type="hidden" name="page_path" value="" />
+        <input type="hidden" name="referrer" value="" />
+        {ATTRIBUTION_FIELDS.map((name) => <input type="hidden" name={name} value="" />)}
+
+        <div class="sm:col-span-2">
+          <button type="submit" class="btn btn-primary btn-lg w-full" data-track="form-submit">
+            <span data-submit-label>{form.submitLabel ?? 'Send My Request'}</span>
+            <span data-submit-spinner hidden>Sending&hellip;</span>
+          </button>
+
+          {
+            form.consentText && (
+              <p class="mt-4 text-center text-xs leading-relaxed text-muted">{form.consentText}</p>
+            )
+          }
+
+          <p
+            class="mt-4 hidden rounded-lg bg-red-50 px-4 py-3 text-center text-sm font-medium text-red-800"
+            id="form-status"
+            role="status"
+            aria-live="polite"
+          >
+          </p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

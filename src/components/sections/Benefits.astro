@@ -1,0 +1,33 @@
+---
+import site from '../../lib/config.js';
+import Icon from '../Icon.astro';
+
+const benefits = site.benefits;
+const items = benefits.items ?? [];
+const columns = { 2: 'sm:grid-cols-2', 3: 'sm:grid-cols-3', 4: 'sm:grid-cols-2 lg:grid-cols-4' };
+---
+
+<section class="section bg-surface">
+  <div class="shell">
+    <div class="mx-auto max-w-2xl text-center">
+      {benefits.headline && <h2 class="h2">{benefits.headline}</h2>}
+      {benefits.subhead && <p class="lede mt-4">{benefits.subhead}</p>}
+    </div>
+
+    <div class:list={['mt-12 grid gap-6', columns[items.length] ?? 'sm:grid-cols-3']}>
+      {
+        items.map((item) => (
+          <article class="card">
+            {item.icon && (
+              <span class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-[calc(var(--radius-brand)*0.75)] bg-brand/10 text-brand">
+                <Icon name={item.icon} />
+              </span>
+            )}
+            <h3 class="text-lg font-bold">{item.title}</h3>
+            <p class="mt-2 leading-relaxed text-muted">{item.body}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

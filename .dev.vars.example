@@ -1,0 +1,4 @@
+# Copy to .dev.vars for local `wrangler dev`. Never commit the real file.
+# In production these are set with: wrangler secret put LEAD_WEBHOOK_URL
+LEAD_WEBHOOK_URL=""
+LEAD_WEBHOOK_AUTH=""

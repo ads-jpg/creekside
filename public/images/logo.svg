@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 336 64" width="336" height="64" role="img" aria-label="Client logo placeholder">
+  <rect width="64" height="64" rx="14" fill="currentColor"/>
+  <path d="M20 40l8-16 8 16" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="44" cy="24" r="5" fill="#fff"/>
+  <text x="80" y="34" font-family="ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,sans-serif" font-size="22" font-weight="700" fill="currentColor">Client Logo</text>
+  <text x="80" y="52" font-family="ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,sans-serif" font-size="12" fill="currentColor" opacity=".65">replace public/images/logo.svg</text>
+</svg>
