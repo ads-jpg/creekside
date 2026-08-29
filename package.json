@@ -1,0 +1,25 @@
+{
+  "name": "creekside-ad-page",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=20.11" },
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "npm run validate && astro build",
+    "preview": "npm run build && wrangler dev",
+    "validate": "node scripts/validate-config.mjs",
+    "new-client": "node scripts/init-client.mjs",
+    "deploy": "npm run build && wrangler deploy",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^5.0.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.0.0",
+    "tailwindcss": "^4.0.0",
+    "wrangler": "^4.0.0"
+  }
+}

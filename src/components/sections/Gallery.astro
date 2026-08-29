@@ -1,0 +1,33 @@
+---
+import site from '../../lib/config.js';
+
+const gallery = site.gallery;
+const images = gallery.images ?? [];
+---
+
+<section class="section bg-surface">
+  <div class="shell">
+    {gallery.headline && <h2 class="h2 text-center">{gallery.headline}</h2>}
+
+    <ul class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        images.map((image) => (
+          <li>
+            <figure>
+              <img
+                src={image.src}
+                alt={image.alt}
+                width="800"
+                height="600"
+                loading="lazy"
+                decoding="async"
+                class="aspect-[4/3] w-full rounded-[var(--radius-brand)] object-cover shadow-sm"
+              />
+              {image.caption && <figcaption class="mt-2 text-sm text-muted">{image.caption}</figcaption>}
+            </figure>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

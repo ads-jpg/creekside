@@ -1,0 +1,31 @@
+---
+import site from '../../lib/config.js';
+
+const how = site.howItWorks;
+const steps = how.steps ?? [];
+---
+
+<section class="section bg-subtle">
+  <div class="shell">
+    {how.headline && <h2 class="h2 text-center">{how.headline}</h2>}
+
+    <ol class="mt-12 grid gap-8 sm:grid-cols-3">
+      {
+        steps.map((step, i) => (
+          <li class="relative">
+            <span
+              class="flex h-11 w-11 items-center justify-center rounded-full bg-brand text-lg font-bold text-white"
+              aria-hidden="true"
+            >
+              {i + 1}
+            </span>
+            <h3 class="mt-4 text-lg font-bold">
+              <span class="sr-only">Step {i + 1}: </span>{step.title}
+            </h3>
+            <p class="mt-2 leading-relaxed text-muted">{step.body}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>

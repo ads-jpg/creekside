@@ -1,0 +1,121 @@
+name: Checks
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: checks-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Validate and build
+    runs-on: ubuntu-latest
+    outputs:
+      slug: ${{ steps.identity.outputs.slug }}
+      is_template: ${{ steps.identity.outputs.is_template }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - run: npm ci
+
+      - id: identity
+        run: |
+          slug=$(node -p "require('./site.config.json').client.slug")
+          echo "slug=$slug" >> "$GITHUB_OUTPUT"
+          if [ "$slug" = "demo-client" ]; then
+            echo "is_template=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "is_template=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      # The template itself still carries the demo config, so the launch checks are
+      # only enforced once new-client has been run.
+      - name: Check the config
+        run: |
+          if [ "${{ steps.identity.outputs.is_template }}" = "true" ]; then
+            npm run validate
+          else
+            npm run validate -- --strict
+          fi
+
+      - name: Build
+        run: npx astro build
+
+      - name: Check the Worker bundles
+        run: npx wrangler deploy --dry-run --outdir /tmp/worker-check
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist
+          retention-days: 7
+
+  preview:
+    name: Preview deploy
+    needs: build
+    if: needs.build.outputs.is_template == 'false'
+    runs-on: ubuntu-latest
+    # A missing Cloudflare token should not fail the pull request; the preview is a
+    # convenience for review, not a gate.
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - run: npm ci
+      - run: npx astro build
+
+      - name: Upload a preview version
+        id: upload
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          if [ -z "$CLOUDFLARE_API_TOKEN" ]; then
+            echo "No Cloudflare token configured, skipping the preview."
+            exit 0
+          fi
+          npx wrangler versions upload 2>&1 | tee upload.log
+          url=$(grep -oE 'https://[a-z0-9-]+\.[a-z0-9-]+\.workers\.dev' upload.log | head -1)
+          echo "url=$url" >> "$GITHUB_OUTPUT"
+
+      - name: Comment the preview link
+        if: steps.upload.outputs.url != ''
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const url = '${{ steps.upload.outputs.url }}';
+            const marker = '<!-- creekside-preview -->';
+            const body = `${marker}\n### Preview ready\n\n${url}\n\nThis is the page as it stands on this branch. Check it on a phone-sized window before approving.`;
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+            const existing = comments.find((c) => c.body?.includes(marker));
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner, repo: context.repo.repo,
+                comment_id: existing.id, body,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner, repo: context.repo.repo,
+                issue_number: context.issue.number, body,
+              });
+            }

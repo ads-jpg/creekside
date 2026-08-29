@@ -1,0 +1,154 @@
+---
+import site, { fontStack } from '../lib/config.js';
+import '../styles/global.css';
+
+const {
+  title = site.seo.title,
+  description = site.seo.description,
+  noindex = site.seo.noindex,
+  bodyClass = '',
+} = Astro.props;
+
+const c = site.brand.colors;
+const canonical = site.seo.canonical || new URL(Astro.url.pathname, Astro.site).href;
+const ogImage = site.seo.ogImage ? new URL(site.seo.ogImage, Astro.site).href : null;
+const a = site.analytics ?? {};
+
+const brandVars = [
+  `--brand-primary:${c.primary}`,
+  `--brand-primary-dark:${c.primaryDark}`,
+  `--brand-accent:${c.accent}`,
+  `--brand-ink:${c.ink}`,
+  `--brand-muted:${c.muted}`,
+  `--brand-surface:${c.surface}`,
+  `--brand-subtle:${c.subtle}`,
+  `--brand-radius:${site.brand.radius ?? '12px'}`,
+  `--brand-font:${fontStack(site.brand.font)}`,
+].join(';');
+
+const businessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: site.client.name,
+  url: `https://${site.client.domain}`,
+  telephone: site.contact.phone,
+  ...(site.contact.email ? { email: site.contact.email } : {}),
+  ...(site.contact.addressLine ? { address: site.contact.addressLine } : {}),
+  ...(site.contact.hours ? { openingHours: site.contact.hours } : {}),
+  ...(ogImage ? { image: ogImage } : {}),
+};
+
+const faqSchema =
+  site.faq?.enabled !== false && site.faq?.items?.length
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: site.faq.items.map((item) => ({
+          '@type': 'Question',
+          name: item.q,
+          acceptedAnswer: { '@type': 'Answer', text: item.a },
+        })),
+      }
+    : null;
+---
+
+<!doctype html>
+<html lang="en" style={brandVars}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="theme-color" content={c.primary} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content={site.client.name} />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+    <meta name="twitter:card" content={ogImage ? 'summary_large_image' : 'summary'} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(businessSchema)} />
+    {faqSchema && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}
+
+    {/* Analytics. Every tag is opt-in from site.config.json — nothing loads unless an ID is set. */}
+    {
+      a.gtmId && (
+        <script is:inline define:vars={{ gtmId: a.gtmId }}>
+          {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+          var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
+          j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+          })(window,document,'script','dataLayer',gtmId);`}
+        </script>
+      )
+    }
+    {
+      (a.ga4Id || a.googleAdsId) && (
+        <>
+          <script
+            async
+            is:inline
+            src={`https://www.googletagmanager.com/gtag/js?id=${a.ga4Id || a.googleAdsId}`}
+          />
+          <script is:inline define:vars={{ ga4Id: a.ga4Id || '', adsId: a.googleAdsId || '' }}>
+            {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
+            window.gtag=gtag;gtag('js',new Date());
+            if(ga4Id)gtag('config',ga4Id);
+            if(adsId)gtag('config',adsId);`}
+          </script>
+        </>
+      )
+    }
+    {
+      a.metaPixelId && (
+        <script is:inline define:vars={{ pixelId: a.metaPixelId }}>
+          {`!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+          n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+          n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+          t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,
+          'script','https://connect.facebook.net/en_US/fbevents.js');
+          fbq('init',pixelId);fbq('track','PageView');`}
+        </script>
+      )
+    }
+    {
+      a.callRailId && (
+        <script async is:inline src={`//cdn.callrail.com/companies/${a.callRailId}/swap.js`} />
+      )
+    }
+  </head>
+
+  <body class={bodyClass}>
+    {
+      a.gtmId && (
+        <noscript
+          set:html={`<iframe src="https://www.googletagmanager.com/ns.html?id=${a.gtmId}" height="0" width="0" style="display:none;visibility:hidden"></iframe>`}
+        />
+      )
+    }
+
+    <a
+      href="#main"
+      class="sr-only-field focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-50 focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:shadow-lg"
+      >Skip to content</a
+    >
+
+    <slot />
+
+    <script
+      is:inline
+      define:vars={{
+        adsId: a.googleAdsId || '',
+        adsLabel: a.googleAdsConversionLabel || '',
+        hasPixel: Boolean(a.metaPixelId),
+      }}
+    >
+      window.__CREEKSIDE__ = { adsId, adsLabel, hasPixel };
+    </script>
+    <script src="/scripts/main.js" is:inline defer></script>
+  </body>
+</html>

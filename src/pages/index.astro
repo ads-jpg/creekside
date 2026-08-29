@@ -1,0 +1,42 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import StickyCta from '../components/StickyCta.astro';
+import Hero from '../components/sections/Hero.astro';
+import TrustBar from '../components/sections/TrustBar.astro';
+import Benefits from '../components/sections/Benefits.astro';
+import HowItWorks from '../components/sections/HowItWorks.astro';
+import Gallery from '../components/sections/Gallery.astro';
+import Testimonials from '../components/sections/Testimonials.astro';
+import Offer from '../components/sections/Offer.astro';
+import Faq from '../components/sections/Faq.astro';
+import LeadForm from '../components/sections/LeadForm.astro';
+import FinalCta from '../components/sections/FinalCta.astro';
+import site, { on } from '../lib/config.js';
+
+/*
+  The order of sections is fixed on purpose. Consistency across every client page is
+  the point of this template, so account managers switch sections on and off in
+  site.config.json rather than rearranging them. If a client genuinely needs a
+  different running order, that is a conversation with the landing page lead.
+*/
+---
+
+<Base>
+  {on(site.header) && <Header />}
+  <main id="main">
+    {on(site.hero) && <Hero />}
+    {on(site.trustBar) && <TrustBar />}
+    {on(site.benefits) && <Benefits />}
+    {on(site.howItWorks) && <HowItWorks />}
+    {on(site.gallery) && <Gallery />}
+    {on(site.testimonials) && <Testimonials />}
+    {on(site.offer) && <Offer />}
+    {on(site.faq) && <Faq />}
+    {on(site.leadForm) && <LeadForm />}
+    {on(site.finalCta) && <FinalCta />}
+  </main>
+  {on(site.footer) && <Footer />}
+  {on(site.stickyCta) && <StickyCta />}
+</Base>

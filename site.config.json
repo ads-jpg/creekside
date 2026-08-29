@@ -1,0 +1,272 @@
+{
+  "$schema": "./site.schema.json",
+  "client": {
+    "slug": "demo-client",
+    "name": "Acme Home Services",
+    "domain": "demo-client.ad-pages.com",
+    "accountManager": "unassigned@creeksidemarketingpros.com",
+    "campaign": "Search - Brand - Demo"
+  },
+  "brand": {
+    "logo": "/images/logo.svg",
+    "logoWidth": 168,
+    "colors": {
+      "primary": "#0d5c63",
+      "primaryDark": "#08434a",
+      "accent": "#f0a500",
+      "ink": "#12212b",
+      "muted": "#5a6b76",
+      "surface": "#ffffff",
+      "subtle": "#f2f6f7"
+    },
+    "font": "system",
+    "radius": "16px"
+  },
+  "seo": {
+    "title": "Acme Home Services | Fast, Fair, Guaranteed",
+    "description": "Licensed local pros for repairs, installs and emergency calls. Same-day appointments and upfront pricing. Book your free estimate today.",
+    "ogImage": "/images/og.png",
+    "noindex": true
+  },
+  "analytics": {
+    "ga4Id": "",
+    "gtmId": "",
+    "googleAdsId": "",
+    "googleAdsConversionLabel": "",
+    "metaPixelId": "",
+    "callRailId": ""
+  },
+  "contact": {
+    "phone": "+15555550123",
+    "phoneDisplay": "(555) 555-0123",
+    "email": "hello@example.com",
+    "addressLine": "123 Main Street, Springfield, IL 62701",
+    "hours": "Mon-Sat 7am-7pm"
+  },
+  "header": {
+    "enabled": true,
+    "sticky": true,
+    "showPhone": true,
+    "ctaLabel": "Get My Free Quote",
+    "ctaHref": "#lead-form"
+  },
+  "hero": {
+    "enabled": true,
+    "eyebrow": "Licensed - Bonded - Insured",
+    "headline": "Same-day home repairs, done right the first time",
+    "subhead": "Upfront pricing, no surprise fees, and a two-year workmanship guarantee on every job.",
+    "image": "/images/hero.svg",
+    "imageAlt": "Technician greeting a homeowner at the front door",
+    "primaryCta": {
+      "label": "Get My Free Quote",
+      "href": "#lead-form"
+    },
+    "secondaryCta": {
+      "label": "Call (555) 555-0123",
+      "href": "tel:+15555550123"
+    },
+    "bullets": [
+      "Free, no-obligation estimates",
+      "Background-checked technicians",
+      "2-year workmanship guarantee"
+    ]
+  },
+  "trustBar": {
+    "enabled": true,
+    "headline": "Trusted by 4,000+ homeowners",
+    "stats": [
+      {
+        "value": "4.9/5",
+        "label": "Average rating"
+      },
+      {
+        "value": "4,000+",
+        "label": "Jobs completed"
+      },
+      {
+        "value": "< 2 hrs",
+        "label": "Typical response"
+      },
+      {
+        "value": "25 yrs",
+        "label": "In business"
+      }
+    ]
+  },
+  "benefits": {
+    "enabled": true,
+    "headline": "Why homeowners choose us",
+    "subhead": "No call centers, no upsells, no waiting around all day.",
+    "items": [
+      {
+        "icon": "clock",
+        "title": "Same-day service",
+        "body": "Book before noon and we will be at your door the same afternoon, most days."
+      },
+      {
+        "icon": "tag",
+        "title": "Upfront pricing",
+        "body": "You approve the price before we start. What we quote is what you pay."
+      },
+      {
+        "icon": "shield",
+        "title": "Guaranteed work",
+        "body": "Every repair is backed by our two-year workmanship guarantee, in writing."
+      }
+    ]
+  },
+  "howItWorks": {
+    "enabled": true,
+    "headline": "How it works",
+    "steps": [
+      {
+        "title": "Tell us what is wrong",
+        "body": "Fill out the short form or call. It takes about a minute."
+      },
+      {
+        "title": "Get a firm quote",
+        "body": "We confirm a time window and give you a fixed price up front."
+      },
+      {
+        "title": "We fix it",
+        "body": "A licensed tech arrives on time, does the work, and cleans up."
+      }
+    ]
+  },
+  "gallery": {
+    "enabled": false,
+    "headline": "Recent work",
+    "images": []
+  },
+  "testimonials": {
+    "enabled": true,
+    "headline": "What our customers say",
+    "items": [
+      {
+        "quote": "Called at 9am, fixed by 2pm, and the price was exactly what they quoted. I have already booked them again.",
+        "name": "Dana R.",
+        "detail": "Springfield, IL"
+      },
+      {
+        "quote": "The tech explained everything, showed me the old part, and did not try to sell me anything I did not need.",
+        "name": "Marcus T.",
+        "detail": "Chatham, IL"
+      },
+      {
+        "quote": "Third company I called and the only one that showed up when they said they would. Worth every penny.",
+        "name": "Priya S.",
+        "detail": "Rochester, IL"
+      }
+    ]
+  },
+  "offer": {
+    "enabled": true,
+    "badge": "Limited time",
+    "headline": "$50 off your first service call",
+    "body": "Mention this page when you book. Cannot be combined with other offers. Expires at the end of the month.",
+    "cta": {
+      "label": "Claim My $50 Off",
+      "href": "#lead-form"
+    },
+    "finePrint": "New customers only. One discount per household."
+  },
+  "faq": {
+    "enabled": true,
+    "headline": "Questions, answered",
+    "items": [
+      {
+        "q": "How fast can you get here?",
+        "a": "Most jobs booked before noon are handled the same day. Emergencies are prioritized."
+      },
+      {
+        "q": "Is the estimate really free?",
+        "a": "Yes. We give you a firm price before any work starts and there is no charge if you decline."
+      },
+      {
+        "q": "Are you licensed and insured?",
+        "a": "Fully licensed, bonded, and insured. We are happy to send documentation on request."
+      },
+      {
+        "q": "What areas do you serve?",
+        "a": "Springfield and surrounding communities within about a 30 mile radius."
+      }
+    ]
+  },
+  "leadForm": {
+    "enabled": true,
+    "headline": "Get your free quote",
+    "subhead": "Tell us what you need. We will call you back within one business hour.",
+    "submitLabel": "Send My Request",
+    "successRedirect": "/thanks",
+    "consentText": "By submitting, you agree to be contacted by phone, text, or email about your request. Message and data rates may apply.",
+    "fields": [
+      {
+        "name": "name",
+        "label": "Full name",
+        "type": "text",
+        "required": true,
+        "autocomplete": "name"
+      },
+      {
+        "name": "phone",
+        "label": "Phone",
+        "type": "tel",
+        "required": true,
+        "autocomplete": "tel"
+      },
+      {
+        "name": "zip",
+        "label": "ZIP code",
+        "type": "text",
+        "required": true,
+        "autocomplete": "postal-code"
+      },
+      {
+        "name": "service",
+        "label": "What do you need help with?",
+        "type": "select",
+        "required": true,
+        "options": [
+          "Plumbing",
+          "Electrical",
+          "HVAC",
+          "Appliance repair",
+          "Something else"
+        ]
+      },
+      {
+        "name": "details",
+        "label": "Anything else we should know?",
+        "type": "textarea",
+        "required": false
+      }
+    ]
+  },
+  "finalCta": {
+    "enabled": true,
+    "headline": "Ready to get it fixed?",
+    "body": "Free estimates, same-day availability, and a guarantee in writing.",
+    "primaryCta": {
+      "label": "Get My Free Quote",
+      "href": "#lead-form"
+    }
+  },
+  "stickyCta": {
+    "enabled": true,
+    "label": "Get My Free Quote",
+    "href": "#lead-form",
+    "showCall": true
+  },
+  "footer": {
+    "enabled": true,
+    "legalName": "Acme Home Services LLC",
+    "license": "IL Lic. #000000",
+    "links": [
+      {
+        "label": "Privacy Policy",
+        "href": "/privacy"
+      }
+    ],
+    "disclaimer": ""
+  }
+}
