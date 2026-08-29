@@ -12,6 +12,9 @@ veneers/
   assets/img/*.svg              labelled placeholders for the real photography
 tools/
   audit-page.js                 pre-launch audit — run before every deploy
+  audit-responsive.js           viewport, touch-target and legibility audit
+  build-standalone.py           inline everything into one shareable file
+  build-pdf.js                  desktop + mobile PDF export
 server/
   verify-lead.js                lead intake + reCAPTCHA verification + spam scoring
   verify-lead.test.js           policy tests — run before tuning thresholds
@@ -148,6 +151,30 @@ fabricated social proof .... none found
 reCAPTCHA attribution ...... present while the badge is hidden
 text contrast .............. 50 desktop / 49 mobile elements, all above 3:1
 ```
+
+`node tools/audit-responsive.js` — 8 viewports, iPhone SE through desktop:
+
+```
+horizontal overflow ........ none at any width
+escaping elements .......... none
+touch targets .............. all interactive targets 40px+
+text size .................. nothing under 11px
+iOS zoom-on-focus .......... no form input under 16px
+skip link .................. 1x1 until focused, then 174x50
+```
+
+## Exports
+
+```
+npm i --prefix .fonts @fontsource/cormorant-garamond @fontsource/inter
+node tools/build-pdf.js --fonts=.fonts/node_modules/@fontsource
+```
+
+Writes `build/vida-veneers-desktop.pdf` and `build/vida-veneers-mobile.pdf` —
+one continuous page each, so no section is sliced by a page break. Embedding
+the fonts matters: without them the export falls back to Times and Helvetica.
+
+`build/` is gitignored; regenerate rather than committing binaries.
 
 **The contrast pass is not decorative.** A CSS specificity collision can render
 a button's label invisible — white text on a white button — while the markup
