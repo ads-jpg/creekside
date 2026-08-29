@@ -51,7 +51,23 @@ skipped === 0 ? ok('no skipped heading levels') : bad(`${skipped} skipped headin
 /* ------------------------------------------------------------------- assets */
 head('Assets');
 const refs = new Set([...html.matchAll(/(?:src|href)="((?!https?:|tel:|mailto:|data:|#|\/)[^"]+)"/g)].map((m) => m[1]));
+// srcset candidates too — a broken one there fails silently at the breakpoint
+// that selects it, which is exactly the kind of bug nobody notices locally.
+[...html.matchAll(/srcset="([^"]+)"/g)].forEach((m) => {
+  m[1].split(',').forEach((c) => {
+    const url = c.trim().split(/\s+/)[0];
+    if (url && !/^(https?:|data:|\/)/.test(url)) refs.add(url);
+  });
+});
 refs.forEach((r) => fs.existsSync(path.join(ROOT, 'veneers', r)) ? ok(r) : bad('missing ' + r));
+
+const srcsetImgs = [...html.matchAll(/<img\b[^>]*srcset=[^>]*>/g)];
+const noSizes = srcsetImgs.filter((m) => !/\bsizes=/.test(m[0]));
+if (srcsetImgs.length) {
+  noSizes.length === 0
+    ? ok(`all ${srcsetImgs.length} responsive images declare sizes`)
+    : bad(`${noSizes.length} images have srcset but no sizes — the browser will assume 100vw`);
+}
 
 const imgs = [...html.matchAll(/<img\b[^>]*>/g)].map((m) => m[0]);
 const noAlt = imgs.filter((i) => !/\balt=/.test(i));

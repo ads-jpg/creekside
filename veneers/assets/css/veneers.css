@@ -572,12 +572,12 @@
 }
 .vd-ba__pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--vd-line); }
 .vd-ba__cell { position: relative; background: var(--vd-sand); }
-/* 4:3, not square. Smile-gallery close-ups are wide (~1.7:1); a square cell
-   would crop them to 59% of their width and cut the corners of the mouth off.
-   4:3 keeps 78% and holds the whole smile. Tokenised so it can be retuned. */
+/* Matches the source portraits' own 1:2 frame, so cover does no cropping and
+   no patient's smile can be cut off by the layout. Tokenised: if a future
+   photo has different proportions, retune here rather than re-exporting. */
 .vd-ba__cell img {
   width: 100%;
-  aspect-ratio: var(--vd-ba-ratio, 4 / 3);
+  aspect-ratio: var(--vd-ba-ratio, 1 / 2);
   object-fit: cover;
   object-position: var(--vd-ba-focus, 50% 50%);
   background: var(--vd-sand);

@@ -343,32 +343,41 @@ j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNo
       </p>
     </div>
 
-    <!-- IMAGE SLOT 2 (before/after): export these four from the Smile Gallery
-         on the live page and overwrite the files by name — no markup change.
-         Case 1 = minimal-prep porcelain veneers, upper arch.
-         Case 2 = the pair whose BEFORE shows orthodontic brackets, i.e. the
-         Invisalign-alignment-first case.
-         Export 800x600 or larger; see docs/CONTENT-AND-IMAGE-SLOTS.md.
+    <!-- IMAGE SLOT 2 (before/after): real patient cases supplied by the practice,
+         split from the 2000x2000 before|after composites. Exported uncropped at
+         620x1250 so the layout cannot cut anyone's smile.
+         CAPTIONS: deliberately describe only what the photographs show. The
+         specific protocol for each case (minimal-prep vs no-prep, whether
+         Invisalign came first) is not verifiable from the images — confirm with
+         the practice before making a clinical claim here.
          Add or remove .vd-ba blocks to show more pairs. -->
     <div class="vd-ba-grid">
       <figure class="vd-ba vd-reveal">
         <div class="vd-ba__pair">
           <div class="vd-ba__cell"><span class="vd-ba__tag">Before</span>
-            <img src="assets/img/ba-1-before.jpg" alt="Close-up of a patient's smile before minimal-prep porcelain veneers on the upper arch" loading="lazy" width="800" height="600" decoding="async"></div>
+            <img src="assets/img/ba-1-before.jpg"
+                 srcset="assets/img/ba-1-before-400w.jpg 400w, assets/img/ba-1-before.jpg 620w"
+                 sizes="(min-width: 900px) 240px, 130px" alt="Patient portrait before porcelain veneer treatment at Vida Dentistry" loading="lazy" width="620" height="1250" decoding="async"></div>
           <div class="vd-ba__cell"><span class="vd-ba__tag">After</span>
-            <img src="assets/img/ba-1-after.jpg" alt="The same smile after minimal-prep porcelain veneers on the upper arch at Vida Dentistry" loading="lazy" width="800" height="600" decoding="async"></div>
+            <img src="assets/img/ba-1-after.jpg"
+                 srcset="assets/img/ba-1-after-400w.jpg 400w, assets/img/ba-1-after.jpg 620w"
+                 sizes="(min-width: 900px) 240px, 130px" alt="The same patient after handcrafted porcelain veneers by Dr. Vida" loading="lazy" width="620" height="1250" decoding="async"></div>
         </div>
-        <figcaption class="vd-ba__caption">Minimal-prep porcelain veneers, upper arch.</figcaption>
+        <figcaption class="vd-ba__caption">Handcrafted porcelain veneers by Dr.&nbsp;Vida.</figcaption>
       </figure>
 
       <figure class="vd-ba vd-reveal">
         <div class="vd-ba__pair">
           <div class="vd-ba__cell"><span class="vd-ba__tag">Before</span>
-            <img src="assets/img/ba-2-before.jpg" alt="Close-up of a patient's smile before Invisalign alignment and ultra-natural porcelain veneers" loading="lazy" width="800" height="600" decoding="async"></div>
+            <img src="assets/img/ba-2-before.jpg"
+                 srcset="assets/img/ba-2-before-400w.jpg 400w, assets/img/ba-2-before.jpg 620w"
+                 sizes="(min-width: 900px) 240px, 130px" alt="Patient portrait before porcelain veneer treatment at Vida Dentistry" loading="lazy" width="620" height="1250" decoding="async"></div>
           <div class="vd-ba__cell"><span class="vd-ba__tag">After</span>
-            <img src="assets/img/ba-2-after.jpg" alt="The same smile after Invisalign alignment followed by ultra-natural porcelain veneers at Vida Dentistry" loading="lazy" width="800" height="600" decoding="async"></div>
+            <img src="assets/img/ba-2-after.jpg"
+                 srcset="assets/img/ba-2-after-400w.jpg 400w, assets/img/ba-2-after.jpg 620w"
+                 sizes="(min-width: 900px) 240px, 130px" alt="The same patient after ultra-natural porcelain veneers by Dr. Vida" loading="lazy" width="620" height="1250" decoding="async"></div>
         </div>
-        <figcaption class="vd-ba__caption">Ultra-natural veneers with Invisalign alignment first.</figcaption>
+        <figcaption class="vd-ba__caption">Ultra-natural veneers, designed to suit the face.</figcaption>
       </figure>
     </div>
 

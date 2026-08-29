@@ -25,8 +25,7 @@ caption naming what belongs there, so nothing looks broken while you swap them.
 | File | Where | What belongs there |
 | --- | --- | --- |
 | `hero-vida.webp` | Hero, right column | **Installed** — portrait of Dr. Vida. See §1a on resolution |
-| `ba-1-before.jpg` · `ba-1-after.jpg` | Results gallery, pair 1 | Smile Gallery — see §1b |
-| `ba-2-before.jpg` · `ba-2-after.jpg` | Results gallery, pair 2 | Smile Gallery — see §1b |
+| `ba-1-*.jpg` · `ba-2-*.jpg` (+ `-400w`) | Results gallery | **Installed** — two real cases. See §1b |
 | `approach.svg` | "The Vida Difference" | Existing technique / close-up / studio photo |
 | `candidacy.svg` | "Am I a candidate?" | Existing consultation or patient-facing photo |
 
@@ -73,49 +72,50 @@ The credential card floats over the photo's lower edge on desktop (12% overlap)
 and sits **below** the photo on mobile, where the shorter frame meant it was
 covering her hands.
 
-### 1b. Before/after gallery — from the Smile Gallery
+### 1b. Before/after gallery (installed)
 
-Four files, each placeholder naming the case and the filename to overwrite.
+Two real patient cases, supplied by the practice as 2000 × 2000 before|after
+composites and split here into halves.
 
-| File | Case |
+| Files | Case |
 | --- | --- |
-| `ba-1-before.jpg` · `ba-1-after.jpg` | **Minimal-prep porcelain veneers, upper arch** |
-| `ba-2-before.jpg` · `ba-2-after.jpg` | **Ultra-natural veneers, Invisalign alignment first** — the Smile Gallery pair whose BEFORE shows orthodontic brackets |
+| `ba-1-before.jpg` · `ba-1-after.jpg` | Man, dark curly hair |
+| `ba-2-before.jpg` · `ba-2-after.jpg` | Woman, dark hair |
 
-**Export settings:**
+Each also has a `-400w.jpg` variant; `srcset` serves it to phones. Mobile pulls
+179 KB instead of 403 KB for the gallery.
 
-| | |
-| --- | --- |
-| Dimensions | **800 × 600 minimum**. Cells render 238 × 178 on desktop, so this is comfortably past the ~476 px needed for 2× |
-| Aspect | Roughly 4:3. Wider is fine — see the crop note below |
-| Format | JPEG quality 82, or WebP (rename the four `src` values if you switch) |
-| Weight | Under ~120 KB each. Four of them load together |
-| Colour | sRGB |
+**No cropping was applied.** The halves were split at the composites' own white
+gutter (detected at x≈993) and exported at their native 1:2 proportions. The
+gallery cell ratio was set to `1 / 2` to match, so `object-fit: cover` has
+nothing to trim and the layout cannot cut anyone's smile off. An earlier 4:3
+cell would have cropped these portraits to a horizontal band across the eyes.
 
-**Get the originals, not screenshots.** Right-click each image in the Smile
-Gallery and "Open image in new tab" to reach the full-resolution file, or export
-from the CMS media library. A crop taken from a screenshot of the gallery lands
-around 340 × 200 — below 1× for these slots, and visibly soft on the one section
-whose entire job is showing off the quality of the work.
+**A third case was supplied and deliberately not used.** In it — as in the
+second, to a lesser degree — the hair, makeup and clothing differ noticeably
+between the before and after shots. Prospects reading a page like this notice
+when the "after" also has better styling and lighting, and it quietly
+undermines the dental result. The first case is the strongest for exactly this
+reason: same shirt, same lighting, essentially the same grooming, so the only
+thing that changed is the teeth.
 
-**The cells are 4:3, not square.** Smile-gallery close-ups are wide, around
-1.7:1. A square cell would crop to 59% of the width and cut the corners of the
-mouth off; 4:3 keeps 78% and holds the whole smile. If a particular photo sits
-off-centre, tune it per-image:
+> **Captions need your confirmation.** They currently read "Handcrafted
+> porcelain veneers by Dr. Vida" and "Ultra-natural veneers, designed to suit
+> the face" — descriptions of what the photographs actually show. The earlier
+> captions named specific protocols (minimal-prep, upper arch, Invisalign
+> first) that **cannot be verified from the images**. On a medical advertising
+> page a specific clinical claim about a real identifiable patient needs to be
+> accurate, so confirm each case's actual treatment with the practice before
+> restoring that wording.
 
-```css
---vd-ba-ratio: 4 / 3;      /* frame shape */
---vd-ba-focus: 50% 50%;    /* focal point */
-```
+**Consent.** These patients are identifiable and the images carry the
+practice's Instagram watermark, so a social release presumably exists. Confirm
+it extends to **paid advertising**, which is a separate use.
 
-**Consent.** Patient before/after photography needs written release before it
-goes on an advertising landing page. Presumably these already carry it if they
-are on the live Smile Gallery, but confirm it covers paid advertising use.
-
-**More than two pairs?** Duplicate a `<figure class="vd-ba">` block in
-`index.html` and add the matching files. The grid reflows on its own. Two strong
-pairs generally beat six average ones, but if the gallery has an especially
-dramatic case, that is the one worth adding.
+**Replacing or adding a case.** Supply a 2000 × 2000 composite and I can split
+it the same way, or drop in pre-split halves as `ba-N-before.jpg` /
+`ba-N-after.jpg` at ~620 px wide plus a 400 px variant. Duplicate a
+`<figure class="vd-ba">` block to add a third pair.
 
 **When swapping:**
 
