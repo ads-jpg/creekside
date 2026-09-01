@@ -72,7 +72,7 @@ PREVIEW_REVIEWS = """    if (CONFIG.previewMode) {
 
 PREVIEW_IG = """    if (CONFIG.previewMode) {
       var ph = d.querySelector('.vd-ba__cell img'); var src = ph ? ph.getAttribute('src') : '';
-      grid.innerHTML = new Array(7).join(',').split(',').map(function () {
+      grid.innerHTML = Array.from({ length: CONFIG.instagramCount }).map(function () {
         return '<a class="vd-ig-item" href="https://www.instagram.com/veneergoddess/" target="_blank" rel="noopener">' +
           '<img src="' + src + '" alt="Placeholder for a recent Instagram post by @veneergoddess" ' +
           'loading="lazy" width="400" height="400"></a>';

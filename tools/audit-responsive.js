@@ -120,6 +120,53 @@ async function blockExternal(page) {
     await page.close();
   }
 
+  /* Fast sweep across breakpoint edges and the extremes the named devices miss.
+     The CSS breaks at 480/640/768/900/1024, and bugs hide either side of a
+     boundary. Reuses one page and just resizes, so ~20 widths cost very little. */
+  {
+    const WIDTHS = [280, 320, 360, 479, 480, 481, 600, 639, 640, 641, 767, 768,
+                    769, 899, 900, 901, 1023, 1024, 1025, 1280, 1600, 1920, 2560, 3440];
+    const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
+    await blockExternal(page);
+    await page.goto(PAGE, { waitUntil: 'domcontentloaded' });
+    await page.evaluate(() => document.querySelectorAll('.vd-reveal').forEach((e) => e.classList.add('is-in')));
+
+    const flagged = [];
+    for (const w of WIDTHS) {
+      await page.setViewportSize({ width: w, height: 800 });
+      await page.waitForTimeout(60);
+      const r = await page.evaluate((vw) => {
+        let escaping = 0, worst = '';
+        document.querySelectorAll('.vd-page *').forEach((e) => {
+          if (e.closest('.vd-hp')) return;
+          const b = e.getBoundingClientRect();
+          if (b.width > 0 && b.height > 0 && (b.right > vw + 1.5 || b.left < -1.5)) {
+            escaping++;
+            if (!worst) worst = String(e.className || e.tagName).slice(0, 34);
+          }
+        });
+        let clipped = 0;
+        document.querySelectorAll('.vd-page p,.vd-page h1,.vd-page h2,.vd-page h3,.vd-page span,.vd-page li').forEach((e) => {
+          if (e.children.length) return;
+          if (e.clientWidth > 0 && e.scrollWidth > e.clientWidth + 1) clipped++;
+        });
+        const c = document.querySelector('.vd-container').getBoundingClientRect();
+        return {
+          overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+          escaping, worst, clipped,
+          centered: Math.abs(c.left * 2 + c.width - vw) < 20,
+        };
+      }, w);
+      if (r.overflow > 0 || r.escaping > 0 || r.clipped > 0 || !r.centered) {
+        flagged.push(`${w}px: overflow ${r.overflow}, escaping ${r.escaping}${r.worst ? ' (' + r.worst + ')' : ''}, clipped ${r.clipped}, centered ${r.centered}`);
+      }
+    }
+    await page.close();
+    flagged.length === 0
+      ? ok(`width sweep: ${WIDTHS.length} widths from 280 to 3440, no overflow, clipping or off-centre container`)
+      : flagged.forEach((f) => bad('width sweep ' + f));
+  }
+
   // Skip link must become visible and hittable once focused.
   const page = await browser.newPage({ viewport: { width: 390, height: 844 } });
   await blockExternal(page);

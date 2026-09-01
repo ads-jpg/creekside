@@ -1098,7 +1098,6 @@ a.vd-visually-hidden:focus-visible {
 .vd-fin-cue a { color: var(--vd-ink); font-weight: 600; }
 
 @media (min-width: 640px) {
-  .vd-fin-facts { grid-template-columns: repeat(3, 1fr); }
   .vd-fin-partners { grid-template-columns: repeat(2, 1fr); }
 }
 @media (min-width: 900px) {
@@ -1229,13 +1228,19 @@ a.vd-visually-hidden:focus-visible {
 @media (min-width: 640px) {
   .vd-page { --vd-gutter: 2rem; }
   .vd-field-row { grid-template-columns: 1fr 1fr; }
-  .vd-trustbar__grid { grid-template-columns: repeat(4, 1fr); }
   .vd-ig-grid { grid-template-columns: repeat(3, 1fr); }
   .vd-cta-inline { grid-template-columns: 1fr auto; text-align: left; }
   .vd-cta-inline .vd-cta-group { flex-wrap: nowrap; }
   .vd-steps { grid-template-columns: repeat(2, 1fr); }
   .vd-review-grid { grid-template-columns: repeat(2, 1fr); }
   .vd-footer__grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* Four across only once the cells have room to hold a label on one or two
+   lines. At 640 they were ~155px wide and broke "Enamel-First" mid-hyphen. */
+@media (min-width: 768px) {
+  .vd-trustbar__grid { grid-template-columns: repeat(4, 1fr); }
+  .vd-fin-facts { grid-template-columns: repeat(3, 1fr); }
 }
 
 @media (min-width: 900px) {

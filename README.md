@@ -160,16 +160,23 @@ reCAPTCHA attribution ...... present while the badge is hidden
 text contrast .............. 50 desktop / 49 mobile elements, all above 3:1
 ```
 
-`node tools/audit-responsive.js` — 8 viewports, iPhone SE through desktop:
+`node tools/audit-responsive.js` — 8 named devices plus a 24-width sweep:
 
 ```
+named devices .............. iPhone SE through desktop, incl. phone landscape
+width sweep ................ 280 to 3440px, both sides of every breakpoint
 horizontal overflow ........ none at any width
 escaping elements .......... none
+clipped text ............... none
+container .................. caps at 1200px, stays centred to 3440px
 touch targets .............. all interactive targets 40px+
 text size .................. nothing under 11px
 iOS zoom-on-focus .......... no form input under 16px
 skip link .................. 1x1 until focused, then 174x50
 ```
+
+The sweep exists because layout bugs cluster at breakpoint boundaries. The CSS
+breaks at 480/640/768/900/1024 and the sweep tests both sides of each.
 
 ## Exports
 
