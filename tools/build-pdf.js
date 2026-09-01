@@ -31,6 +31,12 @@ catch (e) { ({ chromium } = require('playwright')); }
 const ROOT = path.resolve(__dirname, '..');
 const BUILD = path.join(ROOT, 'build');
 
+/* PDF readers cap a page at 200 inches (19200px at 96dpi). A single continuous
+   page is nicer to read, so use one while it fits, and split into the fewest
+   equal pages that stay under the cap once it does not. The mobile export
+   crossed this threshold as the page grew. */
+const MAX_PAGE_PX = 17000;
+
 const TARGETS = [
   { name: 'desktop', width: 1440, mobile: false },
   { name: 'mobile',  width: 390,  mobile: true  },
@@ -80,18 +86,30 @@ const TARGETS = [
     await page.waitForTimeout(200);
 
     const height = await page.evaluate(() => Math.ceil(document.documentElement.scrollHeight));
+
+    // Keep components whole wherever a page break lands.
+    await page.addStyleTag({ content: `
+      .vd-ba, .vd-review, .vd-step, .vd-form-card, .vd-faq__item, .vd-fin-fact,
+      .vd-fin-partner, .vd-fin-act, .vd-trust, figure, .vd-hero__media
+      { break-inside: avoid; page-break-inside: avoid; }
+    ` });
+
+    const pages = Math.ceil(height / MAX_PAGE_PX);
+    const pageHeight = Math.ceil(height / pages);
+
     const out = path.join(BUILD, `vida-veneers-${t.name}.pdf`);
     await page.pdf({
       path: out,
       width: `${t.width}px`,
-      height: `${height}px`,
+      height: `${pageHeight}px`,
       printBackground: true,
       margin: { top: 0, right: 0, bottom: 0, left: 0 },
-      pageRanges: '1',
+      ...(pages === 1 ? { pageRanges: '1' } : {}),
     });
 
     const mb = (fs.statSync(out).size / 1048576).toFixed(1);
-    console.log(`  ${t.name.padEnd(8)} ${t.width}x${height}px  (${(height / 96).toFixed(0)} in)  ${mb} MB  ${path.relative(ROOT, out)}`);
+    console.log(`  ${t.name.padEnd(8)} ${t.width}x${pageHeight}px  (${(pageHeight / 96).toFixed(0)} in)  ` +
+                `${pages} page${pages > 1 ? 's' : ''}  ${mb} MB  ${path.relative(ROOT, out)}`);
     await page.close();
   }
 
