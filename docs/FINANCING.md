@@ -50,7 +50,7 @@ splits the attribution.
 **3. Confirm the partner descriptors.**
 
 Cherry and Proceed Finance carry specific terms you supplied. CareCredit and
-Alphaeon Credit carry only category descriptions ("Healthcare financing",
+Alphaeon Credit carry only category descriptions ("Dental care financing",
 "Aesthetic care financing") because no terms were provided for them. If you want
 specifics there, send them and they can be added.
 
