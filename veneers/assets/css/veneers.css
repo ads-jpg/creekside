@@ -975,6 +975,139 @@ a.vd-visually-hidden:focus-visible {
 .vd-cta-inline strong { font-family: var(--vd-serif); font-size: 1.25rem; display: block; margin-bottom: .25rem; }
 
 /* --------------------------------------------------------------------------
+   18b. Financing
+   Uses the existing card, rule and eyebrow language rather than a new visual
+   system — cost objection handling should read as part of the page, not as a
+   promo block bolted on.
+   -------------------------------------------------------------------------- */
+.vd-fin-facts {
+  display: grid;
+  gap: 1px;
+  background: var(--vd-line);
+  border: 1px solid var(--vd-line);
+  border-radius: var(--vd-radius-lg);
+  overflow: hidden;
+  margin-bottom: 1.25rem;
+}
+.vd-fin-fact {
+  background: var(--vd-white);
+  padding: 1.75rem 1.5rem;
+  text-align: center;
+}
+.vd-fin-fact strong {
+  display: block;
+  font-family: var(--vd-serif);
+  font-size: clamp(1.9rem, 3.4vw, 2.6rem);
+  line-height: 1.05;
+  color: var(--vd-gold-deep);
+  margin-bottom: .5rem;
+}
+.vd-fin-fact span {
+  display: block;
+  font-size: .93rem;
+  line-height: 1.5;
+  color: var(--vd-ink-soft);
+  max-width: 22rem;
+  margin-inline: auto;
+}
+
+.vd-fin-partners {
+  display: grid;
+  gap: 1px;
+  background: var(--vd-line);
+  border: 1px solid var(--vd-line);
+  border-radius: var(--vd-radius-lg);
+  overflow: hidden;
+}
+.vd-fin-partner {
+  background: var(--vd-white);
+  padding: 1.35rem 1.25rem;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  transition: background-color .25s var(--vd-ease);
+}
+.vd-fin-partner:hover { background: var(--vd-gold-tint); }
+.vd-fin-partner b {
+  display: block;
+  font-family: var(--vd-serif);
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: var(--vd-ink);
+  line-height: 1.2;
+  margin-bottom: .3rem;
+}
+.vd-fin-partner span {
+  font-size: .74rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--vd-muted);
+}
+
+/* Closing band: the action, the reassurance, and the optional phone hand-off */
+.vd-fin-act {
+  margin-top: clamp(2rem, 4vw, 2.75rem);
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  background: var(--vd-gold-tint);
+  border: 1px solid var(--vd-line);
+  border-radius: var(--vd-radius-lg);
+  display: grid;
+  gap: 1.5rem;
+  align-items: center;
+}
+.vd-fin-act h3 { font-size: clamp(1.35rem, 2.2vw, 1.7rem); margin-bottom: .4rem; }
+.vd-fin-act p { margin: 0; font-size: .96rem; }
+.vd-fin-act .vd-cta-group { margin-top: 1.25rem; }
+
+/* Scan-to-phone hand-off. Desktop only: a QR is useless to someone already
+   holding the phone it would open on. */
+.vd-fin-qr { display: none; }
+.vd-fin-qr img {
+  width: 118px; height: 118px;
+  border: 1px solid var(--vd-line);
+  border-radius: var(--vd-radius);
+  background: var(--vd-white);
+  padding: 6px;
+}
+.vd-fin-qr figcaption {
+  font-size: .72rem;
+  line-height: 1.4;
+  color: var(--vd-muted);
+  margin-top: .55rem;
+  max-width: 130px;
+}
+
+.vd-fin-note {
+  margin-top: 1.5rem;
+  font-size: .74rem;
+  line-height: 1.6;
+  color: var(--vd-muted);
+  max-width: 62rem;
+}
+.vd-fin-note a { color: var(--vd-muted); }
+
+/* Inline financing cue used beside CTAs elsewhere on the page */
+.vd-fin-cue {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  font-size: .85rem;
+  color: var(--vd-muted);
+}
+.vd-fin-cue svg { width: 1rem; height: 1rem; color: var(--vd-gold-deep); flex: none; }
+.vd-fin-cue a { color: var(--vd-ink); font-weight: 600; }
+
+@media (min-width: 640px) {
+  .vd-fin-facts { grid-template-columns: repeat(3, 1fr); }
+  .vd-fin-partners { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 900px) {
+  .vd-fin-partners { grid-template-columns: repeat(4, 1fr); }
+  .vd-fin-act { grid-template-columns: 1fr auto; }
+  .vd-fin-qr { display: block; text-align: center; }
+}
+
+/* --------------------------------------------------------------------------
    19. Location / final conversion block
    -------------------------------------------------------------------------- */
 .vd-location { display: grid; gap: 2rem; }

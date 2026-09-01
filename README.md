@@ -24,6 +24,7 @@ docs/
   GOOGLE-REVIEWS-AND-INSTAGRAM.md   what these integrations can actually do
   TRACKING-SETUP.md             GTM / GA4 / Google Ads conversion tracking
   SPAM-PROTECTION.md            reCAPTCHA v3 setup and the scoring policy
+  FINANCING.md                  placement, compliance and the links to swap in
 ```
 
 Open `veneers/index.html` in a browser to view it. No build step, no dependencies.
@@ -106,6 +107,13 @@ Sticky header with call + form CTAs · dual CTA above the fold · nine CTA
 placements at decision points · sticky mobile call/consult bar · two instances of
 a three-field lead form · click-to-call throughout, E.164 formatted · success
 state that offers a phone call
+
+**Financing**
+0% APR and payment-plan messaging at seven points, anchored by a dedicated
+section directly after pricing. Cherry's required disclosure is included
+verbatim. **The provider links are placeholders** — swap in the practice's own
+application URLs before launch, or applications will not attribute back to the
+practice. See `docs/FINANCING.md`.
 
 **Trust**
 Live Google rating badge linking to the Business Profile · trust bar · live Google
