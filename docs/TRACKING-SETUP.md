@@ -102,7 +102,7 @@ trigger.
 
 ### Conversion values
 
-For a service at $2,000–$3,000 per tooth, unvalued conversions leave Smart Bidding
+For a service at $1,500–$2,500 per tooth, unvalued conversions leave Smart Bidding
 guessing. Even rough values help enormously. Set a static value per conversion
 action based on your own lead-to-case economics, or feed real values via offline
 import (section 5) — which is strictly better.
@@ -147,7 +147,7 @@ That single field lets you later upload back to Google Ads:
 - Veneers case closed → **actual case value**
 
 Smart Bidding then optimises toward clicks that produce *cases*, not clicks that
-produce form fills. On a $2,000–$3,000-per-tooth service this is the difference
+produce form fills. On a $1,500–$2,500-per-tooth service this is the difference
 between a campaign that buys leads and one that buys revenue.
 
 Google Ads → Goals → Conversions → Import → "Conversions from clicks", uploaded

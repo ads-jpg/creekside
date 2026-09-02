@@ -20,7 +20,7 @@ without a scroll:
 | What do I do next? | Two buttons: **Call to Schedule** and **Book a Veneers Consultation** |
 
 The `$99 consultation, credited toward treatment` offer sits directly under the
-buttons. On a $2,000–$3,000-per-tooth service, a credited fee is a
+buttons. On a $1,500–$2,500-per-tooth service, a credited fee is a
 risk-reversal — it makes the next step feel small — so it belongs at the point of
 decision, not buried on a pricing page.
 

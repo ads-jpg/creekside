@@ -1,7 +1,7 @@
 # Financing
 
 Financing is the answer to the single biggest silent objection on a
-$2,000–$3,000-per-tooth page. It appears in seven places, weighted so it
+$1,500–$2,500-per-tooth page. It appears in seven places, weighted so it
 reassures without turning the page into a promotion.
 
 ## Where it appears, and why there
@@ -18,7 +18,7 @@ reassures without turning the page into a promotion.
 | **Closing block** | "Ask us about monthly payment plans" | Last reassurance before the final form |
 
 The dedicated section sits **immediately after the pricing section**, not at the
-bottom. A visitor who has just read "$2,000 to $3,000 per tooth" is exactly the
+bottom. A visitor who has just read "$1,500 to $2,500 per tooth" is exactly the
 person who needs the next screen to be about affordability.
 
 Nothing was removed to make room. The three existing financing mentions were
