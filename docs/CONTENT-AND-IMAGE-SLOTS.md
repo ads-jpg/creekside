@@ -169,7 +169,7 @@ page and the one place where more real photography reliably helps.
 | Address `25270 Marguerite Pkwy Ste C, Mission Viejo, CA 92692` | Verified |
 | Hours: Tue–Fri 9:00am–5:00pm, closed Mon/Sat/Sun | Verified |
 | Pricing `$2,000–$3,000 per tooth` | From the practice's published content |
-| `$199 consultation, credited toward treatment` | From the practice's published content |
+| `$99 consultation, credited toward treatment` | From the practice's published content |
 | Longevity `15–20 years or longer` | From the practice's published content |
 | Biomimetic / minimal-prep / no-prep positioning | From the practice's published content |
 | In-chair removable mock-up preview | From the practice's published content |
@@ -186,8 +186,8 @@ fidelity pass.
 
 - **Pricing.** `$2,000–$3,000 per tooth` appears on the page and in the FAQ
   schema. If it has changed, update both — schema and visible text must agree.
-- **The $199 consultation fee.** It appears in the hero offer strip, the form
-  section, the pricing section and the FAQ schema. Search for `199` and update
+- **The $99 consultation fee.** It appears in the hero offer strip, the form
+  section, the pricing section and the FAQ schema. Search for `99` and update
   every instance together.
 
 ---
