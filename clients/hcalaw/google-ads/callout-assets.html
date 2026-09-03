@@ -1,0 +1,568 @@
+<title>HCA Law Callout Assets</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
+
+<style>
+  :root{
+    --ground:#F3F5F4;
+    --surface:#FFFFFF;
+    --surface-sunk:#EAEEED;
+    --ink:#15201F;
+    --ink-soft:#3C4A48;
+    --muted:#5C6A68;
+    --faint:#8A9694;
+    --rule:#D8DEDC;
+    --rule-strong:#C2CBC9;
+    --accent:#0E5D57;
+    --accent-soft:#E2EFED;
+    --accent-ink:#0A4640;
+    --amber:#8A6410;
+    --amber-soft:#F7EFDC;
+    --oxblood:#8E322B;
+    --oxblood-soft:#F8E7E4;
+    --meter-track:#DDE3E1;
+    --meter-fill:#0E5D57;
+    --meter-tight:#8A6410;
+    --shadow:0 1px 2px rgba(21,32,31,.05), 0 8px 24px -16px rgba(21,32,31,.18);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ground:#0E1413;
+      --surface:#161F1E;
+      --surface-sunk:#111917;
+      --ink:#E4EBE9;
+      --ink-soft:#C2CECB;
+      --muted:#93A29F;
+      --faint:#6E7D7A;
+      --rule:#25322F;
+      --rule-strong:#33423F;
+      --accent:#4FB5AC;
+      --accent-soft:#16302E;
+      --accent-ink:#7FCEC6;
+      --amber:#D9A441;
+      --amber-soft:#2E2617;
+      --oxblood:#E08279;
+      --oxblood-soft:#33201E;
+      --meter-track:#26322F;
+      --meter-fill:#4FB5AC;
+      --meter-tight:#D9A441;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#0E1413;
+    --surface:#161F1E;
+    --surface-sunk:#111917;
+    --ink:#E4EBE9;
+    --ink-soft:#C2CECB;
+    --muted:#93A29F;
+    --faint:#6E7D7A;
+    --rule:#25322F;
+    --rule-strong:#33423F;
+    --accent:#4FB5AC;
+    --accent-soft:#16302E;
+    --accent-ink:#7FCEC6;
+    --amber:#D9A441;
+    --amber-soft:#2E2617;
+    --oxblood:#E08279;
+    --oxblood-soft:#33201E;
+    --meter-track:#26322F;
+    --meter-fill:#4FB5AC;
+    --meter-tight:#D9A441;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    background:var(--ground);
+    color:var(--ink);
+    font-family:"Public Sans","Helvetica Neue",Arial,sans-serif;
+    font-size:15px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{
+    max-width:860px;
+    margin:0 auto;
+    padding:40px 24px 96px;
+    display:flex;
+    flex-direction:column;
+    gap:44px;
+  }
+
+  /* ---------- masthead ---------- */
+  .mast{display:flex;flex-direction:column;gap:18px;}
+  .eyebrow{
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:11px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--accent);
+    font-weight:500;
+  }
+  h1{
+    font-family:"Fraunces","Georgia",serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(30px,5.2vw,44px);
+    line-height:1.08;
+    letter-spacing:-.015em;
+    margin:0;
+    text-wrap:balance;
+  }
+  .standfirst{
+    margin:0;
+    max-width:62ch;
+    color:var(--muted);
+    font-size:16px;
+  }
+  .mast-meta{
+    display:flex;flex-wrap:wrap;gap:8px;
+    padding-top:2px;
+  }
+  .tag{
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:11px;letter-spacing:.04em;
+    padding:4px 9px;
+    border:1px solid var(--rule-strong);
+    border-radius:2px;
+    color:var(--ink-soft);
+    background:var(--surface);
+  }
+
+  /* ---------- notices ---------- */
+  .notice{
+    display:flex;flex-direction:column;gap:8px;
+    padding:16px 18px;
+    border-left:3px solid var(--amber);
+    background:var(--amber-soft);
+    border-radius:0 3px 3px 0;
+  }
+  .notice.crit{border-left-color:var(--oxblood);background:var(--oxblood-soft);}
+  .notice h3{
+    margin:0;font-size:13px;font-weight:700;
+    letter-spacing:.02em;
+    color:var(--ink);
+  }
+  .notice p{margin:0;font-size:14px;color:var(--ink-soft);max-width:64ch;}
+
+  /* ---------- fact panel ---------- */
+  .facts{
+    background:var(--surface);
+    border:1px solid var(--rule);
+    border-radius:4px;
+    box-shadow:var(--shadow);
+    overflow:hidden;
+  }
+  .facts-head{
+    padding:14px 20px;
+    border-bottom:1px solid var(--rule);
+    background:var(--surface-sunk);
+    display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;
+  }
+  .facts-head strong{font-size:13px;letter-spacing:.02em;}
+  .facts-head span{
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:11px;color:var(--muted);
+  }
+  .facts-grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    margin:0;
+  }
+  .fact:nth-child(2n){border-right:none;}
+  .fact:nth-last-child(-n+2){border-bottom:none;}
+  @media (max-width:560px){
+    .facts-grid{grid-template-columns:minmax(0,1fr);}
+    .fact{border-right:none;}
+    .fact:last-child{border-bottom:none;}
+  }
+  .fact{
+    padding:15px 20px;
+    border-right:1px solid var(--rule);
+    border-bottom:1px solid var(--rule);
+    display:flex;flex-direction:column;gap:3px;
+  }
+  .fact dt{
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--faint);
+  }
+  .fact dd{margin:0;font-size:14px;color:var(--ink);font-weight:500;line-height:1.4;}
+
+  /* ---------- spec strip ---------- */
+  .spec{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:1px;
+    background:var(--rule);
+    border:1px solid var(--rule);
+    border-radius:4px;
+    overflow:hidden;
+  }
+  .spec div{background:var(--surface);padding:14px 16px;display:flex;flex-direction:column;gap:2px;}
+  .spec b{
+    font-family:"Fraunces","Georgia",serif;
+    font-size:24px;font-weight:600;line-height:1;
+    color:var(--accent);
+    font-variant-numeric:tabular-nums;
+  }
+  .spec small{font-size:12px;color:var(--muted);line-height:1.35;}
+
+  /* ---------- callout groups ---------- */
+  .groups{display:flex;flex-direction:column;gap:30px;}
+  .group{
+    background:var(--surface);
+    border:1px solid var(--rule);
+    border-radius:4px;
+    box-shadow:var(--shadow);
+    overflow:hidden;
+  }
+  .group-head{
+    display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;
+    padding:14px 18px;
+    border-bottom:1px solid var(--rule);
+  }
+  .group-title{display:flex;flex-direction:column;gap:2px;min-width:0;}
+  .group-title h2{
+    margin:0;
+    font-family:"Fraunces","Georgia",serif;
+    font-size:19px;font-weight:600;letter-spacing:-.005em;
+  }
+  .group-title p{margin:0;font-size:12.5px;color:var(--muted);}
+  button.copy{
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:11px;letter-spacing:.06em;text-transform:uppercase;
+    padding:7px 12px;
+    background:var(--accent-soft);
+    color:var(--accent-ink);
+    border:1px solid transparent;
+    border-radius:3px;
+    cursor:pointer;
+    white-space:nowrap;
+    transition:background .15s ease;
+  }
+  button.copy:hover{background:var(--accent);color:var(--surface);}
+  button.copy:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+
+  ol.rows{list-style:none;margin:0;padding:0;}
+  ol.rows li{
+    display:grid;
+    grid-template-columns:28px 1fr auto;
+    align-items:center;
+    gap:14px;
+    padding:9px 18px;
+    border-bottom:1px solid var(--rule);
+  }
+  ol.rows li:last-child{border-bottom:none;}
+  .idx{
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:11px;color:var(--faint);
+    font-variant-numeric:tabular-nums;
+  }
+  .txt{
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:14px;
+    color:var(--ink);
+    letter-spacing:-.01em;
+    overflow-wrap:anywhere;
+  }
+  .txt .vflag{
+    display:inline-block;
+    margin-left:8px;
+    font-size:9.5px;letter-spacing:.09em;
+    text-transform:uppercase;
+    color:var(--amber);
+    border:1px solid var(--amber);
+    border-radius:2px;
+    padding:0 4px;
+    vertical-align:1px;
+  }
+  .budget{display:flex;align-items:center;gap:9px;}
+  .meter{
+    width:52px;height:5px;
+    background:var(--meter-track);
+    border-radius:99px;
+    overflow:hidden;
+  }
+  .meter i{display:block;height:100%;background:var(--meter-fill);border-radius:99px;}
+  .meter.tight i{background:var(--meter-tight);}
+  .count{
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:11.5px;
+    color:var(--muted);
+    font-variant-numeric:tabular-nums;
+    min-width:44px;text-align:right;
+  }
+  .count.tight{color:var(--meter-tight);font-weight:500;}
+
+  /* ---------- list sections ---------- */
+  section.block{display:flex;flex-direction:column;gap:14px;}
+  section.block > h2{
+    margin:0;
+    font-family:"Fraunces","Georgia",serif;
+    font-size:22px;font-weight:600;letter-spacing:-.01em;
+  }
+  section.block > p{margin:0;color:var(--muted);max-width:64ch;font-size:14.5px;}
+  ul.check{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:4px;overflow:hidden;}
+  ul.check li{
+    background:var(--surface);
+    padding:12px 16px;
+    display:grid;
+    grid-template-columns:auto 1fr;
+    gap:12px;
+    align-items:start;
+    font-size:14px;
+  }
+  ul.check li .mark{
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:11px;font-weight:700;
+    padding:2px 6px;border-radius:2px;
+    white-space:nowrap;
+    margin-top:1px;
+  }
+  ul.check li .mark.v{background:var(--amber-soft);color:var(--amber);border:1px solid var(--amber);}
+  ul.check li .mark.x{background:var(--oxblood-soft);color:var(--oxblood);border:1px solid var(--oxblood);}
+  ul.check li b{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:13.5px;font-weight:500;color:var(--ink);}
+  ul.check li span.why{display:block;color:var(--muted);font-size:13px;margin-top:2px;}
+
+  footer{
+    border-top:1px solid var(--rule);
+    padding-top:20px;
+    color:var(--faint);
+    font-size:12.5px;
+    display:flex;flex-direction:column;gap:5px;
+  }
+  footer a{color:var(--accent);}
+  .toast{
+    position:fixed;left:50%;bottom:26px;transform:translateX(-50%);
+    background:var(--ink);color:var(--ground);
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:12px;letter-spacing:.04em;
+    padding:9px 16px;border-radius:3px;
+    opacity:0;pointer-events:none;transition:opacity .18s ease;
+    z-index:20;
+  }
+  .toast.on{opacity:1;}
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important;animation:none !important;}
+  }
+  @media (max-width:560px){
+    ol.rows li{grid-template-columns:22px 1fr;row-gap:6px;}
+    .budget{grid-column:2;justify-content:flex-start;}
+    .count{text-align:left;}
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="mast">
+    <div class="eyebrow">Google Ads · Callout Assets</div>
+    <h1>Hewlett, Collins &amp; Allard</h1>
+    <p class="standfirst">43 callout assets for the hcalaw.net criminal defense campaign, grouped by ad group. Every string is verified against Google's 25-character limit. Criminal defense, not personal injury — the fee and outcome language differs, and that shapes the whole set.</p>
+    <div class="mast-meta">
+      <span class="tag">hcalaw.net</span>
+      <span class="tag">Wilmington, NC</span>
+      <span class="tag">Criminal Defense</span>
+      <span class="tag">Est. 1982</span>
+    </div>
+  </header>
+
+  <div class="notice">
+    <h3>Source note — confirm against the live site before you load these</h3>
+    <p>The session's network policy blocked hcalaw.net directly, so these were built from the firm's directory records (Martindale-Hubbell, FindLaw, Lawyers.com, Yelp, Justia) rather than the landing page itself. The facts below are what those records support. Anything marked <span style="font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--amber);border:1px solid var(--amber);border-radius:2px;padding:0 4px;">verify</span> needs a look at the page before launch.</p>
+  </div>
+
+  <div class="facts">
+    <div class="facts-head">
+      <strong>What the callouts are built on</strong>
+      <span>evidence base</span>
+    </div>
+    <dl class="facts-grid">
+      <div class="fact"><dt>Firm</dt><dd>Hewlett, Collins &amp; Allard, L.L.P.</dd></div>
+      <div class="fact"><dt>Founded</dt><dd>1982 — 40+ years in NC courts</dd></div>
+      <div class="fact"><dt>Office</dt><dd>110 N 5th Ave, downtown Wilmington</dd></div>
+      <div class="fact"><dt>Lead attorney</dt><dd>James L. "Buddy" Allard, Jr. — partner since 1989</dd></div>
+      <div class="fact"><dt>DWI volume</dt><dd>2,000+ DWI cases handled</dd></div>
+      <div class="fact"><dt>Peer rating</dt><dd>AV Preeminent® (Martindale-Hubbell)</dd></div>
+      <div class="fact"><dt>Recognition</dt><dd>Top 100 Trial Lawyers — National Trial Lawyers</dd></div>
+      <div class="fact"><dt>Bar admission</dt><dd>NC 1986; U.S. District Court, E.D.N.C.</dd></div>
+      <div class="fact"><dt>Practice areas</dt><dd>DWI, drug charges, traffic, felonies, sex crimes, DMV hearings, federal defense</dd></div>
+      <div class="fact"><dt>Hours</dt><dd>Mon–Thu 9–5, Fri 9–3 · walk-ins welcome</dd></div>
+    </dl>
+  </div>
+
+  <div class="spec">
+    <div><b>25</b><small>character hard limit per callout</small></div>
+    <div><b>2</b><small>minimum before callouts serve</small></div>
+    <div><b>20</b><small>maximum per campaign or ad group</small></div>
+    <div><b>43</b><small>written here, all under limit</small></div>
+  </div>
+
+  <div class="groups" id="groups"></div>
+
+  <section class="block">
+    <h2>Verify before launch</h2>
+    <p>Five claims are strong enough to be worth using and specific enough to be worth checking. Each one is either a policy exposure or a factual claim I could not confirm from directory data alone.</p>
+    <ul class="check">
+      <li><span class="mark v">VERIFY</span><div><b>Free Case Consultation</b><span class="why">A Justia-syndicated directory lists "Free Consultation" beside the firm's number, but the site should say so plainly. If consultations are paid or case-dependent, cut this — it is the single most common source of legal-ad complaints.</span></div></li>
+      <li><span class="mark v">VERIFY</span><div><b>Direct Attorney Access</b><span class="why">Credible for a three-person firm, but only if a caller actually reaches an attorney rather than an intake service.</span></div></li>
+      <li><span class="mark v">VERIFY</span><div><b>Walk-Ins Welcome</b><span class="why">Taken from the Yelp business listing. Confirm it still holds — a stale walk-in promise wastes a click and irritates a prospect.</span></div></li>
+      <li><span class="mark v">VERIFY</span><div><b>Pender &amp; Brunswick Co.</b><span class="why">Only run this if the firm actually appears in those courts and your geo-targeting reaches them. Otherwise keep the set inside New Hanover County.</span></div></li>
+      <li><span class="mark v">VERIFY</span><div><b>Top 100 Trial Lawyers</b><span class="why">The National Trial Lawyers designation is on Allard's directory profile. Confirm the year is current — NC Rule 7.1 treats a lapsed honor as a misleading claim.</span></div></li>
+    </ul>
+  </section>
+
+  <section class="block">
+    <h2>Do not run these</h2>
+    <p>Each of these is a callout a criminal-defense account tends to attract, and each one is either a Google policy problem, a North Carolina Rules of Professional Conduct problem, or simply the wrong practice area.</p>
+    <ul class="check">
+      <li><span class="mark x">NO</span><div><b>No Fee Unless We Win</b><span class="why">Contingency language. It belongs to personal injury and is meaningless in criminal defense — this is the mistake to avoid if a PI template gets reused here.</span></div></li>
+      <li><span class="mark x">NO</span><div><b>Best Defense Attorney</b><span class="why">Unverifiable superlative. NC Rule 7.1 bars comparative claims that can't be factually substantiated, and Google flags them too.</span></div></li>
+      <li><span class="mark x">NO</span><div><b>Board Certified in DWI</b><span class="why">NC Rule 7.4 permits a specialist claim only with NC State Bar Board of Legal Specialization certification. Nothing in the record shows it.</span></div></li>
+      <li><span class="mark x">NO</span><div><b>Charges Dropped</b><span class="why">A past-results claim. NC Rule 7.1 requires a disclaimer that outcomes depend on the facts, and a 25-character callout has no room for one.</span></div></li>
+      <li><span class="mark x">NO</span><div><b>Call (910) 763-0156</b><span class="why">Google disallows phone numbers and calls-to-action in callouts. Put the number in a call asset instead.</span></div></li>
+      <li><span class="mark x">NO</span><div><b>Available 24/7</b><span class="why">Posted hours are Mon–Thu 9–5 and Fri 9–3. Only run an availability callout if there is a genuine after-hours intake line.</span></div></li>
+    </ul>
+  </section>
+
+  <section class="block">
+    <h2>How to load them</h2>
+    <p>Put the ten Core callouts at the <b>account level</b> so every campaign inherits a floor. Then attach each practice group at the <b>ad group level</b>, where the callout matches the keyword intent — someone searching "DWI lawyer Wilmington" should see DWI callouts, not drug-charge ones. Google serves up to ten and picks per auction, so 6–10 relevant assets per ad group beats loading all twenty. Callouts do not click, so keep them as proof rather than instruction: no "Call Today", no offers, no punctuation tricks. Title Case throughout, which is what these are already set in.</p>
+  </section>
+
+  <footer>
+    <div>Prepared for Creekside Marketing Pros · campaign build for hcalaw.net</div>
+    <div>Character counts computed from the strings themselves against Google's 25-character callout limit.</div>
+  </footer>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+  const DATA = [
+    {
+      name: "Core",
+      note: "Account level — inherited by every campaign",
+      items: ["Serving NC Since 1982","40+ Years Defending NC","AV Preeminent Rated","Top 100 Trial Lawyers","Free Case Consultation","Downtown Wilmington","Walk-Ins Welcome","Partner-Led Defense","Trial-Tested Defense","Direct Attorney Access"],
+      verify: ["Free Case Consultation","Walk-Ins Welcome","Direct Attorney Access","Top 100 Trial Lawyers"]
+    },
+    {
+      name: "DWI / DUI",
+      note: "The firm's deepest proof — 2,000+ cases",
+      items: ["2,000+ DWI Cases Handled","DWI Defense Since 1982","First-Offense DWI Help","Protect Your License","Breath Test Challenges","Felony DWI Defense","Underage DWI Defense"],
+      verify: []
+    },
+    {
+      name: "DMV Hearings / License",
+      note: "Maps to the /dmv-hearings/ landing page",
+      items: ["DMV Hearing Defense","License Restoration Help","Revoked License Hearings","DWLR Charge Defense","DMV Medical Hearings","Limited Driving Privilege"],
+      verify: []
+    },
+    {
+      name: "Drug Charges",
+      note: "Possession through trafficking",
+      items: ["Drug Charge Defense","Drug Trafficking Defense","Felony Drug Cases","Search & Seizure Defense","Possession Charge Defense"],
+      verify: []
+    },
+    {
+      name: "Traffic / Tickets",
+      note: "High volume, low intent — keep it cheap",
+      items: ["Speeding Ticket Defense","Reckless Driving Defense","Avoid License Points","Out-of-State Drivers OK","CDL Driver Defense"],
+      verify: []
+    },
+    {
+      name: "Felony / Serious Charges",
+      note: "State and federal, including sex crimes",
+      items: ["Felony Defense Attorneys","Federal Court Defense","Sex Crime Defense","Assault Charge Defense","State & Federal Trials"],
+      verify: []
+    },
+    {
+      name: "Local / Geo Trust",
+      note: "Courthouse proximity and local standing",
+      items: ["New Hanover County Courts","Steps From the Courthouse","Local Wilmington Firm","Known in Local Courts","Pender & Brunswick Co."],
+      verify: ["Pender & Brunswick Co."]
+    }
+  ];
+
+  const LIMIT = 25;
+  const esc = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+  const root = document.getElementById("groups");
+
+  DATA.forEach((g, gi) => {
+    const sec = document.createElement("section");
+    sec.className = "group";
+
+    const head = document.createElement("div");
+    head.className = "group-head";
+    head.innerHTML =
+      '<div class="group-title"><h2>' + esc(g.name) + '</h2><p>' + esc(g.note) +
+      ' · ' + g.items.length + ' assets</p></div>';
+
+    const btn = document.createElement("button");
+    btn.className = "copy";
+    btn.type = "button";
+    btn.textContent = "Copy " + g.items.length;
+    btn.addEventListener("click", () => copy(g.items.join("\n"), g.name));
+    head.appendChild(btn);
+    sec.appendChild(head);
+
+    const ol = document.createElement("ol");
+    ol.className = "rows";
+    ol.start = 1;
+    g.items.forEach((t, i) => {
+      const n = t.length;
+      const tight = n >= 24;
+      const flagged = g.verify.indexOf(t) !== -1;
+      const li = document.createElement("li");
+      li.innerHTML =
+        '<span class="idx">' + String(gi + 1) + "." + String(i + 1) + '</span>' +
+        '<span class="txt">' + esc(t) +
+          (flagged ? '<span class="vflag">verify</span>' : '') + '</span>' +
+        '<span class="budget">' +
+          '<span class="meter' + (tight ? ' tight' : '') + '"><i style="width:' +
+            Math.round((n / LIMIT) * 100) + '%"></i></span>' +
+          '<span class="count' + (tight ? ' tight' : '') + '">' + n + '/' + LIMIT + '</span>' +
+        '</span>';
+      ol.appendChild(li);
+    });
+    sec.appendChild(ol);
+    root.appendChild(sec);
+  });
+
+  const toast = document.getElementById("toast");
+  let toastTimer = null;
+  function flash(msg){
+    toast.textContent = msg;
+    toast.classList.add("on");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove("on"), 1900);
+  }
+  function copy(text, label){
+    const done = () => flash(label + " copied — one per line");
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(done).catch(() => fallback(text, done));
+      } else {
+        fallback(text, done);
+      }
+    } catch (e) { fallback(text, done); }
+  }
+  function fallback(text, done){
+    try {
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      ta.setAttribute("readonly", "");
+      ta.style.position = "fixed";
+      ta.style.top = "-1000px";
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand("copy");
+      document.body.removeChild(ta);
+      done();
+    } catch (e) {
+      flash("Copy blocked — select the text manually");
+    }
+  }
+</script>
