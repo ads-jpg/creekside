@@ -1,0 +1,521 @@
+<title>HCA Law Structured Snippets</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
+
+<style>
+  :root{
+    --ground:#F3F5F4;
+    --surface:#FFFFFF;
+    --surface-sunk:#EAEEED;
+    --ink:#15201F;
+    --ink-soft:#3C4A48;
+    --muted:#5C6A68;
+    --faint:#8A9694;
+    --rule:#D8DEDC;
+    --rule-strong:#C2CBC9;
+    --accent:#0E5D57;
+    --accent-soft:#E2EFED;
+    --accent-ink:#0A4640;
+    --amber:#8A6410;
+    --amber-soft:#F7EFDC;
+    --oxblood:#8E322B;
+    --oxblood-soft:#F8E7E4;
+    --meter-track:#DDE3E1;
+    --meter-fill:#0E5D57;
+    --meter-tight:#8A6410;
+    --shadow:0 1px 2px rgba(21,32,31,.05), 0 8px 24px -16px rgba(21,32,31,.18);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ground:#0E1413; --surface:#161F1E; --surface-sunk:#111917;
+      --ink:#E4EBE9; --ink-soft:#C2CECB; --muted:#93A29F; --faint:#6E7D7A;
+      --rule:#25322F; --rule-strong:#33423F;
+      --accent:#4FB5AC; --accent-soft:#16302E; --accent-ink:#7FCEC6;
+      --amber:#D9A441; --amber-soft:#2E2617;
+      --oxblood:#E08279; --oxblood-soft:#33201E;
+      --meter-track:#26322F; --meter-fill:#4FB5AC; --meter-tight:#D9A441;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#0E1413; --surface:#161F1E; --surface-sunk:#111917;
+    --ink:#E4EBE9; --ink-soft:#C2CECB; --muted:#93A29F; --faint:#6E7D7A;
+    --rule:#25322F; --rule-strong:#33423F;
+    --accent:#4FB5AC; --accent-soft:#16302E; --accent-ink:#7FCEC6;
+    --amber:#D9A441; --amber-soft:#2E2617;
+    --oxblood:#E08279; --oxblood-soft:#33201E;
+    --meter-track:#26322F; --meter-fill:#4FB5AC; --meter-tight:#D9A441;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    background:var(--ground); color:var(--ink);
+    font-family:"Public Sans","Helvetica Neue",Arial,sans-serif;
+    font-size:15px; line-height:1.55; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:860px;margin:0 auto;padding:40px 24px 96px;display:flex;flex-direction:column;gap:44px;}
+
+  .mast{display:flex;flex-direction:column;gap:18px;}
+  .eyebrow{
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--accent);font-weight:500;
+  }
+  h1{
+    font-family:"Fraunces","Georgia",serif;font-optical-sizing:auto;
+    font-weight:600;font-size:clamp(30px,5.2vw,44px);line-height:1.08;
+    letter-spacing:-.015em;margin:0;text-wrap:balance;
+  }
+  .standfirst{margin:0;max-width:62ch;color:var(--muted);font-size:16px;}
+  .mast-meta{display:flex;flex-wrap:wrap;gap:8px;padding-top:2px;}
+  .tag{
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:11px;letter-spacing:.04em;padding:4px 9px;
+    border:1px solid var(--rule-strong);border-radius:2px;
+    color:var(--ink-soft);background:var(--surface);
+  }
+  .tag a{color:inherit;}
+
+  .spec{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:1px;background:var(--rule);border:1px solid var(--rule);
+    border-radius:4px;overflow:hidden;
+  }
+  .spec div{background:var(--surface);padding:14px 16px;display:flex;flex-direction:column;gap:2px;}
+  .spec b{
+    font-family:"Fraunces","Georgia",serif;font-size:24px;font-weight:600;
+    line-height:1;color:var(--accent);font-variant-numeric:tabular-nums;
+  }
+  .spec small{font-size:12px;color:var(--muted);line-height:1.35;}
+
+  section.block{display:flex;flex-direction:column;gap:16px;}
+  section.block > h2{
+    margin:0;font-family:"Fraunces","Georgia",serif;
+    font-size:23px;font-weight:600;letter-spacing:-.01em;
+  }
+  section.block > p{margin:0;color:var(--ink-soft);max-width:64ch;font-size:14.5px;}
+  section.block > p.sub{color:var(--muted);}
+
+  /* header shortlist */
+  .headers{
+    display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:1px;background:var(--rule);border:1px solid var(--rule);
+    border-radius:4px;overflow:hidden;
+  }
+  @media (max-width:620px){.headers{grid-template-columns:minmax(0,1fr);}}
+  .hd{
+    background:var(--surface);padding:13px 15px;
+    display:flex;flex-direction:column;gap:4px;justify-content:center;
+  }
+  .hd .nm{
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:13.5px;font-weight:700;
+  }
+  .hd .why{font-size:11.5px;line-height:1.35;}
+  .hd.use{background:var(--accent-soft);}
+  .hd.use .nm{color:var(--accent-ink);}
+  .hd.use .why{color:var(--accent-ink);}
+  .hd.maybe{background:var(--amber-soft);}
+  .hd.maybe .nm{color:var(--amber);font-weight:500;}
+  .hd.maybe .why{color:var(--amber);}
+  .ruled-out{
+    display:flex;flex-wrap:wrap;gap:7px;align-items:baseline;
+  }
+  .ruled-out .lead{
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--faint);margin-right:2px;
+  }
+  .ro{
+    font-size:12.5px;color:var(--faint);
+    text-decoration:line-through;text-decoration-thickness:1px;
+    text-decoration-color:var(--rule-strong);
+  }
+  .ro span{text-decoration:none;display:none;}
+
+  /* value panels */
+  .panel{
+    background:var(--surface);border:1px solid var(--rule);
+    border-radius:4px;box-shadow:var(--shadow);overflow:hidden;
+  }
+  .panel-head{
+    display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;
+    padding:14px 18px;border-bottom:1px solid var(--rule);
+  }
+  .panel-title{display:flex;flex-direction:column;gap:3px;min-width:0;}
+  .panel-title h3{margin:0;font-family:"Fraunces","Georgia",serif;font-size:19px;font-weight:600;}
+  .panel-title h3 em{font-style:normal;color:var(--muted);font-weight:400;}
+  .panel-title p{margin:0;font-size:12.5px;color:var(--muted);}
+  .rank{
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+    padding:3px 7px;border-radius:2px;white-space:nowrap;
+    background:var(--accent-soft);color:var(--accent-ink);border:1px solid transparent;
+  }
+  .rank.two{background:var(--surface-sunk);color:var(--muted);border-color:var(--rule-strong);}
+  button.copy{
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:11px;letter-spacing:.06em;text-transform:uppercase;
+    padding:7px 12px;background:var(--accent-soft);color:var(--accent-ink);
+    border:1px solid transparent;border-radius:3px;cursor:pointer;white-space:nowrap;
+    transition:background .15s ease;
+  }
+  button.copy:hover{background:var(--accent);color:var(--surface);}
+  button.copy:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+
+  ol.rows{list-style:none;margin:0;padding:0;}
+  ol.rows li{
+    display:grid;grid-template-columns:28px 1fr auto;align-items:center;
+    gap:14px;padding:9px 18px;border-bottom:1px solid var(--rule);
+  }
+  ol.rows li:last-child{border-bottom:none;}
+  .idx{
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:11px;color:var(--faint);font-variant-numeric:tabular-nums;
+  }
+  .txt{
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:14px;color:var(--ink);letter-spacing:-.01em;overflow-wrap:anywhere;
+  }
+  .vflag{
+    display:inline-block;margin-left:8px;font-size:9.5px;letter-spacing:.09em;
+    text-transform:uppercase;color:var(--amber);border:1px solid var(--amber);
+    border-radius:2px;padding:0 4px;vertical-align:1px;
+  }
+  .budget{display:flex;align-items:center;gap:9px;}
+  .meter{width:52px;height:5px;background:var(--meter-track);border-radius:99px;overflow:hidden;}
+  .meter i{display:block;height:100%;background:var(--meter-fill);border-radius:99px;}
+  .meter.tight i{background:var(--meter-tight);}
+  .count{
+    font-family:"JetBrains Mono",ui-monospace,monospace;font-size:11.5px;
+    color:var(--muted);font-variant-numeric:tabular-nums;min-width:44px;text-align:right;
+  }
+  .count.tight{color:var(--meter-tight);font-weight:500;}
+
+  /* preview */
+  .preview{
+    background:var(--surface);border:1px solid var(--rule);border-radius:4px;
+    padding:18px 20px;display:flex;flex-direction:column;gap:5px;box-shadow:var(--shadow);
+  }
+  .preview .ad-badge{
+    font-size:11px;font-weight:700;color:var(--ink);
+    border:1px solid var(--rule-strong);border-radius:2px;padding:0 5px;
+    display:inline-block;width:fit-content;margin-bottom:3px;
+  }
+  .preview .url{font-size:12.5px;color:var(--muted);}
+  .preview .hl{
+    font-family:"Public Sans",sans-serif;font-size:18px;line-height:1.3;
+    color:var(--accent);font-weight:500;
+  }
+  .preview .desc{font-size:13.5px;color:var(--ink-soft);}
+  .preview .assets{font-size:13px;color:var(--ink-soft);padding-top:3px;}
+  .preview .assets .lbl{color:var(--muted);}
+  .preview .cap{font-size:11.5px;color:var(--faint);padding-top:6px;border-top:1px solid var(--rule);margin-top:4px;}
+
+  /* placement table */
+  .tbl-scroll{overflow-x:auto;border:1px solid var(--rule);border-radius:4px;background:var(--surface);}
+  table{border-collapse:collapse;width:100%;min-width:520px;font-size:13.5px;}
+  th,td{text-align:left;padding:11px 16px;border-bottom:1px solid var(--rule);vertical-align:top;}
+  th{
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--faint);font-weight:500;background:var(--surface-sunk);
+  }
+  tbody tr:last-child td{border-bottom:none;}
+  td code{
+    font-family:"JetBrains Mono",ui-monospace,monospace;font-size:12.5px;
+    color:var(--accent-ink);background:var(--accent-soft);padding:1px 5px;border-radius:2px;
+  }
+
+  ul.check{
+    list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:1px;
+    background:var(--rule);border:1px solid var(--rule);border-radius:4px;overflow:hidden;
+  }
+  ul.check li{
+    background:var(--surface);padding:12px 16px;display:grid;
+    grid-template-columns:auto 1fr;gap:12px;align-items:start;font-size:14px;
+  }
+  ul.check li .mark{
+    font-family:"JetBrains Mono",ui-monospace,monospace;font-size:11px;font-weight:700;
+    padding:2px 6px;border-radius:2px;white-space:nowrap;margin-top:1px;
+  }
+  .mark.v{background:var(--amber-soft);color:var(--amber);border:1px solid var(--amber);}
+  .mark.x{background:var(--oxblood-soft);color:var(--oxblood);border:1px solid var(--oxblood);}
+  ul.check li b{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:13.5px;font-weight:500;color:var(--ink);}
+  ul.check li span.why{display:block;color:var(--muted);font-size:13px;margin-top:2px;}
+
+  .notice{
+    display:flex;flex-direction:column;gap:8px;padding:16px 18px;
+    border-left:3px solid var(--accent);background:var(--accent-soft);border-radius:0 3px 3px 0;
+  }
+  .notice h3{margin:0;font-size:13px;font-weight:700;letter-spacing:.02em;color:var(--ink);}
+  .notice p{margin:0;font-size:14px;color:var(--ink-soft);max-width:64ch;}
+
+  footer{
+    border-top:1px solid var(--rule);padding-top:20px;color:var(--faint);
+    font-size:12.5px;display:flex;flex-direction:column;gap:5px;
+  }
+  footer a{color:var(--accent);}
+  .toast{
+    position:fixed;left:50%;bottom:26px;transform:translateX(-50%);
+    background:var(--ink);color:var(--ground);
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:12px;letter-spacing:.04em;padding:9px 16px;border-radius:3px;
+    opacity:0;pointer-events:none;transition:opacity .18s ease;z-index:20;
+  }
+  .toast.on{opacity:1;}
+  @media (prefers-reduced-motion: reduce){*{transition:none !important;animation:none !important;}}
+  @media (max-width:560px){
+    ol.rows li{grid-template-columns:22px 1fr;row-gap:6px;}
+    .budget{grid-column:2;justify-content:flex-start;}
+    .count{text-align:left;}
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="mast">
+    <div class="eyebrow">Google Ads · Structured Snippets</div>
+    <h1>Two Headers, Eighteen Values</h1>
+    <p class="standfirst">How to set up structured snippets for the hcalaw.net criminal defense campaign. Unlike callouts, you don't write the label — you pick one of Google's thirteen fixed headers, and only two of them fit a law firm. Everything below is verified against the 25-character value limit and deconflicted against the callout set.</p>
+    <div class="mast-meta">
+      <span class="tag">hcalaw.net</span>
+      <span class="tag">Wilmington, NC</span>
+      <span class="tag">Criminal Defense</span>
+      <span class="tag">Companion to the callout set</span>
+    </div>
+  </header>
+
+  <div class="spec">
+    <div><b>25</b><small>character limit per value</small></div>
+    <div><b>3–10</b><small>values per header — 3 is the minimum to serve</small></div>
+    <div><b>2</b><small>headers recommended per campaign</small></div>
+    <div><b>1</b><small>header shows at a time in a given ad</small></div>
+  </div>
+
+  <section class="block">
+    <h2>Step 1 — Pick the header</h2>
+    <p>The header is not free text. Google offers thirteen in English, each written for a specific vertical, and the value list has to genuinely belong to the header you choose. Eleven are built for other industries. For a criminal defense firm the shortlist is short:</p>
+    <div class="headers" id="headers"></div>
+    <div class="ruled-out" id="ruledout"></div>
+    <p class="sub">A note on <b>Neighborhoods</b>: it's tempting for geo coverage, but the honest values here are municipalities and counties — Wilmington, Leland, New Hanover — not neighborhoods. That mismatch invites disapproval, and service-area coverage is better carried by location assets and the geo callouts already in the set.</p>
+  </section>
+
+  <section class="block">
+    <h2>Step 2 — Load the values</h2>
+    <p>Run <b>Types</b> as the primary. It reads as a list of charges the firm defends, which is exactly what someone facing one is scanning for, and its noun-form values never collide with the callouts, which are all "X&nbsp;Defense" phrases.</p>
+    <div id="panels" style="display:flex;flex-direction:column;gap:24px;"></div>
+  </section>
+
+  <section class="block">
+    <h2>What it looks like in the auction</h2>
+    <p>Callouts and structured snippets can appear in the same ad, which is the whole reason the two lists were deconflicted. The snippet renders as the header, a colon, then as many values as fit the width:</p>
+    <div class="preview">
+      <span class="ad-badge">Ad</span>
+      <div class="url">hcalaw.net</div>
+      <div class="hl">Wilmington Criminal Defense Attorney | DWI &amp; Felony Defense</div>
+      <div class="desc">Defending clients in New Hanover County courts since 1982. Speak with a partner about your charge.</div>
+      <div class="assets"><span class="lbl">Types:</span> DWI &amp; DUI · Drug Charges · Felonies · Traffic Violations</div>
+      <div class="assets"><span class="lbl">Callouts:</span> Serving NC Since 1982 · AV Preeminent Rated · Downtown Wilmington</div>
+      <div class="cap">Illustrative rendering. Google picks which assets serve per auction and never guarantees any of them show.</div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>Step 3 — Choose the level</h2>
+    <p>Snippets inherit downward, and the most specific level wins. Set them where the intent is:</p>
+    <div class="tbl-scroll">
+      <table>
+        <thead>
+          <tr><th>Level</th><th>What to put there</th><th>Why</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>Account</b></td>
+            <td><code>Service catalog</code> — all 8 values</td>
+            <td>A safety net so every campaign has a snippet, including any built later.</td>
+          </tr>
+          <tr>
+            <td><b>Campaign</b></td>
+            <td><code>Types</code> — all 10 values</td>
+            <td>The primary. Broad enough to be true of the whole criminal-defense campaign.</td>
+          </tr>
+          <tr>
+            <td><b>Ad group</b></td>
+            <td><code>Types</code> — the 3–5 that match the keywords</td>
+            <td>In the DWI ad group, lead with DWI &amp; DUI, Underage Drinking, Misdemeanors. Relevance beats volume: an override at this level replaces the campaign list rather than adding to it.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="sub">Because an ad-group list overrides the campaign list entirely, never set fewer than three values at that level — a two-value override silently stops snippets from serving in that ad group.</p>
+  </section>
+
+  <section class="block">
+    <h2>Verify before launch</h2>
+    <p>Two values sit slightly outside what the firm's public record documents. Both are ordinary criminal-defense work and probably fine, but a snippet value is a claim about what the firm handles.</p>
+    <ul class="check">
+      <li><span class="mark v">VERIFY</span><div><b>Probation Violations</b><span class="why">Standard criminal-defense work and a reasonable inference, but not named in the firm's directory listings. Confirm they take these.</span></div></li>
+      <li><span class="mark v">VERIFY</span><div><b>Underage Drinking</b><span class="why">Plausible near a university town, and it pairs well with the DWI ad group. Confirm before running it.</span></div></li>
+      <li><span class="mark v">VERIFY</span><div><b>Sex Crimes</b><span class="why">Documented in the firm's practice areas, so the claim is sound — but sensitive-category values can serve unevenly. Watch impressions and pull it if it drags the header's delivery.</span></div></li>
+    </ul>
+  </section>
+
+  <section class="block">
+    <h2>What breaks a snippet</h2>
+    <p>Snippets are policed harder than callouts, because the header sets an expectation about what the list contains. Each of these is a disapproval or a wasted slot.</p>
+    <ul class="check">
+      <li><span class="mark x">NO</span><div><b>Free Consultation</b><span class="why">A benefit, not a type or a service. Values that don't fit the header get the whole snippet disapproved — this belongs in the callouts, where it already is.</span></div></li>
+      <li><span class="mark x">NO</span><div><b>Call Us Today</b><span class="why">Structured snippets are not clickable and take no CTAs. Same rule as callouts.</span></div></li>
+      <li><span class="mark x">NO</span><div><b>Aggressive Defense</b><span class="why">An adjective, not a category member. Snippet values must be things you could put in a list, not descriptions of how you work.</span></div></li>
+      <li><span class="mark x">NO</span><div><b>DWI Specialist</b><span class="why">NC Rule 7.4 restricts specialist claims to NC State Bar certified lawyers. Listing a field of practice is fine; claiming specialization is not.</span></div></li>
+      <li><span class="mark x">NO</span><div><b>Only 2 values</b><span class="why">Below three, the header will not serve at all. Ten is the ceiling.</span></div></li>
+    </ul>
+  </section>
+
+  <div class="notice">
+    <h3>Why this is the safest asset type for a law firm</h3>
+    <p>North Carolina Rule 7.4 expressly permits a lawyer to communicate the fields of law in which they practice — it restricts only the word "specialist" and its equivalents. A structured snippet under <b>Types</b> is nothing but a list of practice fields, which is why it carries less bar-advertising exposure than almost anything else you can attach to the ad. Keep the values as plain category nouns and there is nothing in them to substantiate.</p>
+  </div>
+
+  <footer>
+    <div>Prepared for Creekside Marketing Pros · campaign build for hcalaw.net</div>
+    <div>Character counts computed from the strings themselves; values checked for collisions against the 43-asset callout set.</div>
+  </footer>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+  const HEADERS = [
+    {n:"Types",             s:"use",   w:"Primary — case types"},
+    {n:"Service catalog",   s:"use",   w:"Secondary — services offered"},
+    {n:"Neighborhoods",     s:"maybe", w:"Values would be towns, not neighborhoods"},
+    {n:"Amenities",         s:"out",   w:"Hotels, venues"},
+    {n:"Brands",            s:"out",   w:"Retail"},
+    {n:"Courses",           s:"out",   w:"Education"},
+    {n:"Degree programs",   s:"out",   w:"Education"},
+    {n:"Destinations",      s:"out",   w:"Travel"},
+    {n:"Featured hotels",   s:"out",   w:"Travel"},
+    {n:"Insurance coverage",s:"out",   w:"Insurance carriers"},
+    {n:"Models",            s:"out",   w:"Automotive, hardware"},
+    {n:"Shows",             s:"out",   w:"Events, ticketing"},
+    {n:"Styles",            s:"out",   w:"Apparel, home"}
+  ];
+
+  const PANELS = [
+    {
+      header:"Types", rank:"Primary", gloss:"— case types",
+      note:"Noun-form charges. No collision with any callout.",
+      items:["DWI & DUI","Drug Charges","Felonies","Misdemeanors","Traffic Violations",
+             "Federal Charges","Sex Crimes","Assault Charges","Probation Violations","Underage Drinking"],
+      verify:["Probation Violations","Underage Drinking","Sex Crimes"]
+    },
+    {
+      header:"Service catalog", rank:"Secondary", gloss:"— services offered",
+      note:"Run at account level as the fallback. Deconflicted against the callout set.",
+      items:["Criminal Defense","DWI & DUI Defense","Drug Crime Defense","Traffic Ticket Defense",
+             "DMV Hearings","Misdemeanor Defense","Federal Criminal Defense","Jury Trial Representation"],
+      verify:[]
+    }
+  ];
+
+  const LIMIT = 25;
+  const esc = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+
+  const hwrap = document.getElementById("headers");
+  HEADERS.filter(h => h.s !== "out").forEach(h => {
+    const d = document.createElement("div");
+    d.className = "hd " + h.s;
+    d.innerHTML = '<span class="nm">' + esc(h.n) + '</span><span class="why">' + esc(h.w) + '</span>';
+    hwrap.appendChild(d);
+  });
+
+  const rwrap = document.getElementById("ruledout");
+  const outs = HEADERS.filter(h => h.s === "out");
+  const lead = document.createElement("span");
+  lead.className = "lead";
+  lead.textContent = "Ruled out — other verticals";
+  rwrap.appendChild(lead);
+  outs.forEach((h, i) => {
+    const el = document.createElement("span");
+    el.className = "ro";
+    el.title = h.w;
+    el.textContent = h.n + (i < outs.length - 1 ? "," : "");
+    rwrap.appendChild(el);
+  });
+
+  const pwrap = document.getElementById("panels");
+  PANELS.forEach((p, pi) => {
+    const sec = document.createElement("div");
+    sec.className = "panel";
+
+    const head = document.createElement("div");
+    head.className = "panel-head";
+    head.innerHTML =
+      '<div class="panel-title">' +
+        '<h3>' + esc(p.header) + ' <em>' + esc(p.gloss) + '</em></h3>' +
+        '<p>' + esc(p.note) + ' · ' + p.items.length + ' values</p>' +
+      '</div>';
+
+    const right = document.createElement("div");
+    right.style.cssText = "display:flex;align-items:center;gap:9px;";
+    const rank = document.createElement("span");
+    rank.className = "rank" + (pi ? " two" : "");
+    rank.textContent = p.rank;
+    const btn = document.createElement("button");
+    btn.className = "copy"; btn.type = "button";
+    btn.textContent = "Copy " + p.items.length;
+    btn.addEventListener("click", () => copy(p.items.join("\n"), p.header));
+    right.appendChild(rank); right.appendChild(btn);
+    head.appendChild(right);
+    sec.appendChild(head);
+
+    const ol = document.createElement("ol");
+    ol.className = "rows";
+    p.items.forEach((t, i) => {
+      const n = t.length, tight = n >= 24, flagged = p.verify.indexOf(t) !== -1;
+      const li = document.createElement("li");
+      li.innerHTML =
+        '<span class="idx">' + String(pi + 1) + "." + String(i + 1) + '</span>' +
+        '<span class="txt">' + esc(t) + (flagged ? '<span class="vflag">verify</span>' : '') + '</span>' +
+        '<span class="budget">' +
+          '<span class="meter' + (tight ? ' tight' : '') + '"><i style="width:' +
+            Math.round((n / LIMIT) * 100) + '%"></i></span>' +
+          '<span class="count' + (tight ? ' tight' : '') + '">' + n + '/' + LIMIT + '</span>' +
+        '</span>';
+      ol.appendChild(li);
+    });
+    sec.appendChild(ol);
+    pwrap.appendChild(sec);
+  });
+
+  const toast = document.getElementById("toast");
+  let toastTimer = null;
+  function flash(msg){
+    toast.textContent = msg;
+    toast.classList.add("on");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove("on"), 1900);
+  }
+  function copy(text, label){
+    const done = () => flash(label + " copied — one per line");
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(done).catch(() => fallback(text, done));
+      } else { fallback(text, done); }
+    } catch (e) { fallback(text, done); }
+  }
+  function fallback(text, done){
+    try {
+      const ta = document.createElement("textarea");
+      ta.value = text; ta.setAttribute("readonly","");
+      ta.style.position = "fixed"; ta.style.top = "-1000px";
+      document.body.appendChild(ta); ta.select();
+      document.execCommand("copy");
+      document.body.removeChild(ta); done();
+    } catch (e) { flash("Copy blocked — select the text manually"); }
+  }
+</script>

@@ -1,0 +1,19 @@
+Header,Value,Characters,Verify before launch
+Types,DWI & DUI,9,
+Types,Drug Charges,12,
+Types,Felonies,8,
+Types,Misdemeanors,12,
+Types,Traffic Violations,18,
+Types,Federal Charges,15,
+Types,Sex Crimes,10,YES
+Types,Assault Charges,15,
+Types,Probation Violations,20,YES
+Types,Underage Drinking,17,YES
+Service catalog,Criminal Defense,16,
+Service catalog,DWI & DUI Defense,17,
+Service catalog,Drug Crime Defense,18,
+Service catalog,Traffic Ticket Defense,22,
+Service catalog,DMV Hearings,12,
+Service catalog,Misdemeanor Defense,19,
+Service catalog,Federal Criminal Defense,24,
+Service catalog,Jury Trial Representation,25,
