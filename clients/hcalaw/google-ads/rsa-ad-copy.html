@@ -1,0 +1,482 @@
+<title>Policy-Safe Defense Ad Copy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
+
+<style>
+  :root{
+    --ground:#F3F5F4; --surface:#FFFFFF; --surface-sunk:#EAEEED;
+    --ink:#15201F; --ink-soft:#3C4A48; --muted:#5C6A68; --faint:#8A9694;
+    --rule:#D8DEDC; --rule-strong:#C2CBC9;
+    --accent:#0E5D57; --accent-soft:#E2EFED; --accent-ink:#0A4640;
+    --amber:#8A6410; --amber-soft:#F7EFDC;
+    --oxblood:#8E322B; --oxblood-soft:#F8E7E4;
+    --meter-track:#DDE3E1; --meter-fill:#0E5D57; --meter-tight:#8A6410;
+    --shadow:0 1px 2px rgba(21,32,31,.05), 0 8px 24px -16px rgba(21,32,31,.18);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ground:#0E1413; --surface:#161F1E; --surface-sunk:#111917;
+      --ink:#E4EBE9; --ink-soft:#C2CECB; --muted:#93A29F; --faint:#6E7D7A;
+      --rule:#25322F; --rule-strong:#33423F;
+      --accent:#4FB5AC; --accent-soft:#16302E; --accent-ink:#7FCEC6;
+      --amber:#D9A441; --amber-soft:#2E2617;
+      --oxblood:#E08279; --oxblood-soft:#33201E;
+      --meter-track:#26322F; --meter-fill:#4FB5AC; --meter-tight:#D9A441;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#0E1413; --surface:#161F1E; --surface-sunk:#111917;
+    --ink:#E4EBE9; --ink-soft:#C2CECB; --muted:#93A29F; --faint:#6E7D7A;
+    --rule:#25322F; --rule-strong:#33423F;
+    --accent:#4FB5AC; --accent-soft:#16302E; --accent-ink:#7FCEC6;
+    --amber:#D9A441; --amber-soft:#2E2617;
+    --oxblood:#E08279; --oxblood-soft:#33201E;
+    --meter-track:#26322F; --meter-fill:#4FB5AC; --meter-tight:#D9A441;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    background:var(--ground); color:var(--ink);
+    font-family:"Public Sans","Helvetica Neue",Arial,sans-serif;
+    font-size:15px; line-height:1.55; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:880px;margin:0 auto;padding:40px 24px 96px;display:flex;flex-direction:column;gap:46px;}
+
+  .mast{display:flex;flex-direction:column;gap:18px;}
+  .eyebrow{
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--accent);font-weight:500;
+  }
+  h1{
+    font-family:"Fraunces","Georgia",serif;font-optical-sizing:auto;
+    font-weight:600;font-size:clamp(30px,5.2vw,44px);line-height:1.08;
+    letter-spacing:-.015em;margin:0;text-wrap:balance;
+  }
+  .standfirst{margin:0;max-width:62ch;color:var(--muted);font-size:16px;}
+  .mast-meta{display:flex;flex-wrap:wrap;gap:8px;padding-top:2px;}
+  .tag{
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:11px;letter-spacing:.04em;padding:4px 9px;
+    border:1px solid var(--rule-strong);border-radius:2px;
+    color:var(--ink-soft);background:var(--surface);
+  }
+
+  section.block{display:flex;flex-direction:column;gap:16px;}
+  section.block > h2{
+    margin:0;font-family:"Fraunces","Georgia",serif;
+    font-size:24px;font-weight:600;letter-spacing:-.012em;
+  }
+  section.block > p{margin:0;color:var(--ink-soft);max-width:65ch;font-size:14.5px;}
+  section.block > p.sub{color:var(--muted);font-size:13.5px;}
+
+  .spec{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:1px;background:var(--rule);border:1px solid var(--rule);
+    border-radius:4px;overflow:hidden;
+  }
+  .spec div{background:var(--surface);padding:14px 16px;display:flex;flex-direction:column;gap:2px;}
+  .spec b{
+    font-family:"Fraunces","Georgia",serif;font-size:24px;font-weight:600;
+    line-height:1;color:var(--accent);font-variant-numeric:tabular-nums;
+  }
+  .spec small{font-size:12px;color:var(--muted);line-height:1.35;}
+
+  .tbl-scroll{overflow-x:auto;border:1px solid var(--rule);border-radius:4px;background:var(--surface);box-shadow:var(--shadow);}
+  table{border-collapse:collapse;width:100%;min-width:560px;font-size:13.5px;}
+  th,td{text-align:left;padding:11px 15px;border-bottom:1px solid var(--rule);vertical-align:top;}
+  th{
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--faint);font-weight:500;background:var(--surface-sunk);white-space:nowrap;
+  }
+  tbody tr:last-child td{border-bottom:none;}
+  .no{
+    font-family:"JetBrains Mono",ui-monospace,monospace;font-size:12.5px;
+    color:var(--oxblood);background:var(--oxblood-soft);padding:1px 5px;border-radius:2px;
+    text-decoration:line-through;text-decoration-thickness:1px;
+  }
+  .yes{
+    font-family:"JetBrains Mono",ui-monospace,monospace;font-size:12.5px;
+    color:var(--accent-ink);background:var(--accent-soft);padding:1px 5px;border-radius:2px;
+  }
+
+  /* RSA cards */
+  .rsas{display:flex;flex-direction:column;gap:24px;}
+  .rsa{
+    background:var(--surface);border:1px solid var(--rule);border-radius:4px;
+    box-shadow:var(--shadow);overflow:hidden;
+  }
+  .rsa-head{
+    padding:15px 19px;border-bottom:1px solid var(--rule);
+    display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  }
+  .rsa-head h3{margin:0;font-family:"Fraunces","Georgia",serif;font-size:19px;font-weight:600;}
+  .rsa-head .paths{
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:11.5px;color:var(--muted);
+  }
+  .sub-head{
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:10px;letter-spacing:.11em;text-transform:uppercase;
+    color:var(--faint);padding:12px 19px 7px;
+    display:flex;justify-content:space-between;gap:10px;
+  }
+  .hgrid{
+    display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));
+    gap:1px;background:var(--rule);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
+  }
+  .hgrid .h{
+    background:var(--surface);padding:9px 19px;
+    display:flex;align-items:center;justify-content:space-between;gap:10px;
+  }
+  .hgrid .h .t{
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:13px;color:var(--ink);overflow-wrap:anywhere;
+  }
+  ol.drows{list-style:none;margin:0;padding:0;}
+  ol.drows li{
+    padding:10px 19px;border-bottom:1px solid var(--rule);
+    display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center;
+  }
+  ol.drows li:last-child{border-bottom:none;}
+  ol.drows .t{
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:12.5px;color:var(--ink);line-height:1.5;overflow-wrap:anywhere;
+  }
+  .budget{display:flex;align-items:center;gap:8px;}
+  .meter{width:40px;height:4px;background:var(--meter-track);border-radius:99px;overflow:hidden;flex:none;}
+  .meter i{display:block;height:100%;background:var(--meter-fill);border-radius:99px;}
+  .meter.tight i{background:var(--meter-tight);}
+  .count{
+    font-family:"JetBrains Mono",ui-monospace,monospace;font-size:11px;
+    color:var(--muted);font-variant-numeric:tabular-nums;min-width:40px;text-align:right;
+  }
+  .count.tight{color:var(--meter-tight);}
+  button.copy{
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:11px;letter-spacing:.06em;text-transform:uppercase;
+    padding:6px 11px;background:var(--accent-soft);color:var(--accent-ink);
+    border:1px solid transparent;border-radius:3px;cursor:pointer;white-space:nowrap;
+    transition:background .15s ease;
+  }
+  button.copy:hover{background:var(--accent);color:var(--surface);}
+  button.copy:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+
+  ul.check{
+    list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:1px;
+    background:var(--rule);border:1px solid var(--rule);border-radius:4px;overflow:hidden;
+  }
+  ul.check li{
+    background:var(--surface);padding:12px 16px;display:grid;
+    grid-template-columns:auto 1fr;gap:12px;align-items:start;font-size:14px;
+  }
+  ul.check li .mark{
+    font-family:"JetBrains Mono",ui-monospace,monospace;font-size:11px;font-weight:700;
+    padding:2px 6px;border-radius:2px;white-space:nowrap;margin-top:1px;
+  }
+  .mark.n{background:var(--surface-sunk);color:var(--muted);border:1px solid var(--rule-strong);font-variant-numeric:tabular-nums;}
+  .mark.x{background:var(--oxblood-soft);color:var(--oxblood);border:1px solid var(--oxblood);}
+  ul.check li b{font-weight:600;color:var(--ink);}
+  ul.check li code{
+    font-family:"JetBrains Mono",ui-monospace,monospace;font-size:13px;font-weight:500;
+    color:var(--ink);background:var(--surface-sunk);padding:1px 5px;border-radius:2px;
+  }
+  ul.check li span.why{display:block;color:var(--muted);font-size:13px;margin-top:2px;}
+
+  .notice{
+    display:flex;flex-direction:column;gap:8px;padding:17px 19px;
+    border-left:3px solid var(--accent);background:var(--accent-soft);border-radius:0 3px 3px 0;
+  }
+  .notice.warn{border-left-color:var(--amber);background:var(--amber-soft);}
+  .notice h3{margin:0;font-size:13px;font-weight:700;letter-spacing:.02em;color:var(--ink);}
+  .notice p{margin:0;font-size:14px;color:var(--ink-soft);max-width:66ch;}
+
+  footer{
+    border-top:1px solid var(--rule);padding-top:20px;color:var(--faint);
+    font-size:12.5px;display:flex;flex-direction:column;gap:5px;
+  }
+  .toast{
+    position:fixed;left:50%;bottom:26px;transform:translateX(-50%);
+    background:var(--ink);color:var(--ground);
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:12px;letter-spacing:.04em;padding:9px 16px;border-radius:3px;
+    opacity:0;pointer-events:none;transition:opacity .18s ease;z-index:20;
+  }
+  .toast.on{opacity:1;}
+  @media (prefers-reduced-motion: reduce){*{transition:none !important;animation:none !important;}}
+  @media (max-width:560px){
+    ol.drows li{grid-template-columns:minmax(0,1fr);gap:6px;}
+    .budget{justify-content:flex-start;}
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="mast">
+    <div class="eyebrow">Google Ads · Responsive Search Ads</div>
+    <h1>Copy That Clears Review</h1>
+    <p class="standfirst">Three complete responsive search ads for criminal defense, written to stay clear of the policies that flag this vertical. Nothing here names a controlled substance, a weapon, a sex offense, or an outcome. Every field is verified against Google's limits and carries no claim a firm would have to substantiate.</p>
+    <div class="mast-meta">
+      <span class="tag">3 RSAs</span>
+      <span class="tag">45 headlines</span>
+      <span class="tag">12 descriptions</span>
+      <span class="tag">Reusable across firms</span>
+    </div>
+  </header>
+
+  <div class="notice warn">
+    <h3>First — pull these from the asset sets already built</h3>
+    <p>The same filters that are flagging the account will hit the callout and snippet lists. Remove <b>Sex Crime Defense</b> and <b>Drug Trafficking Defense</b> from the callouts, and <b>Sex Crimes</b> from the Types snippet. The firm can still take those cases and describe them on the website — the classifier reads ad assets, and a practice area named in a 25-character asset has no room for the context that makes it obviously a defense service.</p>
+  </div>
+
+  <section class="block">
+    <h2>Why this vertical gets flagged</h2>
+    <p>Criminal defense advertising is lawful and Google permits it. What trips review is automated classification: the systems match on subject matter, and a defense attorney's vocabulary overlaps almost exactly with the vocabulary of the things Google restricts.</p>
+    <div class="tbl-scroll">
+      <table>
+        <thead>
+          <tr><th>Policy</th><th>What triggers it</th><th>Why it fires on defense copy</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>Dangerous products or services</b></td>
+            <td>Named substances, trafficking, weapons, firearms</td>
+            <td>The classifier sees the substance or weapon, not the defense context. "Drug trafficking defense" reads to the system much like an ad for the thing itself.</td>
+          </tr>
+          <tr>
+            <td><b>Sexual content</b></td>
+            <td>Sex offenses, assault terminology</td>
+            <td>Highest-sensitivity category. Almost nothing survives review here regardless of framing, and appeals rarely land.</td>
+          </tr>
+          <tr>
+            <td><b>Misrepresentation</b></td>
+            <td>Outcome promises, guarantees, superlatives</td>
+            <td>"Charges dropped", "we win", "best" — unverifiable claims. This one also breaches most state bar advertising rules.</td>
+          </tr>
+          <tr>
+            <td><b>Enabling dishonest behavior</b></td>
+            <td>Copy reading as help evading consequences</td>
+            <td>"Beat your charge", "avoid jail" cross from defending someone into helping them escape a lawful process.</td>
+          </tr>
+          <tr>
+            <td><b>Restricted: bail bonds</b></td>
+            <td>Bail, bonds, bail bondsman</td>
+            <td>Restricted outright in the US. Not a review question — it simply will not run.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>Substitutions</h2>
+    <p>Every flagged phrase has a version that carries the same meaning to a searcher and nothing to a classifier. The trade is specificity for delivery — an ad that runs at a broader framing beats a precise ad that never serves.</p>
+    <div class="tbl-scroll">
+      <table>
+        <thead>
+          <tr><th>Don't write</th><th>Write instead</th><th>Note</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="no">Drug Trafficking Defense</span></td><td><span class="yes">Felony Defense</span></td><td>Or "Serious Charges". Keep the detail on the landing page.</td></tr>
+          <tr><td><span class="no">Sex Crime Attorney</span></td><td><span class="yes">Serious Felony Defense</span></td><td>Do not name the offense in any ad asset.</td></tr>
+          <tr><td><span class="no">Gun / Weapons Charge</span></td><td><span class="yes">Felony Defense</span></td><td>Firearms terms trip the dangerous-products filter.</td></tr>
+          <tr><td><span class="no">Get Your Charges Dropped</span></td><td><span class="yes">Understand Your Options</span></td><td>Outcome promise. Also a bar-rules problem.</td></tr>
+          <tr><td><span class="no">Beat Your DWI</span></td><td><span class="yes">DWI Defense Representation</span></td><td>Reads as evading a lawful process.</td></tr>
+          <tr><td><span class="no">Best Criminal Lawyer</span></td><td><span class="yes">Experienced Defense Attorney</span></td><td>Unverifiable superlative.</td></tr>
+          <tr><td><span class="no">Avoid Jail Time</span></td><td><span class="yes">Know What You're Facing</span></td><td>Same category as the above.</td></tr>
+          <tr><td><span class="no">Bail Bonds Available</span></td><td><span class="yes">—</span></td><td>No substitute. Restricted category, full stop.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>The ads</h2>
+    <p>Written generically so they drop into any criminal defense account. Nothing below asserts a credential, a year count, or a result, so no field needs substantiating before launch — the one thing to confirm is that consultations really are free.</p>
+    <div class="spec">
+      <div><b>30</b><small>characters per headline</small></div>
+      <div><b>90</b><small>characters per description</small></div>
+      <div><b>15</b><small>headlines max, 3 minimum</small></div>
+      <div><b>4</b><small>descriptions max, 2 minimum</small></div>
+    </div>
+    <div class="rsas" id="rsas"></div>
+  </section>
+
+  <section class="block">
+    <h2>Pinning</h2>
+    <p>Pin almost nothing. Every pin removes combinations Google could otherwise test, and a fully pinned RSA is just an expanded text ad with worse reach. The one defensible pin is a single service headline in position 1 so the ad always names the practice area — leave everything else free to rotate.</p>
+    <div class="notice">
+      <h3>If a specific claim ever needs to appear</h3>
+      <p>Pin it rather than hoping it shows. A firm that must display a disclaimer, a licensing statement, or a bar-required line should pin it to Description 2, which serves more reliably than an unpinned asset. Note that pinning two or more assets to the same position lets Google rotate among just those — that's the way to keep several required lines in play without collapsing the ad down to one variant.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>When an ad is disapproved</h2>
+    <p>An ad-level disapproval is routine and does not endanger the account. What escalates to a suspension is a pattern — the same flagged copy pushed through repeatedly, which reads to Google as circumvention rather than error.</p>
+    <ul class="check">
+      <li><span class="mark n">1</span><div><b>Read which policy fired</b><span class="why">The disapproval names it. "Dangerous products" and "Misrepresentation" call for different fixes, and guessing wastes a resubmission.</span></div></li>
+      <li><span class="mark n">2</span><div><b>Edit the asset, don't resubmit it</b><span class="why">In an RSA you can usually delete the one offending headline and keep the ad. Resubmitting identical copy is the behavior that turns an ad problem into an account problem.</span></div></li>
+      <li><span class="mark n">3</span><div><b>Appeal once, with context</b><span class="why">Worth it for a clear false positive on a general defense term. Not worth it for anything in the sexual content category — that appeal almost never succeeds.</span></div></li>
+      <li><span class="mark n">4</span><div><b>Isolate anything sensitive</b><span class="why">Keep borderline practice areas in their own ad group. A disapproval there stays contained instead of taking a working ad group down with it.</span></div></li>
+      <li><span class="mark n">5</span><div><b>Check the landing page too</b><span class="why">Review covers the destination, not just the ad. A page heavy on offense terminology can flag ads whose own copy is clean.</span></div></li>
+    </ul>
+  </section>
+
+  <section class="block">
+    <h2>Never put these in an ad</h2>
+    <ul class="check">
+      <li><span class="mark x">NO</span><div><code>Guaranteed results</code> · <code>We win</code> · <code>100% success</code><span class="why">Misrepresentation, and a bar violation in every US jurisdiction.</span></div></li>
+      <li><span class="mark x">NO</span><div><code>Board certified</code> unless actually certified<span class="why">Most states restrict specialist claims to lawyers certified by the state bar's specialization board.</span></div></li>
+      <li><span class="mark x">NO</span><div><code>Named substances</code> — cocaine, meth, heroin, opioids<span class="why">The single fastest way to a dangerous-products disapproval.</span></div></li>
+      <li><span class="mark x">NO</span><div><code>Any sex offense term</code><span class="why">Highest-sensitivity category. Keep it on the website, out of every ad asset.</span></div></li>
+      <li><span class="mark x">NO</span><div><code>Bail</code> · <code>Bond</code> · <code>Bail bondsman</code><span class="why">Restricted category. Also attracts a searcher who wants a bondsman, not a lawyer.</span></div></li>
+      <li><span class="mark x">NO</span><div><code>ALL CAPS</code> · <code>!!!</code> · <code>Call NOW</code><span class="why">Editorial policy. Rejected on formatting alone, regardless of subject.</span></div></li>
+    </ul>
+  </section>
+
+  <footer>
+    <div>Prepared for Creekside Marketing Pros · reusable criminal defense ad copy</div>
+    <div>Character counts computed from the strings themselves against Google's RSA field limits.</div>
+  </footer>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+  const H_LIM = 30, D_LIM = 90;
+  const RSAS = [
+    {
+      name:"RSA 1 · Criminal Defense",
+      paths:["Criminal","Defense"],
+      headlines:["Criminal Defense Attorney","Criminal Defense Lawyer","Facing Criminal Charges?",
+        "Charged With a Crime?","Felony & Misdemeanor Defense","State & Federal Court",
+        "Free Case Evaluation","Confidential Consultation","Speak With an Attorney",
+        "Local Courtroom Experience","Trial-Tested Representation","Know Your Legal Options",
+        "Protect Your Rights","Court Date Approaching?","Get Answers About Your Case"],
+      descriptions:[
+        "Facing charges? Speak with a defense attorney about your case and the options ahead.",
+        "Representation in state and federal court. Confidential consultation, no obligation.",
+        "Every case is different. Get a clear explanation of the process and what comes next.",
+        "Local attorneys with real courtroom experience. Call today to discuss your situation."]
+    },
+    {
+      name:"RSA 2 · DWI / DUI",
+      paths:["DWI-Defense","Free-Consult"],
+      headlines:["DWI Defense Attorney","DUI Defense Lawyer","Charged With DWI?",
+        "Arrested for DUI?","First-Offense DWI Defense","Repeat DWI Charges",
+        "Free Case Evaluation","Speak With a DWI Attorney","Protect Your License",
+        "DMV Hearing Representation","Local DWI Court Experience","Know Your Legal Options",
+        "Court Date Approaching?","Understand Your Charge","Get Answers About Your DWI"],
+      descriptions:[
+        "Charged with DWI? Speak with an attorney about your case and the road ahead.",
+        "License at risk? We handle DMV hearings alongside the criminal charge.",
+        "Breath and blood tests can be challenged. Learn what applies to your case.",
+        "Local attorneys who appear in these courts regularly. Call for a consultation."]
+    },
+    {
+      name:"RSA 3 · Traffic & License",
+      paths:["Traffic-Defense","Free-Consult"],
+      headlines:["Traffic Ticket Attorney","Traffic Defense Lawyer","Got a Traffic Ticket?",
+        "Speeding Ticket Defense","Reckless Driving Defense","License Revoked?",
+        "DMV Hearing Representation","License Restoration Help","Points & Insurance Impact",
+        "Free Case Evaluation","Out-of-State Drivers Welcome","Protect Your Driving Record",
+        "Court Date Approaching?","Speak With an Attorney","Know Your Legal Options"],
+      descriptions:[
+        "A ticket can mean points, higher insurance, and a suspended license. Know your options.",
+        "We handle traffic matters and DMV hearings across the local courts. Call to discuss.",
+        "Out-of-state driver? We may be able to appear on your behalf. Ask about your case.",
+        "Speak with an attorney about your citation and what it could mean for your license."]
+    }
+  ];
+
+  const esc = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+  const meter = (n, lim) => {
+    const tight = n >= lim - 2;
+    return '<span class="budget">' +
+      '<span class="meter' + (tight ? ' tight' : '') + '"><i style="width:' +
+        Math.round((n / lim) * 100) + '%"></i></span>' +
+      '<span class="count' + (tight ? ' tight' : '') + '">' + n + '/' + lim + '</span></span>';
+  };
+
+  const root = document.getElementById("rsas");
+  RSAS.forEach(r => {
+    const card = document.createElement("div");
+    card.className = "rsa";
+
+    const head = document.createElement("div");
+    head.className = "rsa-head";
+    head.innerHTML = '<h3>' + esc(r.name) + '</h3>' +
+      '<span class="paths">/' + esc(r.paths[0]) + ' /' + esc(r.paths[1]) + '</span>';
+    card.appendChild(head);
+
+    const hh = document.createElement("div");
+    hh.className = "sub-head";
+    hh.innerHTML = '<span>Headlines · ' + r.headlines.length + ' of 15</span>';
+    const hb = document.createElement("button");
+    hb.className = "copy"; hb.type = "button"; hb.textContent = "Copy headlines";
+    hb.addEventListener("click", () => copy(r.headlines.join("\n"), "Headlines"));
+    hh.appendChild(hb);
+    card.appendChild(hh);
+
+    const grid = document.createElement("div");
+    grid.className = "hgrid";
+    r.headlines.forEach(h => {
+      const d = document.createElement("div");
+      d.className = "h";
+      d.innerHTML = '<span class="t">' + esc(h) + '</span>' + meter(h.length, H_LIM);
+      grid.appendChild(d);
+    });
+    card.appendChild(grid);
+
+    const dh = document.createElement("div");
+    dh.className = "sub-head";
+    dh.innerHTML = '<span>Descriptions · ' + r.descriptions.length + ' of 4</span>';
+    const db = document.createElement("button");
+    db.className = "copy"; db.type = "button"; db.textContent = "Copy descriptions";
+    db.addEventListener("click", () => copy(r.descriptions.join("\n"), "Descriptions"));
+    dh.appendChild(db);
+    card.appendChild(dh);
+
+    const ol = document.createElement("ol");
+    ol.className = "drows";
+    r.descriptions.forEach(d => {
+      const li = document.createElement("li");
+      li.innerHTML = '<span class="t">' + esc(d) + '</span>' + meter(d.length, D_LIM);
+      ol.appendChild(li);
+    });
+    card.appendChild(ol);
+    root.appendChild(card);
+  });
+
+  const toast = document.getElementById("toast");
+  let toastTimer = null;
+  function flash(msg){
+    toast.textContent = msg;
+    toast.classList.add("on");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove("on"), 1900);
+  }
+  function copy(text, label){
+    const done = () => flash(label + " copied — one per line");
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(done).catch(() => fallback(text, done));
+      } else { fallback(text, done); }
+    } catch (e) { fallback(text, done); }
+  }
+  function fallback(text, done){
+    try {
+      const ta = document.createElement("textarea");
+      ta.value = text; ta.setAttribute("readonly","");
+      ta.style.position = "fixed"; ta.style.top = "-1000px";
+      document.body.appendChild(ta); ta.select();
+      document.execCommand("copy");
+      document.body.removeChild(ta); done();
+    } catch (e) { flash("Copy blocked — select the text manually"); }
+  }
+</script>

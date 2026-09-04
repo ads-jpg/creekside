@@ -5,7 +5,6 @@ Types,Felonies,8,
 Types,Misdemeanors,12,
 Types,Traffic Violations,18,
 Types,Federal Charges,15,
-Types,Sex Crimes,10,YES
 Types,Assault Charges,15,
 Types,Probation Violations,20,YES
 Types,Underage Drinking,17,YES

@@ -26,7 +26,7 @@ Featured hotels, Insurance coverage, Models, Shows, Styles.
 ## Step 2 - The values
 
 ### Types
-_Primary — case types - 10 values_
+_Primary — case types - 9 values_
 
 | # | Value | Chars | Verify |
 |---|-------|-------|--------|
@@ -36,10 +36,9 @@ _Primary — case types - 10 values_
 | 4 | `Misdemeanors` | 12/25 |  |
 | 5 | `Traffic Violations` | 18/25 |  |
 | 6 | `Federal Charges` | 15/25 |  |
-| 7 | `Sex Crimes` | 10/25 | YES |
-| 8 | `Assault Charges` | 15/25 |  |
-| 9 | `Probation Violations` | 20/25 | YES |
-| 10 | `Underage Drinking` | 17/25 | YES |
+| 7 | `Assault Charges` | 15/25 |  |
+| 8 | `Probation Violations` | 20/25 | YES |
+| 9 | `Underage Drinking` | 17/25 | YES |
 
 ### Service catalog
 _Secondary — services offered - 8 values_
@@ -70,11 +69,12 @@ than three values at ad-group level - a two-value override silently stops snippe
 
 - **`Probation Violations`** - standard criminal-defense work, but not named in the firm's directory listings.
 - **`Underage Drinking`** - plausible near a university town and pairs with the DWI ad group. Confirm.
-- **`Sex Crimes`** - documented practice area, so the claim is sound, but sensitive-category values can serve unevenly. Watch impressions.
 
 ## What breaks a snippet
 
 - **`Free Consultation`** - a benefit, not a category member. Wrong-fit values disapprove the whole snippet. Keep it in the callouts.
+- **`Sex Crimes`** - pulled from the Types list. Google's sexual-content policy flags the term
+  regardless of defense framing, and a disapproval takes the whole header down. Keep it on the website.
 - **`Call Us Today`** - snippets are not clickable and take no CTAs.
 - **`Aggressive Defense`** - an adjective, not a list item.
 - **`DWI Specialist`** - NC Rule 7.4 restricts specialist claims to NC State Bar certified lawyers.

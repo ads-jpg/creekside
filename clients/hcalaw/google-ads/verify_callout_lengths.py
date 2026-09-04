@@ -1,33 +1,28 @@
-groups = {
-"Core (Account Level)": [
- "Serving NC Since 1982","40+ Years Defending NC","AV Preeminent Rated","Top 100 Trial Lawyers",
- "Free Case Consultation","Downtown Wilmington","Walk-Ins Welcome","Partner-Led Defense",
- "Trial-Tested Defense","Direct Attorney Access"],
-"DWI / DUI": [
- "2,000+ DWI Cases Handled","DWI Defense Since 1982","First-Offense DWI Help","Protect Your License",
- "Breath Test Challenges","Felony DWI Defense","Underage DWI Defense"],
-"DMV Hearings / License": [
- "DMV Hearing Defense","License Restoration Help","Revoked License Hearings","DWLR Charge Defense",
- "DMV Medical Hearings","Limited Driving Privilege"],
-"Drug Charges": [
- "Drug Charge Defense","Drug Trafficking Defense","Felony Drug Cases","Search & Seizure Defense",
- "Possession Charge Defense"],
-"Traffic / Tickets": [
- "Speeding Ticket Defense","Reckless Driving Defense","Avoid License Points","Out-of-State Drivers OK",
- "CDL Driver Defense"],
-"Felony / Serious Charges": [
- "Felony Defense Attorneys","Federal Court Defense","Sex Crime Defense","Assault Charge Defense",
- "State & Federal Trials"],
-"Local / Geo Trust": [
- "New Hanover County Courts","Steps From the Courthouse","Local Wilmington Firm","Known in Local Courts",
- "Pender & Brunswick Co."],
-}
-bad=0; total=0
-for g,items in groups.items():
-    print(f"\n== {g} ==")
+"""Check callout assets against Google's 25-character limit.
+
+Reads callouts.csv so the check cannot drift from the asset list itself.
+"""
+import csv, collections, sys
+
+LIMIT = 25
+rows = list(csv.DictReader(open("callouts.csv")))
+by_group = collections.OrderedDict()
+for r in rows:
+    by_group.setdefault(r["Ad Group"], []).append(r["Callout text"])
+
+ok, total = True, 0
+for group, items in by_group.items():
+    print(f"\n== {group} == ({len(items)})")
+    if len(items) > 20:
+        print("  !! more than 20 callouts — Google's per-level maximum"); ok = False
+    if len(set(i.lower() for i in items)) != len(items):
+        print("  !! duplicate callout in group"); ok = False
     for c in items:
-        n=len(c); total+=1
-        flag="  <-- OVER LIMIT" if n>25 else ""
-        if n>25: bad+=1
-        print(f"  {n:>2}/25  {c}{flag}")
-print(f"\nTOTAL: {total} callouts, {bad} over limit")
+        n = len(c); total += 1
+        over = n > LIMIT
+        if over: ok = False
+        print(f"  {n:>2}/{LIMIT}  {c}" + ("   <-- OVER LIMIT" if over else ""))
+
+print(f"\nTOTAL: {total} callouts across {len(by_group)} groups")
+print("ALL CLEAN" if ok else "ISSUES FOUND")
+sys.exit(0 if ok else 1)

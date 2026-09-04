@@ -30,7 +30,7 @@ learn from.
 | Under $1,500 | 1 | DWI / DUI only | 35-70 clicks total. Split two ways, neither optimizes. |
 | **$1,500-$3,500** | **2** | **DWI, Criminal Defense** | **Realistic start for a firm this size.** |
 | $3,500-$7,000 | 3 | + Traffic & License | Traffic earns its place once it can't cannibalize DWI. |
-| $7,000+ | 4 | + Brand protection | Also unlock Federal and Sex Crimes ad groups. |
+| $7,000+ | 4 | + Brand protection | Also unlock the Federal ad group. |
 
 Wilmington is a small market, so CPCs sit below the $75-200 seen for DWI in large metros.
 Confirm against Keyword Planner for the live geo before committing a budget.
@@ -57,7 +57,7 @@ Highest case value, deepest proof (2,000+ cases). Never let this share a budget.
 | Felony Defense | "felony lawyer wilmington nc", "felony attorney near me" |
 | Assault & Violent | "assault charge lawyer nc", "assault attorney wilmington" |
 | _Federal Defense_ | _Phase 2 - real credential (E.D.N.C.) but thin volume_ |
-| _Sex Crimes_ | _Phase 2 - high value, but sensitive-category terms serve unevenly. Launch isolated._ |
+| ~~Sex Crimes~~ | **Do not run as a Search ad group.** Google's sexual-content policy flags the terminology regardless of defense framing, so no compliant ad copy exists for it. Keep the practice area on the website and let it come through organic search and Local Services Ads. |
 
 ### Campaign 3 - Traffic & License (15% of budget)
 Cheap clicks, high volume, lower case value. Quarantined so it can't eat the others.

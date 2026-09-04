@@ -2,7 +2,7 @@
 
 **Client:** hcalaw.net | **Location:** Wilmington, NC | **Practice:** Criminal defense
 
-**Assets:** 43, all verified against Google's 25-character limit.
+**Assets:** 41, all verified against Google's 25-character limit.
 
 > **Source note:** hcalaw.net was blocked by the session network policy, so these were built
 > from the firm's directory records (Martindale-Hubbell, FindLaw, Lawyers.com, Yelp, Justia)
@@ -70,10 +70,9 @@ _Possession through trafficking - 5 assets_
 | # | Callout | Chars | Verify |
 |---|---------|-------|--------|
 | 1 | `Drug Charge Defense` | 19/25 |  |
-| 2 | `Drug Trafficking Defense` | 24/25 |  |
-| 3 | `Felony Drug Cases` | 17/25 |  |
-| 4 | `Search & Seizure Defense` | 24/25 |  |
-| 5 | `Possession Charge Defense` | 25/25 |  |
+| 2 | `Felony Drug Cases` | 17/25 |  |
+| 3 | `Search & Seizure Defense` | 24/25 |  |
+| 4 | `Possession Charge Defense` | 25/25 |  |
 
 ### Traffic / Tickets
 _High volume, low intent - 5 assets_
@@ -93,9 +92,8 @@ _State and federal - 5 assets_
 |---|---------|-------|--------|
 | 1 | `Felony Defense Attorneys` | 24/25 |  |
 | 2 | `Federal Court Defense` | 21/25 |  |
-| 3 | `Sex Crime Defense` | 17/25 |  |
-| 4 | `Assault Charge Defense` | 22/25 |  |
-| 5 | `State & Federal Trials` | 22/25 |  |
+| 3 | `Assault Charge Defense` | 22/25 |  |
+| 4 | `State & Federal Trials` | 22/25 |  |
 
 ### Local / Geo Trust
 _Courthouse proximity and local standing - 5 assets_

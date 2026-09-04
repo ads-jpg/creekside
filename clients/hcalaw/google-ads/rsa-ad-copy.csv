@@ -1,0 +1,64 @@
+Ad,Field,Position,Text,Characters,Limit
+RSA 1 - Criminal Defense (general),Headline,1,Criminal Defense Attorney,25,30
+RSA 1 - Criminal Defense (general),Headline,2,Criminal Defense Lawyer,23,30
+RSA 1 - Criminal Defense (general),Headline,3,Facing Criminal Charges?,24,30
+RSA 1 - Criminal Defense (general),Headline,4,Charged With a Crime?,21,30
+RSA 1 - Criminal Defense (general),Headline,5,Felony & Misdemeanor Defense,28,30
+RSA 1 - Criminal Defense (general),Headline,6,State & Federal Court,21,30
+RSA 1 - Criminal Defense (general),Headline,7,Free Case Evaluation,20,30
+RSA 1 - Criminal Defense (general),Headline,8,Confidential Consultation,25,30
+RSA 1 - Criminal Defense (general),Headline,9,Speak With an Attorney,22,30
+RSA 1 - Criminal Defense (general),Headline,10,Local Courtroom Experience,26,30
+RSA 1 - Criminal Defense (general),Headline,11,Trial-Tested Representation,27,30
+RSA 1 - Criminal Defense (general),Headline,12,Know Your Legal Options,23,30
+RSA 1 - Criminal Defense (general),Headline,13,Protect Your Rights,19,30
+RSA 1 - Criminal Defense (general),Headline,14,Court Date Approaching?,23,30
+RSA 1 - Criminal Defense (general),Headline,15,Get Answers About Your Case,27,30
+RSA 1 - Criminal Defense (general),Description,1,Facing charges? Speak with a defense attorney about your case and the options ahead.,84,90
+RSA 1 - Criminal Defense (general),Description,2,"Representation in state and federal court. Confidential consultation, no obligation.",84,90
+RSA 1 - Criminal Defense (general),Description,3,Every case is different. Get a clear explanation of the process and what comes next.,84,90
+RSA 1 - Criminal Defense (general),Description,4,Local attorneys with real courtroom experience. Call today to discuss your situation.,85,90
+RSA 1 - Criminal Defense (general),Path,1,Criminal,8,15
+RSA 1 - Criminal Defense (general),Path,2,Defense,7,15
+RSA 2 - DWI / DUI,Headline,1,DWI Defense Attorney,20,30
+RSA 2 - DWI / DUI,Headline,2,DUI Defense Lawyer,18,30
+RSA 2 - DWI / DUI,Headline,3,Charged With DWI?,17,30
+RSA 2 - DWI / DUI,Headline,4,Arrested for DUI?,17,30
+RSA 2 - DWI / DUI,Headline,5,First-Offense DWI Defense,25,30
+RSA 2 - DWI / DUI,Headline,6,Repeat DWI Charges,18,30
+RSA 2 - DWI / DUI,Headline,7,Free Case Evaluation,20,30
+RSA 2 - DWI / DUI,Headline,8,Speak With a DWI Attorney,25,30
+RSA 2 - DWI / DUI,Headline,9,Protect Your License,20,30
+RSA 2 - DWI / DUI,Headline,10,DMV Hearing Representation,26,30
+RSA 2 - DWI / DUI,Headline,11,Local DWI Court Experience,26,30
+RSA 2 - DWI / DUI,Headline,12,Know Your Legal Options,23,30
+RSA 2 - DWI / DUI,Headline,13,Court Date Approaching?,23,30
+RSA 2 - DWI / DUI,Headline,14,Understand Your Charge,22,30
+RSA 2 - DWI / DUI,Headline,15,Get Answers About Your DWI,26,30
+RSA 2 - DWI / DUI,Description,1,Charged with DWI? Speak with an attorney about your case and the road ahead.,76,90
+RSA 2 - DWI / DUI,Description,2,License at risk? We handle DMV hearings alongside the criminal charge.,70,90
+RSA 2 - DWI / DUI,Description,3,Breath and blood tests can be challenged. Learn what applies to your case.,74,90
+RSA 2 - DWI / DUI,Description,4,Local attorneys who appear in these courts regularly. Call for a consultation.,78,90
+RSA 2 - DWI / DUI,Path,1,DWI-Defense,11,15
+RSA 2 - DWI / DUI,Path,2,Free-Consult,12,15
+RSA 3 - Traffic & License,Headline,1,Traffic Ticket Attorney,23,30
+RSA 3 - Traffic & License,Headline,2,Traffic Defense Lawyer,22,30
+RSA 3 - Traffic & License,Headline,3,Got a Traffic Ticket?,21,30
+RSA 3 - Traffic & License,Headline,4,Speeding Ticket Defense,23,30
+RSA 3 - Traffic & License,Headline,5,Reckless Driving Defense,24,30
+RSA 3 - Traffic & License,Headline,6,License Revoked?,16,30
+RSA 3 - Traffic & License,Headline,7,DMV Hearing Representation,26,30
+RSA 3 - Traffic & License,Headline,8,License Restoration Help,24,30
+RSA 3 - Traffic & License,Headline,9,Points & Insurance Impact,25,30
+RSA 3 - Traffic & License,Headline,10,Free Case Evaluation,20,30
+RSA 3 - Traffic & License,Headline,11,Out-of-State Drivers Welcome,28,30
+RSA 3 - Traffic & License,Headline,12,Protect Your Driving Record,27,30
+RSA 3 - Traffic & License,Headline,13,Court Date Approaching?,23,30
+RSA 3 - Traffic & License,Headline,14,Speak With an Attorney,22,30
+RSA 3 - Traffic & License,Headline,15,Know Your Legal Options,23,30
+RSA 3 - Traffic & License,Description,1,"A ticket can mean points, higher insurance, and a suspended license. Know your options.",87,90
+RSA 3 - Traffic & License,Description,2,We handle traffic matters and DMV hearings across the local courts. Call to discuss.,84,90
+RSA 3 - Traffic & License,Description,3,Out-of-state driver? We may be able to appear on your behalf. Ask about your case.,82,90
+RSA 3 - Traffic & License,Description,4,Speak with an attorney about your citation and what it could mean for your license.,83,90
+RSA 3 - Traffic & License,Path,1,Traffic-Defense,15,15
+RSA 3 - Traffic & License,Path,2,Free-Consult,12,15
