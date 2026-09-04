@@ -1,0 +1,689 @@
+<title>Defense Keyword Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
+
+<style>
+  :root{
+    --ground:#F3F5F4; --surface:#FFFFFF; --surface-sunk:#EAEEED;
+    --ink:#15201F; --ink-soft:#3C4A48; --muted:#5C6A68; --faint:#8A9694;
+    --rule:#D8DEDC; --rule-strong:#C2CBC9;
+    --accent:#0E5D57; --accent-soft:#E2EFED; --accent-ink:#0A4640;
+    --amber:#8A6410; --amber-soft:#F7EFDC;
+    --oxblood:#8E322B; --oxblood-soft:#F8E7E4;
+    --shadow:0 1px 2px rgba(21,32,31,.05), 0 8px 24px -16px rgba(21,32,31,.18);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ground:#0E1413; --surface:#161F1E; --surface-sunk:#111917;
+      --ink:#E4EBE9; --ink-soft:#C2CECB; --muted:#93A29F; --faint:#6E7D7A;
+      --rule:#25322F; --rule-strong:#33423F;
+      --accent:#4FB5AC; --accent-soft:#16302E; --accent-ink:#7FCEC6;
+      --amber:#D9A441; --amber-soft:#2E2617;
+      --oxblood:#E08279; --oxblood-soft:#33201E;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#0E1413; --surface:#161F1E; --surface-sunk:#111917;
+    --ink:#E4EBE9; --ink-soft:#C2CECB; --muted:#93A29F; --faint:#6E7D7A;
+    --rule:#25322F; --rule-strong:#33423F;
+    --accent:#4FB5AC; --accent-soft:#16302E; --accent-ink:#7FCEC6;
+    --amber:#D9A441; --amber-soft:#2E2617;
+    --oxblood:#E08279; --oxblood-soft:#33201E;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    background:var(--ground); color:var(--ink);
+    font-family:"Public Sans","Helvetica Neue",Arial,sans-serif;
+    font-size:15px; line-height:1.55; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:880px;margin:0 auto;padding:40px 24px 96px;display:flex;flex-direction:column;gap:46px;}
+
+  .mast{display:flex;flex-direction:column;gap:18px;}
+  .eyebrow{
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--accent);font-weight:500;
+  }
+  h1{
+    font-family:"Fraunces","Georgia",serif;font-optical-sizing:auto;
+    font-weight:600;font-size:clamp(30px,5.2vw,44px);line-height:1.08;
+    letter-spacing:-.015em;margin:0;text-wrap:balance;
+  }
+  .standfirst{margin:0;max-width:62ch;color:var(--muted);font-size:16px;}
+  .mast-meta{display:flex;flex-wrap:wrap;gap:8px;padding-top:2px;}
+  .tag{
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:11px;letter-spacing:.04em;padding:4px 9px;
+    border:1px solid var(--rule-strong);border-radius:2px;
+    color:var(--ink-soft);background:var(--surface);
+  }
+
+  section.block{display:flex;flex-direction:column;gap:16px;}
+  section.block > h2{
+    margin:0;font-family:"Fraunces","Georgia",serif;
+    font-size:24px;font-weight:600;letter-spacing:-.012em;
+  }
+  section.block > p{margin:0;color:var(--ink-soft);max-width:65ch;font-size:14.5px;}
+  section.block > p.sub{color:var(--muted);font-size:13.5px;}
+
+  .spec{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:1px;background:var(--rule);border:1px solid var(--rule);
+    border-radius:4px;overflow:hidden;
+  }
+  .spec div{background:var(--surface);padding:14px 16px;display:flex;flex-direction:column;gap:2px;}
+  .spec b{
+    font-family:"Fraunces","Georgia",serif;font-size:24px;font-weight:600;
+    line-height:1;color:var(--accent);font-variant-numeric:tabular-nums;
+  }
+  .spec small{font-size:12px;color:var(--muted);line-height:1.35;}
+
+  .notice{
+    display:flex;flex-direction:column;gap:8px;padding:17px 19px;
+    border-left:3px solid var(--accent);background:var(--accent-soft);border-radius:0 3px 3px 0;
+  }
+  .notice.warn{border-left-color:var(--amber);background:var(--amber-soft);}
+  .notice h3{margin:0;font-size:13px;font-weight:700;letter-spacing:.02em;color:var(--ink);}
+  .notice p{margin:0;font-size:14px;color:var(--ink-soft);max-width:66ch;}
+  .notice p + p{margin-top:2px;}
+
+  /* keyword tree */
+  .camps{display:flex;flex-direction:column;gap:20px;}
+  .camp{
+    background:var(--surface);border:1px solid var(--rule);border-radius:4px;
+    box-shadow:var(--shadow);overflow:hidden;
+  }
+  .camp-head{
+    padding:14px 19px;border-bottom:1px solid var(--rule);
+    display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  }
+  .camp-head h3{margin:0;font-family:"Fraunces","Georgia",serif;font-size:19px;font-weight:600;}
+  .ag{padding:13px 19px;border-bottom:1px solid var(--rule);display:flex;flex-direction:column;gap:8px;}
+  .ag:last-child{border-bottom:none;}
+  .ag-name{
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:10px;letter-spacing:.11em;text-transform:uppercase;color:var(--faint);
+    display:flex;justify-content:space-between;gap:10px;align-items:baseline;
+  }
+  .kws{display:flex;flex-wrap:wrap;gap:6px;}
+  .kw{
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:12.5px;padding:3px 8px;border-radius:2px;
+    background:var(--surface-sunk);color:var(--ink-soft);
+    border:1px solid transparent;
+  }
+  .kw.exact{background:var(--accent-soft);color:var(--accent-ink);border-color:transparent;font-weight:500;}
+  .kw .tok{color:var(--amber);}
+  .legend{display:flex;gap:16px;flex-wrap:wrap;align-items:center;font-size:12.5px;color:var(--muted);}
+  .legend span.s{display:inline-flex;align-items:center;gap:6px;}
+
+  /* negatives */
+  .negs{display:flex;flex-direction:column;gap:16px;}
+  .neg{
+    background:var(--surface);border:1px solid var(--rule);border-radius:4px;
+    overflow:hidden;box-shadow:var(--shadow);
+  }
+  .neg.policy{border-color:var(--oxblood);}
+  .neg-head{
+    padding:11px 17px;border-bottom:1px solid var(--rule);
+    display:flex;justify-content:space-between;gap:10px;align-items:baseline;flex-wrap:wrap;
+  }
+  .neg-head strong{font-size:13.5px;}
+  .neg.policy .neg-head{background:var(--oxblood-soft);border-bottom-color:var(--oxblood);}
+  .neg.policy .neg-head strong{color:var(--oxblood);}
+  .neg-head span{
+    font-family:"JetBrains Mono",ui-monospace,monospace;font-size:11px;color:var(--muted);
+  }
+  .neg-body{padding:13px 17px;display:flex;flex-wrap:wrap;gap:6px;}
+  .n{
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:12.5px;padding:2px 7px;border-radius:2px;
+    background:var(--surface-sunk);color:var(--muted);
+  }
+  .neg.policy .n{background:var(--oxblood-soft);color:var(--oxblood);}
+
+  button.copy{
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:11px;letter-spacing:.06em;text-transform:uppercase;
+    padding:6px 11px;background:var(--accent-soft);color:var(--accent-ink);
+    border:1px solid transparent;border-radius:3px;cursor:pointer;white-space:nowrap;
+    transition:background .15s ease;
+  }
+  button.copy:hover{background:var(--accent);color:var(--surface);}
+  button.copy:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+
+  .tbl-scroll{overflow-x:auto;border:1px solid var(--rule);border-radius:4px;background:var(--surface);box-shadow:var(--shadow);}
+  table{border-collapse:collapse;width:100%;min-width:540px;font-size:13.5px;}
+  th,td{text-align:left;padding:11px 15px;border-bottom:1px solid var(--rule);vertical-align:top;}
+  th{
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--faint);font-weight:500;background:var(--surface-sunk);white-space:nowrap;
+  }
+  tbody tr:last-child td{border-bottom:none;}
+  td code{
+    font-family:"JetBrains Mono",ui-monospace,monospace;font-size:12.5px;
+    color:var(--ink);background:var(--surface-sunk);padding:1px 5px;border-radius:2px;
+  }
+
+  ul.check{
+    list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:1px;
+    background:var(--rule);border:1px solid var(--rule);border-radius:4px;overflow:hidden;
+  }
+  ul.check li{
+    background:var(--surface);padding:12px 16px;display:grid;
+    grid-template-columns:auto 1fr;gap:12px;align-items:start;font-size:14px;
+  }
+  ul.check li .mark{
+    font-family:"JetBrains Mono",ui-monospace,monospace;font-size:11px;font-weight:700;
+    padding:2px 6px;border-radius:2px;white-space:nowrap;margin-top:1px;
+    background:var(--surface-sunk);color:var(--muted);border:1px solid var(--rule-strong);
+    font-variant-numeric:tabular-nums;
+  }
+  ul.check li b{font-weight:600;color:var(--ink);}
+  ul.check li span.why{display:block;color:var(--muted);font-size:13px;margin-top:2px;}
+
+  footer{
+    border-top:1px solid var(--rule);padding-top:20px;color:var(--faint);
+    font-size:12.5px;display:flex;flex-direction:column;gap:5px;
+  }
+  .toast{
+    position:fixed;left:50%;bottom:26px;transform:translateX(-50%);
+    background:var(--ink);color:var(--ground);
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:12px;letter-spacing:.04em;padding:9px 16px;border-radius:3px;
+    opacity:0;pointer-events:none;transition:opacity .18s ease;z-index:20;
+  }
+  .toast.on{opacity:1;}
+  @media (prefers-reduced-motion: reduce){*{transition:none !important;animation:none !important;}}
+</style>
+
+<div class="wrap">
+
+  <header class="mast">
+    <div class="eyebrow">Google Ads &middot; Keyword Plan</div>
+    <h1>What to Bid On, What to Block</h1>
+    <p class="standfirst">98 keywords across three campaigns, and the 96 negatives that keep them out of trouble. For an account already flagged, the negative list is the more important half of this document &mdash; a clean keyword can still match a search that is not clean, and it is the search, not the keyword, that pulls your ad into a sensitive result.</p>
+    <div class="mast-meta">
+      <span class="tag">98 keywords</span>
+      <span class="tag">96 negatives</span>
+      <span class="tag">16 ad groups</span>
+      <span class="tag">Exact + phrase only</span>
+    </div>
+  </header>
+
+  <div class="notice warn">
+    <h3>The thing most keyword lists get wrong</h3>
+    <p>Google reviews keywords, but keyword-level disapproval is rarely what bites a defense firm. The real exposure is match breadth: a phrase-match keyword like <b>"criminal defense lawyer"</b> will happily match <em>criminal defense lawyer for sex charges</em>, and now your ad has served against a sensitive query you never chose to bid on.</p>
+    <p>That is why the negatives below are not a housekeeping list. They are the control that keeps a compliant keyword from delivering a non-compliant impression &mdash; and on an account already carrying a policy flag, they go in before the keywords do.</p>
+  </div>
+
+  <section class="block">
+    <h2>Match types</h2>
+    <div class="spec">
+      <div><b>Exact</b><small>the head terms, where intent is unambiguous</small></div>
+      <div><b>Phrase</b><small>the long tail, fenced in by the negatives</small></div>
+      <div><b>No broad</b><small>needs conversion data and smart bidding to steer</small></div>
+      <div><b>0</b><small>negative/keyword conflicts, checked by script</small></div>
+    </div>
+    <p class="sub">Every negative was tested against every keyword to confirm none of them blocks something the plan is paying for. Rerun that check after any edit &mdash; a negative added casually is the classic way to silently kill an ad group.</p>
+  </section>
+
+  <section class="block">
+    <h2>Keywords</h2>
+    <p>Substitute <span class="kw"><span class="tok">{city}</span></span> before upload. Keep the <em>near me</em> variants &mdash; they resolve by device location and carry strong local intent.</p>
+    <div class="legend">
+      <span class="s"><span class="kw exact">[exact]</span> head terms</span>
+      <span class="s"><span class="kw">"phrase"</span> long tail</span>
+    </div>
+    <div class="camps" id="camps"></div>
+  </section>
+
+  <section class="block">
+    <h2>Negative keywords</h2>
+    <p>Build these as shared lists applied to all campaigns <b>before</b> launch. The first list is policy protection; the rest is money protection.</p>
+    <div class="negs" id="negs"></div>
+  </section>
+
+  <section class="block">
+    <h2>Volume given up on purpose</h2>
+    <p>Three of these negatives block searches with real volume that this firm could legitimately serve. That is the trade, and it is worth stating plainly rather than discovering later.</p>
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr><th>Blocked</th><th>What it costs</th><th>Why block it anyway</th></tr></thead>
+        <tbody>
+          <tr><td><code>marijuana</code> <code>cannabis</code></td><td>A high-volume possession term in most markets.</td><td>Names a controlled substance, which is the fastest route to a dangerous-products disapproval. Take it back only once the account is clean and unflagged.</td></tr>
+          <tr><td><code>trafficking</code> <code>distribution</code></td><td>The highest-value drug cases a firm sees.</td><td>The classifier does not distinguish defending trafficking from facilitating it. These clients find firms by referral far more than by search.</td></tr>
+          <tr><td><code>gun</code> <code>firearm</code> <code>weapon</code></td><td>Weapons charges are common alongside felony cases.</td><td>Trips the dangerous-products filter regardless of framing. The felony keywords still catch much of this intent.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="sub">Note the one deliberate carve-out: <code>sex offender</code> is blocked as a phrase rather than <code>offender</code> as a word, so <em>habitual offender</em> searches &mdash; a real license-revocation status, and real business &mdash; stay biddable.</p>
+  </section>
+
+  <section class="block">
+    <h2>Running it</h2>
+    <ul class="check">
+      <li><span class="mark">1</span><div><b>Negatives first, keywords second</b><span class="why">Upload the shared lists and attach them to every campaign before a single keyword goes live. Reversing this order is how a flagged account gets flagged again.</span></div></li>
+      <li><span class="mark">2</span><div><b>Search Terms report weekly for the first month</b><span class="why">This is where you find out what you are actually matching. Anything sensitive that slips through becomes a new negative the same day.</span></div></li>
+      <li><span class="mark">3</span><div><b>Add negatives at the shared-list level</b><span class="why">Not ad group level. A sensitive term you block in one place should be blocked everywhere, permanently.</span></div></li>
+      <li><span class="mark">4</span><div><b>Watch for "Rarely served" and "Low search volume"</b><span class="why">Different problems. Rarely served means Quality Score or policy limitation; low volume means the term is too narrow for the market and can be paused.</span></div></li>
+      <li><span class="mark">5</span><div><b>Re-run the conflict check after every edit</b><span class="why">Adding one broad negative can silently disable an entire ad group, and nothing in the interface warns you.</span></div></li>
+    </ul>
+  </section>
+
+  <footer>
+    <div>Prepared for Creekside Marketing Pros &middot; criminal defense keyword plan</div>
+    <div>Keyword and negative counts computed from the plan itself; conflicts verified by script.</div>
+  </footer>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+const DATA = {
+  "campaigns": [
+    {
+      "name": "DWI / DUI",
+      "groups": [
+        {
+          "name": "DWI Attorney",
+          "keywords": [
+            "[dwi lawyer]",
+            "[dwi attorney]",
+            "[dwi lawyer near me]",
+            "[dwi attorney near me]",
+            "[dwi lawyer {city}]",
+            "[dwi attorney {city}]",
+            "\"dwi defense lawyer\"",
+            "\"dwi defense attorney\"",
+            "\"dwi defense law firm\"",
+            "\"hire a dwi lawyer\""
+          ]
+        },
+        {
+          "name": "DUI Attorney",
+          "keywords": [
+            "[dui lawyer]",
+            "[dui attorney]",
+            "[dui lawyer near me]",
+            "[dui attorney near me]",
+            "[dui lawyer {city}]",
+            "\"dui defense attorney\"",
+            "\"dui defense lawyer\"",
+            "\"drunk driving lawyer\"",
+            "\"drunk driving attorney\""
+          ]
+        },
+        {
+          "name": "First Offense",
+          "keywords": [
+            "\"first offense dwi lawyer\"",
+            "\"first offense dui lawyer\"",
+            "\"first dwi attorney\"",
+            "\"first time dwi lawyer\"",
+            "\"first time dui attorney\""
+          ]
+        },
+        {
+          "name": "Repeat & Felony DWI",
+          "keywords": [
+            "\"second dwi lawyer\"",
+            "\"second offense dwi attorney\"",
+            "\"third dwi lawyer\"",
+            "\"felony dwi lawyer\"",
+            "\"felony dwi attorney\"",
+            "\"habitual dwi lawyer\"",
+            "\"repeat dwi attorney\""
+          ]
+        },
+        {
+          "name": "Underage DWI",
+          "keywords": [
+            "\"underage dwi lawyer\"",
+            "\"underage dui attorney\"",
+            "\"underage drinking driving lawyer\"",
+            "\"provisional license dwi lawyer\""
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Criminal Defense",
+      "groups": [
+        {
+          "name": "Criminal Defense",
+          "keywords": [
+            "[criminal defense attorney]",
+            "[criminal defense lawyer]",
+            "[criminal lawyer near me]",
+            "[criminal attorney near me]",
+            "[criminal defense attorney {city}]",
+            "[criminal lawyer {city}]",
+            "\"criminal defense law firm\"",
+            "\"criminal defense representation\"",
+            "\"hire a criminal defense lawyer\"",
+            "\"defense attorney for criminal charges\""
+          ]
+        },
+        {
+          "name": "Drug Charges",
+          "keywords": [
+            "\"drug charge lawyer\"",
+            "\"drug charge attorney\"",
+            "\"drug possession lawyer\"",
+            "\"drug possession attorney\"",
+            "\"possession charge lawyer\"",
+            "\"drug charges defense attorney\"",
+            "\"drug crime lawyer\""
+          ]
+        },
+        {
+          "name": "Felony Defense",
+          "keywords": [
+            "\"felony lawyer\"",
+            "\"felony attorney\"",
+            "\"felony attorney near me\"",
+            "\"felony defense lawyer\"",
+            "\"felony charge attorney\"",
+            "\"felony defense attorney {city}\""
+          ]
+        },
+        {
+          "name": "Misdemeanor Defense",
+          "keywords": [
+            "\"misdemeanor lawyer\"",
+            "\"misdemeanor attorney\"",
+            "\"misdemeanor defense lawyer\"",
+            "\"misdemeanor charge attorney\""
+          ]
+        },
+        {
+          "name": "Assault Charges",
+          "keywords": [
+            "\"assault charge lawyer\"",
+            "\"assault charge attorney\"",
+            "\"assault defense lawyer\"",
+            "\"simple assault lawyer\"",
+            "\"assault attorney near me\""
+          ]
+        },
+        {
+          "name": "Federal Defense (phase 2)",
+          "keywords": [
+            "\"federal criminal defense attorney\"",
+            "\"federal criminal lawyer\"",
+            "\"federal defense attorney\"",
+            "\"federal charges lawyer\""
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Traffic & License",
+      "groups": [
+        {
+          "name": "Traffic Tickets",
+          "keywords": [
+            "[traffic ticket lawyer]",
+            "[traffic ticket attorney]",
+            "[traffic lawyer near me]",
+            "[traffic attorney {city}]",
+            "\"traffic ticket lawyer {city}\"",
+            "\"fight a traffic ticket lawyer\"",
+            "\"traffic violation attorney\""
+          ]
+        },
+        {
+          "name": "Speeding Tickets",
+          "keywords": [
+            "\"speeding ticket lawyer\"",
+            "\"speeding ticket attorney\"",
+            "\"speeding ticket lawyer near me\"",
+            "\"speeding citation attorney\""
+          ]
+        },
+        {
+          "name": "DWLR & Suspended License",
+          "keywords": [
+            "\"driving while license revoked lawyer\"",
+            "\"dwlr attorney\"",
+            "\"dwlr lawyer\"",
+            "\"suspended license lawyer\"",
+            "\"revoked license attorney\"",
+            "\"driving on suspended license lawyer\""
+          ]
+        },
+        {
+          "name": "DMV Hearings",
+          "keywords": [
+            "\"dmv hearing lawyer\"",
+            "\"dmv hearing attorney\"",
+            "\"license restoration lawyer\"",
+            "\"license restoration attorney\"",
+            "\"get my license back lawyer\"",
+            "\"dmv hearing representation\""
+          ]
+        },
+        {
+          "name": "Reckless Driving",
+          "keywords": [
+            "\"reckless driving lawyer\"",
+            "\"reckless driving attorney\"",
+            "\"reckless driving ticket lawyer\"",
+            "\"careless driving attorney\""
+          ]
+        }
+      ]
+    }
+  ],
+  "negatives": {
+    "Policy - sensitive category": [
+      "sex",
+      "sexual",
+      "rape",
+      "molest",
+      "indecent",
+      "solicitation",
+      "prostitution",
+      "child",
+      "minor",
+      "statutory",
+      "registry",
+      "sex offender",
+      "gun",
+      "guns",
+      "firearm",
+      "weapon",
+      "weapons",
+      "concealed carry",
+      "cocaine",
+      "meth",
+      "methamphetamine",
+      "heroin",
+      "fentanyl",
+      "opioid",
+      "opiate",
+      "marijuana",
+      "cannabis",
+      "narcotics",
+      "trafficking",
+      "distribution",
+      "bail",
+      "bond",
+      "bonds",
+      "bondsman",
+      "bail bonds"
+    ],
+    "Waste - won't pay": [
+      "free",
+      "pro bono",
+      "public defender",
+      "legal aid",
+      "cheap",
+      "low cost",
+      "court appointed",
+      "payment plan",
+      "no money",
+      "cant afford"
+    ],
+    "Waste - research intent": [
+      "how to",
+      "what is",
+      "what happens",
+      "definition",
+      "meaning",
+      "penalty",
+      "penalties",
+      "sentence",
+      "sentencing",
+      "statute",
+      "laws",
+      "law school",
+      "reddit",
+      "forum",
+      "wiki"
+    ],
+    "Waste - wrong job": [
+      "jobs",
+      "job",
+      "salary",
+      "career",
+      "internship",
+      "become a",
+      "hiring",
+      "resume"
+    ],
+    "Waste - records & lookup": [
+      "inmate",
+      "jail",
+      "mugshot",
+      "mugshots",
+      "arrest records",
+      "court records",
+      "case lookup",
+      "warrant search",
+      "docket",
+      "expunge my own",
+      "who is in jail"
+    ],
+    "Waste - other practice areas": [
+      "divorce",
+      "custody",
+      "child support",
+      "family law",
+      "personal injury",
+      "car accident",
+      "injury",
+      "malpractice",
+      "bankruptcy",
+      "immigration",
+      "workers comp",
+      "estate",
+      "will",
+      "probate",
+      "disability",
+      "real estate",
+      "landlord"
+    ]
+  }
+};
+
+const esc = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+const fmtKw = k => esc(k).replace(/\{city\}/g, '<span class="tok">{city}</span>');
+
+const camps = document.getElementById("camps");
+DATA.campaigns.forEach(c => {
+  const card = document.createElement("div");
+  card.className = "camp";
+  const n = c.groups.reduce((a,g) => a + g.keywords.length, 0);
+
+  const head = document.createElement("div");
+  head.className = "camp-head";
+  head.innerHTML = '<h3>' + esc(c.name) + '</h3>';
+  const btn = document.createElement("button");
+  btn.className = "copy"; btn.type = "button"; btn.textContent = "Copy " + n;
+  btn.addEventListener("click", () =>
+    copy(c.groups.flatMap(g => g.keywords).join("\n"), c.name));
+  head.appendChild(btn);
+  card.appendChild(head);
+
+  c.groups.forEach(g => {
+    const d = document.createElement("div");
+    d.className = "ag";
+    d.innerHTML = '<div class="ag-name"><span>' + esc(g.name) +
+      '</span><span>' + g.keywords.length + '</span></div>';
+    const wrap = document.createElement("div");
+    wrap.className = "kws";
+    g.keywords.forEach(k => {
+      const s = document.createElement("span");
+      s.className = "kw" + (k.startsWith("[") ? " exact" : "");
+      s.innerHTML = fmtKw(k);
+      wrap.appendChild(s);
+    });
+    d.appendChild(wrap);
+    card.appendChild(d);
+  });
+  camps.appendChild(card);
+});
+
+const negs = document.getElementById("negs");
+Object.entries(DATA.negatives).forEach(([name, items]) => {
+  const isPolicy = name.toLowerCase().startsWith("policy");
+  const d = document.createElement("div");
+  d.className = "neg" + (isPolicy ? " policy" : "");
+  const head = document.createElement("div");
+  head.className = "neg-head";
+  head.innerHTML = '<strong>' + esc(name) + '</strong>';
+  const right = document.createElement("div");
+  right.style.cssText = "display:flex;align-items:center;gap:9px;";
+  const cnt = document.createElement("span");
+  cnt.textContent = items.length + " terms";
+  const b = document.createElement("button");
+  b.className = "copy"; b.type = "button"; b.textContent = "Copy";
+  b.addEventListener("click", () => copy(items.join("\n"), name));
+  right.appendChild(cnt); right.appendChild(b);
+  head.appendChild(right);
+  d.appendChild(head);
+  const body = document.createElement("div");
+  body.className = "neg-body";
+  items.forEach(t => {
+    const s = document.createElement("span");
+    s.className = "n"; s.textContent = t;
+    body.appendChild(s);
+  });
+  d.appendChild(body);
+  negs.appendChild(d);
+});
+
+const toast = document.getElementById("toast");
+let toastTimer = null;
+function flash(msg){
+  toast.textContent = msg;
+  toast.classList.add("on");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove("on"), 1900);
+}
+function copy(text, label){
+  const done = () => flash(label + " copied \u2014 one per line");
+  try {
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(done).catch(() => fallback(text, done));
+    } else { fallback(text, done); }
+  } catch (e) { fallback(text, done); }
+}
+function fallback(text, done){
+  try {
+    const ta = document.createElement("textarea");
+    ta.value = text; ta.setAttribute("readonly","");
+    ta.style.position = "fixed"; ta.style.top = "-1000px";
+    document.body.appendChild(ta); ta.select();
+    document.execCommand("copy");
+    document.body.removeChild(ta); done();
+  } catch (e) { flash("Copy blocked \u2014 select the text manually"); }
+}
+</script>

@@ -15,11 +15,13 @@ DMV hearings, federal defense. Founded 1982.
 | `callout-extensions.md` | 41 callout assets grouped by ad group |
 | `structured-snippets.md` | 2 headers, 17 values |
 | `rsa-ad-copy.md` | 3 policy-safe responsive search ads + flagged-phrase substitutions |
+| `keyword-plan.md` | 98 keywords, 96 negatives, match-type and policy guidance |
 | `*.csv` | Flat lists for bulk loading |
 | `*.html` | Published reference pages |
 | `verify_callout_lengths.py` | Checks all callouts against the 25-char limit |
 | `verify_snippet_values.py` | Checks snippet values: 25-char limit, 3-10 per header, callout collisions |
 | `verify_rsa_copy.py` | Checks RSA headlines (30), descriptions (90), paths (15), field counts |
+| `keywords.py` | Keyword/negative source of truth; checks duplicates and negative-vs-keyword conflicts |
 
 ## Checks
 
@@ -27,6 +29,7 @@ DMV hearings, federal defense. Founded 1982.
 python3 verify_callout_lengths.py   # reads callouts.csv
 python3 verify_snippet_values.py    # exits non-zero on any violation
 python3 verify_rsa_copy.py          # exits non-zero on any violation
+python3 keywords.py                 # negative/keyword conflict check
 ```
 
 ## Google policy

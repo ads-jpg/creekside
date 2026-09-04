@@ -1,0 +1,97 @@
+List,Negative Keyword,Match Type
+Policy - sensitive category,sex,Phrase
+Policy - sensitive category,sexual,Phrase
+Policy - sensitive category,rape,Phrase
+Policy - sensitive category,molest,Phrase
+Policy - sensitive category,indecent,Phrase
+Policy - sensitive category,solicitation,Phrase
+Policy - sensitive category,prostitution,Phrase
+Policy - sensitive category,child,Phrase
+Policy - sensitive category,minor,Phrase
+Policy - sensitive category,statutory,Phrase
+Policy - sensitive category,registry,Phrase
+Policy - sensitive category,sex offender,Phrase
+Policy - sensitive category,gun,Phrase
+Policy - sensitive category,guns,Phrase
+Policy - sensitive category,firearm,Phrase
+Policy - sensitive category,weapon,Phrase
+Policy - sensitive category,weapons,Phrase
+Policy - sensitive category,concealed carry,Phrase
+Policy - sensitive category,cocaine,Phrase
+Policy - sensitive category,meth,Phrase
+Policy - sensitive category,methamphetamine,Phrase
+Policy - sensitive category,heroin,Phrase
+Policy - sensitive category,fentanyl,Phrase
+Policy - sensitive category,opioid,Phrase
+Policy - sensitive category,opiate,Phrase
+Policy - sensitive category,marijuana,Phrase
+Policy - sensitive category,cannabis,Phrase
+Policy - sensitive category,narcotics,Phrase
+Policy - sensitive category,trafficking,Phrase
+Policy - sensitive category,distribution,Phrase
+Policy - sensitive category,bail,Phrase
+Policy - sensitive category,bond,Phrase
+Policy - sensitive category,bonds,Phrase
+Policy - sensitive category,bondsman,Phrase
+Policy - sensitive category,bail bonds,Phrase
+Waste - won't pay,free,Phrase
+Waste - won't pay,pro bono,Phrase
+Waste - won't pay,public defender,Phrase
+Waste - won't pay,legal aid,Phrase
+Waste - won't pay,cheap,Phrase
+Waste - won't pay,low cost,Phrase
+Waste - won't pay,court appointed,Phrase
+Waste - won't pay,payment plan,Phrase
+Waste - won't pay,no money,Phrase
+Waste - won't pay,cant afford,Phrase
+Waste - research intent,how to,Phrase
+Waste - research intent,what is,Phrase
+Waste - research intent,what happens,Phrase
+Waste - research intent,definition,Phrase
+Waste - research intent,meaning,Phrase
+Waste - research intent,penalty,Phrase
+Waste - research intent,penalties,Phrase
+Waste - research intent,sentence,Phrase
+Waste - research intent,sentencing,Phrase
+Waste - research intent,statute,Phrase
+Waste - research intent,laws,Phrase
+Waste - research intent,law school,Phrase
+Waste - research intent,reddit,Phrase
+Waste - research intent,forum,Phrase
+Waste - research intent,wiki,Phrase
+Waste - wrong job,jobs,Phrase
+Waste - wrong job,job,Phrase
+Waste - wrong job,salary,Phrase
+Waste - wrong job,career,Phrase
+Waste - wrong job,internship,Phrase
+Waste - wrong job,become a,Phrase
+Waste - wrong job,hiring,Phrase
+Waste - wrong job,resume,Phrase
+Waste - records & lookup,inmate,Phrase
+Waste - records & lookup,jail,Phrase
+Waste - records & lookup,mugshot,Phrase
+Waste - records & lookup,mugshots,Phrase
+Waste - records & lookup,arrest records,Phrase
+Waste - records & lookup,court records,Phrase
+Waste - records & lookup,case lookup,Phrase
+Waste - records & lookup,warrant search,Phrase
+Waste - records & lookup,docket,Phrase
+Waste - records & lookup,expunge my own,Phrase
+Waste - records & lookup,who is in jail,Phrase
+Waste - other practice areas,divorce,Phrase
+Waste - other practice areas,custody,Phrase
+Waste - other practice areas,child support,Phrase
+Waste - other practice areas,family law,Phrase
+Waste - other practice areas,personal injury,Phrase
+Waste - other practice areas,car accident,Phrase
+Waste - other practice areas,injury,Phrase
+Waste - other practice areas,malpractice,Phrase
+Waste - other practice areas,bankruptcy,Phrase
+Waste - other practice areas,immigration,Phrase
+Waste - other practice areas,workers comp,Phrase
+Waste - other practice areas,estate,Phrase
+Waste - other practice areas,will,Phrase
+Waste - other practice areas,probate,Phrase
+Waste - other practice areas,disability,Phrase
+Waste - other practice areas,real estate,Phrase
+Waste - other practice areas,landlord,Phrase

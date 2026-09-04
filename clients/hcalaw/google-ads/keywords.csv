@@ -1,0 +1,99 @@
+Campaign,Ad Group,Keyword,Match Type
+DWI / DUI,DWI Attorney,[dwi lawyer],Exact
+DWI / DUI,DWI Attorney,[dwi attorney],Exact
+DWI / DUI,DWI Attorney,[dwi lawyer near me],Exact
+DWI / DUI,DWI Attorney,[dwi attorney near me],Exact
+DWI / DUI,DWI Attorney,[dwi lawyer {city}],Exact
+DWI / DUI,DWI Attorney,[dwi attorney {city}],Exact
+DWI / DUI,DWI Attorney,"""dwi defense lawyer""",Phrase
+DWI / DUI,DWI Attorney,"""dwi defense attorney""",Phrase
+DWI / DUI,DWI Attorney,"""dwi defense law firm""",Phrase
+DWI / DUI,DWI Attorney,"""hire a dwi lawyer""",Phrase
+DWI / DUI,DUI Attorney,[dui lawyer],Exact
+DWI / DUI,DUI Attorney,[dui attorney],Exact
+DWI / DUI,DUI Attorney,[dui lawyer near me],Exact
+DWI / DUI,DUI Attorney,[dui attorney near me],Exact
+DWI / DUI,DUI Attorney,[dui lawyer {city}],Exact
+DWI / DUI,DUI Attorney,"""dui defense attorney""",Phrase
+DWI / DUI,DUI Attorney,"""dui defense lawyer""",Phrase
+DWI / DUI,DUI Attorney,"""drunk driving lawyer""",Phrase
+DWI / DUI,DUI Attorney,"""drunk driving attorney""",Phrase
+DWI / DUI,First Offense,"""first offense dwi lawyer""",Phrase
+DWI / DUI,First Offense,"""first offense dui lawyer""",Phrase
+DWI / DUI,First Offense,"""first dwi attorney""",Phrase
+DWI / DUI,First Offense,"""first time dwi lawyer""",Phrase
+DWI / DUI,First Offense,"""first time dui attorney""",Phrase
+DWI / DUI,Repeat & Felony DWI,"""second dwi lawyer""",Phrase
+DWI / DUI,Repeat & Felony DWI,"""second offense dwi attorney""",Phrase
+DWI / DUI,Repeat & Felony DWI,"""third dwi lawyer""",Phrase
+DWI / DUI,Repeat & Felony DWI,"""felony dwi lawyer""",Phrase
+DWI / DUI,Repeat & Felony DWI,"""felony dwi attorney""",Phrase
+DWI / DUI,Repeat & Felony DWI,"""habitual dwi lawyer""",Phrase
+DWI / DUI,Repeat & Felony DWI,"""repeat dwi attorney""",Phrase
+DWI / DUI,Underage DWI,"""underage dwi lawyer""",Phrase
+DWI / DUI,Underage DWI,"""underage dui attorney""",Phrase
+DWI / DUI,Underage DWI,"""underage drinking driving lawyer""",Phrase
+DWI / DUI,Underage DWI,"""provisional license dwi lawyer""",Phrase
+Criminal Defense,Criminal Defense,[criminal defense attorney],Exact
+Criminal Defense,Criminal Defense,[criminal defense lawyer],Exact
+Criminal Defense,Criminal Defense,[criminal lawyer near me],Exact
+Criminal Defense,Criminal Defense,[criminal attorney near me],Exact
+Criminal Defense,Criminal Defense,[criminal defense attorney {city}],Exact
+Criminal Defense,Criminal Defense,[criminal lawyer {city}],Exact
+Criminal Defense,Criminal Defense,"""criminal defense law firm""",Phrase
+Criminal Defense,Criminal Defense,"""criminal defense representation""",Phrase
+Criminal Defense,Criminal Defense,"""hire a criminal defense lawyer""",Phrase
+Criminal Defense,Criminal Defense,"""defense attorney for criminal charges""",Phrase
+Criminal Defense,Drug Charges,"""drug charge lawyer""",Phrase
+Criminal Defense,Drug Charges,"""drug charge attorney""",Phrase
+Criminal Defense,Drug Charges,"""drug possession lawyer""",Phrase
+Criminal Defense,Drug Charges,"""drug possession attorney""",Phrase
+Criminal Defense,Drug Charges,"""possession charge lawyer""",Phrase
+Criminal Defense,Drug Charges,"""drug charges defense attorney""",Phrase
+Criminal Defense,Drug Charges,"""drug crime lawyer""",Phrase
+Criminal Defense,Felony Defense,"""felony lawyer""",Phrase
+Criminal Defense,Felony Defense,"""felony attorney""",Phrase
+Criminal Defense,Felony Defense,"""felony attorney near me""",Phrase
+Criminal Defense,Felony Defense,"""felony defense lawyer""",Phrase
+Criminal Defense,Felony Defense,"""felony charge attorney""",Phrase
+Criminal Defense,Felony Defense,"""felony defense attorney {city}""",Phrase
+Criminal Defense,Misdemeanor Defense,"""misdemeanor lawyer""",Phrase
+Criminal Defense,Misdemeanor Defense,"""misdemeanor attorney""",Phrase
+Criminal Defense,Misdemeanor Defense,"""misdemeanor defense lawyer""",Phrase
+Criminal Defense,Misdemeanor Defense,"""misdemeanor charge attorney""",Phrase
+Criminal Defense,Assault Charges,"""assault charge lawyer""",Phrase
+Criminal Defense,Assault Charges,"""assault charge attorney""",Phrase
+Criminal Defense,Assault Charges,"""assault defense lawyer""",Phrase
+Criminal Defense,Assault Charges,"""simple assault lawyer""",Phrase
+Criminal Defense,Assault Charges,"""assault attorney near me""",Phrase
+Criminal Defense,Federal Defense (phase 2),"""federal criminal defense attorney""",Phrase
+Criminal Defense,Federal Defense (phase 2),"""federal criminal lawyer""",Phrase
+Criminal Defense,Federal Defense (phase 2),"""federal defense attorney""",Phrase
+Criminal Defense,Federal Defense (phase 2),"""federal charges lawyer""",Phrase
+Traffic & License,Traffic Tickets,[traffic ticket lawyer],Exact
+Traffic & License,Traffic Tickets,[traffic ticket attorney],Exact
+Traffic & License,Traffic Tickets,[traffic lawyer near me],Exact
+Traffic & License,Traffic Tickets,[traffic attorney {city}],Exact
+Traffic & License,Traffic Tickets,"""traffic ticket lawyer {city}""",Phrase
+Traffic & License,Traffic Tickets,"""fight a traffic ticket lawyer""",Phrase
+Traffic & License,Traffic Tickets,"""traffic violation attorney""",Phrase
+Traffic & License,Speeding Tickets,"""speeding ticket lawyer""",Phrase
+Traffic & License,Speeding Tickets,"""speeding ticket attorney""",Phrase
+Traffic & License,Speeding Tickets,"""speeding ticket lawyer near me""",Phrase
+Traffic & License,Speeding Tickets,"""speeding citation attorney""",Phrase
+Traffic & License,DWLR & Suspended License,"""driving while license revoked lawyer""",Phrase
+Traffic & License,DWLR & Suspended License,"""dwlr attorney""",Phrase
+Traffic & License,DWLR & Suspended License,"""dwlr lawyer""",Phrase
+Traffic & License,DWLR & Suspended License,"""suspended license lawyer""",Phrase
+Traffic & License,DWLR & Suspended License,"""revoked license attorney""",Phrase
+Traffic & License,DWLR & Suspended License,"""driving on suspended license lawyer""",Phrase
+Traffic & License,DMV Hearings,"""dmv hearing lawyer""",Phrase
+Traffic & License,DMV Hearings,"""dmv hearing attorney""",Phrase
+Traffic & License,DMV Hearings,"""license restoration lawyer""",Phrase
+Traffic & License,DMV Hearings,"""license restoration attorney""",Phrase
+Traffic & License,DMV Hearings,"""get my license back lawyer""",Phrase
+Traffic & License,DMV Hearings,"""dmv hearing representation""",Phrase
+Traffic & License,Reckless Driving,"""reckless driving lawyer""",Phrase
+Traffic & License,Reckless Driving,"""reckless driving attorney""",Phrase
+Traffic & License,Reckless Driving,"""reckless driving ticket lawyer""",Phrase
+Traffic & License,Reckless Driving,"""careless driving attorney""",Phrase
