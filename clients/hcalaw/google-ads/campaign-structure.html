@@ -1,0 +1,477 @@
+<title>HCA Law Campaign Structure</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
+
+<style>
+  :root{
+    --ground:#F3F5F4; --surface:#FFFFFF; --surface-sunk:#EAEEED;
+    --ink:#15201F; --ink-soft:#3C4A48; --muted:#5C6A68; --faint:#8A9694;
+    --rule:#D8DEDC; --rule-strong:#C2CBC9;
+    --accent:#0E5D57; --accent-soft:#E2EFED; --accent-ink:#0A4640;
+    --amber:#8A6410; --amber-soft:#F7EFDC;
+    --oxblood:#8E322B; --oxblood-soft:#F8E7E4;
+    --shadow:0 1px 2px rgba(21,32,31,.05), 0 8px 24px -16px rgba(21,32,31,.18);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ground:#0E1413; --surface:#161F1E; --surface-sunk:#111917;
+      --ink:#E4EBE9; --ink-soft:#C2CECB; --muted:#93A29F; --faint:#6E7D7A;
+      --rule:#25322F; --rule-strong:#33423F;
+      --accent:#4FB5AC; --accent-soft:#16302E; --accent-ink:#7FCEC6;
+      --amber:#D9A441; --amber-soft:#2E2617;
+      --oxblood:#E08279; --oxblood-soft:#33201E;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#0E1413; --surface:#161F1E; --surface-sunk:#111917;
+    --ink:#E4EBE9; --ink-soft:#C2CECB; --muted:#93A29F; --faint:#6E7D7A;
+    --rule:#25322F; --rule-strong:#33423F;
+    --accent:#4FB5AC; --accent-soft:#16302E; --accent-ink:#7FCEC6;
+    --amber:#D9A441; --amber-soft:#2E2617;
+    --oxblood:#E08279; --oxblood-soft:#33201E;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    background:var(--ground); color:var(--ink);
+    font-family:"Public Sans","Helvetica Neue",Arial,sans-serif;
+    font-size:15px; line-height:1.55; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:880px;margin:0 auto;padding:40px 24px 96px;display:flex;flex-direction:column;gap:46px;}
+
+  .mast{display:flex;flex-direction:column;gap:18px;}
+  .eyebrow{
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--accent);font-weight:500;
+  }
+  h1{
+    font-family:"Fraunces","Georgia",serif;font-optical-sizing:auto;
+    font-weight:600;font-size:clamp(30px,5.2vw,44px);line-height:1.08;
+    letter-spacing:-.015em;margin:0;text-wrap:balance;
+  }
+  .standfirst{margin:0;max-width:62ch;color:var(--muted);font-size:16px;}
+  .mast-meta{display:flex;flex-wrap:wrap;gap:8px;padding-top:2px;}
+  .tag{
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:11px;letter-spacing:.04em;padding:4px 9px;
+    border:1px solid var(--rule-strong);border-radius:2px;
+    color:var(--ink-soft);background:var(--surface);
+  }
+
+  section.block{display:flex;flex-direction:column;gap:16px;}
+  section.block > h2{
+    margin:0;font-family:"Fraunces","Georgia",serif;
+    font-size:24px;font-weight:600;letter-spacing:-.012em;
+  }
+  section.block > h3{
+    margin:0;font-size:13px;font-weight:700;letter-spacing:.02em;color:var(--ink);
+  }
+  section.block > p{margin:0;color:var(--ink-soft);max-width:65ch;font-size:14.5px;}
+  section.block > p.sub{color:var(--muted);font-size:13.5px;}
+  b.k{
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:13px;font-weight:500;color:var(--accent-ink);
+    background:var(--accent-soft);padding:1px 5px;border-radius:2px;
+  }
+
+  /* principle */
+  .principle{
+    display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;
+    background:var(--rule);border:1px solid var(--rule);border-radius:4px;overflow:hidden;
+  }
+  @media (max-width:620px){.principle{grid-template-columns:minmax(0,1fr);}}
+  .principle div{background:var(--surface);padding:17px 19px;display:flex;flex-direction:column;gap:5px;}
+  .principle .lvl{
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:10px;letter-spacing:.11em;text-transform:uppercase;color:var(--accent);
+  }
+  .principle strong{font-size:15.5px;font-weight:600;}
+  .principle span{font-size:13.5px;color:var(--muted);line-height:1.45;}
+
+  /* tables */
+  .tbl-scroll{overflow-x:auto;border:1px solid var(--rule);border-radius:4px;background:var(--surface);box-shadow:var(--shadow);}
+  table{border-collapse:collapse;width:100%;min-width:560px;font-size:13.5px;}
+  th,td{text-align:left;padding:11px 15px;border-bottom:1px solid var(--rule);vertical-align:top;}
+  th{
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--faint);font-weight:500;background:var(--surface-sunk);white-space:nowrap;
+  }
+  tbody tr:last-child td{border-bottom:none;}
+  td.num{font-variant-numeric:tabular-nums;white-space:nowrap;}
+  tr.rec td{background:var(--accent-soft);}
+  tr.rec td:first-child{box-shadow:inset 3px 0 0 var(--accent);}
+  code{
+    font-family:"JetBrains Mono",ui-monospace,monospace;font-size:12.5px;
+    color:var(--accent-ink);background:var(--accent-soft);padding:1px 5px;border-radius:2px;
+  }
+  td code.bad{color:var(--oxblood);background:var(--oxblood-soft);}
+  td code.good{color:var(--accent-ink);background:var(--accent-soft);}
+
+  /* campaign tree */
+  .camps{display:flex;flex-direction:column;gap:20px;}
+  .camp{
+    background:var(--surface);border:1px solid var(--rule);border-radius:4px;
+    box-shadow:var(--shadow);overflow:hidden;
+  }
+  .camp-head{
+    padding:15px 19px;border-bottom:1px solid var(--rule);
+    display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  }
+  .camp-head .lhs{display:flex;flex-direction:column;gap:3px;min-width:0;}
+  .camp-head h3{
+    margin:0;font-family:"Fraunces","Georgia",serif;font-size:19px;font-weight:600;
+  }
+  .camp-head .why{font-size:12.5px;color:var(--muted);}
+  .share{
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:11px;letter-spacing:.05em;padding:4px 9px;border-radius:2px;
+    background:var(--accent-soft);color:var(--accent-ink);white-space:nowrap;
+    font-variant-numeric:tabular-nums;
+  }
+  .share.two{background:var(--surface-sunk);color:var(--muted);border:1px solid var(--rule-strong);}
+  .ags{list-style:none;margin:0;padding:0;}
+  .ags li{
+    padding:11px 19px;border-bottom:1px solid var(--rule);
+    display:grid;grid-template-columns:minmax(150px,205px) 1fr;gap:16px;align-items:baseline;
+  }
+  .ags li:last-child{border-bottom:none;}
+  .ags .ag{
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:13px;color:var(--ink);font-weight:500;
+  }
+  .ags .kw{font-size:13px;color:var(--muted);line-height:1.5;}
+  .ags .kw em{font-style:normal;color:var(--ink-soft);}
+  .ags li.later{background:var(--surface-sunk);}
+  .ags li.later .ag{color:var(--muted);}
+  @media (max-width:600px){
+    .ags li{grid-template-columns:minmax(0,1fr);gap:4px;}
+  }
+
+  /* checklists */
+  ul.check{
+    list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:1px;
+    background:var(--rule);border:1px solid var(--rule);border-radius:4px;overflow:hidden;
+  }
+  ul.check li{
+    background:var(--surface);padding:12px 16px;display:grid;
+    grid-template-columns:auto 1fr;gap:12px;align-items:start;font-size:14px;
+  }
+  ul.check li .mark{
+    font-family:"JetBrains Mono",ui-monospace,monospace;font-size:11px;font-weight:700;
+    padding:2px 6px;border-radius:2px;white-space:nowrap;margin-top:1px;
+  }
+  .mark.n{background:var(--surface-sunk);color:var(--muted);border:1px solid var(--rule-strong);font-variant-numeric:tabular-nums;}
+  .mark.x{background:var(--oxblood-soft);color:var(--oxblood);border:1px solid var(--oxblood);}
+  .mark.v{background:var(--amber-soft);color:var(--amber);border:1px solid var(--amber);}
+  ul.check li b{font-weight:600;color:var(--ink);}
+  ul.check li span.why{display:block;color:var(--muted);font-size:13px;margin-top:2px;}
+
+  /* negatives */
+  .negs{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1px;
+    background:var(--rule);border:1px solid var(--rule);border-radius:4px;overflow:hidden;
+  }
+  .negs div{background:var(--surface);padding:14px 16px;display:flex;flex-direction:column;gap:7px;}
+  .negs h4{
+    margin:0;font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);font-weight:500;
+  }
+  .negs p{margin:0;font-size:13px;color:var(--ink-soft);line-height:1.6;font-family:"JetBrains Mono",ui-monospace,monospace;}
+
+  .notice{
+    display:flex;flex-direction:column;gap:8px;padding:17px 19px;
+    border-left:3px solid var(--accent);background:var(--accent-soft);border-radius:0 3px 3px 0;
+  }
+  .notice.warn{border-left-color:var(--amber);background:var(--amber-soft);}
+  .notice h3{margin:0;font-size:13px;font-weight:700;letter-spacing:.02em;color:var(--ink);}
+  .notice p{margin:0;font-size:14px;color:var(--ink-soft);max-width:66ch;}
+
+  footer{
+    border-top:1px solid var(--rule);padding-top:20px;color:var(--faint);
+    font-size:12.5px;display:flex;flex-direction:column;gap:5px;
+  }
+  @media (prefers-reduced-motion: reduce){*{transition:none !important;animation:none !important;}}
+</style>
+
+<div class="wrap">
+
+  <header class="mast">
+    <div class="eyebrow">Google Ads · Campaign Structure</div>
+    <h1>Three Campaigns, Not Seven</h1>
+    <p class="standfirst">How to structure the Google Ads account for hcalaw.net. The instinct with a firm this broad is one campaign per practice area — that's the expensive mistake here. A three-person firm in a market Wilmington's size cannot spread a budget across seven campaigns and still gather enough signal in any of them to optimize.</p>
+    <div class="mast-meta">
+      <span class="tag">hcalaw.net</span>
+      <span class="tag">Wilmington, NC</span>
+      <span class="tag">Search only</span>
+      <span class="tag">Third of three build docs</span>
+    </div>
+  </header>
+
+  <section class="block">
+    <h2>The rule that decides everything</h2>
+    <p>Split into a separate campaign only when you need separate <b>budget</b>, <b>geography</b>, or <b>schedule</b>. Everything else — relevance, ad copy, landing pages, keyword themes — is an ad group's job. Every campaign you add divides the same money into a smaller pot that takes longer to learn.</p>
+    <div class="principle">
+      <div>
+        <span class="lvl">Campaign level</span>
+        <strong>Controls the money</strong>
+        <span>Budget, bidding strategy, geo targeting, ad schedule, networks, language. Add a campaign when one of these must differ.</span>
+      </div>
+      <div>
+        <span class="lvl">Ad group level</span>
+        <strong>Controls the match</strong>
+        <span>Keyword theme, ad copy, landing page, structured snippet override. Add an ad group when the searcher's problem differs.</span>
+      </div>
+    </div>
+    <p>Traffic tickets are the clearest case. They convert at a few dollars a click while DWI runs $20–45 in this market, so in a shared budget the cheap clicks win the auction all day and DWI quietly starves. That difference in click economics — not the fact that they're different practice areas — is what earns traffic its own campaign.</p>
+  </section>
+
+  <section class="block">
+    <h2>How many campaigns your budget supports</h2>
+    <p>Campaign count is a function of budget, not of how many things the firm does. A campaign needs roughly 15–30 conversions a month before automated bidding has anything to learn from; below that you are paying Google to guess.</p>
+    <div class="tbl-scroll">
+      <table>
+        <thead>
+          <tr><th>Monthly budget</th><th>Campaigns</th><th>What runs</th><th>Reasoning</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="num">Under $1,500</td>
+            <td class="num"><b>1</b></td>
+            <td>DWI / DUI only</td>
+            <td>At $20–45 a click this buys 35–70 clicks. Spread across two campaigns, neither gets enough data to optimize. Concentrate on the highest-value case type.</td>
+          </tr>
+          <tr class="rec">
+            <td class="num">$1,500 – $3,500</td>
+            <td class="num"><b>2</b></td>
+            <td>DWI · Criminal Defense</td>
+            <td>The realistic starting point for a firm this size. Two budgets you can actually read.</td>
+          </tr>
+          <tr>
+            <td class="num">$3,500 – $7,000</td>
+            <td class="num"><b>3</b></td>
+            <td>+ Traffic &amp; License</td>
+            <td>Traffic earns its place once there's enough budget that its cheap clicks won't cannibalize DWI.</td>
+          </tr>
+          <tr>
+            <td class="num">$7,000+</td>
+            <td class="num"><b>4</b></td>
+            <td>+ Brand protection</td>
+            <td>Also unlock the Federal and Sex Crimes ad groups, and test Search Partners as a separate experiment.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="sub">Wilmington is a small market, so these CPCs sit well below the $75–200 seen for DWI in large metros — but criminal defense is still one of the most expensive verticals in paid search. Confirm real numbers with Keyword Planner against the actual geo before committing a budget.</p>
+  </section>
+
+  <section class="block">
+    <h2>The structure</h2>
+    <p>Shown at the three-campaign tier. At two campaigns, drop Traffic &amp; License and fold <b class="k">DWLR</b> into Criminal Defense. Percentages are budget share, not spend caps.</p>
+
+    <div class="camps">
+
+      <div class="camp">
+        <div class="camp-head">
+          <div class="lhs">
+            <h3>1 · DWI &amp; DUI</h3>
+            <span class="why">Highest case value, deepest proof — 2,000+ cases. Never let this share a budget.</span>
+          </div>
+          <span class="share">50% of budget</span>
+        </div>
+        <ul class="ags">
+          <li><span class="ag">DWI Attorney</span><span class="kw"><em>[dwi lawyer wilmington nc]</em> · <em>[dwi attorney wilmington]</em> · "dwi lawyer near me"</span></li>
+          <li><span class="ag">DUI Attorney</span><span class="kw"><em>[dui lawyer wilmington nc]</em> · "dui attorney near me" — separate because searchers use one term or the other, rarely both</span></li>
+          <li><span class="ag">First Offense</span><span class="kw">"first offense dwi lawyer" · "first dwi attorney nc" — different anxiety, different ad copy</span></li>
+          <li><span class="ag">Repeat &amp; Felony DWI</span><span class="kw">"second dwi lawyer" · "felony dwi attorney" · "habitual dwi nc"</span></li>
+          <li><span class="ag">Underage DWI</span><span class="kw">"underage dwi lawyer" · "provisional license dwi nc"</span></li>
+        </ul>
+      </div>
+
+      <div class="camp">
+        <div class="camp-head">
+          <div class="lhs">
+            <h3>2 · Criminal Defense</h3>
+            <span class="why">Broader intent, lower volume per term, still high case value.</span>
+          </div>
+          <span class="share">35% of budget</span>
+        </div>
+        <ul class="ags">
+          <li><span class="ag">Criminal Defense</span><span class="kw"><em>[criminal defense attorney wilmington nc]</em> · <em>[criminal lawyer wilmington nc]</em></span></li>
+          <li><span class="ag">Drug Charges</span><span class="kw">"drug possession lawyer wilmington" · "drug trafficking attorney nc"</span></li>
+          <li><span class="ag">Felony Defense</span><span class="kw">"felony lawyer wilmington nc" · "felony attorney near me"</span></li>
+          <li><span class="ag">Assault &amp; Violent</span><span class="kw">"assault charge lawyer nc" · "assault attorney wilmington"</span></li>
+          <li class="later"><span class="ag">Federal Defense</span><span class="kw">Phase 2 — real credential (E.D.N.C. admission) but thin volume. Add once tracking is proven.</span></li>
+          <li class="later"><span class="ag">Sex Crimes</span><span class="kw">Phase 2 — high case value and a documented practice area, but sensitive-category terms serve unevenly. Launch it isolated so it can't distort the campaign's data.</span></li>
+        </ul>
+      </div>
+
+      <div class="camp">
+        <div class="camp-head">
+          <div class="lhs">
+            <h3>3 · Traffic &amp; License</h3>
+            <span class="why">Cheap clicks, high volume, lower case value. Quarantined so it can't eat the others.</span>
+          </div>
+          <span class="share two">15% of budget</span>
+        </div>
+        <ul class="ags">
+          <li><span class="ag">Traffic Tickets</span><span class="kw">"traffic ticket lawyer wilmington" · "speeding ticket attorney nc"</span></li>
+          <li><span class="ag">DWLR / Revoked</span><span class="kw">"driving while license revoked lawyer" · "dwlr attorney nc"</span></li>
+          <li><span class="ag">DMV Hearings</span><span class="kw">"dmv hearing attorney nc" · "license restoration lawyer" → the existing /dmv-hearings/ page</span></li>
+          <li><span class="ag">Reckless Driving</span><span class="kw">"reckless driving lawyer wilmington nc"</span></li>
+        </ul>
+      </div>
+
+    </div>
+    <p class="sub">Every ad group points at the most relevant page, never the homepage. The firm has <b class="k">/dmv-hearings/</b> already; if there is no dedicated DWI page, building one before launch will do more for cost per case than any bid adjustment.</p>
+  </section>
+
+  <section class="block">
+    <h2>Settings that spend money on default</h2>
+    <p>These are the defaults Google's campaign creation flow sets for you. Each one costs real money in a local legal account, and all of them are set at campaign level.</p>
+    <div class="tbl-scroll">
+      <table>
+        <thead>
+          <tr><th>Setting</th><th>Default</th><th>Set to</th><th>Why it matters here</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>Location options</b></td>
+            <td><code class="bad">Presence or interest</code></td>
+            <td><code class="good">Presence</code></td>
+            <td>The single biggest leak. On the default, someone in Ohio reading about NC DWI law triggers the ad. You want people physically in the service area.</td>
+          </tr>
+          <tr>
+            <td><b>Search Partners</b></td>
+            <td><code class="bad">On</code></td>
+            <td><code class="good">Off</code></td>
+            <td>Lower-intent inventory you can't see or segment well. Test as its own experiment later, not on day one.</td>
+          </tr>
+          <tr>
+            <td><b>Display expansion</b></td>
+            <td><code class="bad">On</code></td>
+            <td><code class="good">Off</code></td>
+            <td>Nobody browsing a recipe site hires a DWI lawyer. This is pure leakage on a Search campaign.</td>
+          </tr>
+          <tr>
+            <td><b>Auto-apply recommendations</b></td>
+            <td><code class="bad">Several on</code></td>
+            <td><code class="good">All off</code></td>
+            <td>Account-level, easy to miss. Left on, Google will add broad match keywords and raise budgets without asking.</td>
+          </tr>
+          <tr>
+            <td><b>Broad match</b></td>
+            <td><code class="bad">Suggested</code></td>
+            <td><code class="good">Phrase + exact</code></td>
+            <td>Broad match needs conversion data and smart bidding to steer it. With neither, it just spends.</td>
+          </tr>
+          <tr>
+            <td><b>Networks</b></td>
+            <td><code class="bad">Search + Display</code></td>
+            <td><code class="good">Search only</code></td>
+            <td>Same reasoning. Add other channels deliberately, never by leaving a checkbox alone.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>Bidding, in order</h2>
+    <p>Do not start on Target CPA. It needs conversion history the account doesn't have yet, and it will either refuse to spend or spend badly.</p>
+    <div class="tbl-scroll">
+      <table>
+        <thead>
+          <tr><th>Phase</th><th>Strategy</th><th>Move on when</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="num">Weeks 1–6</td><td><code>Maximize Clicks</code> with a max CPC cap around $35–40</td><td>The cap is the guardrail. Without it this strategy will find you the most expensive clicks available.</td></tr>
+          <tr><td class="num">Phase 2</td><td><code>Maximize Conversions</code></td><td>~15 conversions/month in the campaign, tracking verified accurate.</td></tr>
+          <tr><td class="num">Phase 3</td><td><code>Target CPA</code></td><td>~30 conversions/month. Set the target from the CPA you actually achieved, not from a wish.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="sub">Each campaign graduates on its own schedule. DWI will get there first; Traffic may never need to leave Maximize Clicks.</p>
+  </section>
+
+  <section class="block">
+    <h2>Conversion tracking comes first</h2>
+    <p>None of the above works without this, and it's the step most often half-done. Criminal defense leads call — they do not fill out forms at 2am after an arrest. If you only track form fills you will conclude the campaign failed while it was working.</p>
+    <ul class="check">
+      <li><span class="mark n">1</span><div><b>Calls from ads</b><span class="why">Conversions from the call asset. Count only calls over 60 seconds — that filters wrong numbers and hang-ups.</span></div></li>
+      <li><span class="mark n">2</span><div><b>Calls from the website</b><span class="why">Needs a Google forwarding number on the site so a click-then-call is attributed back to the campaign. Without it, most of the value is invisible.</span></div></li>
+      <li><span class="mark n">3</span><div><b>Form submissions</b><span class="why">Secondary volume for this vertical, but still worth a distinct action so you can compare lead quality by source.</span></div></li>
+      <li><span class="mark n">4</span><div><b>One primary action per campaign</b><span class="why">Calls primary, forms secondary. Multiple primary actions double-count and mislead the bidding algorithm.</span></div></li>
+      <li><span class="mark v">CHECK</span><div><b>Intake is the real conversion</b><span class="why">A tracked call is not a signed case. Ask the firm to log which calls became consultations — that's the number that tells you whether any of this is working.</span></div></li>
+    </ul>
+  </section>
+
+  <section class="block">
+    <h2>Negative keywords, day one</h2>
+    <p>Build these as a shared negative list applied to all campaigns before launch, not after you've paid for the lesson. The two big categories are people who won't pay and people looking for a different kind of lawyer.</p>
+    <div class="negs">
+      <div>
+        <h4>Won't convert</h4>
+        <p>free · pro bono · public defender · legal aid · cheap · court appointed · how to · what is · definition · penalty · sentence · jobs · salary · internship</p>
+      </div>
+      <div>
+        <h4>Wrong practice area</h4>
+        <p>divorce · custody · child support · personal injury · car accident · injury · bankruptcy · immigration · workers comp · estate · will · probate · disability</p>
+      </div>
+      <div>
+        <h4>Wrong intent</h4>
+        <p>bail bonds · bond · inmate · jail records · mugshot · arrest records · court records · warrant search · reviews · complaints · disbarred</p>
+      </div>
+    </div>
+    <p class="sub">Then read the Search Terms report weekly for the first month and monthly after. That report, not the keyword list, is where the waste actually shows up.</p>
+  </section>
+
+  <section class="block">
+    <h2>Geo and schedule</h2>
+    <p>Target <b>New Hanover County</b> as the core, with a radius of roughly 25–30 miles around downtown Wilmington. Add <b>Pender</b> and <b>Brunswick</b> counties only if the firm actually appears in those courts — the same caveat as the geo callouts.</p>
+    <div class="notice warn">
+      <h3>The scheduling problem worth raising with the client</h3>
+      <p>Posted hours are Mon–Thu 9–5 and Fri 9–3. But people are arrested on Friday and Saturday nights, and they search for a lawyer the next morning. If you only run ads during office hours you miss the highest-intent window in this entire vertical; if you run them around the clock into an unanswered phone, you pay for clicks that ring out. Neither is acceptable. The fix is an answering service or after-hours intake, and it is a business decision that will move cost-per-case more than any setting on this page. Until that's resolved, run the full week with bids reduced overnight and treat the gap as a known cost.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>Also worth running: Local Services Ads</h2>
+    <div class="notice">
+      <h3>Google Screened sits above the Search results, and bills per lead</h3>
+      <p>Google's Local Services Ads carry <b>Criminal Lawyer</b>, <b>DUI Lawyer</b> and <b>Traffic Lawyer</b> as categories, all three of which fit this firm. They appear above the paid Search block, charge per lead rather than per click, and carry the Google Screened badge — which requires a background and license check on the firm and its principals, plus a Google Business Profile rating of 3.0 or better. For a small firm competing against larger advertisers on cost-per-click, this often returns better than Search does. It's a separate product from everything above, so it doesn't change the campaign structure — run it alongside, and start the screening process early because verification takes weeks.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>Don't run these</h2>
+    <ul class="check">
+      <li><span class="mark x">NO</span><div><b>Performance Max</b><span class="why">It needs conversion volume this account won't have for months, gives almost no visibility into where spend went, and will absorb brand searches and claim credit for them. Revisit only once Search is profitable and tracking is trusted.</span></div></li>
+      <li><span class="mark x">NO</span><div><b>Display or Video</b><span class="why">Hiring a criminal defense lawyer is an urgent, high-intent search. There is no awareness funnel to build here at this budget.</span></div></li>
+      <li><span class="mark x">NO</span><div><b>A campaign per practice area</b><span class="why">Seven campaigns at this budget means seven campaigns with too little data to optimize. Use ad groups.</span></div></li>
+      <li><span class="mark x">NO</span><div><b>Broad match at launch</b><span class="why">Without conversion data and smart bidding to steer it, broad match is just a wider net over the same budget.</span></div></li>
+      <li><span class="mark x">NO</span><div><b>Bail bonds keywords</b><span class="why">Google restricts bail bond services advertising outright. The firm doesn't offer it, and the terms attract the wrong searcher regardless.</span></div></li>
+    </ul>
+  </section>
+
+  <section class="block">
+    <h2>Launch order</h2>
+    <ul class="check">
+      <li><span class="mark n">1</span><div><b>Conversion tracking, verified with a live test call</b><span class="why">Place a real call and confirm it registers. Do not launch on untested tracking.</span></div></li>
+      <li><span class="mark n">2</span><div><b>Shared negative list applied to all campaigns</b></div></li>
+      <li><span class="mark n">3</span><div><b>Account settings swept</b><span class="why">Location option set to Presence, Search Partners off, Display off, auto-apply recommendations all off.</span></div></li>
+      <li><span class="mark n">4</span><div><b>Assets attached</b><span class="why">Callouts at account level, Service catalog snippet at account level, Types at campaign level, sitelinks and a call asset per campaign.</span></div></li>
+      <li><span class="mark n">5</span><div><b>Launch DWI alone for two weeks</b><span class="why">One campaign, clean data, no confounds. Read the Search Terms report before adding the second.</span></div></li>
+      <li><span class="mark n">6</span><div><b>Add Criminal Defense, then Traffic</b><span class="why">Two-week gaps. Each addition is a change you want to be able to attribute.</span></div></li>
+    </ul>
+  </section>
+
+  <footer>
+    <div>Prepared for Creekside Marketing Pros · campaign build for hcalaw.net</div>
+    <div>Third of three: callout assets, structured snippets, campaign structure. CPC figures are market benchmarks — confirm against Keyword Planner for the live geo.</div>
+  </footer>
+</div>
