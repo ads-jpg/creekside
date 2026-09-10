@@ -16,12 +16,14 @@ DMV hearings, federal defense. Founded 1982.
 | `structured-snippets.md` | 2 headers, 17 values |
 | `rsa-ad-copy.md` | 3 policy-safe responsive search ads + flagged-phrase substitutions |
 | `keyword-plan.md` | 98 keywords, 96 negatives, match-type and policy guidance |
+| `sitelink-assets.md` | 18 sitelinks in 4 sets + the pages the site still needs |
 | `*.csv` | Flat lists for bulk loading |
 | `*.html` | Published reference pages |
 | `verify_callout_lengths.py` | Checks all callouts against the 25-char limit |
 | `verify_snippet_values.py` | Checks snippet values: 25-char limit, 3-10 per header, callout collisions |
 | `verify_rsa_copy.py` | Checks RSA headlines (30), descriptions (90), paths (15), field counts |
 | `keywords.py` | Keyword/negative source of truth; checks duplicates and negative-vs-keyword conflicts |
+| `sitelinks.py` | Sitelink source of truth; checks limits, per-set destination uniqueness, flagged terms |
 
 ## Checks
 
@@ -30,6 +32,7 @@ python3 verify_callout_lengths.py   # reads callouts.csv
 python3 verify_snippet_values.py    # exits non-zero on any violation
 python3 verify_rsa_copy.py          # exits non-zero on any violation
 python3 keywords.py                 # negative/keyword conflict check
+python3 sitelinks.py                # limits + duplicate-destination check
 ```
 
 ## Google policy
@@ -48,3 +51,5 @@ full substitution table and the disapproval playbook.
 3. **Free consultation** - offered, or case-dependent? Several callouts depend on it.
 4. **Court coverage** - Pender and Brunswick counties, or New Hanover only?
 5. **Landing pages** - is there a dedicated DWI page, or only the homepage and /dmv-hearings/?
+   This one now blocks work: 15 of 18 sitelinks point at pages that may not exist. See
+   `sitelink-assets.md` for the build list, ordered by what each page unlocks.

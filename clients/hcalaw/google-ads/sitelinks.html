@@ -1,0 +1,532 @@
+<title>Sitelink Assets</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
+
+<style>
+  :root{
+    --ground:#F3F5F4; --surface:#FFFFFF; --surface-sunk:#EAEEED;
+    --ink:#15201F; --ink-soft:#3C4A48; --muted:#5C6A68; --faint:#8A9694;
+    --rule:#D8DEDC; --rule-strong:#C2CBC9;
+    --accent:#0E5D57; --accent-soft:#E2EFED; --accent-ink:#0A4640;
+    --amber:#8A6410; --amber-soft:#F7EFDC;
+    --oxblood:#8E322B; --oxblood-soft:#F8E7E4;
+    --link:#1A5FA8;
+    --shadow:0 1px 2px rgba(21,32,31,.05), 0 8px 24px -16px rgba(21,32,31,.18);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ground:#0E1413; --surface:#161F1E; --surface-sunk:#111917;
+      --ink:#E4EBE9; --ink-soft:#C2CECB; --muted:#93A29F; --faint:#6E7D7A;
+      --rule:#25322F; --rule-strong:#33423F;
+      --accent:#4FB5AC; --accent-soft:#16302E; --accent-ink:#7FCEC6;
+      --amber:#D9A441; --amber-soft:#2E2617;
+      --oxblood:#E08279; --oxblood-soft:#33201E;
+      --link:#7FB2E8;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#0E1413; --surface:#161F1E; --surface-sunk:#111917;
+    --ink:#E4EBE9; --ink-soft:#C2CECB; --muted:#93A29F; --faint:#6E7D7A;
+    --rule:#25322F; --rule-strong:#33423F;
+    --accent:#4FB5AC; --accent-soft:#16302E; --accent-ink:#7FCEC6;
+    --amber:#D9A441; --amber-soft:#2E2617;
+    --oxblood:#E08279; --oxblood-soft:#33201E;
+    --link:#7FB2E8;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    background:var(--ground); color:var(--ink);
+    font-family:"Public Sans","Helvetica Neue",Arial,sans-serif;
+    font-size:15px; line-height:1.55; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:880px;margin:0 auto;padding:40px 24px 96px;display:flex;flex-direction:column;gap:46px;}
+
+  .mast{display:flex;flex-direction:column;gap:18px;}
+  .eyebrow{
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--accent);font-weight:500;
+  }
+  h1{
+    font-family:"Fraunces","Georgia",serif;font-optical-sizing:auto;
+    font-weight:600;font-size:clamp(30px,5.2vw,44px);line-height:1.08;
+    letter-spacing:-.015em;margin:0;text-wrap:balance;
+  }
+  .standfirst{margin:0;max-width:62ch;color:var(--muted);font-size:16px;}
+  .mast-meta{display:flex;flex-wrap:wrap;gap:8px;padding-top:2px;}
+  .tag{
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:11px;letter-spacing:.04em;padding:4px 9px;
+    border:1px solid var(--rule-strong);border-radius:2px;
+    color:var(--ink-soft);background:var(--surface);
+  }
+
+  section.block{display:flex;flex-direction:column;gap:16px;}
+  section.block > h2{
+    margin:0;font-family:"Fraunces","Georgia",serif;
+    font-size:24px;font-weight:600;letter-spacing:-.012em;
+  }
+  section.block > p{margin:0;color:var(--ink-soft);max-width:65ch;font-size:14.5px;}
+  section.block > p.sub{color:var(--muted);font-size:13.5px;}
+
+  .spec{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:1px;background:var(--rule);border:1px solid var(--rule);
+    border-radius:4px;overflow:hidden;
+  }
+  .spec div{background:var(--surface);padding:14px 16px;display:flex;flex-direction:column;gap:2px;}
+  .spec b{
+    font-family:"Fraunces","Georgia",serif;font-size:24px;font-weight:600;
+    line-height:1;color:var(--accent);font-variant-numeric:tabular-nums;
+  }
+  .spec small{font-size:12px;color:var(--muted);line-height:1.35;}
+
+  .notice{
+    display:flex;flex-direction:column;gap:8px;padding:17px 19px;
+    border-left:3px solid var(--accent);background:var(--accent-soft);border-radius:0 3px 3px 0;
+  }
+  .notice.warn{border-left-color:var(--amber);background:var(--amber-soft);}
+  .notice.crit{border-left-color:var(--oxblood);background:var(--oxblood-soft);}
+  .notice h3{margin:0;font-size:13px;font-weight:700;letter-spacing:.02em;color:var(--ink);}
+  .notice p{margin:0;font-size:14px;color:var(--ink-soft);max-width:66ch;}
+  .notice p + p{margin-top:2px;}
+
+  /* sitelink sets */
+  .sets{display:flex;flex-direction:column;gap:22px;}
+  .set{
+    background:var(--surface);border:1px solid var(--rule);border-radius:4px;
+    box-shadow:var(--shadow);overflow:hidden;
+  }
+  .set-head{
+    padding:14px 19px;border-bottom:1px solid var(--rule);
+    display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  }
+  .set-head .lhs{display:flex;flex-direction:column;gap:2px;min-width:0;}
+  .set-head h3{margin:0;font-family:"Fraunces","Georgia",serif;font-size:19px;font-weight:600;}
+  .set-head .lvl{
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:11px;color:var(--muted);
+  }
+  .sl{
+    padding:13px 19px;border-bottom:1px solid var(--rule);
+    display:grid;grid-template-columns:1fr auto;gap:14px;align-items:start;
+  }
+  .sl:last-child{border-bottom:none;}
+  .sl .body{display:flex;flex-direction:column;gap:2px;min-width:0;}
+  .sl .t{
+    font-size:15px;color:var(--link);font-weight:500;line-height:1.35;
+  }
+  .sl .d{font-size:13px;color:var(--ink-soft);line-height:1.4;}
+  .sl .u{
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:11.5px;color:var(--faint);margin-top:3px;
+    display:flex;align-items:center;gap:7px;flex-wrap:wrap;
+  }
+  .badge{
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;
+    padding:1px 5px;border-radius:2px;white-space:nowrap;
+  }
+  .badge.ok{background:var(--accent-soft);color:var(--accent-ink);}
+  .badge.assumed{background:var(--amber-soft);color:var(--amber);border:1px solid var(--amber);}
+  .chars{
+    display:flex;flex-direction:column;gap:3px;align-items:flex-end;
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:10.5px;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap;
+  }
+  .chars span.tight{color:var(--amber);font-weight:500;}
+
+  button.copy{
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:11px;letter-spacing:.06em;text-transform:uppercase;
+    padding:6px 11px;background:var(--accent-soft);color:var(--accent-ink);
+    border:1px solid transparent;border-radius:3px;cursor:pointer;white-space:nowrap;
+    transition:background .15s ease;
+  }
+  button.copy:hover{background:var(--accent);color:var(--surface);}
+  button.copy:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+
+  .tbl-scroll{overflow-x:auto;border:1px solid var(--rule);border-radius:4px;background:var(--surface);box-shadow:var(--shadow);}
+  table{border-collapse:collapse;width:100%;min-width:540px;font-size:13.5px;}
+  th,td{text-align:left;padding:11px 15px;border-bottom:1px solid var(--rule);vertical-align:top;}
+  th{
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--faint);font-weight:500;background:var(--surface-sunk);white-space:nowrap;
+  }
+  tbody tr:last-child td{border-bottom:none;}
+  td code{
+    font-family:"JetBrains Mono",ui-monospace,monospace;font-size:12.5px;
+    color:var(--ink);background:var(--surface-sunk);padding:1px 5px;border-radius:2px;
+  }
+
+  ul.check{
+    list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:1px;
+    background:var(--rule);border:1px solid var(--rule);border-radius:4px;overflow:hidden;
+  }
+  ul.check li{
+    background:var(--surface);padding:12px 16px;display:grid;
+    grid-template-columns:auto 1fr;gap:12px;align-items:start;font-size:14px;
+  }
+  ul.check li .mark{
+    font-family:"JetBrains Mono",ui-monospace,monospace;font-size:11px;font-weight:700;
+    padding:2px 6px;border-radius:2px;white-space:nowrap;margin-top:1px;
+    background:var(--surface-sunk);color:var(--muted);border:1px solid var(--rule-strong);
+    font-variant-numeric:tabular-nums;
+  }
+  ul.check li .mark.x{background:var(--oxblood-soft);color:var(--oxblood);border-color:var(--oxblood);}
+  ul.check li b{font-weight:600;color:var(--ink);}
+  ul.check li span.why{display:block;color:var(--muted);font-size:13px;margin-top:2px;}
+
+  footer{
+    border-top:1px solid var(--rule);padding-top:20px;color:var(--faint);
+    font-size:12.5px;display:flex;flex-direction:column;gap:5px;
+  }
+  .toast{
+    position:fixed;left:50%;bottom:26px;transform:translateX(-50%);
+    background:var(--ink);color:var(--ground);
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:12px;letter-spacing:.04em;padding:9px 16px;border-radius:3px;
+    opacity:0;pointer-events:none;transition:opacity .18s ease;z-index:20;
+  }
+  .toast.on{opacity:1;}
+  @media (prefers-reduced-motion: reduce){*{transition:none !important;animation:none !important;}}
+  @media (max-width:560px){
+    .sl{grid-template-columns:minmax(0,1fr);}
+    .chars{align-items:flex-start;flex-direction:row;gap:10px;}
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="mast">
+    <div class="eyebrow">Google Ads &middot; Sitelink Assets</div>
+    <h1>Eighteen Links, Three Real Pages</h1>
+    <p class="standfirst">Sitelinks for the criminal defense build, written and verified against the field limits. The copy is the easy half. The hard half is that every sitelink in a set has to resolve to a <em>different, working</em> page &mdash; and only three of these eighteen point at a page I can confirm exists.</p>
+    <div class="mast-meta">
+      <span class="tag">18 sitelinks</span>
+      <span class="tag">4 sets</span>
+      <span class="tag">3 confirmed URLs</span>
+      <span class="tag">15 to build or confirm</span>
+    </div>
+  </header>
+
+  <div class="notice crit">
+    <h3>The rule that disapproves more sitelinks than anything else</h3>
+    <p>Two sitelinks in the same set may not point to the same page. Not the same page with a different anchor, not the same page with a tracking parameter &mdash; a genuinely different destination. When a firm doesn&rsquo;t have enough pages, the usual improvisation is to aim three or four sitelinks at the homepage, and Google disapproves the whole set.</p>
+    <p>So this document is really two deliverables: the copy below, and a short list of pages the site needs before most of that copy can run.</p>
+  </div>
+
+  <section class="block">
+    <h2>What you can launch today</h2>
+    <p>Sitelinks need two to serve at all and four to serve well. From pages I could verify or safely assume, there is exactly enough for a compliant starting set:</p>
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr><th>Sitelink</th><th>Destination</th><th>Status</th></tr></thead>
+        <tbody id="minrows"></tbody>
+      </table>
+    </div>
+    <p class="sub">Everything beyond this set depends on pages being confirmed or built. Check the real site before upload &mdash; the network policy in this environment blocked hcalaw.net, so the slugs below are proposals, not observations.</p>
+  </section>
+
+  <section class="block">
+    <h2>Field limits</h2>
+    <div class="spec">
+      <div><b>25</b><small>characters, sitelink text</small></div>
+      <div><b>35</b><small>characters, each description line</small></div>
+      <div><b>2</b><small>minimum to serve, 4+ recommended</small></div>
+      <div><b>20</b><small>maximum per level</small></div>
+    </div>
+    <p class="sub">Descriptions only render in the top ad positions on desktop, and often not at all on mobile. Write the link text so it stands alone, and treat the two description lines as a bonus rather than the message.</p>
+  </section>
+
+  <section class="block">
+    <h2>The sitelinks</h2>
+    <p>Set the first group at account level so every campaign inherits it, then attach each practice group at campaign level. An ad shows between two and six, chosen per auction.</p>
+    <div class="sets" id="sets"></div>
+  </section>
+
+  <section class="block">
+    <h2>Pages the site needs</h2>
+    <p>Ranked by what each unlocks. A dedicated page per practice area also improves Quality Score on the matching ad group, so this work pays twice &mdash; the sitelink is the smaller of the two returns.</p>
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr><th>Page</th><th>Unlocks</th><th>Priority</th></tr></thead>
+        <tbody>
+          <tr><td><code>/dwi-defense/</code></td><td>Two DWI sitelinks, and a real landing page for the highest-value campaign.</td><td><b>First.</b> The DWI campaign is half the budget and currently has nowhere better than the homepage to send traffic.</td></tr>
+          <tr><td><code>/criminal-defense/</code></td><td>The general defense sitelink and landing page.</td><td>Second. Anchors the broadest campaign.</td></tr>
+          <tr><td><code>/traffic-tickets/</code></td><td>Traffic sitelink and landing page.</td><td>Third. Cheap clicks deserve a cheap page, but not the homepage.</td></tr>
+          <tr><td><code>/contact/</code> <code>/about/</code></td><td>Two account-level sitelinks.</td><td>Almost certainly already exist. Confirm the slugs and move on.</td></tr>
+          <tr><td><code>/reviews/</code></td><td>The reviews sitelink.</td><td>Optional. Only worth building if there are reviews to show.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>Getting them wrong</h2>
+    <ul class="check">
+      <li><span class="mark x">NO</span><div><b>Several sitelinks to the homepage</b><span class="why">The most common disapproval. If the pages don&rsquo;t exist yet, run fewer sitelinks &mdash; two real ones beat six that get the set rejected.</span></div></li>
+      <li><span class="mark x">NO</span><div><b>A sitelink matching the ad&rsquo;s own final URL</b><span class="why">Not disapproved, but wasted. The searcher already has that link; the sitelink slot should offer somewhere new.</span></div></li>
+      <li><span class="mark x">NO</span><div><b>Off-domain destinations</b><span class="why">A sitelink pointing at a directory profile, a review site, or a social page will be rejected. Same domain as the ad.</span></div></li>
+      <li><span class="mark x">NO</span><div><b>One description line filled, the other blank</b><span class="why">Descriptions render as a pair or not at all. Half a pair simply never shows.</span></div></li>
+      <li><span class="mark x">NO</span><div><b>Calls to action as link text</b><span class="why">&ldquo;Call Now&rdquo; wastes the slot. A sitelink is a destination, so name the destination &mdash; the click is already the action.</span></div></li>
+      <li><span class="mark x">NO</span><div><b>Pages that 404 or redirect</b><span class="why">Checked at review and rechecked periodically. A slug that changes during a site update silently kills the sitelink.</span></div></li>
+    </ul>
+  </section>
+
+  <footer>
+    <div>Prepared for Creekside Marketing Pros &middot; sitelink assets for the criminal defense build</div>
+    <div>Character counts computed from the strings themselves; destination uniqueness verified per set by script.</div>
+  </footer>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+const DATA = {
+  "sets": [
+    {
+      "name": "Account level",
+      "level": "Inherited by every campaign",
+      "links": [
+        {
+          "text": "About the Firm",
+          "d1": "Defending clients since 1982.",
+          "d2": "Local courts, local experience.",
+          "url": "/about/",
+          "status": "assumed"
+        },
+        {
+          "text": "Our Attorneys",
+          "d1": "Meet the attorney who will",
+          "d2": "handle your case personally.",
+          "url": "/james-l-allard-jr-buddy/",
+          "status": "confirmed"
+        },
+        {
+          "text": "Practice Areas",
+          "d1": "See the charges we defend in",
+          "d2": "state and federal court.",
+          "url": "/practice-areas/",
+          "status": "assumed"
+        },
+        {
+          "text": "Free Case Review",
+          "d1": "Talk through your charge with",
+          "d2": "an attorney. No obligation.",
+          "url": "/contact/",
+          "status": "assumed"
+        },
+        {
+          "text": "Client Reviews",
+          "d1": "Read what past clients say",
+          "d2": "about working with the firm.",
+          "url": "/reviews/",
+          "status": "assumed"
+        },
+        {
+          "text": "Office & Directions",
+          "d1": "Downtown location near the",
+          "d2": "courthouse. Parking on site.",
+          "url": "/location/",
+          "status": "assumed"
+        }
+      ]
+    },
+    {
+      "name": "DWI / DUI",
+      "level": "Campaign level",
+      "links": [
+        {
+          "text": "DWI Defense",
+          "d1": "Breath tests, blood tests, and",
+          "d2": "license consequences.",
+          "url": "/dwi-defense/",
+          "status": "assumed"
+        },
+        {
+          "text": "First-Offense DWI",
+          "d1": "What to expect if this is",
+          "d2": "your first charge.",
+          "url": "/dwi-defense/first-offense/",
+          "status": "assumed"
+        },
+        {
+          "text": "DMV Hearings",
+          "d1": "Your license case is separate",
+          "d2": "from the criminal charge.",
+          "url": "/dmv-hearings/",
+          "status": "confirmed"
+        },
+        {
+          "text": "License Restoration",
+          "d1": "Steps to get your driving",
+          "d2": "privileges back.",
+          "url": "/license-restoration/",
+          "status": "assumed"
+        }
+      ]
+    },
+    {
+      "name": "Criminal Defense",
+      "level": "Campaign level",
+      "links": [
+        {
+          "text": "Criminal Defense",
+          "d1": "Felony and misdemeanor",
+          "d2": "representation in local courts.",
+          "url": "/criminal-defense/",
+          "status": "assumed"
+        },
+        {
+          "text": "Felony Charges",
+          "d1": "What a felony charge means",
+          "d2": "and what comes next.",
+          "url": "/felony-defense/",
+          "status": "assumed"
+        },
+        {
+          "text": "Drug Charges",
+          "d1": "Possession and related",
+          "d2": "charges in state court.",
+          "url": "/drug-charges/",
+          "status": "assumed"
+        },
+        {
+          "text": "Federal Court Cases",
+          "d1": "Admitted to practice in",
+          "d2": "federal district court.",
+          "url": "/federal-defense/",
+          "status": "assumed"
+        }
+      ]
+    },
+    {
+      "name": "Traffic & License",
+      "level": "Campaign level",
+      "links": [
+        {
+          "text": "Traffic Tickets",
+          "d1": "A ticket can cost more than",
+          "d2": "the fine. Know your options.",
+          "url": "/traffic-tickets/",
+          "status": "assumed"
+        },
+        {
+          "text": "Reckless Driving",
+          "d1": "A misdemeanor in NC, not a",
+          "d2": "simple traffic citation.",
+          "url": "/reckless-driving/",
+          "status": "assumed"
+        },
+        {
+          "text": "Speeding Citations",
+          "d1": "Points, insurance, and your",
+          "d2": "driving record.",
+          "url": "/speeding-tickets/",
+          "status": "assumed"
+        },
+        {
+          "text": "DMV Hearings",
+          "d1": "Revoked license? You can",
+          "d2": "request a hearing.",
+          "url": "/dmv-hearings/",
+          "status": "confirmed"
+        }
+      ]
+    }
+  ],
+  "minimum": [
+    "Our Attorneys",
+    "DMV Hearings",
+    "Free Case Review",
+    "About the Firm"
+  ]
+};
+const T_LIM = 25, D_LIM = 35;
+const esc = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+
+const minrows = document.getElementById("minrows");
+DATA.minimum.forEach(name => {
+  const all = DATA.sets.flatMap(s => s.links);
+  const l = all.find(x => x.text === name);
+  if (!l) return;
+  const tr = document.createElement("tr");
+  tr.innerHTML = "<td><b>" + esc(l.text) + "</b></td>" +
+    "<td><code>" + esc(l.url) + "</code></td>" +
+    '<td><span class="badge ' + (l.status === "confirmed" ? "ok" : "assumed") + '">' +
+      esc(l.status) + "</span></td>";
+  minrows.appendChild(tr);
+});
+
+const sets = document.getElementById("sets");
+DATA.sets.forEach(s => {
+  const card = document.createElement("div");
+  card.className = "set";
+
+  const head = document.createElement("div");
+  head.className = "set-head";
+  head.innerHTML = '<div class="lhs"><h3>' + esc(s.name) + '</h3>' +
+    '<span class="lvl">' + esc(s.level) + " &middot; " + s.links.length + " sitelinks</span></div>";
+  const btn = document.createElement("button");
+  btn.className = "copy"; btn.type = "button"; btn.textContent = "Copy set";
+  btn.addEventListener("click", () =>
+    copy(s.links.map(l => [l.text, l.d1, l.d2, l.url].join("\t")).join("\n"), s.name));
+  head.appendChild(btn);
+  card.appendChild(head);
+
+  s.links.forEach(l => {
+    const d = document.createElement("div");
+    d.className = "sl";
+    const tight = n => n >= T_LIM - 1;
+    d.innerHTML =
+      '<div class="body">' +
+        '<span class="t">' + esc(l.text) + "</span>" +
+        '<span class="d">' + esc(l.d1) + "</span>" +
+        '<span class="d">' + esc(l.d2) + "</span>" +
+        '<span class="u">' + esc(l.url) +
+          '<span class="badge ' + (l.status === "confirmed" ? "ok" : "assumed") + '">' +
+          esc(l.status) + "</span></span>" +
+      "</div>" +
+      '<div class="chars">' +
+        '<span class="' + (tight(l.text.length) ? "tight" : "") + '">' + l.text.length + "/" + T_LIM + "</span>" +
+        "<span>" + l.d1.length + "/" + D_LIM + "</span>" +
+        "<span>" + l.d2.length + "/" + D_LIM + "</span>" +
+      "</div>";
+    card.appendChild(d);
+  });
+  sets.appendChild(card);
+});
+
+const toast = document.getElementById("toast");
+let toastTimer = null;
+function flash(msg){
+  toast.textContent = msg;
+  toast.classList.add("on");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove("on"), 1900);
+}
+function copy(text, label){
+  const done = () => flash(label + " copied \u2014 tab separated");
+  try {
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(done).catch(() => fallback(text, done));
+    } else { fallback(text, done); }
+  } catch (e) { fallback(text, done); }
+}
+function fallback(text, done){
+  try {
+    const ta = document.createElement("textarea");
+    ta.value = text; ta.setAttribute("readonly","");
+    ta.style.position = "fixed"; ta.style.top = "-1000px";
+    document.body.appendChild(ta); ta.select();
+    document.execCommand("copy");
+    document.body.removeChild(ta); done();
+  } catch (e) { flash("Copy blocked \u2014 select the text manually"); }
+}
+</script>
