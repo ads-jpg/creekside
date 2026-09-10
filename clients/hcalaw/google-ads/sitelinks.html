@@ -251,6 +251,34 @@
   </section>
 
   <section class="block">
+    <h2>Titles that had to be trimmed</h2>
+    <p>Two requested sitelink titles ran past the 25-character limit. These are the closest versions that fit, with the alternates that also clear it &mdash; the shorter ones leave more room on narrow screens, where sitelink text truncates before anything else does.</p>
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr><th>Requested</th><th>Used</th><th>Also fits</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><code>Speak with a Defense Attorney</code><br><span style="color:var(--oxblood);font-size:12px;">29/25 &mdash; over by 4</span></td>
+            <td><b>Speak With an Attorney</b><br><span style="color:var(--muted);font-size:12px;">22/25</span></td>
+            <td><code>Talk to a Defense Lawyer</code> 24<br><code>Speak With a Lawyer</code> 19</td>
+          </tr>
+          <tr>
+            <td><code>Why Choose Us for Criminal Defense</code><br><span style="color:var(--oxblood);font-size:12px;">34/25 &mdash; over by 9</span></td>
+            <td><b>Why Choose Our Firm</b><br><span style="color:var(--muted);font-size:12px;">19/25</span></td>
+            <td><code>Why Clients Choose Us</code> 21<br><code>What Sets Our Firm Apart</code> 24</td>
+          </tr>
+          <tr>
+            <td><code>Felony Defense Attorney</code><br><span style="color:var(--accent);font-size:12px;">23/25 &mdash; fits as written</span></td>
+            <td><b>Felony Defense Attorney</b><br><span style="color:var(--muted);font-size:12px;">23/25</span></td>
+            <td>&mdash;</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="sub">All three replaced an existing sitelink rather than joining it, because each shared a destination with one already in the set: <code>/felony-defense/</code>, <code>/contact/</code> and <code>/about/</code>. Two sitelinks cannot share a page, so these are swaps &mdash; and they are better swaps, since each names the thing the searcher wants instead of naming a page on the site.</p>
+  </section>
+
+  <section class="block">
     <h2>Pages the site needs</h2>
     <p>Ranked by what each unlocks. A dedicated page per practice area also improves Quality Score on the matching ad group, so this work pays twice &mdash; the sitelink is the smaller of the two returns.</p>
     <div class="tbl-scroll">
@@ -295,9 +323,9 @@ const DATA = {
       "level": "Inherited by every campaign",
       "links": [
         {
-          "text": "About the Firm",
-          "d1": "Defending clients since 1982.",
-          "d2": "Local courts, local experience.",
+          "text": "Why Choose Our Firm",
+          "d1": "Defending clients in these",
+          "d2": "courts since 1982.",
           "url": "/about/",
           "status": "assumed"
         },
@@ -316,9 +344,9 @@ const DATA = {
           "status": "assumed"
         },
         {
-          "text": "Free Case Review",
-          "d1": "Talk through your charge with",
-          "d2": "an attorney. No obligation.",
+          "text": "Speak With an Attorney",
+          "d1": "Talk through your charge and",
+          "d2": "the options in front of you.",
           "url": "/contact/",
           "status": "assumed"
         },
@@ -384,9 +412,9 @@ const DATA = {
           "status": "assumed"
         },
         {
-          "text": "Felony Charges",
-          "d1": "What a felony charge means",
-          "d2": "and what comes next.",
+          "text": "Felony Defense Attorney",
+          "d1": "State and federal felony",
+          "d2": "charges. Know what you face.",
           "url": "/felony-defense/",
           "status": "assumed"
         },
@@ -444,8 +472,8 @@ const DATA = {
   "minimum": [
     "Our Attorneys",
     "DMV Hearings",
-    "Free Case Review",
-    "About the Firm"
+    "Speak With an Attorney",
+    "Why Choose Our Firm"
   ]
 };
 const T_LIM = 25, D_LIM = 35;

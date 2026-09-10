@@ -20,8 +20,8 @@ policy, so the slugs are proposals, not observations.
 |---|---|---|
 | **Our Attorneys** | `/james-l-allard-jr-buddy/` | confirmed |
 | **DMV Hearings** | `/dmv-hearings/` | confirmed |
-| **Free Case Review** | `/contact/` | assumed |
-| **About the Firm** | `/about/` | assumed |
+| **Speak With an Attorney** | `/contact/` | assumed |
+| **Why Choose Our Firm** | `/about/` | assumed |
 
 ## The sitelinks
 
@@ -69,6 +69,24 @@ _Campaign level - 4 sitelinks_
 | **Reckless Driving** | 16/25 | A misdemeanor in NC, not a | simple traffic citation. | `/reckless-driving/` | assumed |
 | **Speeding Citations** | 18/25 | Points, insurance, and your | driving record. | `/speeding-tickets/` | assumed |
 | **DMV Hearings** | 12/25 | Revoked license? You can | request a hearing. | `/dmv-hearings/` | confirmed |
+
+## Titles that had to be trimmed
+
+Sitelink text is capped at 25 characters. Two requested titles ran past it.
+
+| Requested | Chars | Used | Also fits |
+|---|---|---|---|
+| `Speak with a Defense Attorney` | 29/25 - over by 4 | **Speak With an Attorney** (22) | `Talk to a Defense Lawyer` 24, `Speak With a Lawyer` 19 |
+| `Why Choose Us for Criminal Defense` | 34/25 - over by 9 | **Why Choose Our Firm** (19) | `Why Clients Choose Us` 21, `What Sets Our Firm Apart` 24 |
+| `Felony Defense Attorney` | 23/25 - fits | **Felony Defense Attorney** (23) | - |
+
+All three **replaced** an existing sitelink rather than joining it, because each shared a
+destination with one already in the set - `/felony-defense/`, `/contact/`, `/about/`. Two
+sitelinks cannot share a page. They are better swaps anyway: each names what the searcher
+wants rather than naming a page on the site.
+
+Replaced: `Felony Charges` -> `Felony Defense Attorney`, `Free Case Review` ->
+`Speak With an Attorney`, `About the Firm` -> `Why Choose Our Firm`.
 
 ## Pages the site needs
 

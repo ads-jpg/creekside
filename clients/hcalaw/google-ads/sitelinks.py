@@ -12,10 +12,10 @@ T_LIM, D_LIM = 25, 35
 
 SETS = [
 ("Account level", "Inherited by every campaign", [
- ("About the Firm","Defending clients since 1982.","Local courts, local experience.","/about/","assumed"),
+ ("Why Choose Our Firm","Defending clients in these","courts since 1982.","/about/","assumed"),
  ("Our Attorneys","Meet the attorney who will","handle your case personally.","/james-l-allard-jr-buddy/","confirmed"),
  ("Practice Areas","See the charges we defend in","state and federal court.","/practice-areas/","assumed"),
- ("Free Case Review","Talk through your charge with","an attorney. No obligation.","/contact/","assumed"),
+ ("Speak With an Attorney","Talk through your charge and","the options in front of you.","/contact/","assumed"),
  ("Client Reviews","Read what past clients say","about working with the firm.","/reviews/","assumed"),
  ("Office & Directions","Downtown location near the","courthouse. Parking on site.","/location/","assumed"),
 ]),
@@ -27,7 +27,7 @@ SETS = [
 ]),
 ("Criminal Defense", "Campaign level", [
  ("Criminal Defense","Felony and misdemeanor","representation in local courts.","/criminal-defense/","assumed"),
- ("Felony Charges","What a felony charge means","and what comes next.","/felony-defense/","assumed"),
+ ("Felony Defense Attorney","State and federal felony","charges. Know what you face.","/felony-defense/","assumed"),
  ("Drug Charges","Possession and related","charges in state court.","/drug-charges/","assumed"),
  ("Federal Court Cases","Admitted to practice in","federal district court.","/federal-defense/","assumed"),
 ]),
@@ -45,7 +45,7 @@ FLAGGED = ["sex","sexual","rape","gun","firearm","weapon","cocaine","meth","hero
            "best","dropped","win","beat","avoid jail"]
 
 # Buildable today from pages verified to exist. Sitelinks need 2 to serve, 4 to serve well.
-MINIMUM_SET = ["Our Attorneys", "DMV Hearings", "Free Case Review", "About the Firm"]
+MINIMUM_SET = ["Our Attorneys", "DMV Hearings", "Speak With an Attorney", "Why Choose Our Firm"]
 
 def check():
     ok = True

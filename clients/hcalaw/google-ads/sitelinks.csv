@@ -1,8 +1,8 @@
 Level / Set,Sitelink text,Chars,Description 1,Chars,Description 2,Chars,Final URL path,URL status
-Account level,About the Firm,14,Defending clients since 1982.,29,"Local courts, local experience.",31,/about/,assumed
+Account level,Why Choose Our Firm,19,Defending clients in these,26,courts since 1982.,18,/about/,assumed
 Account level,Our Attorneys,13,Meet the attorney who will,26,handle your case personally.,28,/james-l-allard-jr-buddy/,confirmed
 Account level,Practice Areas,14,See the charges we defend in,28,state and federal court.,24,/practice-areas/,assumed
-Account level,Free Case Review,16,Talk through your charge with,29,an attorney. No obligation.,27,/contact/,assumed
+Account level,Speak With an Attorney,22,Talk through your charge and,28,the options in front of you.,28,/contact/,assumed
 Account level,Client Reviews,14,Read what past clients say,26,about working with the firm.,28,/reviews/,assumed
 Account level,Office & Directions,19,Downtown location near the,26,courthouse. Parking on site.,28,/location/,assumed
 DWI / DUI,DWI Defense,11,"Breath tests, blood tests, and",30,license consequences.,21,/dwi-defense/,assumed
@@ -10,7 +10,7 @@ DWI / DUI,First-Offense DWI,17,What to expect if this is,25,your first charge.,1
 DWI / DUI,DMV Hearings,12,Your license case is separate,29,from the criminal charge.,25,/dmv-hearings/,confirmed
 DWI / DUI,License Restoration,19,Steps to get your driving,25,privileges back.,16,/license-restoration/,assumed
 Criminal Defense,Criminal Defense,16,Felony and misdemeanor,22,representation in local courts.,31,/criminal-defense/,assumed
-Criminal Defense,Felony Charges,14,What a felony charge means,26,and what comes next.,20,/felony-defense/,assumed
+Criminal Defense,Felony Defense Attorney,23,State and federal felony,24,charges. Know what you face.,28,/felony-defense/,assumed
 Criminal Defense,Drug Charges,12,Possession and related,22,charges in state court.,23,/drug-charges/,assumed
 Criminal Defense,Federal Court Cases,19,Admitted to practice in,23,federal district court.,23,/federal-defense/,assumed
 Traffic & License,Traffic Tickets,15,A ticket can cost more than,27,the fine. Know your options.,28,/traffic-tickets/,assumed
