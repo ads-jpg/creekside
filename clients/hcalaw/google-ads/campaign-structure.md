@@ -27,51 +27,53 @@ learn from.
 
 | Monthly budget | Campaigns | What runs | Reasoning |
 |---|---|---|---|
-| Under $1,500 | 1 | DWI / DUI only | 35-70 clicks total. Split two ways, neither optimizes. |
-| **$1,500-$3,500** | **2** | **DWI, Criminal Defense** | **Realistic start for a firm this size.** |
-| $3,500-$7,000 | 3 | + Traffic & License | Traffic earns its place once it can't cannibalize DWI. |
+| Under $1,500 | 1 | Drunk Driving only | 35-70 clicks total. Split two ways, neither optimizes. |
+| **$1,500-$3,500** | **2** | **Drunk Driving, Felony Criminal Defense** | **The two verticals. Realistic start for a firm this size.** |
+| $3,500-$7,000 | 3 | + General Criminal Defense | The optional third vertical, for intent the two specific ones miss. |
 | $7,000+ | 4 | + Brand protection | Also unlock the Federal ad group. |
 
 Wilmington is a small market, so CPCs sit below the $75-200 seen for DWI in large metros.
 Confirm against Keyword Planner for the live geo before committing a budget.
 
-## The structure (three-campaign tier)
+## The structure (two verticals)
 
-### Campaign 1 - DWI & DUI (50% of budget)
-Highest case value, deepest proof (2,000+ cases). Never let this share a budget.
+Restructured from three verticals to two on client feedback, matching how the main local
+competitor splits their account. Traffic & License is **held, not deleted** - its keywords,
+callouts and sitelinks stay in this repo and can be switched on later.
+
+### Campaign 1 - Drunk Driving Defense (55% of budget)
+Highest volume and the firm's deepest proof: 2,000+ DWI cases. Named "drunk driving" to match
+how the competitor frames it and how a share of searchers actually type it.
 
 | Ad group | Keyword themes |
 |---|---|
+| Drunk Driving Defense | "drunk driving lawyer", "drunk driving attorney" |
 | DWI Attorney | `[dwi lawyer wilmington nc]`, `[dwi attorney wilmington]`, "dwi lawyer near me" |
 | DUI Attorney | `[dui lawyer wilmington nc]`, "dui attorney near me" |
-| First Offense | "first offense dwi lawyer", "first dwi attorney nc" |
+| First Offense | "first offense dwi lawyer", "first time dui attorney" |
 | Repeat & Felony DWI | "second dwi lawyer", "felony dwi attorney", "habitual dwi nc" |
-| Underage DWI | "underage dwi lawyer", "provisional license dwi nc" |
+| DMV Hearings | "dmv hearing attorney nc", "license restoration lawyer" -> /dmv-hearings/ |
 
-### Campaign 2 - Criminal Defense (35% of budget)
+### Campaign 2 - Felony Criminal Defense (45% of budget)
+Higher case value, lower volume. The competitor runs this as its own vertical, and the
+"complex cases" framing is where 40+ years beats their 19.
 
 | Ad group | Keyword themes |
 |---|---|
+| Felony Defense | "felony lawyer wilmington nc", "felony attorney near me", "felony defense lawyer" |
 | Criminal Defense | `[criminal defense attorney wilmington nc]`, `[criminal lawyer wilmington nc]` |
-| Drug Charges | "drug possession lawyer wilmington", "drug trafficking attorney nc" |
-| Felony Defense | "felony lawyer wilmington nc", "felony attorney near me" |
+| Drug Charges | "drug possession lawyer wilmington", "drug charge attorney" |
 | Assault & Violent | "assault charge lawyer nc", "assault attorney wilmington" |
 | _Federal Defense_ | _Phase 2 - real credential (E.D.N.C.) but thin volume_ |
-| ~~Sex Crimes~~ | **Do not run as a Search ad group.** Google's sexual-content policy flags the terminology regardless of defense framing, so no compliant ad copy exists for it. Keep the practice area on the website and let it come through organic search and Local Services Ads. |
 
-### Campaign 3 - Traffic & License (15% of budget)
-Cheap clicks, high volume, lower case value. Quarantined so it can't eat the others.
+### Optional third - General Criminal Defense
+Only at $3,500+/mo. Catches misdemeanor and general "criminal lawyer" intent that the two
+specific verticals miss. Run it last and watch that it does not simply cannibalize the other two.
 
-| Ad group | Keyword themes |
-|---|---|
-| Traffic Tickets | "traffic ticket lawyer wilmington", "speeding ticket attorney nc" |
-| DWLR / Revoked | "driving while license revoked lawyer", "dwlr attorney nc" |
-| DMV Hearings | "dmv hearing attorney nc", "license restoration lawyer" -> /dmv-hearings/ |
-| Reckless Driving | "reckless driving lawyer wilmington nc" |
-
-Every ad group points at the most relevant page, never the homepage. If there is no
-dedicated DWI page, building one before launch will do more for cost per case than any
-bid adjustment.
+### Held: Traffic & License
+Not running under the two-vertical structure. Cheap clicks and low case value made it the
+first thing to cut, and cutting it removes the risk of it eating budget from the two
+campaigns that matter. Assets are retained in the repo.
 
 ## Settings that spend money on default
 
@@ -159,4 +161,4 @@ product, so it doesn't change the structure above. Start screening early; verifi
 4. Assets attached - callouts at account level, Service catalog snippet at account level,
    Types at campaign level, sitelinks and a call asset per campaign.
 5. Launch DWI alone for two weeks. Read the Search Terms report before adding the second.
-6. Add Criminal Defense, then Traffic, at two-week gaps.
+6. Add Felony Criminal Defense after two weeks. Add the optional third only if budget allows.

@@ -1,4 +1,4 @@
-<title>Policy-Safe Defense Ad Copy</title>
+<title>Two-Vertical Defense Copy</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
@@ -218,19 +218,49 @@
 
   <header class="mast">
     <div class="eyebrow">Google Ads · Responsive Search Ads</div>
-    <h1>Copy That Clears Review</h1>
-    <p class="standfirst">Three complete responsive search ads for criminal defense, written to stay clear of the policies that flag this vertical. Nothing here names a controlled substance, a weapon, a sex offense, or an outcome. Every field is verified against Google's limits and carries no claim a firm would have to substantiate.</p>
+    <h1>Two Verticals, Forty Years</h1>
+    <p class="standfirst">Restructured to two verticals on client feedback — felony criminal defense and drunk driving defense — using the competitor’s credential-forward pattern with claims this firm can actually substantiate. Their headline says 19 years. Ours says 40+, and adds 200+ reviews they don’t claim at all.</p>
     <div class="mast-meta">
-      <span class="tag">3 RSAs</span>
+      <span class="tag">2 verticals + 1 optional</span>
       <span class="tag">45 headlines</span>
       <span class="tag">12 descriptions</span>
-      <span class="tag">Reusable across firms</span>
+      <span class="tag">Competitor-matched</span>
     </div>
   </header>
 
+  <div class="notice">
+    <h3>What changed</h3>
+    <p>Three verticals down to two. <b>Traffic &amp; License</b> is held rather than deleted &mdash; its keywords, callouts and sitelinks stay in the repo and switch back on whenever you want them. Cheap clicks and low case value made it the obvious cut, and removing it stops it competing for budget with the two campaigns that carry the revenue.</p>
+    <p>The remaining two now carry the experience and review claims in almost every asset, which is what the competitor does and what their copy is winning on.</p>
+  </div>
+
+  <section class="block">
+    <h2>Reading the competitor</h2>
+    <p>Their pattern is consistent across both ads: pair the service with an experience number in the headline, then open the description with a credential, name the local courts, and close with short Title Case fragments. It works. The gap is that their strongest number is 19 years.</p>
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr><th>They say</th><th>We say</th><th>Where that lands</th></tr></thead>
+        <tbody>
+          <tr><td><code>19 Years Criminal Defense</code></td><td><b>40+ Years Criminal Defense</b></td><td>More than double, in the same headline slot. The single biggest advantage in this matchup.</td></tr>
+          <tr><td><code>AV Preeminent rated</code></td><td><b>AV Preeminent rated</b></td><td>Parity. Worth matching so it never reads as a gap.</td></tr>
+          <tr><td><code>NC State Bar certified lawyer</code></td><td><span style="color:var(--oxblood);">not claimed</span></td><td>See below. This one we cannot answer, and should not fake.</td></tr>
+          <tr><td><code>NHTSA sobriety test knowledge</code></td><td><b>2,000+ DWI Cases Handled</b></td><td>Case volume instead of a credential we can't verify. Arguably the stronger proof anyway.</td></tr>
+          <tr><td>&mdash;</td><td><b>200+ Positive Reviews</b></td><td>Uncontested. They make no review claim, so this is free differentiation.</td></tr>
+          <tr><td><code>Focused On Criminal Law</code></td><td><b>Focused On Criminal Law</b></td><td>Matched deliberately. It reads as category language, not as copying.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
   <div class="notice warn">
-    <h3>First — pull these from the asset sets already built</h3>
-    <p>The same filters that are flagging the account will hit the callout and snippet lists. Remove <b>Sex Crime Defense</b> and <b>Drug Trafficking Defense</b> from the callouts, and <b>Sex Crimes</b> from the Types snippet. The firm can still take those cases and describe them on the website — the classifier reads ad assets, and a practice area named in a 25-character asset has no room for the context that makes it obviously a defense service.</p>
+    <h3>Two competitor claims we are not copying</h3>
+    <p><b>&ldquo;NC State Bar certified lawyer.&rdquo;</b> Under NC Rule 7.4 that is a specialist claim, and it requires certification from the NC State Bar Board of Legal Specialization. Their attorney presumably holds it. Nothing in this firm&rsquo;s record shows the same, so it stays out of the copy &mdash; if the firm does hold it, tell me and it goes into both ads immediately, because it is the one place they currently outrank us on credentials.</p>
+    <p><b>&ldquo;NHTSA sobriety test knowledge.&rdquo;</b> A specific field-sobriety credential. Same rule: only if the attorney actually holds it.</p>
+  </div>
+
+  <div class="notice warn">
+    <h3>Confirm the review count before this runs</h3>
+    <p><b>200+ positive reviews</b> appears in five assets across the set, so it needs to be right. The directory record I could reach showed a 4.9 rating on a handful of Martindale reviews, which is a different number from a different place &mdash; presumably the 200+ is the Google Business Profile. Confirm the source and that the count is current, since a review claim in a legal ad has to hold up.</p>
   </div>
 
   <section class="block">
@@ -349,50 +379,100 @@
 
 <script>
   const H_LIM = 30, D_LIM = 90;
-  const RSAS = [
+  const RSAS = {
+  "rsas": [
     {
-      name:"RSA 1 · Criminal Defense",
-      paths:["Criminal","Defense"],
-      headlines:["Criminal Defense Attorney","Criminal Defense Lawyer","Facing Criminal Charges?",
-        "Charged With a Crime?","Felony & Misdemeanor Defense","State & Federal Court",
-        "Free Case Evaluation","Confidential Consultation","Speak With an Attorney",
-        "Local Courtroom Experience","Trial-Tested Representation","Know Your Legal Options",
-        "Protect Your Rights","Court Date Approaching?","Get Answers About Your Case"],
-      descriptions:[
-        "Facing charges? Speak with a defense attorney about your case and the options ahead.",
-        "Representation in state and federal court. Confidential consultation, no obligation.",
-        "Every case is different. Get a clear explanation of the process and what comes next.",
-        "Local attorneys with real courtroom experience. Call today to discuss your situation."]
+      "name": "RSA 1 - Felony Criminal Defense",
+      "paths": [
+        "Felony-Defense",
+        "Wilmington-NC"
+      ],
+      "headlines": [
+        "Felony Criminal Defense",
+        "Felony Defense Attorney",
+        "40+ Years Criminal Defense",
+        "40+ Years Defending Felonies",
+        "AV Preeminent Rated Firm",
+        "200+ Positive Reviews",
+        "Wilmington Felony Lawyer",
+        "Complex Felony Cases",
+        "Defending NC Felony Charges",
+        "Charged With a Felony?",
+        "State & Federal Felonies",
+        "Focused On Criminal Law",
+        "Four Decades in NC Courts",
+        "Free Case Evaluation",
+        "Speak With an Attorney"
+      ],
+      "descriptions": [
+        "AV Preeminent rated felony defense with 40+ years in NC criminal courts.",
+        "Defending felony charges in Wilmington, NC courts since 1982. 200+ positive reviews.",
+        "Complex felony cases, state and federal. Focused On Criminal Law. Trial-Tested Defense.",
+        "Four decades defending serious charges in New Hanover County. Free Case Evaluation."
+      ]
     },
     {
-      name:"RSA 2 · DWI / DUI",
-      paths:["DWI-Defense","Free-Consult"],
-      headlines:["DWI Defense Attorney","DUI Defense Lawyer","Charged With DWI?",
-        "Arrested for DUI?","First-Offense DWI Defense","Repeat DWI Charges",
-        "Free Case Evaluation","Speak With a DWI Attorney","Protect Your License",
-        "DMV Hearing Representation","Local DWI Court Experience","Know Your Legal Options",
-        "Court Date Approaching?","Understand Your Charge","Get Answers About Your DWI"],
-      descriptions:[
-        "Charged with DWI? Speak with an attorney about your case and the road ahead.",
-        "License at risk? We handle DMV hearings alongside the criminal charge.",
-        "Breath and blood tests can be challenged. Learn what applies to your case.",
-        "Local attorneys who appear in these courts regularly. Call for a consultation."]
+      "name": "RSA 2 - Drunk Driving Defense",
+      "paths": [
+        "Drunk-Driving",
+        "DWI-Defense"
+      ],
+      "headlines": [
+        "Drunk Driving Defense",
+        "Drunk Driving Attorney",
+        "40+ Years DWI Defense",
+        "2,000+ DWI Cases Handled",
+        "AV Preeminent Rated Firm",
+        "200+ Positive Reviews",
+        "Wilmington DWI Lawyer",
+        "Charged With Drunk Driving?",
+        "DWI & DUI Defense",
+        "Protect Your License",
+        "DMV Hearing Representation",
+        "Focused On Criminal Law",
+        "Four Decades in NC Courts",
+        "First-Offense DWI Defense",
+        "Free Case Evaluation"
+      ],
+      "descriptions": [
+        "AV Preeminent rated drunk driving defense with 40+ years in NC criminal courts.",
+        "Defending drunk driving charges in Wilmington, NC courts since 1982. 2,000+ DWI cases.",
+        "Breath and blood evidence can be challenged. Focused On Criminal Law. Free Evaluation.",
+        "200+ positive client reviews. Four decades handling complex DWI cases in New Hanover."
+      ]
     },
     {
-      name:"RSA 3 · Traffic & License",
-      paths:["Traffic-Defense","Free-Consult"],
-      headlines:["Traffic Ticket Attorney","Traffic Defense Lawyer","Got a Traffic Ticket?",
-        "Speeding Ticket Defense","Reckless Driving Defense","License Revoked?",
-        "DMV Hearing Representation","License Restoration Help","Points & Insurance Impact",
-        "Free Case Evaluation","Out-of-State Drivers Welcome","Protect Your Driving Record",
-        "Court Date Approaching?","Speak With an Attorney","Know Your Legal Options"],
-      descriptions:[
-        "A ticket can mean points, higher insurance, and a suspended license. Know your options.",
-        "We handle traffic matters and DMV hearings across the local courts. Call to discuss.",
-        "Out-of-state driver? We may be able to appear on your behalf. Ask about your case.",
-        "Speak with an attorney about your citation and what it could mean for your license."]
+      "name": "RSA 3 - General Criminal Defense (optional third)",
+      "paths": [
+        "Criminal-Law",
+        "Wilmington-NC"
+      ],
+      "headlines": [
+        "Criminal Defense Attorney",
+        "Criminal Defense Lawyer",
+        "40+ Years Criminal Defense",
+        "AV Preeminent Rated Firm",
+        "200+ Positive Reviews",
+        "Wilmington Criminal Lawyer",
+        "Facing Criminal Charges?",
+        "Felony & Misdemeanor Defense",
+        "State & Federal Court",
+        "Complex Case Experience",
+        "Focused On Criminal Law",
+        "Four Decades in NC Courts",
+        "Free Case Evaluation",
+        "Speak With an Attorney",
+        "Know Your Legal Options"
+      ],
+      "descriptions": [
+        "AV Preeminent rated criminal defense with 40+ years in Wilmington, NC courts.",
+        "Defending criminal charges in New Hanover County since 1982. 200+ positive reviews.",
+        "Complex cases, state and federal. Focused On Criminal Law. Comprehensive Defense.",
+        "Four decades of courtroom experience in NC. Free Case Evaluation, no obligation."
+      ]
     }
-  ];
+  ]
+}.rsas;
 
   const esc = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
   const meter = (n, lim) => {

@@ -18,10 +18,10 @@ policy, so the slugs are proposals, not observations.
 
 | Sitelink | Destination | Status |
 |---|---|---|
-| **Our Attorneys** | `/james-l-allard-jr-buddy/` | confirmed |
+| **Attorney Profile** | `/james-l-allard-jr-buddy/` | confirmed |
 | **DMV Hearings** | `/dmv-hearings/` | confirmed |
-| **Speak With an Attorney** | `/contact/` | assumed |
-| **Why Choose Our Firm** | `/about/` | assumed |
+| **Start Your Defense** | `/contact/` | assumed |
+| **Why Clients Choose Us** | `/about/` | assumed |
 
 ## The sitelinks
 
@@ -86,7 +86,11 @@ sitelinks cannot share a page. They are better swaps anyway: each names what the
 wants rather than naming a page on the site.
 
 Replaced: `Felony Charges` -> `Felony Defense Attorney`, `Free Case Review` ->
-`Speak With an Attorney`, `About the Firm` -> `Why Choose Our Firm`.
+`Start Your Defense`, `About the Firm` -> `Why Clients Choose Us`, `Our Attorneys` ->
+`Attorney Profile`.
+
+The last three now match the competitor's own sitelink set (`Start Your Defense`,
+`Why Clients Choose Us`, `Attorney Profile`), per the feedback to emulate their approach.
 
 ## Pages the site needs
 

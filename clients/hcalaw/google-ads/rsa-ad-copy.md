@@ -1,9 +1,39 @@
-# Criminal Defense RSA Copy - policy-safe, reusable
+# Criminal Defense RSA Copy - two verticals, competitor-matched
 
-Three complete responsive search ads for criminal defense, written to clear Google policy
-review. Nothing names a controlled substance, a weapon, a sex offense, or an outcome. No
-field asserts a credential, year count, or result, so nothing needs substantiating before
-launch - the one thing to confirm is that consultations really are free.
+Restructured to **two verticals** on client feedback - felony criminal defense and drunk
+driving defense - plus an optional third for general criminal intent. Uses the local
+competitor's credential-forward pattern with claims this firm can substantiate. Their
+headline says 19 years; ours says 40+, and adds 200+ reviews they do not claim at all.
+
+Traffic & License is **held, not deleted** - its assets stay in this repo.
+
+## Reading the competitor
+
+Their pattern across both ads: service + experience number in the headline, then a credential,
+the local courts, and short Title Case fragments to close.
+
+| They say | We say | Where that lands |
+|---|---|---|
+| `19 Years Criminal Defense` | **40+ Years Criminal Defense** | More than double, same headline slot. Biggest advantage in the matchup. |
+| `AV Preeminent rated` | **AV Preeminent rated** | Parity. Match it so it never reads as a gap. |
+| `NC State Bar certified lawyer` | *not claimed* | NC Rule 7.4 specialist claim - see below. |
+| `NHTSA sobriety test knowledge` | **2,000+ DWI Cases Handled** | Case volume instead of a credential we cannot verify. |
+| - | **200+ Positive Reviews** | Uncontested. They make no review claim. |
+| `Focused On Criminal Law` | **Focused On Criminal Law** | Matched deliberately; reads as category language. |
+
+## Two competitor claims we are NOT copying
+
+- **"NC State Bar certified lawyer"** - under NC Rule 7.4 this is a specialist claim requiring
+  certification from the NC State Bar Board of Legal Specialization. Nothing in this firm's
+  record shows it. If the firm does hold it, add it to both ads - it is the one place the
+  competitor currently outranks us on credentials.
+- **"NHTSA sobriety test knowledge"** - a specific field-sobriety credential. Same rule.
+
+## Confirm before launch
+
+**200+ positive reviews** appears in five assets. The directory record showed 4.9 on a handful
+of Martindale reviews, a different number from a different place - presumably the 200+ is the
+Google Business Profile. Confirm the source and that it is current.
 
 **Limits:** headline 30 chars (max 15, min 3) | description 90 chars (max 4, min 2) | path 15 chars
 
@@ -47,9 +77,75 @@ of the things Google restricts.
 
 ## The ads
 
-### RSA 1 - Criminal Defense (general)
+### RSA 1 - Felony Criminal Defense
 
-**Paths:** `/Criminal` `/Defense`
+**Paths:** `/Felony-Defense` `/Wilmington-NC`
+
+**Headlines** (15 of 15)
+
+| # | Headline | Chars |
+|---|----------|-------|
+| 1 | Felony Criminal Defense | 23/30 |
+| 2 | Felony Defense Attorney | 23/30 |
+| 3 | 40+ Years Criminal Defense | 26/30 |
+| 4 | 40+ Years Defending Felonies | 28/30 |
+| 5 | AV Preeminent Rated Firm | 24/30 |
+| 6 | 200+ Positive Reviews | 21/30 |
+| 7 | Wilmington Felony Lawyer | 24/30 |
+| 8 | Complex Felony Cases | 20/30 |
+| 9 | Defending NC Felony Charges | 27/30 |
+| 10 | Charged With a Felony? | 22/30 |
+| 11 | State & Federal Felonies | 24/30 |
+| 12 | Focused On Criminal Law | 23/30 |
+| 13 | Four Decades in NC Courts | 25/30 |
+| 14 | Free Case Evaluation | 20/30 |
+| 15 | Speak With an Attorney | 22/30 |
+
+**Descriptions** (4 of 4)
+
+| # | Description | Chars |
+|---|-------------|-------|
+| 1 | AV Preeminent rated felony defense with 40+ years in NC criminal courts. | 72/90 |
+| 2 | Defending felony charges in Wilmington, NC courts since 1982. 200+ positive reviews. | 84/90 |
+| 3 | Complex felony cases, state and federal. Focused On Criminal Law. Trial-Tested Defense. | 87/90 |
+| 4 | Four decades defending serious charges in New Hanover County. Free Case Evaluation. | 83/90 |
+
+### RSA 2 - Drunk Driving Defense
+
+**Paths:** `/Drunk-Driving` `/DWI-Defense`
+
+**Headlines** (15 of 15)
+
+| # | Headline | Chars |
+|---|----------|-------|
+| 1 | Drunk Driving Defense | 21/30 |
+| 2 | Drunk Driving Attorney | 22/30 |
+| 3 | 40+ Years DWI Defense | 21/30 |
+| 4 | 2,000+ DWI Cases Handled | 24/30 |
+| 5 | AV Preeminent Rated Firm | 24/30 |
+| 6 | 200+ Positive Reviews | 21/30 |
+| 7 | Wilmington DWI Lawyer | 21/30 |
+| 8 | Charged With Drunk Driving? | 27/30 |
+| 9 | DWI & DUI Defense | 17/30 |
+| 10 | Protect Your License | 20/30 |
+| 11 | DMV Hearing Representation | 26/30 |
+| 12 | Focused On Criminal Law | 23/30 |
+| 13 | Four Decades in NC Courts | 25/30 |
+| 14 | First-Offense DWI Defense | 25/30 |
+| 15 | Free Case Evaluation | 20/30 |
+
+**Descriptions** (4 of 4)
+
+| # | Description | Chars |
+|---|-------------|-------|
+| 1 | AV Preeminent rated drunk driving defense with 40+ years in NC criminal courts. | 79/90 |
+| 2 | Defending drunk driving charges in Wilmington, NC courts since 1982. 2,000+ DWI cases. | 86/90 |
+| 3 | Breath and blood evidence can be challenged. Focused On Criminal Law. Free Evaluation. | 86/90 |
+| 4 | 200+ positive client reviews. Four decades handling complex DWI cases in New Hanover. | 85/90 |
+
+### RSA 3 - General Criminal Defense (optional third)
+
+**Paths:** `/Criminal-Law` `/Wilmington-NC`
 
 **Headlines** (15 of 15)
 
@@ -57,83 +153,17 @@ of the things Google restricts.
 |---|----------|-------|
 | 1 | Criminal Defense Attorney | 25/30 |
 | 2 | Criminal Defense Lawyer | 23/30 |
-| 3 | Facing Criminal Charges? | 24/30 |
-| 4 | Charged With a Crime? | 21/30 |
-| 5 | Felony & Misdemeanor Defense | 28/30 |
-| 6 | State & Federal Court | 21/30 |
-| 7 | Free Case Evaluation | 20/30 |
-| 8 | Confidential Consultation | 25/30 |
-| 9 | Speak With an Attorney | 22/30 |
-| 10 | Local Courtroom Experience | 26/30 |
-| 11 | Trial-Tested Representation | 27/30 |
-| 12 | Know Your Legal Options | 23/30 |
-| 13 | Protect Your Rights | 19/30 |
-| 14 | Court Date Approaching? | 23/30 |
-| 15 | Get Answers About Your Case | 27/30 |
-
-**Descriptions** (4 of 4)
-
-| # | Description | Chars |
-|---|-------------|-------|
-| 1 | Facing charges? Speak with a defense attorney about your case and the options ahead. | 84/90 |
-| 2 | Representation in state and federal court. Confidential consultation, no obligation. | 84/90 |
-| 3 | Every case is different. Get a clear explanation of the process and what comes next. | 84/90 |
-| 4 | Local attorneys with real courtroom experience. Call today to discuss your situation. | 85/90 |
-
-### RSA 2 - DWI / DUI
-
-**Paths:** `/DWI-Defense` `/Free-Consult`
-
-**Headlines** (15 of 15)
-
-| # | Headline | Chars |
-|---|----------|-------|
-| 1 | DWI Defense Attorney | 20/30 |
-| 2 | DUI Defense Lawyer | 18/30 |
-| 3 | Charged With DWI? | 17/30 |
-| 4 | Arrested for DUI? | 17/30 |
-| 5 | First-Offense DWI Defense | 25/30 |
-| 6 | Repeat DWI Charges | 18/30 |
-| 7 | Free Case Evaluation | 20/30 |
-| 8 | Speak With a DWI Attorney | 25/30 |
-| 9 | Protect Your License | 20/30 |
-| 10 | DMV Hearing Representation | 26/30 |
-| 11 | Local DWI Court Experience | 26/30 |
-| 12 | Know Your Legal Options | 23/30 |
-| 13 | Court Date Approaching? | 23/30 |
-| 14 | Understand Your Charge | 22/30 |
-| 15 | Get Answers About Your DWI | 26/30 |
-
-**Descriptions** (4 of 4)
-
-| # | Description | Chars |
-|---|-------------|-------|
-| 1 | Charged with DWI? Speak with an attorney about your case and the road ahead. | 76/90 |
-| 2 | License at risk? We handle DMV hearings alongside the criminal charge. | 70/90 |
-| 3 | Breath and blood tests can be challenged. Learn what applies to your case. | 74/90 |
-| 4 | Local attorneys who appear in these courts regularly. Call for a consultation. | 78/90 |
-
-### RSA 3 - Traffic & License
-
-**Paths:** `/Traffic-Defense` `/Free-Consult`
-
-**Headlines** (15 of 15)
-
-| # | Headline | Chars |
-|---|----------|-------|
-| 1 | Traffic Ticket Attorney | 23/30 |
-| 2 | Traffic Defense Lawyer | 22/30 |
-| 3 | Got a Traffic Ticket? | 21/30 |
-| 4 | Speeding Ticket Defense | 23/30 |
-| 5 | Reckless Driving Defense | 24/30 |
-| 6 | License Revoked? | 16/30 |
-| 7 | DMV Hearing Representation | 26/30 |
-| 8 | License Restoration Help | 24/30 |
-| 9 | Points & Insurance Impact | 25/30 |
-| 10 | Free Case Evaluation | 20/30 |
-| 11 | Out-of-State Drivers Welcome | 28/30 |
-| 12 | Protect Your Driving Record | 27/30 |
-| 13 | Court Date Approaching? | 23/30 |
+| 3 | 40+ Years Criminal Defense | 26/30 |
+| 4 | AV Preeminent Rated Firm | 24/30 |
+| 5 | 200+ Positive Reviews | 21/30 |
+| 6 | Wilmington Criminal Lawyer | 26/30 |
+| 7 | Facing Criminal Charges? | 24/30 |
+| 8 | Felony & Misdemeanor Defense | 28/30 |
+| 9 | State & Federal Court | 21/30 |
+| 10 | Complex Case Experience | 23/30 |
+| 11 | Focused On Criminal Law | 23/30 |
+| 12 | Four Decades in NC Courts | 25/30 |
+| 13 | Free Case Evaluation | 20/30 |
 | 14 | Speak With an Attorney | 22/30 |
 | 15 | Know Your Legal Options | 23/30 |
 
@@ -141,11 +171,10 @@ of the things Google restricts.
 
 | # | Description | Chars |
 |---|-------------|-------|
-| 1 | A ticket can mean points, higher insurance, and a suspended license. Know your options. | 87/90 |
-| 2 | We handle traffic matters and DMV hearings across the local courts. Call to discuss. | 84/90 |
-| 3 | Out-of-state driver? We may be able to appear on your behalf. Ask about your case. | 82/90 |
-| 4 | Speak with an attorney about your citation and what it could mean for your license. | 83/90 |
-
+| 1 | AV Preeminent rated criminal defense with 40+ years in Wilmington, NC courts. | 77/90 |
+| 2 | Defending criminal charges in New Hanover County since 1982. 200+ positive reviews. | 83/90 |
+| 3 | Complex cases, state and federal. Focused On Criminal Law. Comprehensive Defense. | 81/90 |
+| 4 | Four decades of courtroom experience in NC. Free Case Evaluation, no obligation. | 80/90 |
 ## Pinning
 
 Pin almost nothing - every pin removes combinations Google could test, and a fully pinned RSA

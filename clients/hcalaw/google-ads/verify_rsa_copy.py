@@ -1,78 +1,117 @@
 # -*- coding: utf-8 -*-
+"""Criminal defense RSA copy - restructured to two verticals per client feedback.
+
+Emulates the competitor's credential-forward pattern (service + experience number in
+headlines; credential, geography, then short Title Case fragments in descriptions) while
+substituting claims this firm can actually substantiate.
+
+Limits: headline 30, description 90, path 15. Max 15 headlines, 4 descriptions.
+"""
 H_LIM, D_LIM, P_LIM = 30, 90, 15
+
+# Claims the competitor makes that we must NOT copy without proof of our own.
+DO_NOT_COPY = {
+ "NC State Bar certified": "NC Rule 7.4 - specialist claim, requires NC State Bar Board of "
+                           "Legal Specialization certification. No evidence HCA holds it.",
+ "NHTSA certification":    "A specific SFST credential. Do not claim unless the attorney holds it.",
+}
 
 RSAS = [
 {
- "name":"RSA 1 - Criminal Defense (general)",
- "paths":["Criminal","Defense"],
+ "name":"RSA 1 - Felony Criminal Defense",
+ "paths":["Felony-Defense","Wilmington-NC"],
  "headlines":[
-  "Criminal Defense Attorney","Criminal Defense Lawyer","Facing Criminal Charges?",
-  "Charged With a Crime?","Felony & Misdemeanor Defense","State & Federal Court",
-  "Free Case Evaluation","Confidential Consultation","Speak With an Attorney",
-  "Local Courtroom Experience","Trial-Tested Representation","Know Your Legal Options",
-  "Protect Your Rights","Court Date Approaching?","Get Answers About Your Case"],
+  "Felony Criminal Defense","Felony Defense Attorney","40+ Years Criminal Defense",
+  "40+ Years Defending Felonies","AV Preeminent Rated Firm","200+ Positive Reviews",
+  "Wilmington Felony Lawyer","Complex Felony Cases","Defending NC Felony Charges",
+  "Charged With a Felony?","State & Federal Felonies","Focused On Criminal Law",
+  "Four Decades in NC Courts","Free Case Evaluation","Speak With an Attorney"],
  "descriptions":[
-  "Facing charges? Speak with a defense attorney about your case and the options ahead.",
-  "Representation in state and federal court. Confidential consultation, no obligation.",
-  "Every case is different. Get a clear explanation of the process and what comes next.",
-  "Local attorneys with real courtroom experience. Call today to discuss your situation."],
+  "AV Preeminent rated felony defense with 40+ years in NC criminal courts.",
+  "Defending felony charges in Wilmington, NC courts since 1982. 200+ positive reviews.",
+  "Complex felony cases, state and federal. Focused On Criminal Law. Trial-Tested Defense.",
+  "Four decades defending serious charges in New Hanover County. Free Case Evaluation."],
 },
 {
- "name":"RSA 2 - DWI / DUI",
- "paths":["DWI-Defense","Free-Consult"],
+ "name":"RSA 2 - Drunk Driving Defense",
+ "paths":["Drunk-Driving","DWI-Defense"],
  "headlines":[
-  "DWI Defense Attorney","DUI Defense Lawyer","Charged With DWI?",
-  "Arrested for DUI?","First-Offense DWI Defense","Repeat DWI Charges",
-  "Free Case Evaluation","Speak With a DWI Attorney","Protect Your License",
-  "DMV Hearing Representation","Local DWI Court Experience","Know Your Legal Options",
-  "Court Date Approaching?","Understand Your Charge","Get Answers About Your DWI"],
+  "Drunk Driving Defense","Drunk Driving Attorney","40+ Years DWI Defense",
+  "2,000+ DWI Cases Handled","AV Preeminent Rated Firm","200+ Positive Reviews",
+  "Wilmington DWI Lawyer","Charged With Drunk Driving?","DWI & DUI Defense",
+  "Protect Your License","DMV Hearing Representation","Focused On Criminal Law",
+  "Four Decades in NC Courts","First-Offense DWI Defense","Free Case Evaluation"],
  "descriptions":[
-  "Charged with DWI? Speak with an attorney about your case and the road ahead.",
-  "License at risk? We handle DMV hearings alongside the criminal charge.",
-  "Breath and blood tests can be challenged. Learn what applies to your case.",
-  "Local attorneys who appear in these courts regularly. Call for a consultation."],
+  "AV Preeminent rated drunk driving defense with 40+ years in NC criminal courts.",
+  "Defending drunk driving charges in Wilmington, NC courts since 1982. 2,000+ DWI cases.",
+  "Breath and blood evidence can be challenged. Focused On Criminal Law. Free Evaluation.",
+  "200+ positive client reviews. Four decades handling complex DWI cases in New Hanover."],
 },
 {
- "name":"RSA 3 - Traffic & License",
- "paths":["Traffic-Defense","Free-Consult"],
+ "name":"RSA 3 - General Criminal Defense (optional third)",
+ "paths":["Criminal-Law","Wilmington-NC"],
  "headlines":[
-  "Traffic Ticket Attorney","Traffic Defense Lawyer","Got a Traffic Ticket?",
-  "Speeding Ticket Defense","Reckless Driving Defense","License Revoked?",
-  "DMV Hearing Representation","License Restoration Help","Points & Insurance Impact",
-  "Free Case Evaluation","Out-of-State Drivers Welcome","Protect Your Driving Record",
-  "Court Date Approaching?","Speak With an Attorney","Know Your Legal Options"],
+  "Criminal Defense Attorney","Criminal Defense Lawyer","40+ Years Criminal Defense",
+  "AV Preeminent Rated Firm","200+ Positive Reviews","Wilmington Criminal Lawyer",
+  "Facing Criminal Charges?","Felony & Misdemeanor Defense","State & Federal Court",
+  "Complex Case Experience","Focused On Criminal Law","Four Decades in NC Courts",
+  "Free Case Evaluation","Speak With an Attorney","Know Your Legal Options"],
  "descriptions":[
-  "A ticket can mean points, higher insurance, and a suspended license. Know your options.",
-  "We handle traffic matters and DMV hearings across the local courts. Call to discuss.",
-  "Out-of-state driver? We may be able to appear on your behalf. Ask about your case.",
-  "Speak with an attorney about your citation and what it could mean for your license."],
+  "AV Preeminent rated criminal defense with 40+ years in Wilmington, NC courts.",
+  "Defending criminal charges in New Hanover County since 1982. 200+ positive reviews.",
+  "Complex cases, state and federal. Focused On Criminal Law. Comprehensive Defense.",
+  "Four decades of courtroom experience in NC. Free Case Evaluation, no obligation."],
 },
 ]
+
+# Terms that flagged this account earlier - ad copy must stay clear of them.
+FLAGGED = ["sex","sexual","rape","gun","firearm","weapon","cocaine","meth","heroin",
+           "marijuana","cannabis","trafficking","bail","bondsman","guaranteed",
+           "best","dropped","beat","avoid jail"]
 
 def check():
     ok = True
     for r in RSAS:
-        print("\n" + "="*62); print(r["name"]); print("="*62)
+        print("\n" + "="*64); print(r["name"]); print("="*64)
         hs, ds, ps = r["headlines"], r["descriptions"], r["paths"]
         if not 3 <= len(hs) <= 15: print(f"  !! {len(hs)} headlines (need 3-15)"); ok=False
         if not 2 <= len(ds) <= 4:  print(f"  !! {len(ds)} descriptions (need 2-4)"); ok=False
         if len(set(h.lower() for h in hs)) != len(hs): print("  !! duplicate headline"); ok=False
+        if len(set(d.lower() for d in ds)) != len(ds): print("  !! duplicate description"); ok=False
+
         print(f"\n  HEADLINES ({len(hs)}/15, limit {H_LIM})")
         for i,h in enumerate(hs,1):
-            n=len(h); bad = n>H_LIM
-            if bad: ok=False
-            print(f"   {i:>2}. {n:>2}/{H_LIM}  {h}" + ("   <-- OVER" if bad else ""))
+            n=len(h); bad=[]
+            if n>H_LIM: bad.append("OVER"); ok=False
+            for f in FLAGGED:
+                if f in h.lower().split() or (" " in f and f in h.lower()):
+                    bad.append(f"FLAGGED {f!r}"); ok=False
+            print(f"   {i:>2}. {n:>2}/{H_LIM}  {h}" + ("   <-- "+"; ".join(bad) if bad else ""))
+
         print(f"\n  DESCRIPTIONS ({len(ds)}/4, limit {D_LIM})")
         for i,d in enumerate(ds,1):
-            n=len(d); bad = n>D_LIM
-            if bad: ok=False
-            print(f"   {i:>2}. {n:>2}/{D_LIM}  {d}" + ("   <-- OVER" if bad else ""))
-        print(f"\n  PATHS (limit {P_LIM} each)")
+            n=len(d); bad=[]
+            if n>D_LIM: bad.append("OVER"); ok=False
+            for f in FLAGGED:
+                if f in d.lower().split() or (" " in f and f in d.lower()):
+                    bad.append(f"FLAGGED {f!r}"); ok=False
+            print(f"   {i:>2}. {n:>2}/{D_LIM}  {d}" + ("   <-- "+"; ".join(bad) if bad else ""))
+
+        print(f"\n  PATHS (limit {P_LIM})")
         for p in ps:
-            n=len(p); bad = n>P_LIM
-            if bad: ok=False
-            print(f"       {n:>2}/{P_LIM}  /{p}" + ("   <-- OVER" if bad else ""))
-    print("\n" + ("ALL WITHIN LIMITS" if ok else "ISSUES FOUND"))
+            n=len(p)
+            if n>P_LIM: ok=False
+            print(f"       {n:>2}/{P_LIM}  /{p}" + ("   <-- OVER" if n>P_LIM else ""))
+
+    print("\n  COMPETITOR CLAIMS WE DO NOT COPY")
+    for claim, why in DO_NOT_COPY.items():
+        print(f"   x  {claim}\n        {why}")
+        blob = " ".join(h.lower() for r in RSAS for h in r["headlines"] + r["descriptions"])
+        for frag in ["state bar certified", "nhtsa"]:
+            if frag in blob:
+                print(f"        !! {frag!r} APPEARS IN OUR COPY"); ok = False
+
+    print("\nALL WITHIN LIMITS" if ok else "\nISSUES FOUND")
     return ok
 
 if __name__ == "__main__":

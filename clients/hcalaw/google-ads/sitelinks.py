@@ -12,10 +12,10 @@ T_LIM, D_LIM = 25, 35
 
 SETS = [
 ("Account level", "Inherited by every campaign", [
- ("Why Choose Our Firm","Defending clients in these","courts since 1982.","/about/","assumed"),
- ("Our Attorneys","Meet the attorney who will","handle your case personally.","/james-l-allard-jr-buddy/","confirmed"),
+ ("Why Clients Choose Us","40+ years and 200+ positive","reviews in NC courts.","/about/","assumed"),
+ ("Attorney Profile","Review training and awards.","Four decades in NC courts.","/james-l-allard-jr-buddy/","confirmed"),
  ("Practice Areas","See the charges we defend in","state and federal court.","/practice-areas/","assumed"),
- ("Speak With an Attorney","Talk through your charge and","the options in front of you.","/contact/","assumed"),
+ ("Start Your Defense","Contact the firm today to","discuss your options.","/contact/","assumed"),
  ("Client Reviews","Read what past clients say","about working with the firm.","/reviews/","assumed"),
  ("Office & Directions","Downtown location near the","courthouse. Parking on site.","/location/","assumed"),
 ]),
@@ -45,7 +45,7 @@ FLAGGED = ["sex","sexual","rape","gun","firearm","weapon","cocaine","meth","hero
            "best","dropped","win","beat","avoid jail"]
 
 # Buildable today from pages verified to exist. Sitelinks need 2 to serve, 4 to serve well.
-MINIMUM_SET = ["Our Attorneys", "DMV Hearings", "Speak With an Attorney", "Why Choose Our Firm"]
+MINIMUM_SET = ["Attorney Profile", "DMV Hearings", "Start Your Defense", "Why Clients Choose Us"]
 
 def check():
     ok = True
