@@ -1,4 +1,4 @@
-<title>Defense Keyword Plan</title>
+<title>Two-Vertical Keyword Plan</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
@@ -206,12 +206,12 @@
 
   <header class="mast">
     <div class="eyebrow">Google Ads &middot; Keyword Plan</div>
-    <h1>What to Bid On, What to Block</h1>
-    <p class="standfirst">98 keywords across three campaigns, and the 96 negatives that keep them out of trouble. For an account already flagged, the negative list is the more important half of this document &mdash; a clean keyword can still match a search that is not clean, and it is the search, not the keyword, that pulls your ad into a sensitive result.</p>
+    <h1>Keywords Matched to the Ads</h1>
+    <p class="standfirst">84 keywords restructured to the two verticals, each ad group named with the RSA that serves it. A keyword whose ad group runs the wrong ad is a Quality Score problem no bid adjustment fixes. The 96 negatives matter as much as the keywords &mdash; on a flagged account they go in first.</p>
     <div class="mast-meta">
-      <span class="tag">98 keywords</span>
+      <span class="tag">84 active + 14 held</span>
       <span class="tag">96 negatives</span>
-      <span class="tag">16 ad groups</span>
+      <span class="tag">13 ad groups</span>
       <span class="tag">Exact + phrase only</span>
     </div>
   </header>
@@ -235,7 +235,7 @@
 
   <section class="block">
     <h2>Keywords</h2>
-    <p>Substitute <span class="kw"><span class="tok">{city}</span></span> before upload. Keep the <em>near me</em> variants &mdash; they resolve by device location and carry strong local intent.</p>
+    <p>Substitute <span class="kw"><span class="tok">{city}</span></span> before upload. Keep the <em>near me</em> variants &mdash; they resolve by device location and carry strong local intent. Traffic &amp; License appears last, dimmed: held rather than deleted, so it can be switched back on without rebuilding the list.</p>
     <div class="legend">
       <span class="s"><span class="kw exact">[exact]</span> head terms</span>
       <span class="s"><span class="kw">"phrase"</span> long tail</span>
@@ -288,8 +288,22 @@
 const DATA = {
   "campaigns": [
     {
-      "name": "DWI / DUI",
+      "name": "Drunk Driving Defense",
+      "rsa": "RSA 2 - Drunk Driving Defense",
       "groups": [
+        {
+          "name": "Drunk Driving",
+          "keywords": [
+            "[drunk driving lawyer]",
+            "[drunk driving attorney]",
+            "\"drunk driving defense attorney\"",
+            "\"drunk driving defense lawyer\"",
+            "\"drunk driving lawyer near me\"",
+            "\"drunk driving charge attorney\"",
+            "\"arrested for drunk driving lawyer\"",
+            "\"drunk driving lawyer {city}\""
+          ]
+        },
         {
           "name": "DWI Attorney",
           "keywords": [
@@ -301,7 +315,6 @@ const DATA = {
             "[dwi attorney {city}]",
             "\"dwi defense lawyer\"",
             "\"dwi defense attorney\"",
-            "\"dwi defense law firm\"",
             "\"hire a dwi lawyer\""
           ]
         },
@@ -314,9 +327,7 @@ const DATA = {
             "[dui attorney near me]",
             "[dui lawyer {city}]",
             "\"dui defense attorney\"",
-            "\"dui defense lawyer\"",
-            "\"drunk driving lawyer\"",
-            "\"drunk driving attorney\""
+            "\"dui defense lawyer\""
           ]
         },
         {
@@ -342,32 +353,49 @@ const DATA = {
           ]
         },
         {
-          "name": "Underage DWI",
+          "name": "DMV Hearings & License",
           "keywords": [
-            "\"underage dwi lawyer\"",
-            "\"underage dui attorney\"",
-            "\"underage drinking driving lawyer\"",
-            "\"provisional license dwi lawyer\""
+            "\"dmv hearing lawyer\"",
+            "\"dmv hearing attorney\"",
+            "\"license restoration lawyer\"",
+            "\"license restoration attorney\"",
+            "\"revoked license attorney\"",
+            "\"get my license back lawyer\"",
+            "\"driving while license revoked lawyer\"",
+            "\"dwlr attorney\""
           ]
         }
       ]
     },
     {
-      "name": "Criminal Defense",
+      "name": "Felony Criminal Defense",
+      "rsa": "RSA 1 - Felony Criminal Defense",
       "groups": [
+        {
+          "name": "Felony Defense",
+          "keywords": [
+            "[felony lawyer]",
+            "[felony attorney]",
+            "[felony lawyer near me]",
+            "[felony attorney {city}]",
+            "\"felony defense lawyer\"",
+            "\"felony defense attorney\"",
+            "\"felony charge attorney\"",
+            "\"felony criminal defense attorney\"",
+            "\"felony criminal lawyer\"",
+            "\"habitual felon lawyer\""
+          ]
+        },
         {
           "name": "Criminal Defense",
           "keywords": [
             "[criminal defense attorney]",
             "[criminal defense lawyer]",
             "[criminal lawyer near me]",
-            "[criminal attorney near me]",
             "[criminal defense attorney {city}]",
             "[criminal lawyer {city}]",
             "\"criminal defense law firm\"",
-            "\"criminal defense representation\"",
-            "\"hire a criminal defense lawyer\"",
-            "\"defense attorney for criminal charges\""
+            "\"hire a criminal defense lawyer\""
           ]
         },
         {
@@ -378,38 +406,17 @@ const DATA = {
             "\"drug possession lawyer\"",
             "\"drug possession attorney\"",
             "\"possession charge lawyer\"",
-            "\"drug charges defense attorney\"",
             "\"drug crime lawyer\""
           ]
         },
         {
-          "name": "Felony Defense",
-          "keywords": [
-            "\"felony lawyer\"",
-            "\"felony attorney\"",
-            "\"felony attorney near me\"",
-            "\"felony defense lawyer\"",
-            "\"felony charge attorney\"",
-            "\"felony defense attorney {city}\""
-          ]
-        },
-        {
-          "name": "Misdemeanor Defense",
-          "keywords": [
-            "\"misdemeanor lawyer\"",
-            "\"misdemeanor attorney\"",
-            "\"misdemeanor defense lawyer\"",
-            "\"misdemeanor charge attorney\""
-          ]
-        },
-        {
-          "name": "Assault Charges",
+          "name": "Assault & Violent",
           "keywords": [
             "\"assault charge lawyer\"",
             "\"assault charge attorney\"",
             "\"assault defense lawyer\"",
-            "\"simple assault lawyer\"",
-            "\"assault attorney near me\""
+            "\"assault attorney near me\"",
+            "\"violent crime attorney\""
           ]
         },
         {
@@ -424,6 +431,32 @@ const DATA = {
       ]
     },
     {
+      "name": "General Criminal Defense (optional third)",
+      "rsa": "RSA 3 - General Criminal Defense",
+      "groups": [
+        {
+          "name": "General Criminal",
+          "keywords": [
+            "[criminal attorney near me]",
+            "\"criminal law firm {city}\"",
+            "\"defense attorney for criminal charges\"",
+            "\"criminal defense representation\""
+          ]
+        },
+        {
+          "name": "Misdemeanor Defense",
+          "keywords": [
+            "\"misdemeanor lawyer\"",
+            "\"misdemeanor attorney\"",
+            "\"misdemeanor defense lawyer\"",
+            "\"misdemeanor charge attorney\""
+          ]
+        }
+      ]
+    }
+  ],
+  "held": [
+    {
       "name": "Traffic & License",
       "groups": [
         {
@@ -433,7 +466,6 @@ const DATA = {
             "[traffic ticket attorney]",
             "[traffic lawyer near me]",
             "[traffic attorney {city}]",
-            "\"traffic ticket lawyer {city}\"",
             "\"fight a traffic ticket lawyer\"",
             "\"traffic violation attorney\""
           ]
@@ -445,28 +477,6 @@ const DATA = {
             "\"speeding ticket attorney\"",
             "\"speeding ticket lawyer near me\"",
             "\"speeding citation attorney\""
-          ]
-        },
-        {
-          "name": "DWLR & Suspended License",
-          "keywords": [
-            "\"driving while license revoked lawyer\"",
-            "\"dwlr attorney\"",
-            "\"dwlr lawyer\"",
-            "\"suspended license lawyer\"",
-            "\"revoked license attorney\"",
-            "\"driving on suspended license lawyer\""
-          ]
-        },
-        {
-          "name": "DMV Hearings",
-          "keywords": [
-            "\"dmv hearing lawyer\"",
-            "\"dmv hearing attorney\"",
-            "\"license restoration lawyer\"",
-            "\"license restoration attorney\"",
-            "\"get my license back lawyer\"",
-            "\"dmv hearing representation\""
           ]
         },
         {
@@ -604,7 +614,10 @@ DATA.campaigns.forEach(c => {
 
   const head = document.createElement("div");
   head.className = "camp-head";
-  head.innerHTML = '<h3>' + esc(c.name) + '</h3>';
+  head.innerHTML = '<div style="display:flex;flex-direction:column;gap:3px;min-width:0;">' +
+    '<h3>' + esc(c.name) + '</h3>' +
+    '<span style="font-family:\'JetBrains Mono\',ui-monospace,monospace;font-size:11px;color:var(--accent);">' +
+    'served by ' + esc(c.rsa) + '</span></div>';
   const btn = document.createElement("button");
   btn.className = "copy"; btn.type = "button"; btn.textContent = "Copy " + n;
   btn.addEventListener("click", () =>
@@ -624,6 +637,36 @@ DATA.campaigns.forEach(c => {
       s.className = "kw" + (k.startsWith("[") ? " exact" : "");
       s.innerHTML = fmtKw(k);
       wrap.appendChild(s);
+    });
+    d.appendChild(wrap);
+    card.appendChild(d);
+  });
+  camps.appendChild(card);
+});
+
+(DATA.held || []).forEach(c => {
+  const card = document.createElement("div");
+  card.className = "camp";
+  card.style.opacity = ".72";
+  const n = c.groups.reduce((a,g) => a + g.keywords.length, 0);
+  const head = document.createElement("div");
+  head.className = "camp-head";
+  head.innerHTML = '<div style="display:flex;flex-direction:column;gap:3px;min-width:0;">' +
+    '<h3>' + esc(c.name) + '</h3>' +
+    '<span style="font-family:\'JetBrains Mono\',ui-monospace,monospace;font-size:11px;color:var(--amber);">' +
+    'held \u2014 no RSA serves these (' + n + ' keywords)</span></div>';
+  card.appendChild(head);
+  c.groups.forEach(g => {
+    const d = document.createElement("div");
+    d.className = "ag";
+    d.innerHTML = '<div class="ag-name"><span>' + esc(g.name) + '</span><span>' + g.keywords.length + '</span></div>';
+    const wrap = document.createElement("div");
+    wrap.className = "kws";
+    g.keywords.forEach(k => {
+      const sp = document.createElement("span");
+      sp.className = "kw" + (k.startsWith("[") ? " exact" : "");
+      sp.innerHTML = fmtKw(k);
+      wrap.appendChild(sp);
     });
     d.appendChild(wrap);
     card.appendChild(d);

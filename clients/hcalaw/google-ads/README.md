@@ -14,8 +14,8 @@ DMV hearings, federal defense. Founded 1982.
 | `campaign-structure.md` | Campaign/ad group structure, settings, bidding, negatives, launch order |
 | `callout-extensions.md` | 41 callout assets grouped by ad group |
 | `structured-snippets.md` | 2 headers, 17 values |
-| `rsa-ad-copy.md` | 3 policy-safe responsive search ads + flagged-phrase substitutions |
-| `keyword-plan.md` | 98 keywords, 96 negatives, match-type and policy guidance |
+| `rsa-ad-copy.md` | 2 verticals + optional third, competitor-matched, policy-safe |
+| `keyword-plan.md` | 84 active keywords (+14 held), 96 negatives, mapped to the RSAs |
 | `sitelink-assets.md` | 18 sitelinks in 4 sets + the pages the site still needs |
 | `*.csv` | Flat lists for bulk loading |
 | `*.html` | Published reference pages |
@@ -34,6 +34,19 @@ python3 verify_rsa_copy.py          # exits non-zero on any violation
 python3 keywords.py                 # negative/keyword conflict check
 python3 sitelinks.py                # limits + duplicate-destination check
 ```
+
+## Structure
+
+Two verticals, per client feedback:
+
+| Campaign | RSA | Keywords |
+|---|---|---|
+| Drunk Driving Defense (55%) | RSA 2 | 44 |
+| Felony Criminal Defense (45%) | RSA 1 | 32 |
+| General Criminal Defense (optional, $3.5k+/mo) | RSA 3 | 8 |
+| ~~Traffic & License~~ | held | 14 retained |
+
+Every ad group names the RSA that serves it, so keyword intent and ad copy stay in step.
 
 ## Google policy
 

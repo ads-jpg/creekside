@@ -1,20 +1,28 @@
 # -*- coding: utf-8 -*-
-"""Keyword plan for a criminal defense account, built to avoid Google policy exposure.
+"""Keyword plan for the two-vertical criminal defense account.
+
+Restructured to match the RSAs in rsa-ad-copy.md. Each ad group names the RSA that serves
+it, so keyword intent and ad copy stay in step - a keyword whose ad group runs the wrong
+RSA is a Quality Score problem no bid adjustment fixes.
 
 {city} is a placeholder - substitute the market before upload.
 Match types: [exact] and "phrase" only. No broad match without conversion data.
 """
 
 CAMPAIGNS = [
-("DWI / DUI", [
+("Drunk Driving Defense", "RSA 2 - Drunk Driving Defense", [
+  ("Drunk Driving", [
+    "[drunk driving lawyer]","[drunk driving attorney]","\"drunk driving defense attorney\"",
+    "\"drunk driving defense lawyer\"","\"drunk driving lawyer near me\"",
+    "\"drunk driving charge attorney\"","\"arrested for drunk driving lawyer\"",
+    "\"drunk driving lawyer {city}\""]),
   ("DWI Attorney", [
     "[dwi lawyer]","[dwi attorney]","[dwi lawyer near me]","[dwi attorney near me]",
     "[dwi lawyer {city}]","[dwi attorney {city}]","\"dwi defense lawyer\"",
-    "\"dwi defense attorney\"","\"dwi defense law firm\"","\"hire a dwi lawyer\""]),
+    "\"dwi defense attorney\"","\"hire a dwi lawyer\""]),
   ("DUI Attorney", [
     "[dui lawyer]","[dui attorney]","[dui lawyer near me]","[dui attorney near me]",
-    "[dui lawyer {city}]","\"dui defense attorney\"","\"dui defense lawyer\"",
-    "\"drunk driving lawyer\"","\"drunk driving attorney\""]),
+    "[dui lawyer {city}]","\"dui defense attorney\"","\"dui defense lawyer\""]),
   ("First Offense", [
     "\"first offense dwi lawyer\"","\"first offense dui lawyer\"","\"first dwi attorney\"",
     "\"first time dwi lawyer\"","\"first time dui attorney\""]),
@@ -22,47 +30,51 @@ CAMPAIGNS = [
     "\"second dwi lawyer\"","\"second offense dwi attorney\"","\"third dwi lawyer\"",
     "\"felony dwi lawyer\"","\"felony dwi attorney\"","\"habitual dwi lawyer\"",
     "\"repeat dwi attorney\""]),
-  ("Underage DWI", [
-    "\"underage dwi lawyer\"","\"underage dui attorney\"","\"underage drinking driving lawyer\"",
-    "\"provisional license dwi lawyer\""]),
+  ("DMV Hearings & License", [
+    "\"dmv hearing lawyer\"","\"dmv hearing attorney\"","\"license restoration lawyer\"",
+    "\"license restoration attorney\"","\"revoked license attorney\"",
+    "\"get my license back lawyer\"","\"driving while license revoked lawyer\"",
+    "\"dwlr attorney\""]),
 ]),
-("Criminal Defense", [
+("Felony Criminal Defense", "RSA 1 - Felony Criminal Defense", [
+  ("Felony Defense", [
+    "[felony lawyer]","[felony attorney]","[felony lawyer near me]","[felony attorney {city}]",
+    "\"felony defense lawyer\"","\"felony defense attorney\"","\"felony charge attorney\"",
+    "\"felony criminal defense attorney\"","\"felony criminal lawyer\"",
+    "\"habitual felon lawyer\""]),
   ("Criminal Defense", [
     "[criminal defense attorney]","[criminal defense lawyer]","[criminal lawyer near me]",
-    "[criminal attorney near me]","[criminal defense attorney {city}]","[criminal lawyer {city}]",
-    "\"criminal defense law firm\"","\"criminal defense representation\"",
-    "\"hire a criminal defense lawyer\"","\"defense attorney for criminal charges\""]),
+    "[criminal defense attorney {city}]","[criminal lawyer {city}]",
+    "\"criminal defense law firm\"","\"hire a criminal defense lawyer\""]),
   ("Drug Charges", [
     "\"drug charge lawyer\"","\"drug charge attorney\"","\"drug possession lawyer\"",
-    "\"drug possession attorney\"","\"possession charge lawyer\"",
-    "\"drug charges defense attorney\"","\"drug crime lawyer\""]),
-  ("Felony Defense", [
-    "\"felony lawyer\"","\"felony attorney\"","\"felony attorney near me\"",
-    "\"felony defense lawyer\"","\"felony charge attorney\"","\"felony defense attorney {city}\""]),
-  ("Misdemeanor Defense", [
-    "\"misdemeanor lawyer\"","\"misdemeanor attorney\"","\"misdemeanor defense lawyer\"",
-    "\"misdemeanor charge attorney\""]),
-  ("Assault Charges", [
+    "\"drug possession attorney\"","\"possession charge lawyer\"","\"drug crime lawyer\""]),
+  ("Assault & Violent", [
     "\"assault charge lawyer\"","\"assault charge attorney\"","\"assault defense lawyer\"",
-    "\"simple assault lawyer\"","\"assault attorney near me\""]),
+    "\"assault attorney near me\"","\"violent crime attorney\""]),
   ("Federal Defense (phase 2)", [
     "\"federal criminal defense attorney\"","\"federal criminal lawyer\"",
     "\"federal defense attorney\"","\"federal charges lawyer\""]),
 ]),
+("General Criminal Defense (optional third)", "RSA 3 - General Criminal Defense", [
+  ("General Criminal", [
+    "[criminal attorney near me]","\"criminal law firm {city}\"",
+    "\"defense attorney for criminal charges\"","\"criminal defense representation\""]),
+  ("Misdemeanor Defense", [
+    "\"misdemeanor lawyer\"","\"misdemeanor attorney\"","\"misdemeanor defense lawyer\"",
+    "\"misdemeanor charge attorney\""]),
+]),
+]
+
+# Held, not deleted. No RSA serves these under the two-vertical structure.
+HELD = [
 ("Traffic & License", [
   ("Traffic Tickets", [
     "[traffic ticket lawyer]","[traffic ticket attorney]","[traffic lawyer near me]",
-    "[traffic attorney {city}]","\"traffic ticket lawyer {city}\"","\"fight a traffic ticket lawyer\"",
-    "\"traffic violation attorney\""]),
+    "[traffic attorney {city}]","\"fight a traffic ticket lawyer\"","\"traffic violation attorney\""]),
   ("Speeding Tickets", [
-    "\"speeding ticket lawyer\"","\"speeding ticket attorney\"","\"speeding ticket lawyer near me\"",
-    "\"speeding citation attorney\""]),
-  ("DWLR & Suspended License", [
-    "\"driving while license revoked lawyer\"","\"dwlr attorney\"","\"dwlr lawyer\"",
-    "\"suspended license lawyer\"","\"revoked license attorney\"","\"driving on suspended license lawyer\""]),
-  ("DMV Hearings", [
-    "\"dmv hearing lawyer\"","\"dmv hearing attorney\"","\"license restoration lawyer\"",
-    "\"license restoration attorney\"","\"get my license back lawyer\"","\"dmv hearing representation\""]),
+    "\"speeding ticket lawyer\"","\"speeding ticket attorney\"",
+    "\"speeding ticket lawyer near me\"","\"speeding citation attorney\""]),
   ("Reckless Driving", [
     "\"reckless driving lawyer\"","\"reckless driving attorney\"",
     "\"reckless driving ticket lawyer\"","\"careless driving attorney\""]),
@@ -96,20 +108,27 @@ NEGATIVES = {
   "probate","disability","real estate","landlord"],
 }
 
-def all_keywords():
-    for camp, groups in CAMPAIGNS:
+def all_keywords(include_held=False):
+    for camp, rsa, groups in CAMPAIGNS:
         for ag, kws in groups:
             for k in kws:
                 yield camp, ag, k
+    if include_held:
+        for camp, groups in HELD:
+            for ag, kws in groups:
+                for k in kws:
+                    yield camp, ag, k
 
 def bare(k):
     return k.strip('[]"').lower()
 
 def check():
     ok = True
-    kws = list(all_keywords())
+    active = list(all_keywords())
+    everything = list(all_keywords(include_held=True))
+
     seen = {}
-    for camp, ag, k in kws:
+    for camp, ag, k in everything:
         b = bare(k)
         if b in seen:
             print(f"  !! duplicate keyword {k!r} in {ag} (also in {seen[b]})"); ok = False
@@ -120,10 +139,19 @@ def check():
         dupes = {n for n in negs if negs.count(n) > 1}
         print(f"  !! duplicate negatives: {sorted(dupes)}"); ok = False
 
-    # The check that matters: does any negative block a keyword we are paying for?
+    print("-- ad group -> RSA coverage --")
+    for camp, rsa, groups in CAMPAIGNS:
+        n = sum(len(k) for _, k in groups)
+        print(f"  {camp}  ({n} keywords)  ->  {rsa}")
+        for ag, kws in groups:
+            print(f"     {ag:<28} {len(kws):>2}")
+    for camp, groups in HELD:
+        n = sum(len(k) for _, k in groups)
+        print(f"  {camp}  ({n} keywords)  ->  HELD, no RSA serves these")
+
     print("\n-- negative/keyword conflicts --")
     conflicts = 0
-    for camp, ag, k in kws:
+    for camp, ag, k in everything:
         b = bare(k)
         for n in negs:
             if n in b.split() or (" " in n and n in b):
@@ -132,8 +160,10 @@ def check():
     if not conflicts:
         print("  none - no negative blocks a keyword in the plan")
 
-    print(f"\n{len(kws)} keywords across "
-          f"{sum(len(g) for _, g in CAMPAIGNS)} ad groups in {len(CAMPAIGNS)} campaigns")
+    held_n = sum(len(k) for _, groups in HELD for _, k in groups)
+    print(f"\n{len(active)} active keywords across "
+          f"{sum(len(g) for _, _, g in CAMPAIGNS)} ad groups in {len(CAMPAIGNS)} campaigns")
+    print(f"{held_n} held (Traffic & License)")
     print(f"{len(negs)} negatives in {len(NEGATIVES)} lists")
     print("\nALL CLEAN" if ok else "\nISSUES FOUND")
     return ok
