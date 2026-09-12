@@ -34,6 +34,8 @@
   --teal-400: #4ec3d9;
   --teal-500: #2ba6be;
   --teal-600: #1f8499;
+  --green-600: #0e7a44;
+  --green-700: #0b6438;
   --amber-400: #ffb63d;
   --amber-500: #f59e0b;
   --amber-600: #d97d06;
@@ -102,8 +104,8 @@ ul { margin: 0 0 1rem; padding-left: 1.2em; }
 .btn:focus-visible { outline: 3px solid var(--teal-400); outline-offset: 3px; }
 /* Call-to-action ladder, so two buttons never sit side by side in the same
    color: amber = the call, teal = book online, navy/ghost = the quiet one. */
-.btn--call { background: var(--amber-500); color: var(--navy-900); box-shadow: var(--shadow-md); }
-.btn--call:hover { background: var(--amber-400); }
+.btn--call { background: var(--green-600); color: #fff; box-shadow: var(--shadow-md); }
+.btn--call:hover { background: var(--green-700); }
 .btn--navy { background: var(--navy-800); color: #fff; box-shadow: var(--shadow-md); }
 .btn--navy:hover { background: var(--navy-700); }
 .btn--primary { background: var(--teal-600); color: #fff; box-shadow: var(--shadow-md); }

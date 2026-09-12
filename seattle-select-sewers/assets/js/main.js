@@ -30,8 +30,10 @@
       // Honeypot: silently accept and discard bot submissions.
       if (form.elements.company && form.elements.company.value) return;
 
+      // Every field is required.
+      var required = ['first_name', 'last_name', 'phone', 'email', 'zip', 'service', 'notes'];
       var missing = [];
-      ['name', 'phone', 'zip'].forEach(function (key) {
+      required.forEach(function (key) {
         var field = form.elements[key];
         if (field && !field.value.trim()) {
           missing.push(field.previousElementSibling.textContent.replace('*', '').trim());
@@ -40,6 +42,16 @@
 
       if (missing.length) {
         show(status, 'error', 'Please fill in: ' + missing.join(', ') + '.');
+        (form.elements[required.find(function (k) {
+          var f = form.elements[k]; return f && !f.value.trim();
+        })] || {}).focus?.();
+        return;
+      }
+
+      var email = form.elements.email;
+      if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.value.trim())) {
+        show(status, 'error', 'That email address looks incomplete — please check it.');
+        email.focus();
         return;
       }
 

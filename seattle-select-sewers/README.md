@@ -34,9 +34,16 @@ logo file and update the three `<img src="assets/img/logo.svg">` references
 **2. Lead form endpoint** — `assets/js/main.js`, `FORM_ENDPOINT`. While it's
 empty both forms run in demo mode: they validate, show the success state, and
 send nothing. Point it at the CRM webhook or form service and each POSTs JSON
-(`name, phone, zip, service, notes, source, page`). A honeypot field filters
-bots. There are two forms — the hero and one beside the FAQ — and `source` says
-which one converted (`hero` / `faq`), so you can see which is earning its place.
+(`first_name, last_name, phone, email, zip, service, notes, source, page`). A
+honeypot field filters bots. The hero and FAQ forms are identical; `source`
+says which one converted (`hero` / `faq`), so you can see which earns its place.
+
+Every field is required, including email and the description, and the service
+dropdown opens on "Choose a service" so it has to be picked. That is a
+deliberate trade: better-qualified leads, fewer of them. If volume drops more
+than you want, the quickest lever is making email or the description optional
+again — one entry each in the `required` array in `main.js`, plus the `required`
+attribute and the `*` in the markup.
 
 **3. Review attributions** — the three testimonials are real customer quotes
 pulled from public review listings, but they're credited to "Verified customer."
@@ -63,7 +70,7 @@ Advertising a rating you can't substantiate is a Google Ads policy problem.
 ## Button colors
 
 Three CTA styles, assigned by role so two buttons never sit side by side in the
-same color: `.btn--call` (amber) is the phone, `.btn--primary` (teal) is book
+same color: `.btn--call` (green) is the phone, `.btn--primary` (teal) is book
 online, `.btn--navy` / `.btn--ghost` is the quieter partner. Changing one
 button's class is fine; check its neighbor afterwards.
 
