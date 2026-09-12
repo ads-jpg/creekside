@@ -103,9 +103,13 @@ ul { margin: 0 0 1rem; padding-left: 1.2em; }
 .btn:active { transform: translateY(0); }
 .btn:focus-visible { outline: 3px solid var(--teal-400); outline-offset: 3px; }
 /* Call-to-action ladder, so two buttons never sit side by side in the same
-   color: amber = the call, teal = book online, navy/ghost = the quiet one. */
-.btn--call { background: var(--blue-600); color: #fff; box-shadow: var(--shadow-md); }
-.btn--call:hover { background: var(--blue-700); }
+   color. Teal carries the calls and the form submits; navy/ghost is the quiet
+   partner. Blue is used only by the sticky bar's Call Now, whose neighbour
+   there is the teal Free Estimate. */
+.btn--call { background: var(--teal-600); color: #fff; box-shadow: var(--shadow-md); }
+.btn--call:hover { background: var(--teal-500); }
+.btn--accent { background: var(--blue-600); color: #fff; box-shadow: var(--shadow-md); }
+.btn--accent:hover { background: var(--blue-700); }
 .btn--navy { background: var(--navy-800); color: #fff; box-shadow: var(--shadow-md); }
 .btn--navy:hover { background: var(--navy-700); }
 .btn--primary { background: var(--teal-600); color: #fff; box-shadow: var(--shadow-md); }
@@ -113,6 +117,9 @@ ul { margin: 0 0 1rem; padding-left: 1.2em; }
 .btn--ghost { background: transparent; color: #fff; border-color: rgba(255,255,255,.55); }
 .btn--ghost:hover { background: rgba(255,255,255,.12); border-color: #fff; }
 .btn--block { width: 100%; }
+/* White on teal is 4.36:1 — clears AA as large text, so keep the brand
+   color and size these past the 18.66px bold threshold. */
+.lead-form button[type="submit"], .header-cta .btn { font-size: 1.18rem; }
 .btn--lg { padding: 1.05rem 1.9rem; font-size: 1.08rem; }
 .hero-actions .btn, .callbar .btn {
   font-family: var(--display); font-weight: 600; text-transform: uppercase;
