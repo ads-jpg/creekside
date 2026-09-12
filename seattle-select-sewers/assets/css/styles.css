@@ -215,20 +215,25 @@ ul { margin: 0 0 1rem; padding-left: 1.2em; }
 .grid--4 { grid-template-columns: repeat(4, minmax(0,1fr)); }
 .grid--2 { grid-template-columns: repeat(2, minmax(0,1fr)); }
 
-.card {
-  background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
-  padding: 1.5rem; box-shadow: var(--shadow-sm); transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+/* ---------- Services band ----------
+   Dark band, white cards: icon + title, a short description, then the
+   "Services for:" list of what that service actually covers. */
+.services-band { background: var(--navy-800); }
+.services-band h2 { color: #fff; }
+.services-band .eyebrow { color: var(--teal-400); }
+
+.svc {
+  background: #fff; border-radius: var(--radius);
+  padding: 1.6rem 1.5rem 1.7rem; box-shadow: var(--shadow-md);
+  display: flex; flex-direction: column;
 }
-.card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: #c3d6e2; }
-.card h3 { margin-bottom: .4rem; }
-.card p { font-size: .95rem; margin-bottom: 0; }
-.card-icon {
-  width: 46px; height: 46px; border-radius: 11px; display: grid; place-items: center;
-  background: rgba(78,195,217,.16); color: var(--teal-600); margin-bottom: .9rem;
-}
-.card-icon svg { width: 24px; height: 24px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-.card-link { display: inline-block; margin-top: .8rem; font-weight: 700; font-size: .9rem; text-decoration: none; }
-.card-link::after { content: " →"; }
+.svc__head { display: flex; align-items: center; gap: .8rem; margin-bottom: 1rem; }
+.svc__icon { flex: none; width: 1.95rem; height: 1.95rem; fill: var(--teal-600); color: var(--teal-600); }
+.svc h3 { margin: 0; font-size: 1.28rem; color: var(--navy-800); letter-spacing: -.015em; }
+.svc > p { font-size: .98rem; margin-bottom: 1.15rem; }
+.svc__label { font-weight: 800; color: var(--ink); font-size: .98rem; margin-bottom: .45rem; }
+.svc__list { margin: 0; padding-left: 1.2rem; font-size: .96rem; }
+.svc__list li { padding: .14rem 0; }
 
 /* ---------- Offers ---------- */
 .offer {
