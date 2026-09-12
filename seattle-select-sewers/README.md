@@ -57,9 +57,13 @@ permission to display.
 from both consent blocks and the footer. Two things in it need you: the contact
 block gives only "Redmond, WA" and should carry the full mailing address, and the
 whole document should be read by whoever handles your compliance before it goes
-live — it is adapted boilerplate, not legal advice. There is no Terms of Service
-page, so that link was removed rather than left pointing at a 404; say the word
-if you have terms to publish.
+live — it is adapted boilerplate, not legal advice.
+
+`terms-of-service.html` covers the SMS program: what messages to expect, STOP
+and HELP keywords, carrier liability, message rates. One item to settle before
+you send a single text — it says "text STOP to the shortcode," which is the
+wording carriers expect but only true once you have a shortcode or registered
+number. Put the real number in, and have the same reviewer read both pages.
 
 **5. Hero star rating** — the hero shows "4.9/5 rating," carried over from the
 reference design. Replace it with the real Google/Yelp average before launch,

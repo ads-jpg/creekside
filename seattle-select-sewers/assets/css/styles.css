@@ -335,6 +335,8 @@ ul { margin: 0 0 1rem; padding-left: 1.2em; }
 .legal p { max-width: 68ch; }
 .legal__meta { font-size: .9rem; color: #6a7c89; margin-bottom: 2rem; }
 .legal__address { font-style: normal; line-height: 1.9; margin: .5rem 0 0; }
+.legal__terms { margin: 0; padding-left: 1.4rem; max-width: 68ch; }
+.legal__terms li { padding: .55rem 0; line-height: 1.7; }
 .legal__back { margin-top: 2.75rem; font-weight: 700; }
 
 /* ---------- Final CTA ---------- */
