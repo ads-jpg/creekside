@@ -215,6 +215,20 @@ ul { margin: 0 0 1rem; padding-left: 1.2em; }
 .grid--4 { grid-template-columns: repeat(4, minmax(0,1fr)); }
 .grid--2 { grid-template-columns: repeat(2, minmax(0,1fr)); }
 
+/* ---------- Why locals trust us ----------
+   Condensed display heading, then icon + title on one line with the
+   supporting line indented to sit under the title, not the icon. */
+.trust-section h2 {
+  font-family: var(--display); font-weight: 700; text-transform: uppercase;
+  font-size: clamp(1.9rem, 3.6vw, 3rem); line-height: 1; letter-spacing: 0;
+  color: var(--navy-800); margin-bottom: 2rem;
+}
+.trust-list { display: grid; grid-template-columns: 1fr 1fr; gap: 1.75rem 3rem; }
+.trust-item__head { display: flex; align-items: center; gap: .8rem; }
+.trust-item__icon { flex: none; width: 2.1rem; height: 2.1rem; fill: var(--navy-700); }
+.trust-item h3 { margin: 0; font-size: 1.3rem; color: var(--navy-800); }
+.trust-item p { margin: .35rem 0 0 2.9rem; font-size: 1.02rem; }
+
 /* ---------- Services band ----------
    Dark band, white cards: icon + title, a short description, then the
    "Services for:" list of what that service actually covers. */
@@ -329,6 +343,7 @@ ul { margin: 0 0 1rem; padding-left: 1.2em; }
   .header-phone strong { font-size: 1.1rem; }
   .header-cta .btn { display: none; }
   .grid--3, .grid--4, .grid--2 { grid-template-columns: 1fr; }
+  .trust-list { grid-template-columns: 1fr; gap: 1.5rem; }
   .hero h1 { max-width: none; }
   .hero-actions .btn { width: 100%; white-space: normal; }
   .field-row { grid-template-columns: 1fr; }
