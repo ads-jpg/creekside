@@ -328,6 +328,15 @@ ul { margin: 0 0 1rem; padding-left: 1.2em; }
 .faq .faq-body { padding: 0 1.25rem 1.15rem; }
 .faq .faq-body p:last-child { margin-bottom: 0; }
 
+/* ---------- Legal pages ---------- */
+.legal .wrap { max-width: 780px; }
+.legal h1 { font-size: clamp(1.7rem, 3.2vw, 2.3rem); margin-bottom: .35rem; }
+.legal h2 { font-size: 1.2rem; margin: 2.1rem 0 .6rem; }
+.legal p { max-width: 68ch; }
+.legal__meta { font-size: .9rem; color: #6a7c89; margin-bottom: 2rem; }
+.legal__address { font-style: normal; line-height: 1.9; margin: .5rem 0 0; }
+.legal__back { margin-top: 2.75rem; font-weight: 700; }
+
 /* ---------- Final CTA ---------- */
 .cta-band { background: linear-gradient(135deg, var(--navy-700), var(--navy-900)); color: #cfe3ee; text-align: center; }
 .cta-band h2 { color: #fff; }

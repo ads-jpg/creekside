@@ -53,11 +53,13 @@ pulled from public review listings, but they're credited to "Verified customer."
 Swap in the actual names and platforms, or replace with reviews you have written
 permission to display.
 
-**4. Privacy Policy and Terms links** — the consent block links to
-`seattleselectsewers.com/privacy-policy/` and `/terms-of-service/`. Confirm both
-pages exist at those paths, or repoint the links. Google Ads requires a reachable
-privacy policy on lead-gen landing pages, so a 404 here is a disapproval risk,
-not just a broken link.
+**4. Privacy policy details** — `privacy-policy.html` is a real page, linked
+from both consent blocks and the footer. Two things in it need you: the contact
+block gives only "Redmond, WA" and should carry the full mailing address, and the
+whole document should be read by whoever handles your compliance before it goes
+live — it is adapted boilerplate, not legal advice. There is no Terms of Service
+page, so that link was removed rather than left pointing at a 404; say the word
+if you have terms to publish.
 
 **5. Hero star rating** — the hero shows "4.9/5 rating," carried over from the
 reference design. Replace it with the real Google/Yelp average before launch,
