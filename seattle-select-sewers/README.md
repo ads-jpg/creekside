@@ -72,9 +72,10 @@ Advertising a rating you can't substantiate is a Google Ads policy problem.
 Buttons are assigned by role so two never sit side by side in the same color.
 `.btn--call` and `.btn--primary` are teal — the calls, the form submits and the
 header button; `.btn--navy` / `.btn--ghost` is the quieter partner beside them.
-`.btn--accent` (royal blue `#1550b8`) is used in exactly one place, the sticky
-bar's Call Now, because its neighbour there is the teal Free Estimate. Changing
-one button's class is fine; check its neighbour afterwards.
+The sticky bar inverts the pairing — navy Call Now beside teal Free Estimate —
+and runs on a white bar, because navy on the old near-black bar had no visible
+edge against it (1.08:1). Changing one button's class is fine; check its
+neighbour, and the surface behind it, afterwards.
 
 White on teal is 4.36:1, which clears AA as large text but not as normal text,
 so every teal button is set at 1.18rem (18.88px) bold. If you shrink one below

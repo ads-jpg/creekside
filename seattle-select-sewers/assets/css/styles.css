@@ -34,8 +34,6 @@
   --teal-400: #4ec3d9;
   --teal-500: #2ba6be;
   --teal-600: #1f8499;
-  --blue-600: #1550b8;
-  --blue-700: #113f91;
   --amber-400: #ffb63d;
   --amber-500: #f59e0b;
   --amber-600: #d97d06;
@@ -103,13 +101,12 @@ ul { margin: 0 0 1rem; padding-left: 1.2em; }
 .btn:active { transform: translateY(0); }
 .btn:focus-visible { outline: 3px solid var(--teal-400); outline-offset: 3px; }
 /* Call-to-action ladder, so two buttons never sit side by side in the same
-   color. Teal carries the calls and the form submits; navy/ghost is the quiet
-   partner. Blue is used only by the sticky bar's Call Now, whose neighbour
-   there is the teal Free Estimate. */
+   color. Teal carries the calls and the form submits; navy and the ghost
+   outline are the quiet partners beside them. The sticky bar inverts the
+   pairing — navy Call Now, teal Free Estimate — so it runs on a white bar,
+   since navy on the old near-black bar had no visible edge. */
 .btn--call { background: var(--teal-600); color: #fff; box-shadow: var(--shadow-md); }
 .btn--call:hover { background: var(--teal-500); }
-.btn--accent { background: var(--blue-600); color: #fff; box-shadow: var(--shadow-md); }
-.btn--accent:hover { background: var(--blue-700); }
 .btn--navy { background: var(--navy-800); color: #fff; box-shadow: var(--shadow-md); }
 .btn--navy:hover { background: var(--navy-700); }
 .btn--primary { background: var(--teal-600); color: #fff; box-shadow: var(--shadow-md); }
@@ -368,8 +365,8 @@ ul { margin: 0 0 1rem; padding-left: 1.2em; }
   body { padding-bottom: 72px; }
   .callbar {
     display: grid; grid-template-columns: 1fr 1fr; gap: .6rem; position: fixed; left: 0; right: 0; bottom: 0;
-    z-index: 60; background: rgba(7,23,34,.97); padding: .6rem .75rem;
-    box-shadow: 0 -6px 20px rgba(7,23,34,.3);
+    z-index: 60; background: #fff; padding: .6rem .75rem;
+    border-top: 1px solid var(--line); box-shadow: 0 -6px 20px rgba(7,23,34,.16);
   }
   .callbar .btn { padding: .8rem .5rem; font-size: .97rem; }
 }
