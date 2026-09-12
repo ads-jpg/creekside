@@ -34,8 +34,6 @@
   --teal-400: #4ec3d9;
   --teal-500: #2ba6be;
   --teal-600: #1f8499;
-  --brand-red: #e02b20;
-  --brand-red-dark: #b91f16;
   --amber-400: #ffb63d;
   --amber-500: #f59e0b;
   --amber-600: #d97d06;
@@ -102,8 +100,10 @@ ul { margin: 0 0 1rem; padding-left: 1.2em; }
 .btn:hover { transform: translateY(-1px); }
 .btn:active { transform: translateY(0); }
 .btn:focus-visible { outline: 3px solid var(--teal-400); outline-offset: 3px; }
-.btn--call { background: var(--brand-red); color: #fff; box-shadow: var(--shadow-md); }
-.btn--call:hover { background: var(--brand-red-dark); }
+/* Call-to-action ladder, so two buttons never sit side by side in the same
+   color: amber = the call, teal = book online, navy/ghost = the quiet one. */
+.btn--call { background: var(--amber-500); color: var(--navy-900); box-shadow: var(--shadow-md); }
+.btn--call:hover { background: var(--amber-400); }
 .btn--navy { background: var(--navy-800); color: #fff; box-shadow: var(--shadow-md); }
 .btn--navy:hover { background: var(--navy-700); }
 .btn--primary { background: var(--teal-600); color: #fff; box-shadow: var(--shadow-md); }
@@ -288,7 +288,11 @@ ul { margin: 0 0 1rem; padding-left: 1.2em; }
 .area-col li { padding: .18rem 0; break-inside: avoid; }
 
 /* ---------- FAQ ---------- */
-.faq { max-width: 860px; margin-inline: auto; }
+.faq-layout {
+  display: grid; grid-template-columns: 1.2fr .8fr;
+  gap: clamp(1.75rem, 3.5vw, 3.25rem); align-items: start;
+}
+.faq { max-width: none; }
 .faq details { background: #fff; border: 1px solid var(--line); border-radius: 10px; margin-bottom: .85rem; box-shadow: var(--shadow-sm); }
 .faq summary {
   cursor: pointer; list-style: none; padding: 1.05rem 3rem 1.05rem 1.25rem;
@@ -325,6 +329,7 @@ ul { margin: 0 0 1rem; padding-left: 1.2em; }
 
 @media (max-width: 1024px) {
   .nav { display: none; }
+  .faq-layout { grid-template-columns: 1fr; }
   .hero .wrap { grid-template-columns: 1fr; gap: 2.5rem; align-items: start; }
   .hero h1 { max-width: 24ch; }
   .grid--4 { grid-template-columns: repeat(2, minmax(0,1fr)); }

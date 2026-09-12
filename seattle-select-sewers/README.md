@@ -31,10 +31,12 @@ seattleselectsewers.com is blocked from the build environment. Drop in the real
 logo file and update the three `<img src="assets/img/logo.svg">` references
 (header, footer, favicon/OG meta).
 
-**2. Lead form endpoint** — `assets/js/main.js` line 8, `FORM_ENDPOINT`. While
-it's empty the form runs in demo mode: it validates, shows the success state,
-and sends nothing. Point it at the CRM webhook or form service and it POSTs JSON
-(`name, phone, email, zip, service, notes, page`). A honeypot field filters bots.
+**2. Lead form endpoint** — `assets/js/main.js`, `FORM_ENDPOINT`. While it's
+empty both forms run in demo mode: they validate, show the success state, and
+send nothing. Point it at the CRM webhook or form service and each POSTs JSON
+(`name, phone, zip, service, notes, source, page`). A honeypot field filters
+bots. There are two forms — the hero and one beside the FAQ — and `source` says
+which one converted (`hero` / `faq`), so you can see which is earning its place.
 
 **3. Review attributions** — the three testimonials are real customer quotes
 pulled from public review listings, but they're credited to "Verified customer."
@@ -57,6 +59,13 @@ Advertising a rating you can't substantiate is a Google Ads policy problem.
   if this page is meant to rank organically.
 - `<link rel="canonical">` points at `/seattle-sewer-repair/` — update to the
   real deployed URL.
+
+## Button colors
+
+Three CTA styles, assigned by role so two buttons never sit side by side in the
+same color: `.btn--call` (amber) is the phone, `.btn--primary` (teal) is book
+online, `.btn--navy` / `.btn--ghost` is the quieter partner. Changing one
+button's class is fine; check its neighbor afterwards.
 
 ## Conversion tracking
 

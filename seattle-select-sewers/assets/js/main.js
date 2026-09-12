@@ -6,9 +6,6 @@
      call, success message only) until a CRM / form endpoint is connected. */
   var FORM_ENDPOINT = '';
 
-  var form = document.getElementById('lead-form');
-  var status = document.getElementById('form-status');
-
   function track(event, params) {
     if (typeof window.gtag === 'function') window.gtag('event', event, params || {});
     if (Array.isArray(window.dataLayer)) window.dataLayer.push(Object.assign({ event: event }, params || {}));
@@ -21,8 +18,12 @@
     });
   });
 
-  /* --- Lead form --- */
-  if (form) {
+  /* --- Lead forms (hero and FAQ share this handler) --- */
+  document.querySelectorAll('.lead-form').forEach(function (form) {
+    var status = form.querySelector('.form-status');
+    var button = form.querySelector('button[type="submit"]');
+    var buttonLabel = button ? button.textContent : '';
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
 
@@ -38,33 +39,33 @@
       });
 
       if (missing.length) {
-        show('error', 'Please fill in: ' + missing.join(', ') + '.');
+        show(status, 'error', 'Please fill in: ' + missing.join(', ') + '.');
         return;
       }
 
-      var button = form.querySelector('button[type="submit"]');
       button.disabled = true;
       button.textContent = 'Sending…';
 
       var payload = Object.fromEntries(new FormData(form).entries());
       delete payload.company;
+      payload.source = form.dataset.source || form.id;
       payload.page = location.pathname + location.search;
 
       submit(payload)
         .then(function () {
-          track('generate_lead', { service: payload.service || '' });
+          track('generate_lead', { service: payload.service || '', source: payload.source });
           form.reset();
-          show('ok', "Thanks — we've got it. Expect a call back shortly. For an active backup, call (425) 531-4847 now.");
+          show(status, 'ok', "Thanks — we've got it. Expect a call back shortly. For an active backup, call (425) 531-4847 now.");
         })
         .catch(function () {
-          show('error', "We couldn't send that. Please call (425) 531-4847 and we'll take care of it right away.");
+          show(status, 'error', "We couldn't send that. Please call (425) 531-4847 and we'll take care of it right away.");
         })
         .finally(function () {
           button.disabled = false;
-          button.textContent = 'Get My Free Estimate';
+          button.textContent = buttonLabel;
         });
     });
-  }
+  });
 
   function submit(payload) {
     if (!FORM_ENDPOINT) return Promise.resolve(); // demo mode
@@ -77,7 +78,7 @@
     });
   }
 
-  function show(state, message) {
+  function show(status, state, message) {
     if (!status) return;
     status.hidden = false;
     status.dataset.state = state;

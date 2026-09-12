@@ -49,7 +49,7 @@
         <span>Call 24/7</span>
         <strong>(425) 531-4847</strong>
       </a>
-      <a class="btn btn--primary" href="#request">Schedule Service</a>
+      <a class="btn btn--primary" href="#request">Schedule Service Online</a>
     </div>
   </div>
 </header>
@@ -103,7 +103,7 @@
         <h2>Request Service</h2>
         <p>Tell us what's going on — we'll call you right back.</p>
       </div>
-      <form class="lead-form" id="lead-form" novalidate>
+      <form class="lead-form" id="lead-form" data-source="hero" novalidate>
         <div class="field-row">
           <div class="field">
             <label for="f-name">Name <span class="req">*</span></label>
@@ -462,35 +462,72 @@
       <span class="eyebrow">Common questions</span>
       <h2>Seattle sewer questions, answered</h2>
     </div>
-    <div class="faq">
-      <details open>
-        <summary>Is my side sewer my responsibility or the city's?</summary>
-        <div class="faq-body"><p>In Seattle, the side sewer — the pipe running from your home to the public main — is the property owner's responsibility for its entire length, including the portion under the street. That's why a failure there lands on you rather than the utility, and why an inspection before you buy a home is worth doing.</p></div>
-      </details>
-      <details>
-        <summary>What does trenchless sewer repair cost?</summary>
-        <div class="faq-body"><p>It depends on the length, depth, diameter and condition of your line, and on how many branch connections have to be reinstated. We won't quote a number over the phone we can't stand behind — we scope the line on camera first, then give you an itemized price for both trenchless and traditional repair so you can compare. In most cases lining comes in below a full dig once restoration costs are included.</p></div>
-      </details>
-      <details>
-        <summary>How long does a CIPP lining job take?</summary>
-        <div class="faq-body"><p>Most residential lining jobs are finished in a single day. The liner is inserted through an existing access point, cured in place, and the line is re-scoped on camera before we leave. Longer commercial runs or lines needing extensive root cutting can take two days.</p></div>
-      </details>
-      <details>
-        <summary>How do I know if tree roots are in my sewer line?</summary>
-        <div class="faq-body"><p>The usual signs are gurgling toilets, several drains slowing at once, a lawn that's unusually green over the sewer path, or a line that backs up on roughly the same schedule every year. A camera inspection confirms it in about half an hour — and tells you whether cutting alone is enough or the pipe needs lining.</p></div>
-      </details>
-      <details>
-        <summary>Do you offer emergency service?</summary>
-        <div class="faq-body"><p>Yes — we take calls 24 hours a day, 7 days a week at (425) 531-4847. If sewage is backing up into your home, call rather than submit the form so we can dispatch immediately.</p></div>
-      </details>
-      <details>
-        <summary>What's covered by your warranty?</summary>
-        <div class="faq-body"><p>Our cured-in-place pipe lining work carries a 20-year warranty. We're also fully licensed, bonded and insured in Washington State (L&amp;I #SEATTSS874JJ), with liability coverage on every job. Warranty terms are provided in writing with your completed work order.</p></div>
-      </details>
-      <details>
-        <summary>Can you inspect a sewer line before I buy a house?</summary>
-        <div class="faq-body"><p>Absolutely, and in Seattle's older housing stock we'd strongly recommend it. A pre-purchase scope shows you the pipe material, any breaks or bellies, and root intrusion — information that's routinely worth thousands in negotiation or in problems avoided.</p></div>
-      </details>
+    <div class="faq-layout">
+      <div class="faq">
+        <details open>
+          <summary>Is my side sewer my responsibility or the city's?</summary>
+          <div class="faq-body"><p>In Seattle, the side sewer — the pipe running from your home to the public main — is the property owner's responsibility for its entire length, including the portion under the street. That's why a failure there lands on you rather than the utility, and why an inspection before you buy a home is worth doing.</p></div>
+        </details>
+        <details>
+          <summary>What does trenchless sewer repair cost?</summary>
+          <div class="faq-body"><p>It depends on the length, depth, diameter and condition of your line, and on how many branch connections have to be reinstated. We won't quote a number over the phone we can't stand behind — we scope the line on camera first, then give you an itemized price for both trenchless and traditional repair so you can compare. In most cases lining comes in below a full dig once restoration costs are included.</p></div>
+        </details>
+        <details>
+          <summary>How long does a CIPP lining job take?</summary>
+          <div class="faq-body"><p>Most residential lining jobs are finished in a single day. The liner is inserted through an existing access point, cured in place, and the line is re-scoped on camera before we leave. Longer commercial runs or lines needing extensive root cutting can take two days.</p></div>
+        </details>
+        <details>
+          <summary>How do I know if tree roots are in my sewer line?</summary>
+          <div class="faq-body"><p>The usual signs are gurgling toilets, several drains slowing at once, a lawn that's unusually green over the sewer path, or a line that backs up on roughly the same schedule every year. A camera inspection confirms it in about half an hour — and tells you whether cutting alone is enough or the pipe needs lining.</p></div>
+        </details>
+        <details>
+          <summary>Do you offer emergency service?</summary>
+          <div class="faq-body"><p>Yes — we take calls 24 hours a day, 7 days a week at (425) 531-4847. If sewage is backing up into your home, call rather than submit the form so we can dispatch immediately.</p></div>
+        </details>
+        <details>
+          <summary>What's covered by your warranty?</summary>
+          <div class="faq-body"><p>Our cured-in-place pipe lining work carries a 20-year warranty. We're also fully licensed, bonded and insured in Washington State (L&amp;I #SEATTSS874JJ), with liability coverage on every job. Warranty terms are provided in writing with your completed work order.</p></div>
+        </details>
+        <details>
+          <summary>Can you inspect a sewer line before I buy a house?</summary>
+          <div class="faq-body"><p>Absolutely, and in Seattle's older housing stock we'd strongly recommend it. A pre-purchase scope shows you the pipe material, any breaks or bellies, and root intrusion — information that's routinely worth thousands in negotiation or in problems avoided.</p></div>
+          </details>
+      </div>
+
+      <aside class="lead-card" id="request-faq">
+        <div class="lead-card__head">
+          <h2>Still have a question?</h2>
+          <p>Send it over — we'll call you back with a straight answer.</p>
+        </div>
+        <form class="lead-form" id="faq-form" data-source="faq" novalidate>
+          <div class="field">
+            <label for="q-name">Name <span class="req">*</span></label>
+            <input id="q-name" name="name" type="text" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="q-phone">Phone <span class="req">*</span></label>
+            <input id="q-phone" name="phone" type="tel" autocomplete="tel" required>
+          </div>
+          <div class="field">
+            <label for="q-zip">Service ZIP <span class="req">*</span></label>
+            <input id="q-zip" name="zip" type="text" inputmode="numeric" autocomplete="postal-code" required>
+          </div>
+          <div class="field">
+            <label for="q-notes">What's going on?</label>
+            <textarea id="q-notes" name="notes" placeholder="Recurring backups, a quote you want a second opinion on, a pre-purchase inspection…"></textarea>
+          </div>
+          <div class="hp" aria-hidden="true">
+            <label for="q-company">Company</label>
+            <input id="q-company" name="company" type="text" tabindex="-1" autocomplete="off">
+          </div>
+          <button class="btn btn--call btn--block btn--lg" type="submit">Send My Question</button>
+          <p class="form-status" role="status" hidden></p>
+          <p class="form-fine">
+            Need someone today? Call <a href="tel:+14255314847" data-track="call" data-location="faq-form">(425) 531-4847</a> —
+            we answer 24/7.
+          </p>
+        </form>
+      </aside>
     </div>
   </div>
 </section>
