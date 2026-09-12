@@ -354,7 +354,7 @@ ul { margin: 0 0 1rem; padding-left: 1.2em; }
   .field-row { grid-template-columns: 1fr; }
   .trustbar .wrap { grid-template-columns: 1fr 1fr; gap: 1.25rem; }
   .spotlight-stats { grid-template-columns: 1fr 1fr; }
-  .area-col ul { columns: 1; }
+  .area-col ul { columns: 2; column-gap: 1rem; font-size: .92rem; }
   .footer-grid { grid-template-columns: 1fr; }
   body { padding-bottom: 72px; }
   .callbar {
