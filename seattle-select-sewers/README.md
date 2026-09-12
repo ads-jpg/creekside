@@ -14,7 +14,8 @@ assets/fonts/*.woff2    self-hosted Inter + Oswald (latin subsets, OFL)
 ```
 
 The hero follows the Roto-Rooter treatment: white background, star-rating row,
-oversized condensed uppercase headline (Oswald), four outline-icon benefit
+oversized condensed uppercase headline (Oswald, sized to break cleanly into
+three lines from 360px up), four outline-icon benefit
 lines, then a red call button beside a navy "Schedule Service Online" button.
 The headline and schedule button use the company's own navy rather than
 Roto-Rooter's indigo, so the hero matches the logo.

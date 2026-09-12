@@ -150,8 +150,9 @@ ul { margin: 0 0 1rem; padding-left: 1.2em; }
 }
 .hero h1 {
   color: var(--navy-800);
-  font-size: clamp(2.6rem, 5.6vw, 4.35rem);
-  max-width: 11ch; margin-bottom: 1.75rem;
+  font-size: clamp(1.85rem, 4.1vw, 3.3rem);
+  max-width: 22ch; margin-bottom: 1.6rem;
+  text-wrap: balance;
 }
 
 /* Rating row */
@@ -318,7 +319,7 @@ ul { margin: 0 0 1rem; padding-left: 1.2em; }
 @media (max-width: 1024px) {
   .nav { display: none; }
   .hero .wrap { grid-template-columns: 1fr; gap: 2.5rem; align-items: start; }
-  .hero h1 { max-width: 16ch; }
+  .hero h1 { max-width: 24ch; }
   .grid--4 { grid-template-columns: repeat(2, minmax(0,1fr)); }
   .split { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
