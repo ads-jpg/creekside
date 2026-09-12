@@ -13,9 +13,8 @@
 <meta property="og:image" content="assets/img/logo.svg">
 <meta name="theme-color" content="#0a1f2d">
 <link rel="icon" href="assets/img/logo.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="preload" href="assets/fonts/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/oswald-latin-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
@@ -59,32 +58,44 @@
 <!-- ============ HERO ============ -->
 <section class="hero" id="top">
   <div class="wrap">
-    <div>
-      <span class="eyebrow">Seattle &amp; Puget Sound sewer specialists</span>
-      <h1>Sewer Line Problems in Seattle? <em>Fixed Without Digging Up Your Yard.</em></h1>
-      <p class="hero-sub">
-        Trenchless sewer repair, hydro jetting and camera inspections for homes and businesses across
-        King, Snohomish and Pierce counties. We diagnose on camera, quote before we start, and back
-        our lining work with a 20-year warranty.
-      </p>
+    <div class="hero-copy">
+      <a class="rating" href="#reviews">
+        <span class="rating__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        <span class="rating__score">4.9/5 rating</span>
+        <svg class="rating__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15"/><path d="m13 6 6 6-6 6"/></svg>
+      </a>
+
+      <h1>On-Call 24/7 Sewer Repair in Seattle</h1>
+
+      <ul class="hero-points">
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.2"/><path d="m8 12.3 2.8 2.8L16.4 9.5"/></svg>
+          Free estimates, no trip charges
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3.2 2.7 5.6 6.1.9-4.4 4.3 1 6.1-5.4-2.9-5.4 2.9 1-6.1L3.2 9.7l6.1-.9z"/></svg>
+          Same-day and weekend service
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 10.5V6.4a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v11.2a2 2 0 0 0 2 2h4.6"/><path d="M8.6 8.8h6.8M8.6 12.4h4"/><circle cx="17.4" cy="17.1" r="2.3"/><path d="M17.4 13.6v.9M17.4 19.7v.9M20.4 15.4l-.8.5M15.2 18.7l-.8.5M20.4 18.8l-.8-.5M15.2 15.5l-.8-.5"/></svg>
+          Fully licensed, bonded &amp; insured
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.2 5 6v5.5c0 4.2 2.9 7.6 7 9.3 4.1-1.7 7-5.1 7-9.3V6z"/><circle cx="12" cy="10.6" r="2"/><path d="M8.6 16.2a3.8 3.8 0 0 1 6.8 0"/></svg>
+          Honest, local sewer specialists since 2005
+        </li>
+      </ul>
 
       <div class="hero-actions">
         <a class="btn btn--call btn--lg" href="tel:+14255314847" data-track="call" data-location="hero">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
           Call (425) 531-4847
         </a>
-        <a class="btn btn--ghost btn--lg" href="#request">Get a Free Estimate</a>
+        <a class="btn btn--navy btn--lg" href="#request">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="16" rx="2.2"/><path d="M3.5 10h17M8.5 3v4M15.5 3v4"/></svg>
+          Schedule Service Online
+        </a>
       </div>
-      <p class="hero-note">Prefer to text or email? <a href="mailto:contact@seattleselectsewers.com" style="color:#4ec3d9">contact@seattleselectsewers.com</a></p>
-
-      <ul class="hero-points">
-        <li>20+ years serving Puget Sound</li>
-        <li>No-dig trenchless CIPP lining</li>
-        <li>Upfront pricing before work starts</li>
-        <li>24/7 emergency backups &amp; clogs</li>
-        <li>Written report after every visit</li>
-        <li>Licensed, bonded &amp; fully insured</li>
-      </ul>
     </div>
 
     <!-- Lead form -->

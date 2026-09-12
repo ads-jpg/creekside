@@ -10,7 +10,14 @@ index.html              the page
 assets/css/styles.css   all styling (no framework, no build step)
 assets/js/main.js       lead form handling, call tracking, FAQ accordion
 assets/img/logo.svg     logo
+assets/fonts/*.woff2    self-hosted Inter + Oswald (latin subsets, OFL)
 ```
+
+The hero follows the Roto-Rooter treatment: white background, star-rating row,
+oversized condensed uppercase headline (Oswald), four outline-icon benefit
+lines, then a red call button beside a navy "Schedule Service Online" button.
+The headline and schedule button use the company's own navy rather than
+Roto-Rooter's indigo, so the hero matches the logo.
 
 Open `index.html` directly, or serve the folder: `npx http-server .`
 
@@ -37,6 +44,11 @@ pulled from public review listings, but they're credited to "Verified customer."
 Swap in the actual names and platforms, or replace with reviews you have written
 permission to display.
 
+**5. Hero star rating** — the hero shows "4.9/5 rating," carried over from the
+reference design. Replace it with the real Google/Yelp average before launch,
+and point the row's link at the actual review profile rather than `#reviews`.
+Advertising a rating you can't substantiate is a Google Ads policy problem.
+
 ## Verify before launch
 
 - Business address (Redmond, WA) and the secondary phone (425) 502-5011 come
@@ -59,8 +71,12 @@ in `<head>` and the events flow with no further wiring.
 
 ## Notes
 
-- No build step, no dependencies. Inter loads from Google Fonts with a system
-  font fallback stack.
+- No build step, no dependencies. Inter and Oswald are self-hosted variable
+  fonts (latin + latin-ext subsets, ~175KB total) with a system fallback stack,
+  so there's no render-blocking third-party request.
+- Only the hero `h1` uses the condensed Oswald face. If you want the section
+  headings to match the reference too, add `h2` to the `h1 { font-family:
+  var(--display) … }` rule in `styles.css`.
 - `Plumber` and `FAQPage` JSON-LD are included.
 - Responsive down to 390px with a sticky call/estimate bar on mobile; respects
   `prefers-reduced-motion`.
