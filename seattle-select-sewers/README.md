@@ -70,7 +70,7 @@ Advertising a rating you can't substantiate is a Google Ads policy problem.
 ## Button colors
 
 Three CTA styles, assigned by role so two buttons never sit side by side in the
-same color: `.btn--call` (green) is the phone, `.btn--primary` (teal) is book
+same color: `.btn--call` (royal blue) is the phone, `.btn--primary` (teal) is book
 online, `.btn--navy` / `.btn--ghost` is the quieter partner. Changing one
 button's class is fine; check its neighbor afterwards.
 
