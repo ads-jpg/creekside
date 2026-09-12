@@ -48,6 +48,13 @@
         return;
       }
 
+      var consent = form.elements.consent;
+      if (consent && !consent.checked) {
+        show(status, 'error', 'Please tick the consent box so we can contact you about your request.');
+        consent.focus();
+        return;
+      }
+
       var email = form.elements.email;
       if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.value.trim())) {
         show(status, 'error', 'That email address looks incomplete — please check it.');
@@ -62,6 +69,12 @@
       delete payload.company;
       payload.source = form.dataset.source || form.id;
       payload.page = location.pathname + location.search;
+      // Record the consent itself, not just that a box was ticked.
+      payload.consent = true;
+      payload.consented_at = new Date().toISOString();
+      payload.consent_text = (form.querySelector('.field--consent label') || {}).textContent
+        ? form.querySelector('.field--consent label').textContent.replace(/\s+/g, ' ').trim()
+        : '';
 
       submit(payload)
         .then(function () {

@@ -203,6 +203,20 @@ ul { margin: 0 0 1rem; padding-left: 1.2em; }
 .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--teal-500); box-shadow: 0 0 0 3px rgba(78,195,217,.28); }
 .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: .9rem; }
 .form-fine { font-size: .78rem; line-height: 1.5; color: #6a7c89; margin: .85rem 0 0; }
+
+/* Consent — the checkbox has to be ticked before the form will submit. */
+.field--consent { display: grid; grid-template-columns: auto 1fr; gap: .7rem; align-items: start; margin-bottom: .7rem; }
+.field--consent input[type="checkbox"] {
+  width: 1.15rem; height: 1.15rem; margin: .2rem 0 0; padding: 0; flex: none;
+  accent-color: var(--teal-600); cursor: pointer;
+}
+.field--consent label {
+  font-size: .82rem; font-weight: 400; line-height: 1.5; color: var(--body);
+  margin: 0; cursor: pointer;
+}
+.field--consent input:focus-visible { outline: 3px solid var(--teal-400); outline-offset: 2px; }
+.form-legal { font-size: .82rem; margin: 0 0 1rem; color: #6a7c89; }
+.form-legal span { margin: 0 .35rem; }
 .form-status { margin: .9rem 0 0; padding: .85rem 1rem; border-radius: 9px; font-size: .93rem; font-weight: 600; }
 .form-status[data-state="ok"] { background: #e6f7ef; color: #146b45; border: 1px solid #b6e5cd; }
 .form-status[data-state="error"] { background: #fdecea; color: #a02c1f; border: 1px solid #f5c2bc; }

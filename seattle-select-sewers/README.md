@@ -35,7 +35,10 @@ logo file and update the three `<img src="assets/img/logo.svg">` references
 empty both forms run in demo mode: they validate, show the success state, and
 send nothing. Point it at the CRM webhook or form service and each POSTs JSON
 (`first_name, last_name, phone, email, zip, service, notes, source, page`). A
-honeypot field filters bots. The hero and FAQ forms are identical; `source`
+honeypot field filters bots, and a required consent checkbox gates submission —
+the payload carries `consent`, `consented_at` (ISO timestamp) and `consent_text`
+(the exact wording agreed to), so you have a record rather than just a flag. The
+hero and FAQ forms are identical; `source`
 says which one converted (`hero` / `faq`), so you can see which earns its place.
 
 Every field is required, including email and the description, and the service
@@ -50,7 +53,13 @@ pulled from public review listings, but they're credited to "Verified customer."
 Swap in the actual names and platforms, or replace with reviews you have written
 permission to display.
 
-**4. Hero star rating** — the hero shows "4.9/5 rating," carried over from the
+**4. Privacy Policy and Terms links** — the consent block links to
+`seattleselectsewers.com/privacy-policy/` and `/terms-of-service/`. Confirm both
+pages exist at those paths, or repoint the links. Google Ads requires a reachable
+privacy policy on lead-gen landing pages, so a 404 here is a disapproval risk,
+not just a broken link.
+
+**5. Hero star rating** — the hero shows "4.9/5 rating," carried over from the
 reference design. Replace it with the real Google/Yelp average before launch,
 and point the row's link at the actual review profile rather than `#reviews`.
 Advertising a rating you can't substantiate is a Google Ads policy problem.
