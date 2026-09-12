@@ -23,8 +23,8 @@
 
 /* Seattle Select Sewers — paid-search landing page
    Structure modeled on high-converting local service pages:
-   sticky call header → hero + lead form → trust → services → offers
-   → why us → process → reviews → service area → FAQ → CTA → footer */
+   sticky call header → hero + lead form → trust → services → why us
+   → process → reviews → service area → FAQ → CTA → footer */
 
 :root {
   --navy-900: #071722;
@@ -234,18 +234,6 @@ ul { margin: 0 0 1rem; padding-left: 1.2em; }
 .svc__label { font-weight: 800; color: var(--ink); font-size: .98rem; margin-bottom: .45rem; }
 .svc__list { margin: 0; padding-left: 1.2rem; font-size: .96rem; }
 .svc__list li { padding: .14rem 0; }
-
-/* ---------- Offers ---------- */
-.offer {
-  background: #fff; border: 2px dashed var(--teal-500); border-radius: var(--radius);
-  padding: 1.6rem 1.5rem; text-align: center; display: flex; flex-direction: column;
-}
-.offer__amount { font-size: clamp(2.1rem, 4vw, 2.8rem); font-weight: 900; color: var(--navy-700); line-height: 1; letter-spacing: -.03em; }
-.offer__amount small { display: block; font-size: .95rem; font-weight: 700; color: var(--teal-600); letter-spacing: .06em; text-transform: uppercase; margin-top: .35rem; }
-.offer h3 { margin: .9rem 0 .35rem; font-size: 1.08rem; }
-.offer p { font-size: .92rem; }
-.offer__fine { margin-top: auto; padding-top: 1rem; font-size: .75rem; color: #74858f; line-height: 1.5; }
-.offer .btn { margin-top: 1rem; }
 
 /* ---------- Split / why us ---------- */
 .split { display: grid; grid-template-columns: 1.05fr .95fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }

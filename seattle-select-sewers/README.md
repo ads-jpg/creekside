@@ -2,7 +2,7 @@
 
 A self-contained static landing page for Seattle Select Sewers, structured after
 the Roto-Rooter local-market landing pages (sticky call header → hero + inline
-lead form → trust bar → services → coupons → why-us → process → reviews →
+lead form → trust bar → services → why-us → process → reviews →
 service area → FAQ → closing CTA → footer).
 
 ```
@@ -36,16 +36,12 @@ it's empty the form runs in demo mode: it validates, shows the success state,
 and sends nothing. Point it at the CRM webhook or form service and it POSTs JSON
 (`name, phone, email, zip, service, notes, page`). A honeypot field filters bots.
 
-**3. Coupon values** — the three offers ($99 inspection, $75 off jetting, $500
-off lining) and their 12/31/2026 expiration are placeholders chosen to match the
-Roto-Rooter coupon pattern. Replace with the real promotions and terms.
-
-**4. Review attributions** — the three testimonials are real customer quotes
+**3. Review attributions** — the three testimonials are real customer quotes
 pulled from public review listings, but they're credited to "Verified customer."
 Swap in the actual names and platforms, or replace with reviews you have written
 permission to display.
 
-**5. Hero star rating** — the hero shows "4.9/5 rating," carried over from the
+**4. Hero star rating** — the hero shows "4.9/5 rating," carried over from the
 reference design. Replace it with the real Google/Yelp average before launch,
 and point the row's link at the actual review profile rather than `#reviews`.
 Advertising a rating you can't substantiate is a Google Ads policy problem.
@@ -65,7 +61,7 @@ Advertising a rating you can't substantiate is a Google Ads policy problem.
 ## Conversion tracking
 
 Every phone link carries `data-track="call"` with a `data-location` naming its
-placement (header, hero, each offer, footer, sticky mobile bar). `main.js` fires
+placement (header, hero, footer, sticky mobile bar). `main.js` fires
 `phone_call_click` with that placement, and `generate_lead` on form submit, to
 both `gtag()` and `dataLayer` if either is present. Add the GA4 / Google Ads tag
 in `<head>` and the events flow with no further wiring.
