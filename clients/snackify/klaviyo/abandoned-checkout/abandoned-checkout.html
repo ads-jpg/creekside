@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="x-apple-disable-message-reformatting">
+<meta name="color-scheme" content="light">
+<meta name="supported-color-schemes" content="light">
+<title>Your snacks are still waiting</title>
+<!--[if mso]>
+<noscript><xml><o:OfficeDocumentSettings><o:PixelsPerInch>96</o:PixelsPerInch></o:OfficeDocumentSettings></xml></noscript>
+<style>td,th,div,p,a,h1,h2,h3{font-family:Arial,sans-serif !important;}</style>
+<![endif]-->
+<!--[if !mso]><!-->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Roboto+Slab:wght@700;800&display=swap" rel="stylesheet">
+<!--<![endif]-->
+<style>
+  body { margin: 0; padding: 0; width: 100% !important; background: #F2F8F5; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+  table { border-collapse: collapse; mso-table-lspace: 0; mso-table-rspace: 0; }
+  img { border: 0; line-height: 100%; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; display: block; }
+  a { color: #008059; }
+  .slab { font-family: 'Museo Slab', 'Roboto Slab', Rockwell, Georgia, serif; }
+  .sans { font-family: 'Proxima Nova', 'Montserrat', Helvetica, Arial, sans-serif; }
+  .btn:hover { background: #006B4A !important; }
+  @media only screen and (max-width: 620px) {
+    .container { width: 100% !important; }
+    .px { padding-left: 20px !important; padding-right: 20px !important; }
+    .h2 { font-size: 26px !important; line-height: 32px !important; }
+    .stack { display: block !important; width: 100% !important; }
+    .stack-pad { padding: 0 0 18px 0 !important; }
+    .prod-img { width: 80px !important; height: 80px !important; }
+    .prod-img-cell { width: 80px !important; }
+    .btn-full { width: 100% !important; }
+  }
+</style>
+</head>
+<body class="sans" style="margin:0;padding:0;background:#F2F8F5;">
+
+<!-- Preheader -->
+<div style="display:none;max-height:0;overflow:hidden;mso-hide:all;font-size:1px;line-height:1px;color:#F2F8F5;opacity:0;">
+  We saved your cart. Finish checking out before your favorites sell out.&nbsp;&#8199;&#65279;&#847;&nbsp;&#8199;&#65279;&#847;&nbsp;&#8199;&#65279;&#847;&nbsp;&#8199;&#65279;&#847;&nbsp;&#8199;&#65279;&#847;&nbsp;&#8199;&#65279;&#847;&nbsp;&#8199;&#65279;&#847;
+</div>
+
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#F2F8F5;">
+<tr><td align="center" style="padding:24px 10px;">
+
+  <table role="presentation" class="container" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px;max-width:600px;background:#FFFFFF;border-radius:16px;overflow:hidden;">
+
+    <!-- Header: logo on lime (brand logo variation 1) -->
+    <tr>
+      <td align="center" style="background:#AEDE1D;padding:26px 20px;">
+        <a href="{{ organization.url }}" target="_blank">
+          <img src="__LOGO_GREEN_URL__" width="190" alt="Snackify" style="width:190px;max-width:190px;height:auto;">
+        </a>
+      </td>
+    </tr>
+
+    <!-- Hero -->
+    <tr>
+      <td style="padding:0;">
+        <a href="{{ event.extra.responsive_checkout_url }}" target="_blank">
+          <img src="__HERO_URL__" width="600" alt="Psst, you forgot something. Your snacks are still waiting. We saved your cart." style="width:100%;max-width:600px;height:auto;">
+        </a>
+      </td>
+    </tr>
+
+    <!-- Intro -->
+    <tr>
+      <td class="px" style="padding:40px 48px 8px 48px;">
+        <h2 class="slab h2" style="margin:0 0 14px 0;font-family:'Museo Slab','Roboto Slab',Rockwell,Georgia,serif;font-weight:800;font-size:30px;line-height:36px;color:#2A2A2A;">
+          Hey {{ person.first_name|default:'there' }}, you left something tasty behind.
+        </h2>
+        <p class="sans" style="margin:0;font-family:'Proxima Nova','Montserrat',Helvetica,Arial,sans-serif;font-size:16px;line-height:25px;color:#4B5058;">
+          Good news: we held onto everything in your cart. Pick up right where you left off. It only takes a minute.
+        </p>
+      </td>
+    </tr>
+
+    <!-- Primary CTA -->
+    <tr>
+      <td class="px" align="center" style="padding:28px 48px 36px 48px;">
+        <!--[if mso]>
+        <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" href="{{ event.extra.responsive_checkout_url }}" style="height:54px;v-text-anchor:middle;width:300px;" arcsize="15%" stroke="f" fillcolor="#008059">
+          <w:anchorlock/><center style="color:#FFFFFF;font-family:Arial,sans-serif;font-size:17px;font-weight:bold;">Finish My Order</center>
+        </v:roundrect>
+        <![endif]-->
+        <!--[if !mso]><!-->
+        <a href="{{ event.extra.responsive_checkout_url }}" target="_blank" class="btn btn-full sans" style="display:inline-block;background:#008059;color:#FFFFFF;font-family:'Proxima Nova','Montserrat',Helvetica,Arial,sans-serif;font-size:17px;font-weight:700;line-height:54px;height:54px;width:300px;text-align:center;text-decoration:none;border-radius:8px;">Finish My Order</a>
+        <!--<![endif]-->
+      </td>
+    </tr>
+
+    <!-- Dynamic cart items -->
+    <tr>
+      <td class="px" style="padding:0 48px;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border:2px solid #CCE6DE;border-radius:12px;border-collapse:separate;">
+          <tr>
+            <td style="padding:18px 22px 6px 22px;">
+              <p class="sans" style="margin:0;font-family:'Proxima Nova','Montserrat',Helvetica,Arial,sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#008059;">
+                In your cart
+              </p>
+            </td>
+          </tr>
+          {% for item in event.extra.line_items %}
+          <tr>
+            <td style="padding:0 22px;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="{% if not forloop.first %}border-top:1px solid #CCE6DE;{% endif %}">
+                <tr>
+                  <td class="prod-img-cell" width="96" valign="middle" style="width:96px;padding:16px 0;">
+                    <a href="{{ event.extra.responsive_checkout_url }}" target="_blank">
+                      {% if item.product.images.0.src %}
+                      <img class="prod-img" src="{{ item.product.images.0.src }}" width="96" height="96" alt="{{ item.product.title|default:item.title }}" style="width:96px;height:96px;object-fit:cover;border-radius:10px;background:#F2F8F5;">
+                      {% else %}
+                      <img class="prod-img" src="__PRODUCT_FALLBACK_URL__" width="96" height="96" alt="{{ item.product.title|default:item.title }}" style="width:96px;height:96px;border-radius:10px;">
+                      {% endif %}
+                    </a>
+                  </td>
+                  <td valign="middle" style="padding:16px 0 16px 18px;">
+                    <p class="slab" style="margin:0 0 4px 0;font-family:'Museo Slab','Roboto Slab',Rockwell,Georgia,serif;font-weight:700;font-size:17px;line-height:22px;color:#2A2A2A;">
+                      <a href="{{ event.extra.responsive_checkout_url }}" target="_blank" style="color:#2A2A2A;text-decoration:none;">{{ item.product.title|default:item.title }}</a>
+                    </p>
+                    {% if item.variant_title and item.variant_title != 'Default Title' %}
+                    <p class="sans" style="margin:0 0 4px 0;font-family:'Proxima Nova','Montserrat',Helvetica,Arial,sans-serif;font-size:14px;line-height:20px;color:#58595B;">{{ item.variant_title }}</p>
+                    {% endif %}
+                    <p class="sans" style="margin:0;font-family:'Proxima Nova','Montserrat',Helvetica,Arial,sans-serif;font-size:14px;line-height:20px;color:#58595B;">Qty: {{ item.quantity|floatformat:0 }}</p>
+                  </td>
+                  <td valign="middle" align="right" style="padding:16px 0 16px 12px;white-space:nowrap;">
+                    <p class="sans" style="margin:0;font-family:'Proxima Nova','Montserrat',Helvetica,Arial,sans-serif;font-size:16px;font-weight:700;line-height:22px;color:#008059;">{% currency_format item.line_price|floatformat:2 %}</p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          {% endfor %}
+          <tr>
+            <td style="padding:0 22px;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-top:2px solid #CCE6DE;">
+                <tr>
+                  <td class="sans" style="padding:14px 0 18px 0;font-family:'Proxima Nova','Montserrat',Helvetica,Arial,sans-serif;font-size:15px;font-weight:600;color:#2A2A2A;">Subtotal</td>
+                  <td class="sans" align="right" style="padding:14px 0 18px 0;font-family:'Proxima Nova','Montserrat',Helvetica,Arial,sans-serif;font-size:17px;font-weight:700;color:#2A2A2A;">{% currency_format event|lookup:'$value'|floatformat:2 %}</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+
+    <!-- Secondary CTA -->
+    <tr>
+      <td class="px" align="center" style="padding:28px 48px 40px 48px;">
+        <a href="{{ event.extra.responsive_checkout_url }}" target="_blank" class="sans" style="font-family:'Proxima Nova','Montserrat',Helvetica,Arial,sans-serif;font-size:16px;font-weight:700;color:#008059;text-decoration:underline;">Return to my cart &rarr;</a>
+      </td>
+    </tr>
+
+    <!-- Reassurance strip (mint tint) -->
+    <tr>
+      <td class="px" style="background:#E4F6ED;padding:28px 36px;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+          <tr>
+            <td class="stack stack-pad" width="33%" align="center" valign="top" style="padding:0 8px;">
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" align="center"><tr><td width="12" height="12" style="width:12px;height:12px;background:#AEDE1D;border-radius:6px;font-size:0;line-height:0;">&nbsp;</td></tr></table>
+              <p class="slab" style="margin:10px 0 4px 0;font-family:'Museo Slab','Roboto Slab',Rockwell,Georgia,serif;font-weight:700;font-size:15px;color:#008059;">Your cart is saved</p>
+              <p class="sans" style="margin:0;font-family:'Proxima Nova','Montserrat',Helvetica,Arial,sans-serif;font-size:13px;line-height:19px;color:#4B5058;">Everything's right where you left it.</p>
+            </td>
+            <td class="stack stack-pad" width="33%" align="center" valign="top" style="padding:0 8px;">
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" align="center"><tr><td width="12" height="12" style="width:12px;height:12px;background:#4DD0BA;border-radius:6px;font-size:0;line-height:0;">&nbsp;</td></tr></table>
+              <p class="slab" style="margin:10px 0 4px 0;font-family:'Museo Slab','Roboto Slab',Rockwell,Georgia,serif;font-weight:700;font-size:15px;color:#008059;">Secure checkout</p>
+              <p class="sans" style="margin:0;font-family:'Proxima Nova','Montserrat',Helvetica,Arial,sans-serif;font-size:13px;line-height:19px;color:#4B5058;">Pay safely in just a few taps.</p>
+            </td>
+            <td class="stack" width="33%" align="center" valign="top" style="padding:0 8px;">
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" align="center"><tr><td width="12" height="12" style="width:12px;height:12px;background:#FF8075;border-radius:6px;font-size:0;line-height:0;">&nbsp;</td></tr></table>
+              <p class="slab" style="margin:10px 0 4px 0;font-family:'Museo Slab','Roboto Slab',Rockwell,Georgia,serif;font-weight:700;font-size:15px;color:#008059;">Questions?</p>
+              <p class="sans" style="margin:0;font-family:'Proxima Nova','Montserrat',Helvetica,Arial,sans-serif;font-size:13px;line-height:19px;color:#4B5058;">Just reply to this email. Real people, real help.</p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+
+    <!-- Footer: white logo on green (brand logo variation 2) -->
+    <tr>
+      <td align="center" class="px" style="background:#008059;padding:32px 48px;">
+        <img src="__LOGO_WHITE_URL__" width="130" alt="Snackify" style="width:130px;max-width:130px;height:auto;margin:0 auto 16px auto;">
+        <p class="sans" style="margin:0 0 6px 0;font-family:'Proxima Nova','Montserrat',Helvetica,Arial,sans-serif;font-size:12px;line-height:18px;color:#FFFFFF;">
+          {{ organization.name }} &middot; {{ organization.full_address }}
+        </p>
+        <p class="sans" style="margin:0;font-family:'Proxima Nova','Montserrat',Helvetica,Arial,sans-serif;font-size:12px;line-height:18px;color:#CCE6DE;">
+          No longer want these emails? <a href="{% unsubscribe_url %}" target="_blank" style="color:#FFFFFF;text-decoration:underline;">Unsubscribe</a>
+        </p>
+      </td>
+    </tr>
+
+  </table>
+
+</td></tr>
+</table>
+</body>
+</html>
