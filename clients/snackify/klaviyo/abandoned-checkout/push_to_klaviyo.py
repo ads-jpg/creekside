@@ -1,10 +1,10 @@
-"""Upload the images and create the abandoned checkout template in Snackify's Klaviyo.
+"""Upload the images and create both abandoned checkout flow templates in Snackify's Klaviyo.
 
     KLAVIYO_API_KEY=pk_... python3 push_to_klaviyo.py [--dry-run]
 
 Needs a private API key with Images (write) and Templates (write) scopes.
-It only creates a new template; it does not touch the live flow. Swap the
-template into the Abandoned Checkout flow email in Klaviyo once it's reviewed.
+It only creates templates; it does not create or change any flow. Build the
+flow from FLOW.md and pick these templates for its two emails.
 Standard library only.
 """
 import json
@@ -17,10 +17,14 @@ from pathlib import Path
 API = "https://a.klaviyo.com/api"
 REVISION = "2024-10-15"
 HERE = Path(__file__).resolve().parent
-TEMPLATE_NAME = "Snackify - Abandoned Checkout - 2026 Refresh"
+TEMPLATES = {
+    "abandoned-checkout.html": "Snackify - Abandoned Checkout 1 - Your snacks are waiting",
+    "abandoned-checkout-reminder.html": "Snackify - Abandoned Checkout 2 - Reminder",
+}
 
 IMAGES = {
     "__HERO_URL__": ("images/hero.png", "snackify-abandoned-checkout-hero"),
+    "__HERO_REMINDER_URL__": ("images/hero-reminder.png", "snackify-abandoned-checkout-reminder-hero"),
     "__LOGO_GREEN_URL__": ("images/logo-green.png", "snackify-logo-green"),
     "__LOGO_WHITE_URL__": ("images/logo-white.png", "snackify-logo-white"),
     "__PRODUCT_FALLBACK_URL__": ("images/product-fallback.png", "snackify-product-fallback"),
@@ -66,23 +70,24 @@ def main():
     if not key and not dry_run:
         sys.exit("Set KLAVIYO_API_KEY (Snackify private key).")
 
-    html = (HERE / "abandoned-checkout.html").read_text()
+    urls = {}
     for token, (rel_path, name) in IMAGES.items():
-        url = f"https://example.invalid/{name}.png" if dry_run else upload_image(key, rel_path, name)
-        print(f"{rel_path} -> {url}")
-        html = html.replace(token, url)
-    assert not any(token in html for token in IMAGES), "unreplaced image token"
+        urls[token] = f"https://example.invalid/{name}.png" if dry_run else upload_image(key, rel_path, name)
+        print(f"{rel_path} -> {urls[token]}")
 
-    if dry_run:
-        print("Dry run: template not created.")
-        return
-
-    payload = {"data": {"type": "template", "attributes": {
-        "name": TEMPLATE_NAME, "editor_type": "CODE", "html": html,
-    }}}
-    res = request("POST", "/templates", key, json.dumps(payload).encode())
-    print(f"Created template {res['data']['id']}: {TEMPLATE_NAME}")
-
+    for filename, template_name in TEMPLATES.items():
+        html = (HERE / filename).read_text()
+        for token, url in urls.items():
+            html = html.replace(token, url)
+        assert not any(token in html for token in IMAGES), f"unreplaced image token in {filename}"
+        if dry_run:
+            print(f"Dry run: would create template {template_name!r}")
+            continue
+        payload = {"data": {"type": "template", "attributes": {
+            "name": template_name, "editor_type": "CODE", "html": html,
+        }}}
+        res = request("POST", "/templates", key, json.dumps(payload).encode())
+        print(f"Created template {res['data']['id']}: {template_name}")
 
 if __name__ == "__main__":
     main()

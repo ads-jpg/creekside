@@ -1,0 +1,62 @@
+<!doctype html>
+<!-- Source for images/hero-reminder.png (email 2). Rendered at 1200x720 (shown at 600x360). Re-render: node render.js -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="fonts.css">
+<style>
+  :root {
+    --lime: #AEDE1D; --green: #008059; --teal: #4DD0BA; --coral: #FF8075;
+    --mint: #77D3A6; --orange: #F1AF40; --ink: #2A2A2A;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1200px; height: 720px; overflow: hidden; }
+  body { background: var(--lime); position: relative; font-family: 'Montserrat', sans-serif; }
+  .art { position: absolute; inset: 0; }
+  .box { position: absolute; left: 70px; top: 72px; height: 572px; filter: drop-shadow(0 18px 24px rgba(40,70,0,.30)); }
+  .copy { position: absolute; left: 640px; top: 128px; width: 500px; }
+  .eyebrow {
+    display: inline-block; background: var(--green); color: #FFFFFF;
+    font-weight: 700; font-size: 22px; letter-spacing: 3px; text-transform: uppercase;
+    padding: 12px 22px; border-radius: 999px;
+  }
+  h1 {
+    font-family: 'Roboto Slab', serif; font-weight: 800; color: var(--green);
+    font-size: 84px; line-height: 1.02; letter-spacing: -1.5px; margin-top: 34px;
+  }
+  h1 .hl { position: relative; white-space: nowrap; }
+  h1 .hl svg { position: absolute; left: 0; bottom: -24px; width: 100%; height: 30px; }
+  .sub { color: var(--ink); font-size: 30px; font-weight: 500; margin-top: 56px; line-height: 1.35; }
+</style>
+</head>
+<body>
+<svg class="art" viewBox="0 0 1200 720" xmlns="http://www.w3.org/2000/svg">
+  <!-- background shapes (lime tints) -->
+  <circle cx="320" cy="400" r="330" fill="#FFFFFF" opacity=".22"/>
+  <circle cx="320" cy="400" r="240" fill="#FFFFFF" opacity=".22"/>
+  <circle cx="1150" cy="700" r="150" fill="#FFFFFF" opacity=".22"/>
+
+  <!-- confetti -->
+  <g>
+    <circle cx="560" cy="96" r="11" fill="#008059"/>
+    <circle cx="60" cy="140" r="9" fill="#FF8075"/>
+    <circle cx="80" cy="610" r="12" fill="#4DD0BA"/>
+    <circle cx="545" cy="640" r="8" fill="#F1AF40"/>
+    <rect x="100" y="70" width="26" height="10" rx="5" fill="#008059" transform="rotate(-35 113 75)"/>
+    <rect x="1120" y="80" width="26" height="10" rx="5" fill="#FF8075" transform="rotate(25 1133 85)"/>
+    <rect x="20" y="380" width="26" height="10" rx="5" fill="#F1AF40" transform="rotate(-70 33 385)"/>
+    <!-- sparkles -->
+    <path d="M190 64 l8 22 22 8 -22 8 -8 22 -8 -22 -22 -8 22 -8z" fill="#FFFFFF"/>
+    <path d="M1150 460 l6 16 16 6 -16 6 -6 16 -6 -16 -16 -6 16 -6z" fill="#008059"/>
+  </g>
+</svg>
+
+<img class="box" src="snack-box.png" alt="">
+
+<div class="copy">
+  <div class="eyebrow">Last call</div>
+  <h1>Still thinking it <span class="hl">over?<svg viewBox="0 0 300 30" preserveAspectRatio="none"><path d="M4 18 Q 40 4 76 16 T 150 16 T 224 16 T 296 12" fill="none" stroke="#FF8075" stroke-width="8" stroke-linecap="round"/></svg></span></h1>
+  <p class="sub">Your cart is still saved, but we can't hold it forever.</p>
+</div>
+</body>
+</html>

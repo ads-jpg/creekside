@@ -1,4 +1,4 @@
-"""Render abandoned-checkout.html with sample Started Checkout data -> preview.html.
+"""Render both flow emails with sample Started Checkout data -> preview.html, preview-reminder.html.
 
 Klaviyo's template language is Django-style; this translates the handful of
 tags/filters the template uses into Jinja2 so we can preview locally.
@@ -51,6 +51,7 @@ SAMPLE = {
 
 LOCAL_IMAGES = {
     "__HERO_URL__": "images/hero.png",
+    "__HERO_REMINDER_URL__": "images/hero-reminder.png",
     "__LOGO_GREEN_URL__": "images/logo-green.png",
     "__LOGO_WHITE_URL__": "images/logo-white.png",
     "__PRODUCT_FALLBACK_URL__": "images/product-fallback.png",
@@ -82,11 +83,17 @@ env = Environment(autoescape=False, undefined=ChainableUndefined)  # Klaviyo ren
 env.filters.update(kdefault=kdefault, kfloatformat=kfloatformat, klookup=klookup,
                    currency=lambda v: f"${float(v):,.2f}")
 
-html = (ROOT / "abandoned-checkout.html").read_text()
-for token, path in LOCAL_IMAGES.items():
-    html = html.replace(token, path)
-out = env.from_string(to_jinja(html)).render(**SAMPLE)
-# Load the free stand-in fonts locally so the preview matches what Gmail/Apple Mail users see.
-out = out.replace("</head>", '<link rel="stylesheet" href="source/fonts.css">\n</head>', 1)
-(ROOT / "preview.html").write_text(out)
-print("wrote", ROOT / "preview.html")
+EMAILS = {
+    "abandoned-checkout.html": "preview.html",
+    "abandoned-checkout-reminder.html": "preview-reminder.html",
+}
+
+for template, preview in EMAILS.items():
+    html = (ROOT / template).read_text()
+    for token, path in LOCAL_IMAGES.items():
+        html = html.replace(token, path)
+    out = env.from_string(to_jinja(html)).render(**SAMPLE)
+    # Load the free stand-in fonts locally so the preview matches what Gmail/Apple Mail users see.
+    out = out.replace("</head>", '<link rel="stylesheet" href="source/fonts.css">\n</head>', 1)
+    (ROOT / preview).write_text(out)
+    print("wrote", ROOT / preview)
