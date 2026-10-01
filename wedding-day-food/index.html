@@ -190,6 +190,13 @@ p { margin: 0; }
 .mine-row .what { font-size: .92rem; color: var(--ink-soft); }
 
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.host-card { border: 2px solid var(--accent); background: var(--accent-soft); }
+.host-card h2 { font-family: var(--display); font-weight: 500; font-size: 1.35rem; }
+.paste-card { border: 2px solid var(--accent); }
+.paste-card h2 { font-family: var(--display); font-weight: 500; font-size: 1.5rem; }
+.paste-card .textarea { min-height: 150px; }
+.paste-card .btn { align-self: flex-start; min-width: 220px; }
+@media (max-width: 520px) { .paste-card .btn { align-self: stretch; } }
 .foot { text-align: center; font-size: .8rem; color: var(--ink-soft); }
 
 /* modal & toast */
@@ -227,7 +234,10 @@ p { margin: 0; }
 
 .table-wrap { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); }
 table.orders { border-collapse: collapse; width: 100%; min-width: 1060px; font-size: .9rem; }
-.st-cell { display: flex; flex-direction: column; gap: 6px; align-items: flex-start; }
+.st-cell { display: flex; flex-direction: column; gap: 6px; align-items: stretch; min-width: 104px; }
+.st-cell .status { flex-direction: column; }
+.st-cell .status button { border-left: 0; border-top: 1px solid var(--line); text-align: left; }
+.st-cell .status button:first-child { border-top: 0; }
 table.orders th { text-align: left; font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-soft); font-weight: 600; padding: 12px 12px; border-bottom: 1px solid var(--line); background: var(--surface-2); white-space: nowrap; }
 table.orders td { padding: 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
 table.orders tr:last-child td { border-bottom: 0; }
@@ -578,11 +588,20 @@ table.orders td .guest { font-weight: 600; }
           </div>`).join('')}</div>
         <p class="hint">Need to change something? Use View / edit. To order for another person, enter their name below.</p>
       </section>` : '';
-    const cantSave = S.ready && S.canSave === false ? `
+    const cantSave = !(S.ready && S.canSave === false) ? '' : (!S.db ? `
+      <div class="notice warn"><b>This page isn't connected to the order list here.</b>
+      Host: open the link in a web browser where you're signed in to claude.ai to see your dashboard.
+      Guests: you can still choose your food. At the end, tap “Copy my order” and text it to the host.</div>` : `
       <div class="notice warn"><b>Heads up: this page can't save orders from your account.</b>
-      You can still choose your sandwich. At the end, tap “Copy my order” and text it to the host.</div>` : '';
+      You can still choose your sandwich. At the end, tap “Copy my order” and text it to the host.</div>`);
+    const hostCard = S.isOwner && !forHost ? `
+      <section class="card host-card">
+        <div class="eyebrow">You're the host</div>
+        <h2>See every order, and paste orders guests text you</h2>
+        <button class="btn btn-primary" data-act="open-admin">Open host dashboard</button>
+      </section>` : '';
     const label = forHost ? 'Guest’s full name' : (entries.length ? 'Full name of the person you’re ordering for' : 'Your full name');
-    return `
+    return `${hostCard}
       <header class="hero">
         <div class="ornament"><span></span></div>
         <p class="eyebrow">The Getting-Ready Menu</p>
@@ -830,6 +849,13 @@ table.orders td .guest { font-weight: 600; }
         <div><div class="eyebrow">Host only</div><h1>Jimmy John's Orders</h1></div>
         <span class="live" id="live"></span>
       </div>
+      <section class="card paste-card" aria-labelledby="paste-h">
+        <div><h2 id="paste-h">Got an order by text? Paste it here</h2>
+        <p class="hint">Paste the whole message a guest sent you, then tap Fill in order. You'll check it before it's saved.</p></div>
+        <textarea class="textarea" id="paste-text" aria-labelledby="paste-h" placeholder="Paste the guest's message here, for example:&#10;Jimmy John's order for Sarah Johnson&#10;Sandwich: #2 Big John®&#10;Bread: French (8&quot;)&#10;…"></textarea>
+        <p class="error" id="paste-err" role="alert" hidden></p>
+        <button class="btn btn-primary" data-act="paste-fill">Fill in order</button>
+      </section>
       <div id="admin-body"></div></main>`;
     renderAdminBody();
   }
@@ -911,7 +937,6 @@ table.orders td .guest { font-weight: 600; }
         <button class="btn btn-primary btn-sm" data-act="copy-all" ${all.length ? '' : 'disabled'}>Copy All Orders</button>
         <button class="btn btn-secondary btn-sm" data-act="export-csv" ${all.length ? '' : 'disabled'}>Export Orders (CSV)</button>
         <button class="btn btn-secondary btn-sm" data-act="export-pdf" ${all.length ? '' : 'disabled'}>Printable PDF</button>
-        <button class="btn btn-secondary btn-sm" data-act="host-paste">Paste an order</button>
         <button class="btn btn-secondary btn-sm" data-act="host-add">Add an order</button>
       </div>
       <div class="toolbar">
@@ -1136,24 +1161,19 @@ table.orders td .guest { font-weight: 600; }
     if (problems.length) o.notes = (o.notes ? o.notes + ' ' : '') + '(Also asked for: ' + problems.join(', ') + ')';
     return { draft: cleanDraft(o), problems };
   }
-  function showPasteModal(err) {
-    $('#modal-root').innerHTML = `<div class="overlay" data-act="modal-bg"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="m-title">
-      <h3 id="m-title">Paste an order</h3>
-      <p class="hint">Paste the order a guest texted you. The app fills it in, then you check it and tap Submit Order.</p>
-      <textarea class="textarea" id="paste-text" placeholder="Jimmy John's order for …&#10;Sandwich: …"></textarea>
-      ${err ? `<p class="error" role="alert">${esc(err)}</p>` : ''}
-      <div class="btn-row"><button class="btn btn-secondary btn-sm" data-act="modal-close">Cancel</button>
-      <button class="btn btn-primary btn-sm" data-act="paste-fill">Fill in order</button></div></div></div>`;
-    $('#paste-text').focus();
+  function pasteError(msg) {
+    const er = $('#paste-err');
+    if (er) { er.textContent = msg; er.hidden = false; }
+    const ta = $('#paste-text');
+    if (ta) ta.focus();
   }
   function fillFromPaste() {
     const el = $('#paste-text');
     const text = el ? el.value : '';
-    if (!text.trim()) { showPasteModal('Paste the order text first.'); return; }
+    if (!text.trim()) { pasteError('Paste the order text into the box first.'); return; }
     let draft = decodeOrder(text), problems = [];
     if (!draft) { const r = parseOrderText(text); draft = r.draft; problems = r.problems; }
-    if (!draft.itemId) { showPasteModal('Couldn’t find a sandwich in that text. Check it has a line like “Sandwich: #2 Big John”.'); $('#paste-text').value = text; return; }
-    closeModal();
+    if (!draft.itemId) { pasteError('Couldn’t find a sandwich in that text. Check it has a line like “Sandwich: #2 Big John”.'); return; }
     S.view = 'flow'; S.target = null; S.returnTo = 'admin'; S.draft = draft; S.pasteInfo = { problems };
     goStep(cleanName(draft.name).length >= 2 ? 4 : 0);
   }
@@ -1319,7 +1339,6 @@ table.orders td .guest { font-weight: 600; }
       case 'close-admin': S.view = 'flow'; S.returnTo = null; render(); window.scrollTo(0, 0); break;
       case 'back-admin': S.view = 'admin'; S.returnTo = null; render(); window.scrollTo(0, 0); break;
       case 'host-add': S.pasteInfo = null; S.view = 'flow'; S.target = null; S.returnTo = 'admin'; S.draft = blankDraft(); goStep(0); break;
-      case 'host-paste': showPasteModal(); break;
       case 'paste-fill': fillFromPaste(); break;
       case 'cancel-host-entry': S.pasteInfo = null; S.view = 'admin'; S.returnTo = null; S.target = null; S.draft = blankDraft(); render(); window.scrollTo(0, 0); break;
       case 'status': {

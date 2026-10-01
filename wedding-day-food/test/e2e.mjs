@@ -190,10 +190,11 @@ const host = await openAs({ uid: 'u_host', owner: true, level: 'admin' }, { view
 {
   const p = host.page;
   await p.waitForTimeout(300);
-  check('Host sees dashboard link', (await p.locator('[data-act="open-admin"]').count()) === 1);
+  check('Host sees dashboard button on first screen', await p.isVisible('.host-card [data-act="open-admin"]'));
   await tap(p, '[data-act="open-admin"]');
   await p.waitForSelector('#total-orders');
   await p.waitForTimeout(400);
+  check('Paste box is at the top of the dashboard', await p.evaluate(() => { const r = document.querySelector('#paste-text').getBoundingClientRect(); return r.top > 0 && r.bottom < window.innerHeight; }));
   check('Dashboard total = 3', (await p.textContent('#total-orders')) === '3', await p.textContent('#total-orders'));
   const rowsText = await p.locator('table.orders tbody tr').allTextContents();
   const mikeRow = rowsText.find(t => t.includes('Mike Smith')) || '';
@@ -279,7 +280,6 @@ const host = await openAs({ uid: 'u_host', owner: true, level: 'admin' }, { view
   check('Host can remove an order', (await p.textContent('#total-orders')) === '4');
   // paste an order a guest texted (with order code)
   async function pasteOrder(text) {
-    await tap(p, '[data-act="host-paste"]');
     await p.fill('#paste-text', text);
     await tap(p, '[data-act="paste-fill"]');
   }
@@ -303,8 +303,7 @@ const host = await openAs({ uid: 'u_host', owner: true, level: 'admin' }, { view
 
   // text with no recognizable sandwich
   await pasteOrder('can I get whatever is good');
-  check('Unrecognized paste shows an error and stays on dashboard', (await p.locator('.modal .error').count()) === 1 && (await p.locator('#total-orders').count()) === 1);
-  await tap(p, '[data-act="modal-close"]');
+  check('Unrecognized paste shows an error and stays on dashboard', (await p.isVisible('#paste-err')) && (await p.locator('#total-orders').count()) === 1);
   check('No page errors (host)', !host.errors.length, host.errors.join(' | '));
 
   // mobile + dark dashboard screenshots
