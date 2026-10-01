@@ -1,4 +1,4 @@
-# Wedding Day: Jimmy John's order collector
+# Dressed & Fed: Jimmy John's order collector
 
 Collects everyone's Jimmy John's order for the food while the wedding party gets ready.
 

@@ -1,4 +1,4 @@
-<title>Wedding Day Food Orders</title>
+<title>Dressed &amp; Fed</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400;1,6..96,500&family=Jost:wght@400;500;600&display=swap">
@@ -538,7 +538,7 @@ table.orders td .guest { font-weight: 600; }
   }
 
   function topline(right) {
-    return `<div class="topline"><span>Wedding Day · Getting Ready</span>${right || ''}</div>`;
+    return `<div class="topline"><span>Dressed &amp; Fed</span>${right || ''}</div>`;
   }
   function hostLink() {
     return S.isOwner ? `<button class="linkbtn" data-act="open-admin">Host dashboard →</button>` : '';
@@ -585,8 +585,8 @@ table.orders td .guest { font-weight: 600; }
     return `
       <header class="hero">
         <div class="ornament"><span></span></div>
-        <p class="eyebrow">Food while we get ready</p>
-        <h1>Wedding Day</h1>
+        <p class="eyebrow">The Getting-Ready Menu</p>
+        <h1>Dressed &amp; Fed</h1>
         <p class="sub">Please select your Jimmy John's order below.</p>
         <div class="ornament"><span></span></div>
         <p class="note">Please enter your name and select your sandwich and any customizations. Your order will be sent to the host, who will place the final Jimmy John's order.</p>
@@ -932,7 +932,7 @@ table.orders td .guest { font-weight: 600; }
   function ordersText(rows) {
     const t = tally(rows);
     const out = [];
-    out.push("WEDDING DAY (GETTING READY): JIMMY JOHN'S ORDERS");
+    out.push("DRESSED & FED: JIMMY JOHN'S ORDERS (THE GETTING-READY MENU)");
     out.push('Total orders: ' + rows.length);
     out.push('');
     out.push('SANDWICH TOTALS');
@@ -1003,7 +1003,7 @@ table.orders td .guest { font-weight: 600; }
     const t = tally(rows);
     let y = M;
     doc.setFont('times', 'normal'); doc.setFontSize(20);
-    doc.text('WEDDING DAY: GETTING READY', W / 2, y + 8, { align: 'center' });
+    doc.text('DRESSED & FED', W / 2, y + 8, { align: 'center' });
     doc.setFontSize(12); doc.setFont('times', 'italic');
     doc.text("Jimmy John's orders: " + rows.length + ' total, printed ' + fmtTime(new Date().toISOString()), W / 2, y + 26, { align: 'center' });
     y += 50;
@@ -1045,7 +1045,7 @@ table.orders td .guest { font-weight: 600; }
       y += h;
       doc.setDrawColor(220, 224, 218); doc.line(M, y - 9, W - M, y - 9);
     });
-    await saveFile('wedding-day-orders.pdf', doc.output('blob'));
+    await saveFile('dressed-and-fed-orders.pdf', doc.output('blob'));
   }
 
   /* ------------------------------------------------------------------ modal & toast */
@@ -1223,7 +1223,7 @@ table.orders td .guest { font-weight: 600; }
         break;
       }
       case 'copy-all': copyText(ordersText(adminRows()), 'All orders copied'); break;
-      case 'export-csv': { const rows = adminRows(); saveFile('wedding-day-orders.csv', csvOf(rows), csvOf(rows)); break; }
+      case 'export-csv': { const rows = adminRows(); saveFile('dressed-and-fed-orders.csv', csvOf(rows), csvOf(rows)); break; }
       case 'export-pdf': exportPdf(adminRows()); break;
       case 'modal-ok': { const fn = pendingConfirm; pendingConfirm = null; closeModal(); if (fn) fn(); break; }
       case 'modal-close': pendingConfirm = null; closeModal(); break;

@@ -84,7 +84,7 @@ async function guestOrder(page, o) {
 const sarah = await openAs({ uid: 'u_sarah', owner: false, level: 'interact' });
 {
   const p = sarah.page;
-  check('Welcome screen shows title, subtitle and note', (await p.textContent('h1')).includes('Wedding Day')
+  check('Welcome screen shows title, subtitle and note', (await p.textContent('h1')).includes('Dressed & Fed')
     && (await p.textContent('.hero .sub')).includes("Please select your Jimmy John's order below.")
     && (await p.textContent('.hero .note')).includes('Your order will be sent to the host'));
   check('Guests see no host dashboard link', (await p.locator('[data-act="open-admin"]').count()) === 0);
