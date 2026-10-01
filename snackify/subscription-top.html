@@ -6,14 +6,10 @@
 
   FONTS (brand sheet): Museo Slab = headlines, subheadlines
                        Proxima Nova = buttons, body
-  Both are Adobe Fonts (licensed), so they load from Snackify's Adobe Fonts kit:
-    1. fonts.adobe.com > My Adobe Fonts > Web Projects
-    2. Make sure the project includes Museo Slab (700) and Proxima Nova (400, 600, 700)
-    3. Replace YOUR_KIT_ID below with the project's kit ID (e.g. "abc1def")
-  If the Shopify theme already loads these fonts site-wide, you can delete the
-  <link> line; the block picks them up automatically.
+  Both are loaded by the Shopify theme, so nothing is loaded here. If the theme
+  registers them under different names, the block falls back to the theme's own
+  heading/body fonts (--font-heading-family / --font-body-family).
 -->
-<link rel="stylesheet" href="https://use.typekit.net/YOUR_KIT_ID.css">
 
 <style>
   .snk-top {
@@ -27,8 +23,8 @@
     --snk-slate: #4B5058;
     --snk-gray: #58595B;
     /* Adobe Fonts names first, then common self-hosted / desktop names */
-    --snk-heading: "museo-slab", "Museo Slab", "MuseoSlab", "Museo Slab 700", "MuseoSlab-700", Rockwell, Georgia, serif;
-    --snk-body: "proxima-nova", "Proxima Nova", "ProximaNova", "Proxima Nova Rg", "ProximaNova-Regular", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --snk-heading: "museo-slab", "Museo Slab", "MuseoSlab", "Museo Slab 700", "MuseoSlab-700", var(--font-heading-family, Georgia), serif;
+    --snk-body: "proxima-nova", "Proxima Nova", "ProximaNova", "Proxima Nova Rg", "ProximaNova-Regular", var(--font-body-family, Helvetica), sans-serif;
 
     font-family: var(--snk-body);
     color: var(--snk-ink);
