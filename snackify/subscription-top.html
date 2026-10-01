@@ -4,13 +4,16 @@
   (or a Custom Liquid section above the box builder).
   All styles are scoped under .snk-top so they won't touch the theme.
 
-  Fonts: brand fonts are Museo Slab (headings) + Proxima Nova (body/buttons).
-  If the store already loads them via Adobe Fonts they're used automatically;
-  otherwise the Google Fonts fallbacks below (Zilla Slab / Montserrat) kick in.
+  FONTS (brand sheet): Museo Slab = headlines, subheadlines
+                       Proxima Nova = buttons, body
+  Both are Adobe Fonts (licensed), so they load from Snackify's Adobe Fonts kit:
+    1. fonts.adobe.com > My Adobe Fonts > Web Projects
+    2. Make sure the project includes Museo Slab (700) and Proxima Nova (400, 600, 700)
+    3. Replace YOUR_KIT_ID below with the project's kit ID (e.g. "abc1def")
+  If the Shopify theme already loads these fonts site-wide, you can delete the
+  <link> line; the block picks them up automatically.
 -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Zilla+Slab:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://use.typekit.net/YOUR_KIT_ID.css">
 
 <style>
   .snk-top {
@@ -23,8 +26,9 @@
     --snk-ink: #2A2A2A;
     --snk-slate: #4B5058;
     --snk-gray: #58595B;
-    --snk-heading: "museo-slab", "Museo Slab", "Zilla Slab", Georgia, serif;
-    --snk-body: "proxima-nova", "Proxima Nova", "Montserrat", Helvetica, Arial, sans-serif;
+    /* Adobe Fonts names first, then common self-hosted / desktop names */
+    --snk-heading: "museo-slab", "Museo Slab", "MuseoSlab", "Museo Slab 700", "MuseoSlab-700", Rockwell, Georgia, serif;
+    --snk-body: "proxima-nova", "Proxima Nova", "ProximaNova", "Proxima Nova Rg", "ProximaNova-Regular", "Helvetica Neue", Helvetica, Arial, sans-serif;
 
     font-family: var(--snk-body);
     color: var(--snk-ink);
@@ -218,7 +222,7 @@
     </li>
     <li class="snk-step">
       <span class="snk-step__num">2</span>
-      <h3>Fill it with favorites</h3>
+      <h3>Choose your snacks</h3>
       <p>Mix and match snacks until your box is full.</p>
     </li>
     <li class="snk-step">
