@@ -1,0 +1,1460 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dressed &amp; Fed</title>
+<meta name="description" content="Pick your Jimmy John's order for the wedding day while we get ready.">
+<meta property="og:title" content="Dressed &amp; Fed">
+<meta property="og:description" content="The getting-ready menu: pick your Jimmy John's order for the wedding day.">
+<meta name="theme-color" content="#2E5B4C">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232E5B4C'/%3E%3Cpath d='M32 14l18 18-18 18-18-18z' fill='none' stroke='%23CBB083' stroke-width='4'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400;1,6..96,500&family=Jost:wght@400;500;600&display=swap">
+<style>
+/* Layout: guests get a single-column "invitation card" flow (max 600px) with a sticky action bar; the host gets a wide ledger. */
+:root {
+  --paper: #F4F5F1;
+  --surface: #FFFFFF;
+  --surface-2: #EEF1EC;
+  --ink: #1D2521;
+  --ink-soft: #56635C;
+  --line: #DADFD8;
+  --accent: #2E5B4C;
+  --accent-ink: #FFFFFF;
+  --accent-soft: #E2ECE5;
+  --gold: #A4875A;
+  --ok: #2E6B4A;
+  --ok-soft: #DFEFE5;
+  --info: #3C5C86;
+  --info-soft: #E3EAF4;
+  --warn: #8A5A12;
+  --warn-soft: #F6EBD7;
+  --danger: #9C3B31;
+  --danger-soft: #F6E1DE;
+  --shadow: 0 1px 2px rgba(20, 30, 25, .05), 0 8px 24px rgba(20, 30, 25, .06);
+  --display: "Bodoni Moda", "Didot", "Bodoni 72", Georgia, serif;
+  --body: "Jost", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --r: 14px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #111714; --surface: #19211D; --surface-2: #1F2924; --ink: #E7ECE8; --ink-soft: #A0ADA6; --line: #2D3832;
+    --accent: #8CC0A8; --accent-ink: #0F1A15; --accent-soft: #213229; --gold: #CBB083;
+    --ok: #8DD0A9; --ok-soft: #1E3328; --info: #9DB8E0; --info-soft: #1E2838; --warn: #E3B66B; --warn-soft: #33281A;
+    --danger: #E99A8F; --danger-soft: #3A2220; --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .25);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #111714; --surface: #19211D; --surface-2: #1F2924; --ink: #E7ECE8; --ink-soft: #A0ADA6; --line: #2D3832;
+  --accent: #8CC0A8; --accent-ink: #0F1A15; --accent-soft: #213229; --gold: #CBB083;
+  --ok: #8DD0A9; --ok-soft: #1E3328; --info: #9DB8E0; --info-soft: #1E2838; --warn: #E3B66B; --warn-soft: #33281A;
+  --danger: #E99A8F; --danger-soft: #3A2220; --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .25);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 17px; line-height: 1.5; }
+[hidden] { display: none !important; }
+:root { padding-top: env(safe-area-inset-top, 0px); }
+button, input, textarea, select { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+h1, h2, h3 { text-wrap: balance; margin: 0; }
+p { margin: 0; }
+
+.wrap { max-width: 600px; margin: 0 auto; padding-inline: 18px; padding-block: 20px 140px; display: flex; flex-direction: column; gap: 22px; }
+.wrap.wide { max-width: 1240px; padding-block: 20px 60px; }
+
+/* top line */
+.topline { display: flex; justify-content: space-between; align-items: center; gap: 12px; min-height: 32px; font-size: .82rem; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-soft); }
+.linkbtn { background: none; border: 0; padding: 8px 0; color: var(--accent); font-size: .82rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 600; }
+
+/* hero */
+.hero { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 14px; padding-block: 18px 6px; }
+.hero h1 { font-family: var(--display); font-weight: 500; text-transform: uppercase; letter-spacing: .14em; font-size: clamp(1.55rem, 7.2vw, 2.5rem); line-height: 1.15; }
+.hero .sub { font-family: var(--display); font-style: italic; font-size: clamp(1.1rem, 4.4vw, 1.3rem); color: var(--ink); }
+.ornament { display: flex; align-items: center; gap: 12px; width: min(260px, 70%); color: var(--gold); }
+.ornament::before, .ornament::after { content: ""; flex: 1; height: 1px; background: currentColor; opacity: .7; }
+.ornament span { width: 7px; height: 7px; transform: rotate(45deg); border: 1px solid currentColor; }
+.note { color: var(--ink-soft); font-size: .98rem; max-width: 46ch; }
+
+/* cards & sections */
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 20px; display: flex; flex-direction: column; gap: 14px; box-shadow: var(--shadow); }
+.eyebrow { font-size: .75rem; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-soft); font-weight: 500; }
+.section-title { font-family: var(--display); font-weight: 500; font-size: 1.45rem; line-height: 1.2; }
+.section-title em { font-style: italic; }
+.hint { font-size: .9rem; color: var(--ink-soft); }
+.field { display: flex; flex-direction: column; gap: 8px; }
+.field label { font-weight: 500; }
+.input, .textarea, .select { width: 100%; border: 1px solid var(--line); background: var(--surface); border-radius: 12px; padding: 14px 16px; font-size: 1.05rem; min-height: 54px; }
+.input:focus, .textarea:focus, .select:focus { outline: 2px solid var(--accent); outline-offset: 0; border-color: var(--accent); }
+.textarea { min-height: 110px; resize: vertical; line-height: 1.45; }
+.error { color: var(--danger); font-size: .92rem; font-weight: 500; }
+.notice { border-radius: 12px; padding: 14px 16px; font-size: .95rem; display: flex; flex-direction: column; gap: 10px; }
+.notice.warn { background: var(--warn-soft); color: var(--warn); }
+.notice.info { background: var(--info-soft); color: var(--info); }
+
+/* progress */
+.progress { display: flex; flex-direction: column; gap: 10px; }
+.progress .label { display: flex; justify-content: space-between; font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-soft); }
+.progress .label b { color: var(--ink); font-weight: 600; }
+.bars { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
+.bars i { height: 4px; border-radius: 4px; background: var(--line); }
+.bars i.on { background: var(--accent); }
+
+/* buttons */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 56px; padding: 0 22px; border-radius: 14px; border: 1px solid transparent; font-weight: 600; font-size: 1.04rem; letter-spacing: .02em; text-align: center; }
+.btn-primary { background: var(--accent); color: var(--accent-ink); }
+.btn-primary:disabled { opacity: .45; cursor: not-allowed; }
+.btn-secondary { background: var(--surface); color: var(--ink); border-color: var(--line); }
+.btn-ghost { background: transparent; color: var(--accent); border-color: transparent; }
+.btn-danger { background: var(--danger); color: var(--surface); }
+.btn-sm { min-height: 44px; padding: 0 16px; font-size: .95rem; border-radius: 12px; }
+.btn-row { display: flex; gap: 10px; flex-wrap: wrap; }
+.btn-row > .btn { flex: 1 1 180px; }
+
+/* sticky action bar */
+.bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; background: color-mix(in srgb, var(--surface) 94%, transparent); backdrop-filter: blur(8px); border-top: 1px solid var(--line); padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px)); }
+.bar-inner { max-width: 600px; margin: 0 auto; display: flex; gap: 10px; align-items: center; }
+.bar-inner .btn-primary { flex: 1; }
+.bar-inner .btn-secondary { flex: 0 0 auto; min-width: 96px; }
+.bar-sel { max-width: 600px; margin: 0 auto 8px; font-size: .88rem; color: var(--ink-soft); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.bar-sel b { color: var(--ink); font-weight: 600; }
+
+/* sandwich menu */
+.jump { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; background: var(--paper); margin-inline: -18px; padding: 10px 18px; display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; border-bottom: 1px solid var(--line); }
+.jump::-webkit-scrollbar { display: none; }
+.jump button { flex: 0 0 auto; min-height: 40px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); font-size: .9rem; font-weight: 500; }
+.menu-section { display: flex; flex-direction: column; gap: 10px; scroll-margin-top: 70px; }
+.menu-head { display: flex; flex-direction: column; gap: 2px; padding-top: 8px; }
+.menu-list { display: flex; flex-direction: column; gap: 10px; }
+.item { display: grid; grid-template-columns: 3.4rem 1fr 28px; gap: 12px; align-items: center; text-align: left; width: 100%; padding: 16px 16px 16px 12px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); min-height: 76px; }
+.item .num { font-family: var(--display); font-size: 1.7rem; font-weight: 500; color: var(--accent); text-align: center; font-variant-numeric: lining-nums; line-height: 1; }
+.item .num.mark { font-size: 1rem; color: var(--gold); }
+.item .txt { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.item .name { font-weight: 600; font-size: 1.07rem; line-height: 1.25; }
+.item .desc { color: var(--ink-soft); font-size: .92rem; line-height: 1.4; }
+.radio { width: 26px; height: 26px; border-radius: 50%; border: 2px solid var(--line); display: grid; place-items: center; }
+.item[aria-checked="true"] { border: 2px solid var(--accent); background: var(--accent-soft); padding: 15px 15px 15px 11px; }
+.item[aria-checked="true"] .radio { background: var(--accent); border-color: var(--accent); }
+.item[aria-checked="true"] .radio::after { content: ""; width: 10px; height: 6px; border-left: 2.5px solid var(--accent-ink); border-bottom: 2.5px solid var(--accent-ink); transform: translateY(-1px) rotate(-45deg); }
+
+/* selected sandwich header */
+.chosen { display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: center; }
+.chosen .num { font-family: var(--display); font-size: 2.4rem; color: var(--accent); line-height: 1; min-width: 2.4rem; text-align: center; }
+.chosen .num.mark { font-size: 1.3rem; color: var(--gold); }
+.chosen .name { font-family: var(--display); font-size: 1.45rem; font-weight: 500; line-height: 1.2; }
+.ing-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.ing-chips span { background: var(--surface-2); border-radius: 999px; padding: 4px 12px; font-size: .88rem; }
+
+/* tiles & segmented */
+.tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.tile { text-align: left; padding: 14px 16px; border-radius: 12px; border: 1px solid var(--line); background: var(--surface); min-height: 64px; display: flex; flex-direction: column; justify-content: center; gap: 2px; }
+.tile b { font-weight: 600; }
+.tile small { color: var(--ink-soft); font-size: .85rem; }
+.tile[aria-checked="true"] { border: 2px solid var(--accent); background: var(--accent-soft); padding: 13px 15px; }
+.ing-list { display: flex; flex-direction: column; }
+.ing-row { display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: center; padding-block: 12px; border-top: 1px solid var(--line); }
+.ing-row:first-child { border-top: 0; padding-top: 2px; }
+.ing-row .lbl { font-weight: 500; }
+.ing-row .lbl small { display: block; font-weight: 400; color: var(--ink-soft); font-size: .82rem; }
+.seg { display: inline-grid; grid-auto-flow: column; grid-auto-columns: minmax(70px, 1fr); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--surface); }
+.seg button { min-height: 46px; padding: 0 12px; border: 0; border-left: 1px solid var(--line); background: transparent; font-size: .95rem; font-weight: 500; }
+.seg button:first-child { border-left: 0; }
+.seg button[aria-checked="true"] { background: var(--accent); color: var(--accent-ink); }
+.seg button.no[aria-checked="true"] { background: var(--danger); color: var(--surface); }
+@media (max-width: 400px) {
+  .ing-row { grid-template-columns: 1fr; gap: 8px; }
+  .seg { display: grid; width: 100%; }
+}
+.pills { display: flex; flex-wrap: wrap; gap: 8px; }
+.pill { min-height: 46px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); font-size: .96rem; font-weight: 500; display: inline-flex; align-items: center; gap: 6px; }
+.pill[aria-checked="true"], .pill[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.pill.none[aria-checked="true"] { background: var(--surface-2); color: var(--ink); border-color: var(--line); }
+.extra-group { display: flex; flex-direction: column; gap: 10px; padding-top: 14px; border-top: 1px solid var(--line); }
+.extra-group:first-of-type { border-top: 0; padding-top: 0; }
+.extra-group h3 { font-size: 1rem; font-weight: 600; }
+
+/* review */
+.summary { display: flex; flex-direction: column; }
+.sum-row { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; padding-block: 14px; border-top: 1px solid var(--line); }
+.sum-row:first-child { border-top: 0; padding-top: 0; }
+.sum-row .k { font-size: .74rem; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-soft); grid-column: 1; }
+.sum-row .v { grid-column: 1; font-size: 1.06rem; overflow-wrap: anywhere; }
+.sum-row .v ul { margin: 0; padding-left: 1.1em; }
+.sum-row .edit { grid-column: 2; grid-row: 1 / span 2; align-self: center; }
+.sum-row .v.big { font-family: var(--display); font-size: 1.3rem; }
+
+/* done */
+.done { text-align: center; align-items: center; }
+.check { width: 64px; height: 64px; border-radius: 50%; border: 1.5px solid var(--gold); display: grid; place-items: center; color: var(--accent); margin: 0 auto; }
+.check::after { content: ""; width: 22px; height: 12px; border-left: 3px solid currentColor; border-bottom: 3px solid currentColor; transform: translateY(-3px) rotate(-45deg); }
+.done h2 { font-family: var(--display); font-weight: 500; font-size: 2rem; }
+
+.mine { display: flex; flex-direction: column; gap: 0; }
+.mine-row { display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: center; padding-block: 12px; border-top: 1px solid var(--line); }
+.mine-row:first-child { border-top: 0; padding-top: 0; }
+.mine-row .who { font-weight: 600; }
+.mine-row .what { font-size: .92rem; color: var(--ink-soft); }
+
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.host-card { border: 2px solid var(--accent); background: var(--accent-soft); }
+.who-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.who-list li { padding-block: 10px; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 2px; }
+.who-list li:first-child { border-top: 0; padding-top: 0; }
+.who-list .who { font-weight: 600; }
+.who-list .what { font-size: .92rem; color: var(--ink-soft); }
+.who-list .chg { font-size: .85rem; color: var(--ink-soft); }
+details.paste-details > summary { cursor: pointer; list-style: none; font-family: var(--display); font-size: 1.25rem; }
+details.paste-details > summary::-webkit-details-marker { display: none; }
+details.paste-details > summary::before { content: "+ "; color: var(--accent); }
+details.paste-details[open] > summary::before { content: "– "; }
+.login { max-width: 420px; margin: 0 auto; }
+.host-card h2 { font-family: var(--display); font-weight: 500; font-size: 1.35rem; }
+.paste-card { border: 2px solid var(--accent); }
+.paste-card h2 { font-family: var(--display); font-weight: 500; font-size: 1.5rem; }
+.paste-card .textarea { min-height: 150px; }
+.paste-card .btn { align-self: flex-start; min-width: 220px; }
+@media (max-width: 520px) { .paste-card .btn { align-self: stretch; } }
+.foot { text-align: center; font-size: .8rem; color: var(--ink-soft); }
+
+/* modal & toast */
+.overlay { position: fixed; inset: 0; z-index: 50; background: rgba(10, 15, 12, .45); display: grid; place-items: center; padding: 16px; }
+.modal { background: var(--surface); color: var(--ink); border-radius: 16px; width: min(480px, 100%); padding: 22px; display: flex; flex-direction: column; gap: 14px; box-shadow: var(--shadow); max-height: 90vh; overflow: auto; }
+.modal h3 { font-family: var(--display); font-weight: 500; font-size: 1.35rem; }
+.modal textarea { min-height: 220px; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .8rem; }
+.toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(100px + env(safe-area-inset-bottom, 0px)); z-index: 60; background: var(--ink); color: var(--paper); padding: 12px 18px; border-radius: 12px; font-size: .95rem; max-width: calc(100% - 32px); box-shadow: var(--shadow); }
+
+/* ===== host dashboard ===== */
+.dash-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 14px; }
+.dash-head h1 { font-family: var(--display); font-weight: 500; font-size: clamp(1.6rem, 4vw, 2.2rem); }
+.live { display: inline-flex; align-items: center; gap: 8px; font-size: .85rem; color: var(--ink-soft); }
+.live i { width: 8px; height: 8px; border-radius: 50%; background: var(--ok); box-shadow: 0 0 0 4px var(--ok-soft); }
+.live.off i { background: var(--warn); box-shadow: 0 0 0 4px var(--warn-soft); }
+.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.stat { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 16px 18px; display: flex; flex-direction: column; gap: 4px; }
+.stat .n { font-family: var(--display); font-size: 2.2rem; line-height: 1; font-variant-numeric: lining-nums tabular-nums; }
+.stat.total { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.stat.total .eyebrow { color: inherit; opacity: .85; }
+@media (max-width: 640px) { .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.sum-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; align-items: start; }
+@media (max-width: 900px) { .sum-grid { grid-template-columns: 1fr; } }
+.tally { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.tally li { display: grid; grid-template-columns: 1fr auto; gap: 2px 12px; padding-block: 9px; border-top: 1px solid var(--line); }
+.tally li:first-child { border-top: 0; }
+.tally .c { font-variant-numeric: tabular-nums; font-weight: 600; font-family: var(--display); font-size: 1.15rem; }
+.tally .s { grid-column: 1 / -1; font-size: .82rem; color: var(--ink-soft); }
+.tally .numtag { color: var(--accent); font-weight: 600; margin-right: 4px; }
+.empty-sm { color: var(--ink-soft); font-size: .92rem; }
+.toolbar { display: grid; grid-template-columns: 2fr 1.4fr 1fr; gap: 10px; }
+@media (max-width: 760px) { .toolbar { grid-template-columns: 1fr; } }
+.actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.actions .btn { flex: 1 1 160px; }
+
+.table-wrap { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); }
+table.orders { border-collapse: collapse; width: 100%; min-width: 1060px; font-size: .9rem; }
+.st-cell { display: flex; flex-direction: column; gap: 6px; align-items: stretch; min-width: 104px; }
+.st-cell .status { flex-direction: column; }
+.st-cell .status button { border-left: 0; border-top: 1px solid var(--line); text-align: left; }
+.st-cell .status button:first-child { border-top: 0; }
+table.orders th { text-align: left; font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-soft); font-weight: 600; padding: 12px 12px; border-bottom: 1px solid var(--line); background: var(--surface-2); white-space: nowrap; }
+table.orders td { padding: 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+table.orders tr:last-child td { border-bottom: 0; }
+table.orders td.num { font-family: var(--display); font-size: 1.15rem; color: var(--accent); white-space: nowrap; }
+table.orders td.when { white-space: nowrap; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+table.orders td .guest { font-weight: 600; }
+.flag { display: inline-block; margin-top: 4px; font-size: .74rem; font-weight: 600; padding: 2px 8px; border-radius: 999px; background: var(--warn-soft); color: var(--warn); }
+.status { display: inline-flex; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+.status button { border: 0; border-left: 1px solid var(--line); background: var(--surface); min-height: 36px; padding: 0 9px; font-size: .82rem; font-weight: 500; color: var(--ink-soft); }
+.status button:first-child { border-left: 0; }
+.status button[aria-checked="true"][data-val="Submitted"] { background: var(--warn-soft); color: var(--warn); font-weight: 600; }
+.status button[aria-checked="true"][data-val="Reviewed"] { background: var(--info-soft); color: var(--info); font-weight: 600; }
+.status button[aria-checked="true"][data-val="Ordered"] { background: var(--ok-soft); color: var(--ok); font-weight: 600; }
+.rowacts { display: flex; gap: 6px; }
+.iconbtn { border: 1px solid var(--line); background: var(--surface); border-radius: 10px; min-height: 36px; padding: 0 10px; font-size: .82rem; font-weight: 500; }
+.iconbtn.del { color: var(--danger); }
+.cards { display: none; flex-direction: column; gap: 12px; }
+.ocard { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+.ocard .top { display: flex; justify-content: space-between; gap: 10px; align-items: baseline; }
+.ocard .guest { font-weight: 600; font-size: 1.08rem; }
+.ocard .when { font-size: .8rem; color: var(--ink-soft); white-space: nowrap; }
+.ocard .sw { font-family: var(--display); font-size: 1.15rem; }
+.ocard .sw .n { color: var(--accent); margin-right: 6px; }
+.ocard dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; font-size: .92rem; }
+.ocard dt { color: var(--ink-soft); }
+.ocard dd { margin: 0; overflow-wrap: anywhere; }
+.ocard .bottom { display: flex; flex-wrap: wrap; gap: 8px; justify-content: space-between; align-items: center; }
+.ocard .status { flex: 1 1 auto; }
+.ocard .status button { flex: 1; min-height: 42px; }
+@media (max-width: 899px) { .table-wrap { display: none; } .cards { display: flex; } }
+.dash-empty { text-align: center; padding: 36px 20px; color: var(--ink-soft); display: flex; flex-direction: column; gap: 6px; align-items: center; }
+.dash-empty b { font-family: var(--display); font-weight: 500; font-size: 1.3rem; color: var(--ink); }
+
+@media print {
+  .bar, .topline, .toolbar, .actions, .rowacts, .jump, .toast { display: none !important; }
+  body { background: #fff; color: #000; }
+  .table-wrap { display: block !important; overflow: visible; border: 0; }
+  .cards { display: none !important; }
+  table.orders { min-width: 0; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .item, .tile, .pill, .seg button, .btn { transition: background-color .15s ease, border-color .15s ease, color .15s ease; }
+}
+</style>
+</head>
+<body>
+<div id="app" aria-live="polite"></div>
+<div id="bar" class="bar" hidden></div>
+<div id="modal-root"></div>
+<div id="toast" class="toast" role="status" hidden></div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ------------------------------------------------------------------
+   * MENU DATA
+   * Source: jimmyjohns.com menu pages (Originals, Favorites, Gargantuan,
+   * Toasted, Wraps, Sides, Drinks) as indexed by web search, Oct 2026.
+   * Limited-time items (BBQ Brisket sandwiches, PB&J Cookie) are left out.
+   * ------------------------------------------------------------------ */
+  const ING = {
+    ham:          { label: 'Smoked ham',          noun: 'ham',               kind: 'protein' },
+    roastbeef:    { label: 'Roast beef',          noun: 'roast beef',        kind: 'protein' },
+    tuna:         { label: 'Tuna salad',          noun: 'tuna salad',        kind: 'protein' },
+    turkey:       { label: 'Turkey',              noun: 'turkey',            kind: 'protein' },
+    salami:       { label: 'Salami',              noun: 'salami',            kind: 'protein' },
+    capocollo:    { label: 'Capocollo',           noun: 'capocollo',         kind: 'protein' },
+    bacon:        { label: 'Bacon',               noun: 'bacon',             kind: 'protein' },
+    chicken:      { label: 'Chicken',             noun: 'chicken',           kind: 'protein' },
+    provolone:    { label: 'Provolone',           noun: 'provolone',         kind: 'cheese' },
+    cheddar:      { label: 'Cheddar',             noun: 'cheddar',           kind: 'cheese' },
+    parmesan:     { label: 'Parmesan',            noun: 'parmesan',          kind: 'cheese' },
+    avocado:      { label: 'Avocado spread',      noun: 'avocado spread',    kind: 'topping' },
+    lettuce:      { label: 'Lettuce',             noun: 'lettuce',           kind: 'topping' },
+    tomato:       { label: 'Tomato',              noun: 'tomatoes',          kind: 'topping' },
+    onion:        { label: 'Onion',               noun: 'onions',            kind: 'topping' },
+    cucumber:     { label: 'Cucumber',            noun: 'cucumbers',         kind: 'topping' },
+    peppers:      { label: 'Jimmy Peppers®',      noun: 'Jimmy Peppers®',    kind: 'topping' },
+    pickle:       { label: 'Kosher dill pickle',  noun: 'pickles',           kind: 'topping' },
+    crispyonions: { label: 'Crispy fried onions', noun: 'crispy onions',     kind: 'topping' },
+    croutons:     { label: 'Mini croutons',       noun: 'croutons',          kind: 'topping' },
+    mayo:         { label: 'Mayo',                noun: 'mayo',              kind: 'sauce' },
+    mustard:      { label: 'Yellow mustard',      noun: 'yellow mustard',    kind: 'sauce' },
+    dijon:        { label: 'Dijon mustard',       noun: 'Dijon mustard',     kind: 'sauce' },
+    oilvinegar:   { label: 'Oil & vinegar',       noun: 'oil & vinegar',     kind: 'sauce' },
+    oregano:      { label: 'Oregano-basil',       noun: 'oregano-basil',     kind: 'sauce' },
+    kickinranch:  { label: "Kickin' Ranch®",      noun: "Kickin' Ranch®",    kind: 'sauce' },
+    ranch:        { label: 'Ranch',               noun: 'ranch',             kind: 'sauce' },
+    horseradish:  { label: 'Horseradish sauce',   noun: 'horseradish sauce', kind: 'sauce' },
+    caesar:       { label: 'Caesar dressing',     noun: 'Caesar dressing',   kind: 'sauce' }
+  };
+  // Items a guest may add when the sandwich doesn't already include them.
+  const ADDABLE = ['lettuce', 'tomato', 'onion', 'cucumber', 'peppers', 'pickle', 'mayo', 'mustard', 'dijon', 'oilvinegar', 'oregano', 'kickinranch', 'provolone', 'avocado', 'bacon'];
+
+  const SUB_BREADS = [
+    { id: 'french8',  title: 'French',       sub: '8-inch',               label: 'French (8")' },
+    { id: 'french16', title: 'Giant French', sub: '16-inch',              label: 'Giant French (16")' },
+    { id: 'wheat',    title: 'Sliced Wheat', sub: 'Thick-sliced',         label: 'Sliced Wheat' },
+    { id: 'unwich',   title: 'Unwich®',      sub: 'Lettuce wrap, no bread', label: 'Unwich® (lettuce wrap)' }
+  ];
+
+  const MENU = [
+    { id: 'originals', title: 'The Originals', caption: 'Classic subs on 8-inch or 16-inch French, sliced wheat, or Unwich®', breads: 'sub', items: [
+      { id: 'pepe',      num: '1', name: 'The Pepe®',     desc: 'Ham & provolone, lettuce, tomato & mayo', ings: ['ham', 'provolone', 'lettuce', 'tomato', 'mayo'] },
+      { id: 'bigjohn',   num: '2', name: 'Big John®',     desc: 'Roast beef, lettuce, tomato & mayo', ings: ['roastbeef', 'lettuce', 'tomato', 'mayo'] },
+      { id: 'tuna',      num: '3', name: 'Totally Tuna®', desc: 'Tuna salad, cucumber, lettuce & tomato', ings: ['tuna', 'cucumber', 'lettuce', 'tomato'] },
+      { id: 'turkeytom', num: '4', name: 'Turkey Tom®',   desc: 'Turkey, lettuce, tomato & mayo', ings: ['turkey', 'lettuce', 'tomato', 'mayo'] },
+      { id: 'vito',      num: '5', name: 'Vito®',         desc: 'Salami, capocollo & provolone, onion, lettuce, tomato, oil & vinegar & oregano-basil', ings: ['salami', 'capocollo', 'provolone', 'onion', 'lettuce', 'tomato', 'oilvinegar', 'oregano'] },
+      { id: 'veggie',    num: '6', name: 'The Veggie',    desc: 'Provolone & avocado spread, cucumber, lettuce, tomato & mayo', ings: ['provolone', 'avocado', 'cucumber', 'lettuce', 'tomato', 'mayo'] },
+      { id: 'jjblt',     num: '',  name: 'J.J.B.L.T.®',  desc: 'Bacon, lettuce, tomato & mayo', ings: ['bacon', 'lettuce', 'tomato', 'mayo'], toastable: true }
+    ] },
+    { id: 'favorites', title: 'The Favorites', caption: 'Double protein & provolone. Can be ordered toasted.', breads: 'sub', toastable: true, items: [
+      { id: 'eastcoast',    num: '7',  name: 'Spicy East Coast Italian', desc: 'Double salami, double capocollo & provolone, Jimmy Peppers®, oil & vinegar, onion, lettuce, tomato & mayo', ings: ['salami', 'capocollo', 'provolone', 'peppers', 'oilvinegar', 'onion', 'lettuce', 'tomato', 'mayo'] },
+      { id: 'billyclub',    num: '8',  name: 'Billy Club®',              desc: 'Roast beef, ham & provolone, yellow mustard, lettuce, tomato & mayo', ings: ['roastbeef', 'ham', 'provolone', 'mustard', 'lettuce', 'tomato', 'mayo'] },
+      { id: 'italiannight', num: '9',  name: 'Italian Night Club®',      desc: 'Salami, capocollo, ham & provolone, onion, lettuce, tomato, mayo, oil & vinegar & oregano-basil', ings: ['salami', 'capocollo', 'ham', 'provolone', 'onion', 'lettuce', 'tomato', 'mayo', 'oilvinegar', 'oregano'] },
+      { id: 'hunters',      num: '10', name: "Hunter's Club®",           desc: 'Double roast beef & provolone, lettuce, tomato & mayo', ings: ['roastbeef', 'provolone', 'lettuce', 'tomato', 'mayo'] },
+      { id: 'country',      num: '11', name: 'Country Club®',            desc: 'Turkey, ham & provolone, lettuce, tomato & mayo', ings: ['turkey', 'ham', 'provolone', 'lettuce', 'tomato', 'mayo'] },
+      { id: 'beach',        num: '12', name: 'Beach Club®',              desc: 'Turkey & provolone, avocado spread, cucumber, lettuce, tomato & mayo', ings: ['turkey', 'provolone', 'avocado', 'cucumber', 'lettuce', 'tomato', 'mayo'] },
+      { id: 'cubano',       num: '13', name: 'Jimmy Cubano®',            desc: 'Bacon, ham & provolone, pickle, mayo & yellow mustard', ings: ['bacon', 'ham', 'provolone', 'pickle', 'mayo', 'mustard'] },
+      { id: 'bootlegger',   num: '14', name: 'Bootlegger Club®',         desc: 'Roast beef & turkey, lettuce, tomato & mayo', ings: ['roastbeef', 'turkey', 'lettuce', 'tomato', 'mayo'] },
+      { id: 'clubtuna',     num: '15', name: 'Club Tuna®',               desc: 'Tuna salad & provolone, cucumber, lettuce & tomato', ings: ['tuna', 'provolone', 'cucumber', 'lettuce', 'tomato'] },
+      { id: 'lulu',         num: '16', name: 'Club Lulu®',               desc: 'Turkey & bacon, lettuce, tomato & mayo', ings: ['turkey', 'bacon', 'lettuce', 'tomato', 'mayo'] },
+      { id: 'porker',       num: '17', name: 'Ultimate Porker®',         desc: 'Ham & bacon, lettuce, tomato & mayo', ings: ['ham', 'bacon', 'lettuce', 'tomato', 'mayo'] }
+    ] },
+    { id: 'gargantuan', title: 'The Gargantuan', caption: 'Five proteins & provolone', breads: 'sub', items: [
+      { id: 'gargantuan', num: '', name: 'J.J. Gargantuan®', desc: 'Salami, capocollo, turkey, roast beef, ham & provolone, onion, lettuce, tomato, mayo, oil & vinegar & oregano-basil', ings: ['salami', 'capocollo', 'turkey', 'roastbeef', 'ham', 'provolone', 'onion', 'lettuce', 'tomato', 'mayo', 'oilvinegar', 'oregano'] }
+    ] },
+    { id: 'toasted', title: 'Toasted Sandwiches', caption: 'Served hot on French bread', breads: 'fixed', fixedBread: 'French, toasted', items: [
+      { id: 'cbr',        num: '', name: 'Chicken Bacon Ranch',     desc: 'Chicken, bacon & provolone, ranch, lettuce, tomato, onion & mayo', ings: ['chicken', 'bacon', 'provolone', 'ranch', 'lettuce', 'tomato', 'onion', 'mayo'] },
+      { id: 'ultitalian', num: '', name: 'Ultimate Italian',        desc: 'Capocollo, salami, ham, bacon, parmesan & provolone, lettuce, tomato, onion, mayo, oregano-basil and oil & vinegar', ings: ['capocollo', 'salami', 'ham', 'bacon', 'parmesan', 'provolone', 'lettuce', 'tomato', 'onion', 'mayo', 'oregano', 'oilvinegar'] },
+      { id: 'rbcheddar',  num: '', name: 'Roast Beef & Cheddar',    desc: 'Roast beef & cheddar, horseradish sauce, crispy fried onions, lettuce, tomato, onion & mayo', ings: ['roastbeef', 'cheddar', 'horseradish', 'crispyonions', 'lettuce', 'tomato', 'onion', 'mayo'] },
+      { id: 'ham3cheese', num: '', name: 'Ham & Three Cheese Melt', desc: 'Double ham, cheddar, parmesan & provolone, mayo', ings: ['ham', 'cheddar', 'parmesan', 'provolone', 'mayo'] }
+    ] },
+    { id: 'wraps', title: 'Wraps', caption: 'Served in a flour wrap', breads: 'fixed', fixedBread: 'Flour wrap', items: [
+      { id: 'krwrap',     num: '', name: "Kickin' Ranch® Chicken Wrap", desc: "Chicken & provolone, Kickin' Ranch®, Jimmy Peppers®, onion, lettuce, tomato & mayo", ings: ['chicken', 'provolone', 'kickinranch', 'peppers', 'onion', 'lettuce', 'tomato', 'mayo'] },
+      { id: 'caesarwrap', num: '', name: 'Chicken Caesar Wrap',         desc: 'Chicken & parmesan, Caesar dressing, mini croutons, lettuce, tomato & mayo', ings: ['chicken', 'parmesan', 'caesar', 'croutons', 'lettuce', 'tomato', 'mayo'] },
+      { id: 'tuscanwrap', num: '', name: 'Tuscan Italian Wrap',         desc: 'Salami, capocollo, ham & parmesan, lettuce, onion, tomato, mayo, oil & vinegar & oregano-basil', ings: ['salami', 'capocollo', 'ham', 'parmesan', 'lettuce', 'onion', 'tomato', 'mayo', 'oilvinegar', 'oregano'] }
+    ] }
+  ];
+
+  const EXTRAS = [
+    { id: 'chips', title: 'Jimmy Chips®', options: [
+      ['regular', 'Regular', 'Regular Jimmy Chips®'], ['bbq', 'BBQ', 'BBQ Jimmy Chips®'], ['jalapeno', 'Jalapeño', 'Jalapeño Jimmy Chips®'],
+      ['saltvinegar', 'Salt & Vinegar', 'Salt & Vinegar Jimmy Chips®'], ['thinny', 'Thinny Chips®', 'Thinny Chips®'] ] },
+    { id: 'dessert', title: 'Cookie or brownie', options: [
+      ['chocchip', 'Chocolate Chip Cookie', 'Chocolate Chip Cookie'], ['oatmeal', 'Oatmeal Raisin Cookie', 'Oatmeal Raisin Cookie'], ['brownie', 'Fudge Chocolate Brownie', 'Fudge Chocolate Brownie'] ] },
+    { id: 'pickle', title: 'Jumbo Kosher Dill Pickle', options: [
+      ['whole', 'Whole', 'Jumbo Kosher Dill Pickle (whole)'], ['halved', 'Halved', 'Jumbo Kosher Dill Pickle (halved)'], ['quartered', 'Quartered', 'Jumbo Kosher Dill Pickle (quartered)'] ] },
+    { id: 'side', title: 'Side salad', options: [
+      ['potato', 'Homestyle Potato Salad', 'Homestyle Potato Salad'], ['pasta', 'Pesto Bowtie Pasta Salad', 'Pesto Bowtie Pasta Salad'] ] },
+    { id: 'drink', title: 'Drink', options: [
+      ['coke', 'Coca-Cola®', 'Coca-Cola®'], ['diet', 'Diet Coke®', 'Diet Coke®'], ['sprite', 'Sprite®', 'Sprite®'], ['drpepper', 'Dr Pepper®', 'Dr Pepper®'],
+      ['lemonade', 'Classic Lemonade', 'Classic Lemonade'], ['strawlemonade', 'Strawberry Lemonade', 'Strawberry Lemonade'], ['water', 'Dasani® Water', 'Dasani® Bottled Water'] ] }
+  ];
+
+  const ITEMS = {};
+  MENU.forEach(sec => sec.items.forEach(it => { ITEMS[it.id] = Object.assign({ section: sec }, it); }));
+  const STATUSES = ['Submitted', 'Reviewed', 'Ordered'];
+  const STEPS = ['Name', 'Sandwich', 'Customize', 'Extras', 'Review'];
+  const JSPDF_URL = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
+  const DRAFT_KEY = 'rehearsal-jj-draft-v1';
+
+  /* ------------------------------------------------------------------ helpers */
+  const $ = (s, r) => (r || document).querySelector(s);
+  const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const cap = s => s ? s.charAt(0).toUpperCase() + s.slice(1) : s;
+  const normName = s => String(s || '').trim().replace(/\s+/g, ' ').toLowerCase();
+  const cleanName = s => String(s || '').trim().replace(/\s+/g, ' ');
+  const firstName = s => cleanName(s).split(' ')[0] || 'friend';
+  const numLabel = it => it.num ? '#' + it.num : '';
+  const fmtTime = iso => { try { return new Date(iso).toLocaleString(undefined, { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }); } catch (e) { return iso || ''; } };
+  const store = {
+    get(k) { try { return JSON.parse(localStorage.getItem(k) || 'null'); } catch (e) { return null; } },
+    set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { /* storage unavailable */ } },
+    del(k) { try { localStorage.removeItem(k); } catch (e) { /* storage unavailable */ } }
+  };
+
+  function blankDraft() {
+    return { name: '', itemId: null, bread: 'french8', toasted: false, mods: {}, adds: [], extras: {}, notes: '' };
+  }
+  function breadsFor(it) { return it && it.section.breads === 'sub' ? SUB_BREADS : null; }
+  function canToast(it, d) { return !!(it && (it.toastable || it.section.toastable) && (d.bread === 'french8' || d.bread === 'french16')); }
+  function modOptions(ingId) { return ING[ingId].kind === 'protein' ? ['regular', 'extra'] : ['none', 'regular', 'extra']; }
+
+  // Turn a draft into the human-readable lines saved with the order and shown everywhere.
+  function describe(d) {
+    const it = ITEMS[d.itemId];
+    if (!it) return null;
+    let bread;
+    if (it.section.breads === 'fixed') bread = it.section.fixedBread;
+    else {
+      const b = SUB_BREADS.find(x => x.id === d.bread) || SUB_BREADS[0];
+      bread = b.label + (canToast(it, d) && d.toasted ? ', toasted' : '');
+    }
+    const customizations = [];
+    it.ings.forEach(id => {
+      const m = d.mods[id];
+      if (m === 'none') customizations.push('No ' + ING[id].noun);
+      else if (m === 'extra') customizations.push('Extra ' + ING[id].noun);
+    });
+    ADDABLE.forEach(id => { if (d.adds.includes(id) && !it.ings.includes(id)) customizations.push('Add ' + ING[id].noun); });
+    const extras = [];
+    EXTRAS.forEach(g => {
+      const v = d.extras[g.id];
+      const o = v && g.options.find(x => x[0] === v);
+      if (o) extras.push(o[2]);
+    });
+    return { num: it.num, item: it.name, bread, customizations: customizations.map(cap), extras, notes: cleanName(d.notes) ? d.notes.trim() : '' };
+  }
+
+  /* ------------------------------------------------------------------ state */
+  const DEVICE_KEY = 'dnf-device-token', MINE_KEY = 'dnf-my-orders', HOST_KEY = 'dnf-host-passcode';
+  const S = {
+    view: 'flow',            // flow | done | admin | login
+    step: 0,
+    draft: blankDraft(),
+    target: null,            // { entryId } when editing an existing order
+    returnTo: null,          // 'admin' when the host is entering an order for someone
+    submitting: false,
+    saveError: '',
+    nameError: false,
+    lastSaved: null,
+    // server
+    ready: false, online: false, updated: null, orders: [],
+    token: '', myIds: [],
+    // host
+    isOwner: false, hostPass: '', loginError: '', loggingIn: false,
+    admin: { search: '', filter: 'all', sort: 'name-asc' }
+  };
+  const saved = store.get(DRAFT_KEY);
+  if (saved && saved.draft) { S.draft = Object.assign(blankDraft(), saved.draft); S.step = Math.min(saved.step || 0, 3); }
+  function persistDraft() { if (S.view === 'flow' && !S.target && S.returnTo !== 'admin') store.set(DRAFT_KEY, { draft: S.draft, step: S.step }); }
+
+  /* ------------------------------------------------------------------ server */
+  // Each phone gets a private random token. Orders remember a hash of it, so only
+  // the phone that placed an order (or the host) can change or cancel it.
+  function randomToken() {
+    const a = new Uint8Array(24);
+    crypto.getRandomValues(a);
+    return Array.from(a, b => b.toString(16).padStart(2, '0')).join('');
+  }
+  S.token = store.get(DEVICE_KEY) || '';
+  if (!S.token) { S.token = randomToken(); store.set(DEVICE_KEY, S.token); }
+  S.myIds = Array.isArray(store.get(MINE_KEY)) ? store.get(MINE_KEY) : [];
+  function rememberMine(id, keep) {
+    S.myIds = S.myIds.filter(x => x !== id);
+    if (keep) S.myIds.push(id);
+    store.set(MINE_KEY, S.myIds);
+  }
+  function myEntries() {
+    return S.orders.filter(o => S.myIds.includes(o.id)).sort((a, b) => String(a.submittedAt).localeCompare(String(b.submittedAt)));
+  }
+  async function api(method, path, body) {
+    const headers = { 'content-type': 'application/json' };
+    if (S.hostPass) headers['x-host-passcode'] = S.hostPass;
+    let res;
+    try { res = await fetch('/api/' + path, { method, headers, body: body ? JSON.stringify(body) : undefined, cache: 'no-store' }); }
+    catch (e) { throw { status: 0, error: 'offline', message: 'Couldn’t reach the order list. Check your connection and try again.' }; }
+    let data = {};
+    try { data = await res.json(); } catch (e) { data = {}; }
+    if (!res.ok) throw Object.assign({ status: res.status, message: 'Something went wrong. Please try again.' }, data);
+    return data;
+  }
+  function upsertOrder(o) {
+    const i = S.orders.findIndex(x => x.id === o.id);
+    if (i >= 0) S.orders[i] = o; else S.orders.push(o);
+  }
+  let lastJson = '';
+  async function refresh() {
+    try {
+      const r = await api('GET', 'orders');
+      S.orders = Array.isArray(r.orders) ? r.orders : [];
+      S.online = true;
+      S.updated = new Date().toISOString();
+    } catch (e) { S.online = false; }
+    S.ready = true;
+    const j = JSON.stringify([S.orders, S.online]);
+    if (j !== lastJson) { lastJson = j; onData(); }
+    else if (S.view === 'admin') updateLive();
+  }
+  // Update only the parts that show shared data, so typing isn't interrupted.
+  function onData() {
+    if (S.view === 'admin') renderAdminBody();
+    else if (S.view === 'flow' && S.step === 0) { const a = $('#mine-slot'), b = $('#who-slot'); if (a) a.innerHTML = mineCard(); if (b) b.innerHTML = whoCard(); }
+    else if (S.view === 'flow' && S.step === 4) render(true);
+  }
+  const ready = refresh();
+  setInterval(() => { if (document.visibilityState === 'visible') refresh(); }, 8000);
+  document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') refresh(); });
+
+  async function hostLogin(pass) {
+    S.loggingIn = true; S.loginError = ''; render(true);
+    try {
+      await api('POST', 'host', { passcode: pass });
+      S.hostPass = pass; S.isOwner = true; store.set(HOST_KEY, pass);
+      S.view = 'admin';
+    } catch (e) {
+      S.loginError = e.message || 'That passcode isn’t right.';
+    }
+    S.loggingIn = false;
+    render(); window.scrollTo(0, 0);
+  }
+  function hostLogout() {
+    S.hostPass = ''; S.isOwner = false; store.del(HOST_KEY);
+    S.view = 'flow'; S.returnTo = null; goStep(0);
+  }
+  (async function restoreHost() {
+    const pass = store.get(HOST_KEY);
+    if (location.hash === '#host') S.view = 'login';
+    if (!pass) return;   // the first render at the end of this script shows the passcode screen
+    try { await api('POST', 'host', { passcode: pass }); S.hostPass = pass; S.isOwner = true; if (location.hash === '#host') S.view = 'admin'; }
+    catch (e) { if (e.status === 401) store.del(HOST_KEY); }
+    render();
+  })();
+
+  /* ------------------------------------------------------------------ rendering */
+  const app = $('#app');
+  const bar = $('#bar');
+
+  // A selector that finds "the same control" after a re-render, so focus and caret survive.
+  function focusSelector(el) {
+    if (!el || el === document.body) return null;
+    if (el.id) return '#' + CSS.escape(el.id);
+    if (el.dataset && el.dataset.act) return Object.keys(el.dataset).map(k => `[data-${k.replace(/[A-Z]/g, m => '-' + m.toLowerCase())}="${CSS.escape(el.dataset[k])}"]`).join('');
+    return null;
+  }
+  function render(keepScroll) {
+    const y = window.scrollY;
+    const ae = document.activeElement, sel = focusSelector(ae);
+    let caret = null;
+    try { if (ae && typeof ae.selectionStart === 'number') caret = [ae.selectionStart, ae.selectionEnd]; } catch (e) { caret = null; }
+    if (S.view === 'login') { app.innerHTML = viewLogin(); bar.hidden = true; }
+    else if (S.view === 'admin') { renderAdmin(); bar.hidden = true; }
+    else if (S.view === 'done') { app.innerHTML = viewDone(); bar.hidden = true; }
+    else { app.innerHTML = viewFlow(); renderBar(); }
+    if (keepScroll) {
+      window.scrollTo(0, y);
+      const n = sel && document.querySelector(sel);
+      if (n && n !== ae) { n.focus({ preventScroll: true }); if (caret) { try { n.setSelectionRange(caret[0], caret[1]); } catch (e) { /* not a text field */ } } }
+    }
+  }
+
+  function topline(right) {
+    return `<div class="topline"><span>Dressed &amp; Fed</span>${right || ''}</div>`;
+  }
+  function hostLink() {
+    return S.isOwner ? `<button class="linkbtn" data-act="open-admin">Host dashboard →</button>` : '';
+  }
+
+  function viewLogin() {
+    return `<main class="wrap">${topline(`<button class="linkbtn" data-act="close-admin">← Order page</button>`)}
+      <section class="card login">
+        <div class="eyebrow">Host only</div>
+        <h2 class="section-title">Host dashboard</h2>
+        <form id="login-form" class="field" autocomplete="off">
+          <label for="host-pass">Host passcode</label>
+          <input id="host-pass" class="input" type="password" autocomplete="current-password" required>
+          ${S.loginError ? `<p class="error" role="alert">${esc(S.loginError)}</p>` : ''}
+          <button class="btn btn-primary" type="submit" ${S.loggingIn ? 'disabled' : ''}>${S.loggingIn ? 'Checking…' : 'Open dashboard'}</button>
+        </form>
+        <p class="hint">The passcode is set in Netlify under Site configuration → Environment variables (HOST_PASSCODE).</p>
+      </section></main>`;
+  }
+
+  function progress() {
+    const bars = STEPS.map((_, i) => `<i class="${i <= S.step ? 'on' : ''}"></i>`).join('');
+    return `<div class="progress" aria-label="Step ${S.step + 1} of ${STEPS.length}">
+      <div class="label"><span>Step ${S.step + 1} of ${STEPS.length}</span><b>${STEPS[S.step]}</b></div>
+      <div class="bars">${bars}</div></div>`;
+  }
+
+  function viewFlow() {
+    const s = S.step;
+    let body = '';
+    if (s === 0) body = stepName();
+    else if (s === 1) body = stepSandwich();
+    else if (s === 2) body = stepCustomize();
+    else if (s === 3) body = stepExtras();
+    else body = stepReview();
+    const forHost = S.returnTo === 'admin';
+    const right = forHost ? `<button class="linkbtn" data-act="cancel-host-entry">← Dashboard</button>` : hostLink();
+    return `<main class="wrap">${topline(right)}${s === 0 ? '' : progress()}${body}
+      <p class="foot">Menu from Jimmy John's. Availability can vary by location.${S.isOwner ? '' : ' · <a href="#host" data-act="go-login" style="color:inherit">Host</a>'}</p></main>`;
+  }
+
+  function mineCard() {
+    const entries = myEntries();
+    if (!entries.length || S.returnTo === 'admin') return '';
+    return `<section class="card" aria-labelledby="mine-h">
+        <div class="eyebrow" id="mine-h">Your orders from this phone</div>
+        <div class="mine">${entries.map(e => `
+          <div class="mine-row">
+            <div><div class="who">${esc(e.name)}</div><div class="what">${esc((e.num ? '#' + e.num + ' ' : '') + e.item)} · ${esc(e.bread)}</div></div>
+            <div class="rowacts"><button class="btn btn-secondary btn-sm" data-act="edit-mine" data-id="${esc(e.id)}">Edit</button>
+            <button class="btn btn-ghost btn-sm" data-act="cancel-mine" data-id="${esc(e.id)}">Cancel</button></div>
+          </div>`).join('')}</div>
+        <p class="hint">To order for another person, enter their name below.</p>
+      </section>`;
+  }
+  function whoCard() {
+    if (!S.ready) return `<section class="card"><div class="eyebrow">Who's ordered</div><p class="empty-sm">Loading orders…</p></section>`;
+    if (!S.online) return `<div class="notice warn"><b>Can't reach the order list right now.</b> You can still choose your food; we'll try again when you submit.</div>`;
+    const rows = S.orders.slice().sort((a, b) => normName(a.name).localeCompare(normName(b.name)));
+    return `<section class="card" aria-labelledby="who-h">
+        <div class="eyebrow" id="who-h">Who's ordered so far (${rows.length})</div>
+        ${rows.length ? `<ul class="who-list">${rows.map(o => `<li><span class="who">${esc(o.name)}</span>
+          <span class="what">${esc((o.num ? '#' + o.num + ' ' : '') + o.item)} · ${esc(o.bread)}</span>
+          ${(o.customizations || []).length ? `<span class="chg">${esc(o.customizations.join(', '))}</span>` : ''}</li>`).join('')}</ul>`
+          : '<p class="empty-sm">No orders yet. Be the first!</p>'}
+      </section>`;
+  }
+  function stepName() {
+    const forHost = S.returnTo === 'admin';
+    const hostCard = S.isOwner && !forHost ? `
+      <section class="card host-card">
+        <div class="eyebrow">You're the host</div>
+        <h2>See every order and manage statuses</h2>
+        <button class="btn btn-primary" data-act="open-admin">Open host dashboard</button>
+      </section>` : '';
+    const label = forHost ? 'Guest’s full name' : (myEntries().length ? 'Full name of the person you’re ordering for' : 'Your full name');
+    return `${hostCard}
+      <header class="hero">
+        <div class="ornament"><span></span></div>
+        <p class="eyebrow">The Getting-Ready Menu</p>
+        <h1>Dressed &amp; Fed</h1>
+        <p class="sub">Please select your Jimmy John's order below.</p>
+        <div class="ornament"><span></span></div>
+        <p class="note">Please enter your name and select your sandwich and any customizations. Your order will be sent to the host, who will place the final Jimmy John's order.</p>
+      </header>
+      ${forHost ? `<div class="notice info"><b>Entering an order for a guest.</b> It will be saved under the name you enter.</div>` : ''}
+      <div id="mine-slot">${mineCard()}</div>
+      <section class="card">
+        <div class="field">
+          <label for="guest-name">${esc(label)}</label>
+          <input id="guest-name" class="input" type="text" autocomplete="name" autocapitalize="words" enterkeyhint="next" placeholder="First and last name" value="${esc(S.draft.name)}" maxlength="80" ${S.nameError ? 'aria-invalid="true" aria-describedby="name-err"' : ''}>
+          ${S.nameError ? `<p class="error" id="name-err">Please enter your full name to continue.</p>` : ''}
+        </div>
+        <p class="hint">Takes about a minute: pick a sandwich, adjust it, add any sides, then review.</p>
+      </section>
+      ${forHost ? '' : `<div id="who-slot">${whoCard()}</div>`}`;
+  }
+
+  function stepSandwich() {
+    const jump = MENU.map(sec => `<button data-act="jump" data-sec="${sec.id}">${esc(sec.title.replace(/^The /, ''))}</button>`).join('');
+    const sections = MENU.map(sec => `
+      <section class="menu-section" id="sec-${sec.id}" aria-labelledby="h-${sec.id}">
+        <div class="menu-head"><h2 class="section-title" id="h-${sec.id}">${esc(sec.title)}</h2><p class="hint">${esc(sec.caption)}</p></div>
+        <div class="menu-list" role="radiogroup" aria-labelledby="h-${sec.id}">
+          ${sec.items.map(it => `
+            <button class="item" role="radio" aria-checked="${S.draft.itemId === it.id}" data-act="pick" data-id="${it.id}">
+              <span class="num${it.num ? '' : ' mark'}" aria-hidden="${it.num ? 'false' : 'true'}">${it.num ? '#' + it.num : '◆'}</span>
+              <span class="txt"><span class="name">${esc(it.name)}</span><span class="desc">${esc(it.desc)}</span></span>
+              <span class="radio" aria-hidden="true"></span>
+            </button>`).join('')}
+        </div>
+      </section>`).join('');
+    return `<div><h2 class="section-title">Choose your <em>sandwich</em></h2><p class="hint">Tap one. You can change ingredients on the next step.</p></div>
+      <nav class="jump" aria-label="Menu sections">${jump}</nav>${sections}`;
+  }
+
+  function chosenHeader(it) {
+    return `<div class="chosen"><span class="num${it.num ? '' : ' mark'}">${it.num ? '#' + it.num : '◆'}</span>
+      <div><div class="eyebrow">${esc(it.section.title)}</div><div class="name">${esc(it.name)}</div></div></div>`;
+  }
+
+  function stepCustomize() {
+    const d = S.draft, it = ITEMS[d.itemId];
+    if (!it) return `<div class="notice warn">Please choose a sandwich first.</div>`;
+    const breads = breadsFor(it);
+    const breadBlock = breads ? `
+      <section class="card" aria-labelledby="bread-h">
+        <h3 class="section-title" id="bread-h" style="font-size:1.2rem">Bread</h3>
+        <div class="tiles" role="radiogroup" aria-labelledby="bread-h">
+          ${breads.map(b => `<button class="tile" role="radio" aria-checked="${d.bread === b.id}" data-act="bread" data-id="${b.id}"><b>${esc(b.title)}</b><small>${esc(b.sub)}</small></button>`).join('')}
+        </div>
+        ${(it.toastable || it.section.toastable) ? (canToast(it, d) ? `
+          <div class="field"><span id="toast-h" style="font-weight:500">Toasted?</span>
+            <div class="seg" role="radiogroup" aria-labelledby="toast-h" style="display:grid;grid-template-columns:1fr 1fr">
+              <button role="radio" aria-checked="${!d.toasted}" data-act="toast" data-val="0">Not toasted</button>
+              <button role="radio" aria-checked="${!!d.toasted}" data-act="toast" data-val="1">Toasted</button>
+            </div></div>` : `<p class="hint">Toasting is available on French bread.</p>`) : ''}
+      </section>` : `
+      <section class="card"><h3 class="section-title" style="font-size:1.2rem">Bread</h3><p>${esc(it.section.fixedBread)}</p></section>`;
+
+    const rows = it.ings.map(id => {
+      const opts = modOptions(id);
+      const cur = d.mods[id] || 'regular';
+      const names = { none: 'No', regular: 'Regular', extra: 'Extra' };
+      return `<div class="ing-row">
+        <div class="lbl" id="ing-${id}">${esc(ING[id].label)}</div>
+        <div class="seg" role="radiogroup" aria-labelledby="ing-${id}">
+          ${opts.map(o => `<button class="${o === 'none' ? 'no' : ''}" role="radio" aria-checked="${cur === o}" data-act="mod" data-ing="${id}" data-val="${o}">${names[o]}</button>`).join('')}
+        </div></div>`;
+    }).join('');
+    const addable = ADDABLE.filter(id => !it.ings.includes(id));
+    const adds = addable.length ? `
+      <section class="card" aria-labelledby="add-h">
+        <div><h3 class="section-title" id="add-h" style="font-size:1.2rem">Add to it</h3><p class="hint">Optional. Tap to add.</p></div>
+        <div class="pills">${addable.map(id => `<button class="pill" aria-pressed="${d.adds.includes(id)}" data-act="add" data-ing="${id}">${d.adds.includes(id) ? '✓ ' : '+ '}${esc(ING[id].label)}</button>`).join('')}</div>
+      </section>` : '';
+    return `<section class="card">${chosenHeader(it)}<p class="hint">${esc(it.desc)}</p></section>
+      ${breadBlock}
+      <section class="card" aria-labelledby="on-h">
+        <div><h3 class="section-title" id="on-h" style="font-size:1.2rem">What's on it</h3><p class="hint">Everything starts as Regular. Change only what you want different.</p></div>
+        <div class="ing-list">${rows}</div>
+      </section>
+      ${adds}`;
+  }
+
+  function stepExtras() {
+    const d = S.draft;
+    const groups = EXTRAS.map(g => {
+      const cur = d.extras[g.id] || '';
+      return `<div class="extra-group" role="radiogroup" aria-labelledby="ex-${g.id}">
+        <h3 id="ex-${g.id}">${esc(g.title)}</h3>
+        <div class="pills">
+          <button class="pill none" role="radio" aria-checked="${!cur}" data-act="extra" data-grp="${g.id}" data-val="">None</button>
+          ${g.options.map(o => `<button class="pill" role="radio" aria-checked="${cur === o[0]}" data-act="extra" data-grp="${g.id}" data-val="${o[0]}">${esc(o[1])}</button>`).join('')}
+        </div></div>`;
+    }).join('');
+    return `<div><h2 class="section-title">Sides &amp; <em>extras</em></h2><p class="hint">All optional. Choose up to one from each group.</p></div>
+      <section class="card">${groups}</section>
+      <section class="card">
+        <div class="field">
+          <label for="notes">Special Instructions</label>
+          <textarea id="notes" class="textarea" maxlength="500" placeholder="Example: No onions, and please make sure there is no mayo.">${esc(d.notes)}</textarea>
+          <p class="hint">Allergies or anything else the host should know.</p>
+        </div>
+      </section>`;
+  }
+
+  function summaryRows(desc, name, withEdit) {
+    const edit = step => withEdit ? `<button class="btn btn-ghost btn-sm edit" data-act="goto" data-step="${step}">Edit</button>` : '';
+    const list = arr => arr.length ? `<ul>${arr.map(x => `<li>${esc(x)}</li>`).join('')}</ul>` : 'None';
+    return `<div class="summary">
+      <div class="sum-row"><span class="k">Name</span><span class="v big">${esc(name)}</span>${edit(0)}</div>
+      <div class="sum-row"><span class="k">Sandwich</span><span class="v big">${esc((desc.num ? '#' + desc.num + ' ' : '') + desc.item)}</span>${edit(1)}</div>
+      <div class="sum-row"><span class="k">Bread</span><span class="v">${esc(desc.bread)}</span>${edit(2)}</div>
+      <div class="sum-row"><span class="k">Customizations</span><span class="v">${list(desc.customizations)}</span>${edit(2)}</div>
+      <div class="sum-row"><span class="k">Extras</span><span class="v">${list(desc.extras)}</span>${edit(3)}</div>
+      <div class="sum-row"><span class="k">Special Instructions</span><span class="v">${desc.notes ? esc(desc.notes) : 'None'}</span>${edit(3)}</div>
+    </div>`;
+  }
+
+  function duplicateOf(name) {
+    const n = normName(name), cur = S.target && S.target.entryId;
+    return S.orders.find(e => normName(e.name) === n && e.id !== cur) || null;
+  }
+
+  function stepReview() {
+    const desc = describe(S.draft);
+    if (!desc) return `<div class="notice warn">Please choose a sandwich first.</div>`;
+    const dup = duplicateOf(S.draft.name);
+    const dupMine = dup && S.myIds.includes(dup.id);
+    let dupNote = '';
+    if (dup && dupMine) dupNote = `<div class="notice info"><b>${esc(dup.name)} already has an order from this phone.</b> Submitting will replace it, so there won't be a duplicate.</div>`;
+    else if (dup && S.isOwner) dupNote = `<div class="notice warn"><b>${esc(dup.name)} already has an order.</b> Edit that order from the dashboard instead, or use a different name.</div>`;
+    else if (dup) dupNote = `<div class="notice warn"><b>${esc(dup.name)} already has an order.</b> If it's yours, open this page on the phone you ordered from to change it, or ask the host. If it's a different person, add a last name or initial.</div>`;
+    return `<div><h2 class="section-title">Review your <em>order</em></h2><p class="hint">Check everything, then submit.</p></div>
+      ${dupNote}
+      ${S.target ? `<div class="notice info">You're editing a submitted order. Submitting saves your changes.</div>` : ''}
+      ${S.pasteInfo ? `<div class="notice info"><b>Filled in from a pasted order.</b> Check it, then tap Submit Order.</div>` : ''}
+      ${S.pasteInfo && S.pasteInfo.problems.length ? `<div class="notice warn"><b>Some requests didn't match the menu:</b> ${esc(S.pasteInfo.problems.join(', '))}. They were added to Special Instructions so nothing is lost.</div>` : ''}
+      <section class="card">${summaryRows(desc, cleanName(S.draft.name), true)}</section>
+      ${S.saveError ? `<div class="notice warn" role="alert"><b>Your order wasn't saved.</b> ${esc(S.saveError)}</div>` : ''}`;
+  }
+
+  function renderBar() {
+    const s = S.step, d = S.draft;
+    let html = '';
+    const back = `<button class="btn btn-secondary" data-act="back">Back</button>`;
+    if (s === 0) {
+      html = `<div class="bar-inner"><button class="btn btn-primary" data-act="next">Start my order</button></div>`;
+    } else if (s === 1) {
+      const it = ITEMS[d.itemId];
+      html = `${it ? `<div class="bar-sel">Selected: <b>${esc((it.num ? '#' + it.num + ' ' : '') + it.name)}</b></div>` : ''}
+        <div class="bar-inner">${back}<button class="btn btn-primary" data-act="next" ${it ? '' : 'disabled'}>${it ? 'Continue' : 'Choose a sandwich'}</button></div>`;
+    } else if (s === 2) {
+      html = `<div class="bar-inner">${back}<button class="btn btn-primary" data-act="next">Continue</button></div>`;
+    } else if (s === 3) {
+      html = `<div class="bar-inner">${back}<button class="btn btn-primary" data-act="next">Review order</button></div>`;
+    } else {
+      const label = S.submitting ? 'Submitting…' : (S.target ? 'Update Order' : 'Submit Order');
+      html = `<div class="bar-inner">${back}<button class="btn btn-primary" data-act="submit" ${S.submitting ? 'disabled' : ''}>${label}</button></div>`;
+    }
+    bar.innerHTML = html;
+    bar.hidden = false;
+  }
+
+  function viewDone() {
+    const e = S.lastSaved;
+    if (!e) return '';
+    const desc = { num: e.num, item: e.item, bread: e.bread, customizations: e.customizations || [], extras: e.extrasList || [], notes: e.notes || '' };
+    const forHost = S.returnTo === 'admin';
+    return `<main class="wrap">${topline(hostLink())}
+      <section class="card done">
+        <div class="check" aria-hidden="true"></div>
+        <h2>${e.wasUpdate ? 'Order Updated!' : 'Order Submitted!'}</h2>
+        <p>Thank you, ${esc(firstName(e.name))}! Your Jimmy John's order has been recorded.</p>
+      </section>
+      <section class="card">${summaryRows(desc, e.name, false)}</section>
+      <div class="btn-row">
+        ${forHost ? `<button class="btn btn-primary" data-act="back-admin">Back to dashboard</button>
+                     <button class="btn btn-secondary" data-act="host-add">Enter another order</button>`
+                  : `<button class="btn btn-secondary" data-act="edit-mine" data-id="${esc(e.id)}">Edit my order</button>
+                     <button class="btn btn-secondary" data-act="new-order">Order for someone else</button>`}
+      </div>
+      <p class="foot">You can close this page. Your order is saved and the host can see it.</p></main>`;
+  }
+
+  /* ------------------------------------------------------------------ host dashboard */
+  function adminRows() {
+    const rows = S.orders.filter(o => o && o.name).map(o => Object.assign({}, o, {
+      key: o.id,
+      status: STATUSES.includes(o.status) ? o.status : 'Submitted',
+      changedSince: !!o.status && o.status !== 'Submitted' && (o.rev || 1) > (o.statusRev || 0)
+    }));
+    const counts = {};
+    rows.forEach(r => { const n = normName(r.name); counts[n] = (counts[n] || 0) + 1; });
+    rows.forEach(r => { r.dupName = counts[normName(r.name)] > 1; });
+    return rows;
+  }
+  function sortRows(rows, how) {
+    const byName = (a, b) => normName(a.name).localeCompare(normName(b.name));
+    const numOf = r => r.num ? parseInt(r.num, 10) : 100;
+    const cmp = {
+      'name-asc': byName,
+      'name-desc': (a, b) => byName(b, a),
+      'sandwich': (a, b) => numOf(a) - numOf(b) || String(a.item).localeCompare(String(b.item)) || byName(a, b),
+      'newest': (a, b) => String(b.updatedAt || '').localeCompare(String(a.updatedAt || '')),
+      'oldest': (a, b) => String(a.submittedAt || '').localeCompare(String(b.submittedAt || ''))
+    }[how] || byName;
+    return rows.slice().sort(cmp);
+  }
+  function sandwichLabel(r) { return (r.num ? '#' + r.num + ' ' : '') + r.item; }
+  function tally(rows) {
+    const sw = {}, mods = {}, extras = {};
+    rows.forEach(r => {
+      const k = r.itemId;
+      if (!sw[k]) sw[k] = { id: k, label: r.item, num: r.num, n: 0, breads: {} };
+      sw[k].n++; sw[k].breads[r.bread] = (sw[k].breads[r.bread] || 0) + 1;
+      (r.customizations || []).forEach(c => { mods[c] = (mods[c] || 0) + 1; });
+      (r.extrasList || []).forEach(c => { extras[c] = (extras[c] || 0) + 1; });
+    });
+    const numOf = v => v.num ? parseInt(v.num, 10) : 100;
+    return {
+      sandwiches: Object.values(sw).sort((a, b) => numOf(a) - numOf(b) || a.label.localeCompare(b.label)),
+      mods: Object.entries(mods).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])),
+      extras: Object.entries(extras).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+    };
+  }
+
+  function renderAdmin() {
+    if (!S.isOwner) { S.view = 'flow'; render(); return; }
+    app.innerHTML = `<main class="wrap wide">
+      ${topline(`<span><button class="linkbtn" data-act="close-admin">← Order page</button> &nbsp; <button class="linkbtn" data-act="host-lock">Lock</button></span>`)}
+      <div class="dash-head">
+        <div><div class="eyebrow">Host only</div><h1>Jimmy John's Orders</h1></div>
+        <span class="live" id="live"></span>
+      </div>
+      <div id="admin-body"></div>
+      <details class="card paste-details" id="paste-box">
+        <summary>Got an order by text? Paste it here</summary>
+        <p class="hint">Paste the whole message someone sent you, then tap Fill in order. You'll check it before it's saved.</p>
+        <textarea class="textarea" id="paste-text" aria-label="Order text to paste" placeholder="Paste the message here, for example:&#10;Name: Sarah Johnson&#10;Sandwich: #2 Big John&#10;Bread: French&#10;Customizations: No tomatoes"></textarea>
+        <p class="error" id="paste-err" role="alert" hidden></p>
+        <button class="btn btn-primary btn-sm" data-act="paste-fill" style="align-self:flex-start">Fill in order</button>
+      </details></main>`;
+    renderAdminBody();
+  }
+
+  function updateLive() {
+    const live = $('#live');
+    if (!live) return;
+    live.className = 'live' + (S.online ? '' : ' off');
+    live.innerHTML = S.online ? `<i></i>Live · updated ${esc(fmtTime(S.updated))}` : `<i></i>${S.ready ? 'Can’t reach the order list. Retrying…' : 'Connecting…'}`;
+  }
+  function renderAdminBody() {
+    const host = $('#admin-body');
+    if (!host) return;
+    updateLive();
+    const all = adminRows();
+    const t = tally(all);
+    const stc = { Submitted: 0, Reviewed: 0, Ordered: 0 };
+    all.forEach(r => { stc[r.status]++; });
+    const q = normName(S.admin.search);
+    let rows = all.filter(r => (!q || normName(r.name).includes(q)) && (S.admin.filter === 'all' || r.itemId === S.admin.filter));
+    rows = sortRows(rows, S.admin.sort);
+
+    const filterOpts = t.sandwiches.map(s =>
+      `<option value="${esc(s.id)}" ${S.admin.filter === s.id ? 'selected' : ''}>${esc((s.num ? '#' + s.num + ' ' : '') + s.label)} (${s.n})</option>`).join('');
+    const sortOpts = [['name-asc', 'Name A–Z'], ['name-desc', 'Name Z–A'], ['sandwich', 'Sandwich #'], ['newest', 'Recently updated'], ['oldest', 'First submitted']]
+      .map(o => `<option value="${o[0]}" ${S.admin.sort === o[0] ? 'selected' : ''}>Sort: ${o[1]}</option>`).join('');
+
+    const statusSeg = r => `<div class="status" role="radiogroup" aria-label="Status for ${esc(r.name)}">${STATUSES.map(s =>
+      `<button role="radio" aria-checked="${r.status === s}" data-act="status" data-key="${esc(r.key)}" data-val="${s}">${s}</button>`).join('')}</div>`;
+    const flags = r => `${r.changedSince ? `<span class="flag">Changed after ${esc(r.status.toLowerCase())}</span> ` : ''}${r.dupName ? `<span class="flag">Same name twice</span>` : ''}`;
+    const joinOr = (arr, none) => arr && arr.length ? arr.map(esc).join(', ') : `<span class="empty-sm">${none}</span>`;
+
+    const table = `<div class="table-wrap"><table class="orders">
+      <thead><tr><th>Guest Name</th><th>Sandwich #</th><th>Sandwich Name</th><th>Bread</th><th>Customizations</th><th>Extras</th><th>Special Instructions</th><th>Submitted</th><th>Status</th></tr></thead>
+      <tbody>${rows.map(r => `<tr>
+        <td><div class="guest">${esc(r.name)}</div>${flags(r)}</td>
+        <td class="num">${r.num ? '#' + esc(r.num) : '—'}</td>
+        <td>${esc(r.item)}</td>
+        <td>${esc(r.bread)}</td>
+        <td>${joinOr(r.customizations, 'As is')}</td>
+        <td>${joinOr(r.extrasList, 'None')}</td>
+        <td>${r.notes ? esc(r.notes) : '<span class="empty-sm">None</span>'}</td>
+        <td class="when">${esc(fmtTime(r.submittedAt))}${r.rev > 1 ? `<br><small>edited ${esc(fmtTime(r.updatedAt))}</small>` : ''}</td>
+        <td><div class="st-cell">${statusSeg(r)}<div class="rowacts"><button class="iconbtn" data-act="admin-edit" data-key="${esc(r.key)}">Edit</button><button class="iconbtn del" data-act="admin-del" data-key="${esc(r.key)}">Remove</button></div></div></td>
+      </tr>`).join('')}</tbody></table></div>`;
+
+    const cards = `<div class="cards">${rows.map(r => `<article class="ocard">
+        <div class="top"><div><div class="guest">${esc(r.name)}</div>${flags(r)}</div><span class="when">${esc(fmtTime(r.submittedAt))}</span></div>
+        <div class="sw">${r.num ? `<span class="n">#${esc(r.num)}</span>` : ''}${esc(r.item)}</div>
+        <dl><dt>Bread</dt><dd>${esc(r.bread)}</dd>
+          <dt>Changes</dt><dd>${joinOr(r.customizations, 'As is')}</dd>
+          <dt>Extras</dt><dd>${joinOr(r.extrasList, 'None')}</dd>
+          <dt>Notes</dt><dd>${r.notes ? esc(r.notes) : '<span class="empty-sm">None</span>'}</dd></dl>
+        <div class="bottom">${statusSeg(r)}<div class="rowacts"><button class="iconbtn" data-act="admin-edit" data-key="${esc(r.key)}">Edit</button><button class="iconbtn del" data-act="admin-del" data-key="${esc(r.key)}">Remove</button></div></div>
+      </article>`).join('')}</div>`;
+
+    const empty = !all.length ? `<div class="card dash-empty"><b>No orders yet</b><span>Orders appear here as soon as people submit them. Share the page's link, or use “Add an order” to enter one yourself.</span></div>`
+      : (!rows.length ? `<div class="card dash-empty"><b>No matches</b><span>No orders match this search or filter.</span></div>` : '');
+
+    host.innerHTML = `
+      <div style="display:flex;flex-direction:column;gap:18px">
+      <div class="stats">
+        <div class="stat total"><span class="eyebrow">Total orders</span><span class="n" id="total-orders">${all.length}</span></div>
+        <div class="stat"><span class="eyebrow">Submitted</span><span class="n">${stc.Submitted}</span></div>
+        <div class="stat"><span class="eyebrow">Reviewed</span><span class="n">${stc.Reviewed}</span></div>
+        <div class="stat"><span class="eyebrow">Ordered</span><span class="n">${stc.Ordered}</span></div>
+      </div>
+      <div class="sum-grid">
+        <section class="card"><div class="eyebrow">Sandwiches to order</div>
+          ${t.sandwiches.length ? `<ul class="tally" id="sandwich-summary">${t.sandwiches.map(s => `<li><span><span class="numtag">${s.num ? '#' + esc(s.num) : ''}</span>${esc(s.label)}</span><span class="c">${s.n}</span>
+            <span class="s">${Object.entries(s.breads).map(([b, n]) => `${n} ${esc(b)}`).join(' · ')}</span></li>`).join('')}</ul>` : '<p class="empty-sm">No sandwiches yet.</p>'}
+        </section>
+        <section class="card"><div class="eyebrow">Customization requests</div>
+          ${t.mods.length ? `<ul class="tally" id="mod-summary">${t.mods.map(([k, n]) => `<li><span>${esc(k)}</span><span class="c">${n}</span></li>`).join('')}</ul>` : '<p class="empty-sm">No changes requested yet.</p>'}
+        </section>
+        <section class="card"><div class="eyebrow">Sides &amp; drinks</div>
+          ${t.extras.length ? `<ul class="tally" id="extra-summary">${t.extras.map(([k, n]) => `<li><span>${esc(k)}</span><span class="c">${n}</span></li>`).join('')}</ul>` : '<p class="empty-sm">No extras yet.</p>'}
+        </section>
+      </div>
+      <div class="actions">
+        <button class="btn btn-primary btn-sm" data-act="copy-all" ${all.length ? '' : 'disabled'}>Copy All Orders</button>
+        <button class="btn btn-secondary btn-sm" data-act="export-csv" ${all.length ? '' : 'disabled'}>Export Orders (CSV)</button>
+        <button class="btn btn-secondary btn-sm" data-act="export-pdf" ${all.length ? '' : 'disabled'}>Printable PDF</button>
+        <button class="btn btn-secondary btn-sm" data-act="print" ${all.length ? '' : 'disabled'}>Print</button>
+        <button class="btn btn-secondary btn-sm" data-act="host-add">Add an order</button>
+      </div>
+      <div class="toolbar">
+        <input id="admin-search" class="input" type="search" placeholder="Search by guest name" value="${esc(S.admin.search)}" aria-label="Search orders by guest name">
+        <select id="admin-filter" class="select" aria-label="Filter by sandwich"><option value="all">All sandwiches</option>${filterOpts}</select>
+        <select id="admin-sort" class="select" aria-label="Sort orders">${sortOpts}</select>
+      </div>
+      ${empty}
+      ${rows.length ? table + cards : ''}
+
+      </div>`;
+    // keep focus in the search box while the list re-renders around it
+    if (S._refocusSearch) {
+      const el = $('#admin-search');
+      if (el) { el.focus(); const n = el.value.length; el.setSelectionRange(n, n); }
+      S._refocusSearch = false;
+    }
+  }
+
+  /* ------------------------------------------------------------------ exports */
+  function ordersText(rows) {
+    const t = tally(rows);
+    const out = [];
+    out.push("DRESSED & FED: JIMMY JOHN'S ORDERS (THE GETTING-READY MENU)");
+    out.push('Total orders: ' + rows.length);
+    out.push('');
+    out.push('SANDWICH TOTALS');
+    t.sandwiches.forEach(s => out.push(`${s.num ? '#' + s.num + ' ' : ''}${s.label}: ${s.n}`));
+    out.push('');
+    out.push('ORDERS BY SANDWICH');
+    t.sandwiches.forEach(s => {
+      out.push('');
+      out.push(`${s.num ? '#' + s.num + ' ' : ''}${s.label} (${s.n})`);
+      sortRows(rows.filter(r => r.itemId === s.id), 'name-asc').forEach(r => {
+        let line = `  - ${r.name}: ${r.bread}`;
+        if (r.customizations && r.customizations.length) line += '; ' + r.customizations.join(', ');
+        out.push(line);
+        if (r.extrasList && r.extrasList.length) out.push('      Extras: ' + r.extrasList.join(', '));
+        if (r.notes) out.push('      Note: ' + r.notes);
+      });
+    });
+    if (t.extras.length) {
+      out.push('');
+      out.push('SIDES & DRINKS TOTALS');
+      t.extras.forEach(([k, n]) => out.push(`${k}: ${n}`));
+    }
+    return out.join('\n');
+  }
+  function csvOf(rows) {
+    const q = v => '"' + String(v == null ? '' : v).replace(/"/g, '""') + '"';
+    const head = ['Guest Name', 'Sandwich #', 'Sandwich Name', 'Bread', 'Customizations', 'Extras', 'Special Instructions', 'Submitted Date/Time', 'Status'];
+    const lines = [head.map(q).join(',')];
+    sortRows(rows, 'name-asc').forEach(r => lines.push([r.name, r.num ? '#' + r.num : '', r.item, r.bread, (r.customizations || []).join('; ') || 'As is',
+      (r.extrasList || []).join('; ') || 'None', r.notes || 'None', fmtTime(r.submittedAt), r.status].map(q).join(',')));
+    return '﻿' + lines.join('\r\n');
+  }
+  async function copyText(text, okMsg) {
+    try {
+      if (!navigator.clipboard || !navigator.clipboard.writeText) throw new Error('no clipboard');
+      await navigator.clipboard.writeText(text);
+      toast(okMsg);
+    } catch (e) {
+      showTextModal('Copy this text', 'Your browser blocked automatic copying. The text is selected below. Copy it with your device’s copy command.', text);
+    }
+  }
+  function saveFile(filename, data) {
+    const type = filename.endsWith('.csv') ? 'text/csv;charset=utf-8' : 'application/pdf';
+    const blob = data instanceof Blob ? data : new Blob([data], { type });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = filename;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 5000);
+    toast('Downloaded ' + filename);
+  }
+  function loadScript(src) {
+    return new Promise((res, rej) => { const s = document.createElement('script'); s.src = src; s.onload = res; s.onerror = rej; document.head.appendChild(s); });
+  }
+  async function exportPdf(rows) {
+    try {
+      if (!(window.jspdf && window.jspdf.jsPDF)) await loadScript(JSPDF_URL);
+    } catch (e) { toast('Couldn’t load the PDF builder. Use Export Orders (CSV) instead.'); return; }
+    const doc = new window.jspdf.jsPDF({ orientation: 'landscape', unit: 'pt', format: 'letter' });
+    const W = 792, H = 612, M = 36;
+    const t = tally(rows);
+    let y = M;
+    doc.setFont('times', 'normal'); doc.setFontSize(20);
+    doc.text('DRESSED & FED', W / 2, y + 8, { align: 'center' });
+    doc.setFontSize(12); doc.setFont('times', 'italic');
+    doc.text("Jimmy John's orders: " + rows.length + ' total, printed ' + fmtTime(new Date().toISOString()), W / 2, y + 26, { align: 'center' });
+    y += 50;
+    // summary columns
+    const colW = (W - 2 * M - 30) / 3;
+    const lists = [['SANDWICHES', t.sandwiches.map(s => [(s.num ? '#' + s.num + ' ' : '') + s.label, s.n])], ['CUSTOMIZATIONS', t.mods], ['SIDES & DRINKS', t.extras]];
+    let maxY = y;
+    lists.forEach(([title, items], i) => {
+      const x = M + i * (colW + 15);
+      let yy = y;
+      doc.setFont('helvetica', 'bold'); doc.setFontSize(8.5); doc.text(title, x, yy); yy += 14;
+      doc.setFont('helvetica', 'normal'); doc.setFontSize(9.5);
+      (items.length ? items : [['None', '']]).forEach(([k, n]) => {
+        const lines = doc.splitTextToSize(String(k), colW - 30);
+        doc.text(lines, x, yy); doc.text(String(n), x + colW, yy, { align: 'right' });
+        yy += lines.length * 11.5 + 2;
+      });
+      maxY = Math.max(maxY, yy);
+    });
+    // table
+    const cols = [['Guest Name', 104], ['#', 26], ['Sandwich', 96], ['Bread', 92], ['Customizations', 146], ['Extras', 116], ['Special Instructions', 88], ['Status', 52]];
+    const header = () => {
+      doc.setFillColor(232, 236, 231); doc.rect(M, y - 10, W - 2 * M, 16, 'F');
+      doc.setFont('helvetica', 'bold'); doc.setFontSize(8);
+      let x = M + 4; cols.forEach(([h, w]) => { doc.text(h.toUpperCase(), x, y); x += w; });
+      y += 14; doc.setFont('helvetica', 'normal'); doc.setFontSize(8.5);
+    };
+    y = maxY + 16;
+    if (y > H - 120) { doc.addPage(); y = M + 10; }
+    header();
+    sortRows(rows, 'name-asc').forEach((r, i) => {
+      const cells = [r.name, r.num ? '#' + r.num : '', r.item, r.bread, (r.customizations || []).join(', ') || 'As is', (r.extrasList || []).join(', ') || 'None', r.notes || 'None', r.status];
+      const wrapped = cells.map((c, j) => doc.splitTextToSize(String(c), cols[j][1] - 8));
+      const h = Math.max.apply(null, wrapped.map(l => l.length)) * 10.5 + 6;
+      if (y + h > H - M) { doc.addPage(); y = M + 10; header(); }
+      if (i % 2 === 1) { doc.setFillColor(246, 247, 244); doc.rect(M, y - 9, W - 2 * M, h, 'F'); }
+      let x = M + 4;
+      wrapped.forEach((l, j) => { doc.text(l, x, y); x += cols[j][1]; });
+      y += h;
+      doc.setDrawColor(220, 224, 218); doc.line(M, y - 9, W - M, y - 9);
+    });
+    saveFile('dressed-and-fed-orders.pdf', doc.output('blob'));
+  }
+
+  /* ------------------------------------------------------------------ copy & paste of a single order
+   * A guest who can't save copies their order as readable text plus an order code.
+   * The host pastes that text into "Paste an order"; the code restores it exactly.
+   * Without a code (hand-typed or mangled), the labeled lines are matched to the menu. */
+  function orderCopyText(d) {
+    const desc = describe(d);
+    if (!desc) return '';
+    return [`Jimmy John's order for ${cleanName(d.name)}`, `Sandwich: ${(desc.num ? '#' + desc.num + ' ' : '') + desc.item}`, `Bread: ${desc.bread}`,
+      `Customizations: ${desc.customizations.join(', ') || 'None'}`, `Extras: ${desc.extras.join(', ') || 'None'}`, `Special Instructions: ${desc.notes || 'None'}`,
+      '', 'Order code (for the host): ' + encodeOrder(d)].join('\n');
+  }
+  function encodeOrder(d) {
+    const json = JSON.stringify({ v: 1, n: cleanName(d.name), i: d.itemId, b: d.bread, t: d.toasted ? 1 : 0, m: d.mods, a: d.adds, x: d.extras, s: d.notes || '' });
+    let bin = '';
+    new TextEncoder().encode(json).forEach(c => { bin += String.fromCharCode(c); });
+    return 'DF1.' + btoa(bin).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+  }
+  // Keep only values that exist on the menu, whatever the pasted text says.
+  function cleanDraft(o) {
+    const d = blankDraft();
+    const it = ITEMS[o.itemId];
+    d.name = cleanName(o.name).slice(0, 80);
+    d.notes = String(o.notes || '').slice(0, 500);
+    if (!it) return d;
+    d.itemId = it.id;
+    if (breadsFor(it) && SUB_BREADS.some(b => b.id === o.bread)) d.bread = o.bread;
+    d.toasted = !!o.toasted && canToast(it, d);
+    Object.keys(o.mods || {}).forEach(k => { if (it.ings.includes(k) && o.mods[k] !== 'regular' && modOptions(k).includes(o.mods[k])) d.mods[k] = o.mods[k]; });
+    (o.adds || []).forEach(k => { if (ADDABLE.includes(k) && !it.ings.includes(k) && !d.adds.includes(k)) d.adds.push(k); });
+    EXTRAS.forEach(g => { const v = (o.extras || {})[g.id]; if (g.options.some(x => x[0] === v)) d.extras[g.id] = v; });
+    return d;
+  }
+  function decodeOrder(text) {
+    const m = String(text).match(/DF1\.([A-Za-z0-9_-]+)/);
+    if (!m) return null;
+    try {
+      let b = m[1].replace(/-/g, '+').replace(/_/g, '/');
+      while (b.length % 4) b += '=';
+      const o = JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(b), c => c.charCodeAt(0))));
+      if (!o || !ITEMS[o.i]) return null;
+      return cleanDraft({ name: o.n, itemId: o.i, bread: o.b, toasted: o.t, mods: o.m, adds: o.a, extras: o.x, notes: o.s });
+    } catch (e) { return null; }
+  }
+  const normTxt = s => String(s || '').toLowerCase().replace(/[®™]/g, '').replace(/[^a-z0-9#&]+/g, ' ').trim();
+  function parseOrderText(text) {
+    const lines = String(text).split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+    const get = re => { for (const l of lines) { const m = l.match(re); if (m) return m[1].trim(); } return ''; };
+    const problems = [];
+    const o = { mods: {}, adds: [], extras: {} };
+    o.name = get(/^(?:jimmy john'?s order for|name)\s*:?\s*(.+)$/i);
+    const sw = get(/^sandwich\s*:\s*(.+)$/i);
+    let it = null;
+    const num = sw.match(/#\s*(\d+)/);
+    if (num) it = Object.values(ITEMS).find(x => x.num === num[1]);
+    if (!it && sw) {
+      const want = normTxt(sw);
+      it = Object.values(ITEMS).find(x => want.includes(normTxt(x.name).replace(/^the /, '')));
+    }
+    if (!it) return { draft: cleanDraft(o), problems };
+    o.itemId = it.id;
+    const bread = normTxt(get(/^bread\s*:\s*(.+)$/i));
+    if (bread) {
+      o.bread = /giant|16/.test(bread) ? 'french16' : /wheat/.test(bread) ? 'wheat' : /unwich|lettuce wrap/.test(bread) ? 'unwich' : 'french8';
+      o.toasted = /toasted/.test(bread);
+    }
+    const ingByWord = word => Object.keys(ING).find(k => normTxt(ING[k].noun) === word || normTxt(ING[k].label) === word);
+    get(/^customi[sz]ations?\s*:\s*(.+)$/i).split(/[,;]/).map(x => x.trim()).filter(x => x && !/^(none|as is)$/i.test(x)).forEach(part => {
+      const m = part.match(/^(no|extra|add)\s+(.+)$/i);
+      const k = m && ingByWord(normTxt(m[2]));
+      const verb = m && m[1].toLowerCase();
+      if (k && verb === 'add' && ADDABLE.includes(k) && !it.ings.includes(k)) o.adds.push(k);
+      else if (k && verb !== 'add' && it.ings.includes(k) && modOptions(k).includes(verb === 'no' ? 'none' : 'extra')) o.mods[k] = verb === 'no' ? 'none' : 'extra';
+      else problems.push(part);
+    });
+    get(/^extras?\s*:\s*(.+)$/i).split(/[,;]/).map(x => x.trim()).filter(x => x && !/^none$/i.test(x)).forEach(part => {
+      const want = normTxt(part);
+      let hit = null;
+      EXTRAS.forEach(g => g.options.forEach(op => { if (!hit && (normTxt(op[2]) === want || normTxt(op[1]) === want)) hit = [g.id, op[0]]; }));
+      if (hit) o.extras[hit[0]] = hit[1]; else problems.push(part);
+    });
+    const notes = get(/^special instructions\s*:\s*(.+)$/i);
+    o.notes = /^none$/i.test(notes) ? '' : notes;
+    if (problems.length) o.notes = (o.notes ? o.notes + ' ' : '') + '(Also asked for: ' + problems.join(', ') + ')';
+    return { draft: cleanDraft(o), problems };
+  }
+  function pasteError(msg) {
+    const er = $('#paste-err');
+    if (er) { er.textContent = msg; er.hidden = false; }
+    const ta = $('#paste-text');
+    if (ta) ta.focus();
+  }
+  function fillFromPaste() {
+    const el = $('#paste-text');
+    const text = el ? el.value : '';
+    if (!text.trim()) { pasteError('Paste the order text into the box first.'); return; }
+    let draft = decodeOrder(text), problems = [];
+    if (!draft) { const r = parseOrderText(text); draft = r.draft; problems = r.problems; }
+    if (!draft.itemId) { pasteError('Couldn’t find a sandwich in that text. Check it has a line like “Sandwich: #2 Big John”.'); return; }
+    S.view = 'flow'; S.target = null; S.returnTo = 'admin'; S.draft = draft; S.pasteInfo = { problems };
+    goStep(cleanName(draft.name).length >= 2 ? 4 : 0);
+  }
+
+  /* ------------------------------------------------------------------ modal & toast */
+  let toastTimer = null;
+  function toast(msg) {
+    const el = $('#toast');
+    el.textContent = msg; el.hidden = false;
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => { el.hidden = true; }, 2600);
+  }
+  function closeModal() { $('#modal-root').innerHTML = ''; }
+  function showTextModal(title, msg, text) {
+    $('#modal-root').innerHTML = `<div class="overlay" data-act="modal-bg"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="m-title">
+      <h3 id="m-title">${esc(title)}</h3><p class="hint">${esc(msg)}</p>
+      <textarea class="textarea" id="m-text" readonly>${esc(text)}</textarea>
+      <div class="btn-row"><button class="btn btn-secondary btn-sm" data-act="modal-close">Close</button></div></div></div>`;
+    const ta = $('#m-text'); ta.focus(); ta.select();
+  }
+  let pendingConfirm = null;
+  function confirmModal(title, msg, okLabel, fn) {
+    pendingConfirm = fn;
+    $('#modal-root').innerHTML = `<div class="overlay" data-act="modal-bg"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="m-title">
+      <h3 id="m-title">${esc(title)}</h3><p>${esc(msg)}</p>
+      <div class="btn-row"><button class="btn btn-secondary btn-sm" data-act="modal-close">Go back</button>
+      <button class="btn btn-danger btn-sm" data-act="modal-ok">${esc(okLabel)}</button></div></div></div>`;
+    $('[data-act="modal-ok"]').focus();
+  }
+
+  /* ------------------------------------------------------------------ actions */
+  function goStep(n) {
+    S.step = Math.max(0, Math.min(4, n));
+    persistDraft();
+    render();
+    window.scrollTo(0, 0);
+  }
+  function next() {
+    if (S.step === 0) {
+      if (cleanName(S.draft.name).length < 2) { S.nameError = true; render(true); const el = $('#guest-name'); if (el) el.focus(); return; }
+      S.nameError = false;
+      S.draft.name = cleanName(S.draft.name);
+    }
+    if (S.step === 1 && !ITEMS[S.draft.itemId]) return;
+    goStep(S.step + 1);
+  }
+
+  async function submit() {
+    if (S.submitting) return;
+    if (cleanName(S.draft.name).length < 2) { goStep(0); S.nameError = true; render(); return; }
+    const desc = describe(S.draft);
+    if (!desc) { goStep(1); return; }
+    S.submitting = true; S.saveError = ''; renderBar();
+    await ready;
+    let id = S.target && S.target.entryId;
+    const dup = duplicateOf(S.draft.name);
+    if (!id && dup && S.myIds.includes(dup.id)) id = dup.id;   // same person again from this phone: replace
+    // Keep an existing order's spelling when replacing it; tidy names typed all in lowercase.
+    let name = cleanName(S.draft.name);
+    if (dup && dup.id === id) name = dup.name;
+    else if (name === name.toLowerCase()) name = name.replace(/(^|[\s-])(\S)/g, (m, sep, ch) => sep + ch.toUpperCase());
+    const order = {
+      name, itemId: S.draft.itemId, num: desc.num, item: desc.item, bread: desc.bread, breadKey: S.draft.bread, toasted: !!S.draft.toasted,
+      mods: Object.assign({}, S.draft.mods), adds: S.draft.adds.slice(), extras: Object.assign({}, S.draft.extras),
+      notes: desc.notes, customizations: desc.customizations, extrasList: desc.extras
+    };
+    try {
+      const r = id ? await api('PUT', 'orders/' + id, { order, token: S.token }) : await api('POST', 'orders', { order, token: S.token });
+      upsertOrder(r.order);
+      if (S.returnTo !== 'admin') rememberMine(r.order.id, true);
+      S.lastSaved = Object.assign({ wasUpdate: !!id }, r.order);
+      S.pasteInfo = null;
+      S.submitting = false;
+      store.del(DRAFT_KEY);
+      S.view = 'done'; S.target = null; S.draft = blankDraft(); S.step = 0;
+      render(); window.scrollTo(0, 0);
+      refresh();
+    } catch (e) {
+      S.submitting = false;
+      if (e.error === 'duplicate') {
+        S.saveError = e.message + (S.isOwner ? ' Edit that order from the dashboard instead, or use a different name.'
+          : ' If it’s yours, open this page on the phone you ordered from, or ask the host to change it. If it’s someone else, add a last name or initial.');
+      } else if (e.error === 'not_found' && id) {
+        S.saveError = 'That order was removed. Tap Back and submit it as a new order.';
+        S.target = null; rememberMine(id, false);
+      } else S.saveError = e.message || 'Please try again.';
+      render(true);
+    }
+  }
+
+  function startEdit(entry, returnTo) {
+    S.target = { entryId: entry.id };
+    S.returnTo = returnTo || null;
+    S.saveError = '';
+    S.draft = Object.assign(blankDraft(), {
+      name: entry.name, itemId: ITEMS[entry.itemId] ? entry.itemId : null, bread: entry.breadKey || 'french8', toasted: !!entry.toasted,
+      mods: Object.assign({}, entry.mods || {}), adds: (entry.adds || []).slice(), extras: Object.assign({}, entry.extras || {}), notes: entry.notes || ''
+    });
+    S.view = 'flow';
+    goStep(S.draft.itemId ? 4 : 1);
+  }
+
+  async function writeStatus(id, status) {
+    const o = S.orders.find(x => x.id === id);
+    if (!o) return;
+    const before = { status: o.status, statusRev: o.statusRev };
+    o.status = status; o.statusRev = o.rev || 1;
+    renderAdminBody();
+    try { const r = await api('PATCH', 'orders/' + id + '/status', { status }); upsertOrder(r.order); }
+    catch (e) { Object.assign(o, before); toast(e.message || 'Couldn’t save that status. Try again.'); }
+    renderAdminBody();
+  }
+
+  async function removeEntry(id) {
+    try {
+      await api('DELETE', 'orders/' + id, { token: S.token });
+      S.orders = S.orders.filter(o => o.id !== id);
+      rememberMine(id, false);
+      toast('Order removed');
+    } catch (e) {
+      if (e.error === 'not_found') { S.orders = S.orders.filter(o => o.id !== id); rememberMine(id, false); }
+      else toast(e.message || 'Couldn’t remove that order. Try again.');
+    }
+    onData();
+    if (S.view === 'flow' && S.step === 0) render(true);
+  }
+
+  function findRow(key) { return adminRows().find(r => r.key === key); }
+
+  document.addEventListener('click', ev => {
+    const el = ev.target.closest('[data-act]');
+    if (!el) return;
+    const act = el.dataset.act;
+    const d = S.draft;
+    switch (act) {
+      case 'next': next(); break;
+      case 'back': goStep(S.step - 1); break;
+      case 'goto': goStep(+el.dataset.step); break;
+      case 'jump': { const t = document.getElementById('sec-' + el.dataset.sec); if (t) t.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' }); break; }
+      case 'pick':
+        if (d.itemId !== el.dataset.id) { d.itemId = el.dataset.id; d.mods = {}; d.adds = []; d.toasted = false; d.bread = 'french8'; }
+        persistDraft(); render(true); break;
+      case 'bread': d.bread = el.dataset.id; if (!canToast(ITEMS[d.itemId], d)) d.toasted = false; persistDraft(); render(true); break;
+      case 'toast': d.toasted = el.dataset.val === '1'; persistDraft(); render(true); break;
+      case 'mod': { const v = el.dataset.val; if (v === 'regular') delete d.mods[el.dataset.ing]; else d.mods[el.dataset.ing] = v; persistDraft(); render(true); break; }
+      case 'add': { const id = el.dataset.ing, i = d.adds.indexOf(id); if (i >= 0) d.adds.splice(i, 1); else d.adds.push(id); persistDraft(); render(true); break; }
+      case 'extra': { if (el.dataset.val) d.extras[el.dataset.grp] = el.dataset.val; else delete d.extras[el.dataset.grp]; persistDraft(); render(true); break; }
+      case 'submit': submit(); break;
+      case 'edit-mine': { const e = S.orders.find(o => o.id === el.dataset.id) || (S.lastSaved && S.lastSaved.id === el.dataset.id ? S.lastSaved : null); if (e) startEdit(e, null); break; }
+      case 'cancel-mine': {
+        const e = S.orders.find(o => o.id === el.dataset.id);
+        if (e) confirmModal('Cancel this order?', `${e.name}'s order (${sandwichLabel(e)}) will be removed.`, 'Cancel order', () => removeEntry(e.id));
+        break;
+      }
+      case 'go-login': ev.preventDefault(); S.view = S.isOwner ? 'admin' : 'login'; S.loginError = ''; render(); window.scrollTo(0, 0); break;
+      case 'host-lock': hostLogout(); break;
+      case 'print': window.print(); break;
+      case 'new-order': S.saveError = ''; S.view = 'flow'; S.target = null; S.returnTo = null; S.draft = blankDraft(); goStep(0); break;
+      case 'open-admin': S.view = S.isOwner ? 'admin' : 'login'; render(); window.scrollTo(0, 0); break;
+      case 'close-admin': S.view = 'flow'; S.returnTo = null; if (location.hash) history.replaceState(null, '', location.pathname); goStep(0); break;
+      case 'back-admin': S.view = 'admin'; S.returnTo = null; render(); window.scrollTo(0, 0); break;
+      case 'host-add': S.pasteInfo = null; S.saveError = ''; S.view = 'flow'; S.target = null; S.returnTo = 'admin'; S.draft = blankDraft(); goStep(0); break;
+      case 'paste-fill': fillFromPaste(); break;
+      case 'cancel-host-entry': S.pasteInfo = null; S.view = 'admin'; S.returnTo = null; S.target = null; S.draft = blankDraft(); render(); window.scrollTo(0, 0); break;
+      case 'status': {
+        const r = findRow(el.dataset.key);
+        if (r && r.status !== el.dataset.val) writeStatus(r.id, el.dataset.val);
+        break;
+      }
+      case 'admin-edit': { const r = findRow(el.dataset.key); if (r) startEdit(r, 'admin'); break; }
+      case 'admin-del': {
+        const r = findRow(el.dataset.key);
+        if (r) confirmModal('Remove this order?', `${r.name}'s order (${sandwichLabel(r)}) will be deleted. This can't be undone.`, 'Remove order', () => removeEntry(r.id));
+        break;
+      }
+      case 'copy-all': copyText(ordersText(adminRows()), 'All orders copied'); break;
+      case 'export-csv': { const rows = adminRows(); saveFile('dressed-and-fed-orders.csv', csvOf(rows)); break; }
+      case 'export-pdf': exportPdf(adminRows()); break;
+      case 'modal-ok': { const fn = pendingConfirm; pendingConfirm = null; closeModal(); if (fn) fn(); break; }
+      case 'modal-close': pendingConfirm = null; closeModal(); break;
+      case 'modal-bg': if (ev.target === el) { pendingConfirm = null; closeModal(); } break;
+    }
+  });
+
+  document.addEventListener('submit', ev => {
+    if (ev.target.id === 'login-form') {
+      ev.preventDefault();
+      const v = ($('#host-pass') || {}).value || '';
+      if (v.trim()) hostLogin(v.trim());
+    }
+  });
+  window.addEventListener('hashchange', () => {
+    if (location.hash === '#host') { S.view = S.isOwner ? 'admin' : 'login'; render(); window.scrollTo(0, 0); }
+  });
+  document.addEventListener('input', ev => {
+    const t = ev.target;
+    if (t.id === 'guest-name') { S.draft.name = t.value; if (S.nameError && cleanName(t.value).length >= 2) { S.nameError = false; const er = $('#name-err'); if (er) er.remove(); t.removeAttribute('aria-invalid'); } persistDraft(); }
+    else if (t.id === 'notes') { S.draft.notes = t.value; persistDraft(); }
+    else if (t.id === 'admin-search') { S.admin.search = t.value; S._refocusSearch = true; renderAdminBody(); }
+  });
+  document.addEventListener('change', ev => {
+    const t = ev.target;
+    if (t.id === 'admin-filter') { S.admin.filter = t.value; renderAdminBody(); }
+    else if (t.id === 'admin-sort') { S.admin.sort = t.value; renderAdminBody(); }
+  });
+  document.addEventListener('keydown', ev => {
+    if (ev.key === 'Enter' && ev.target.id === 'guest-name') { ev.preventDefault(); next(); }
+    if (ev.key === 'Escape' && $('#modal-root').firstChild) { pendingConfirm = null; closeModal(); }
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>
