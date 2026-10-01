@@ -866,7 +866,8 @@ table.orders td .guest { font-weight: 600; }
       <div class="btn-row">
         ${forHost ? `<button class="btn btn-primary" data-act="back-admin">Back to dashboard</button>
                      <button class="btn btn-secondary" data-act="host-add">Enter another order</button>`
-                  : `<button class="btn btn-secondary" data-act="edit-mine" data-id="${esc(e.id)}">Edit my order</button>
+                  : `<button class="btn btn-primary" data-act="go-home">Back to home &amp; see who's ordered</button>
+                     <button class="btn btn-secondary" data-act="edit-mine" data-id="${esc(e.id)}">Edit my order</button>
                      <button class="btn btn-secondary" data-act="new-order">Order for someone else</button>`}
       </div>
       <p class="foot">You can close this page. Your order is saved and the host can see it.</p></main>`;
@@ -1400,6 +1401,7 @@ table.orders td .guest { font-weight: 600; }
       case 'go-login': ev.preventDefault(); S.view = S.isOwner ? 'admin' : 'login'; S.loginError = ''; render(); window.scrollTo(0, 0); break;
       case 'host-lock': hostLogout(); break;
       case 'print': window.print(); break;
+      case 'go-home': S.saveError = ''; S.view = 'flow'; S.target = null; S.returnTo = null; S.draft = blankDraft(); goStep(0); refresh(); break;
       case 'new-order': S.saveError = ''; S.view = 'flow'; S.target = null; S.returnTo = null; S.draft = blankDraft(); goStep(0); break;
       case 'open-admin': S.view = S.isOwner ? 'admin' : 'login'; render(); window.scrollTo(0, 0); break;
       case 'close-admin': S.view = 'flow'; S.returnTo = null; if (location.hash) history.replaceState(null, '', location.pathname); goStep(0); break;
