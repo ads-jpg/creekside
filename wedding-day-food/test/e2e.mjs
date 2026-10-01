@@ -169,6 +169,7 @@ const mike = await openAs({ uid: 'u_mike', owner: false, level: 'interact' });
 }
 
 /* ---------- 3. Viewer-only account (can't write) ---------- */
+let veraClip = '';
 const viewer = await openAs({ uid: 'u_view', owner: false, level: 'view' });
 {
   const p = viewer.page;
@@ -178,6 +179,8 @@ const viewer = await openAs({ uid: 'u_view', owner: false, level: 'view' });
   check('Read-only account gets Copy my order instead of Submit', (await barBtn(p).textContent()) === 'Copy my order');
   await barBtn(p).click();
   const clip = await p.evaluate(() => window.__clip.join('\n'));
+  veraClip = clip;
+  check('Copied order includes an order code for the host', /DF1\.[A-Za-z0-9_-]+/.test(clip));
   check('Copy my order produces a textable summary', clip.includes('Vera Viewer') && clip.includes('#6 The Veggie') && clip.includes('No tomatoes'), clip);
   check('Nothing written for read-only account', !store.has('orders/u_view'));
 }
@@ -274,12 +277,40 @@ const host = await openAs({ uid: 'u_host', owner: true, level: 'admin' }, { view
   await tap(p, '[data-act="modal-ok"]');
   await p.waitForTimeout(500);
   check('Host can remove an order', (await p.textContent('#total-orders')) === '4');
+  // paste an order a guest texted (with order code)
+  async function pasteOrder(text) {
+    await tap(p, '[data-act="host-paste"]');
+    await p.fill('#paste-text', text);
+    await tap(p, '[data-act="paste-fill"]');
+  }
+  await pasteOrder('Hey! here is mine:\n' + veraClip);
+  await p.waitForSelector('.summary');
+  let rv = await p.textContent('.summary');
+  check('Pasted order (with code) fills in the review', ['Vera Viewer', '#6 The Veggie', 'No tomatoes'].every(x => rv.includes(x)), rv);
+  await barBtn(p).click(); await p.waitForSelector('.done h2');
+  await tap(p, '[data-act="back-admin"]'); await p.waitForTimeout(400);
+  check('Pasted order saved to dashboard', (await p.textContent('#total-orders')) === '5');
+
+  // hand-typed text without a code
+  await pasteOrder("Name: jo lee\nSandwich: #9 Italian Night Club\nBread: Sliced Wheat\nCustomizations: No onions, Add Jimmy Peppers, extra pickles please\nExtras: BBQ Jimmy Chips, Diet Coke\nSpecial Instructions: Cut in half");
+  await p.waitForSelector('.summary');
+  rv = await p.textContent('.summary');
+  check('Hand-typed order is matched to the menu', ['jo lee', '#9 Italian Night Club®', 'Sliced Wheat', 'No onions', 'Add Jimmy Peppers®', 'BBQ Jimmy Chips®', 'Diet Coke®', 'Cut in half'].every(x => rv.includes(x)), rv);
+  check('Unmatched requests are flagged and kept', (await p.textContent('.notice.warn')).includes('extra pickles please') && rv.includes('Also asked for: extra pickles please'));
+  await barBtn(p).click(); await p.waitForSelector('.done h2');
+  await tap(p, '[data-act="back-admin"]'); await p.waitForTimeout(400);
+  check('Hand-typed order saved (name tidied)', (await p.textContent('#total-orders')) === '6' && (await p.locator('table.orders tbody .guest', { hasText: 'Jo Lee' }).count()) === 1);
+
+  // text with no recognizable sandwich
+  await pasteOrder('can I get whatever is good');
+  check('Unrecognized paste shows an error and stays on dashboard', (await p.locator('.modal .error').count()) === 1 && (await p.locator('#total-orders').count()) === 1);
+  await tap(p, '[data-act="modal-close"]');
   check('No page errors (host)', !host.errors.length, host.errors.join(' | '));
 
   // mobile + dark dashboard screenshots
   const hostM = await openAs({ uid: 'u_host', owner: true, level: 'admin' }, { colorScheme: 'dark' });
   await tap(hostM.page, '[data-act="open-admin"]'); await hostM.page.waitForTimeout(500);
-  check('Mobile dashboard uses cards', (await hostM.page.locator('.ocard').count()) === 4 && !(await hostM.page.locator('.table-wrap').isVisible()));
+  check('Mobile dashboard uses cards', (await hostM.page.locator('.ocard').count()) === 6 && !(await hostM.page.locator('.table-wrap').isVisible()));
   const overflow = await hostM.page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth);
   check('No horizontal page scroll on phone', !overflow);
   await shot(hostM.page, '11-dashboard-mobile-dark');

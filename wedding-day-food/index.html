@@ -723,6 +723,8 @@ table.orders td .guest { font-weight: 600; }
     return `<div><h2 class="section-title">Review your <em>order</em></h2><p class="hint">Check everything, then submit.</p></div>
       ${dup ? `<div class="notice info"><b>${esc(cleanName(dup.name))} already has an order.</b> Submitting will replace it, so there won't be a duplicate.</div>` : ''}
       ${S.target ? `<div class="notice info">You're editing a submitted order. Submitting saves your changes.</div>` : ''}
+      ${S.pasteInfo ? `<div class="notice info"><b>Filled in from a pasted order.</b> Check it, then tap Submit Order.</div>` : ''}
+      ${S.pasteInfo && S.pasteInfo.problems.length ? `<div class="notice warn"><b>Some requests didn't match the menu:</b> ${esc(S.pasteInfo.problems.join(', '))}. They were added to Special Instructions so nothing is lost.</div>` : ''}
       <section class="card">${summaryRows(desc, cleanName(S.draft.name), true)}</section>
       ${blocked ? `<div class="notice warn"><b>This page can't save orders from your account.</b> Tap “Copy my order” below and text it to the host instead.</div>` : ''}`;
   }
@@ -909,6 +911,7 @@ table.orders td .guest { font-weight: 600; }
         <button class="btn btn-primary btn-sm" data-act="copy-all" ${all.length ? '' : 'disabled'}>Copy All Orders</button>
         <button class="btn btn-secondary btn-sm" data-act="export-csv" ${all.length ? '' : 'disabled'}>Export Orders (CSV)</button>
         <button class="btn btn-secondary btn-sm" data-act="export-pdf" ${all.length ? '' : 'disabled'}>Printable PDF</button>
+        <button class="btn btn-secondary btn-sm" data-act="host-paste">Paste an order</button>
         <button class="btn btn-secondary btn-sm" data-act="host-add">Add an order</button>
       </div>
       <div class="toolbar">
@@ -1048,6 +1051,113 @@ table.orders td .guest { font-weight: 600; }
     await saveFile('dressed-and-fed-orders.pdf', doc.output('blob'));
   }
 
+  /* ------------------------------------------------------------------ copy & paste of a single order
+   * A guest who can't save copies their order as readable text plus an order code.
+   * The host pastes that text into "Paste an order"; the code restores it exactly.
+   * Without a code (hand-typed or mangled), the labeled lines are matched to the menu. */
+  function orderCopyText(d) {
+    const desc = describe(d);
+    if (!desc) return '';
+    return [`Jimmy John's order for ${cleanName(d.name)}`, `Sandwich: ${(desc.num ? '#' + desc.num + ' ' : '') + desc.item}`, `Bread: ${desc.bread}`,
+      `Customizations: ${desc.customizations.join(', ') || 'None'}`, `Extras: ${desc.extras.join(', ') || 'None'}`, `Special Instructions: ${desc.notes || 'None'}`,
+      '', 'Order code (for the host): ' + encodeOrder(d)].join('\n');
+  }
+  function encodeOrder(d) {
+    const json = JSON.stringify({ v: 1, n: cleanName(d.name), i: d.itemId, b: d.bread, t: d.toasted ? 1 : 0, m: d.mods, a: d.adds, x: d.extras, s: d.notes || '' });
+    let bin = '';
+    new TextEncoder().encode(json).forEach(c => { bin += String.fromCharCode(c); });
+    return 'DF1.' + btoa(bin).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+  }
+  // Keep only values that exist on the menu, whatever the pasted text says.
+  function cleanDraft(o) {
+    const d = blankDraft();
+    const it = ITEMS[o.itemId];
+    d.name = cleanName(o.name).slice(0, 80);
+    d.notes = String(o.notes || '').slice(0, 500);
+    if (!it) return d;
+    d.itemId = it.id;
+    if (breadsFor(it) && SUB_BREADS.some(b => b.id === o.bread)) d.bread = o.bread;
+    d.toasted = !!o.toasted && canToast(it, d);
+    Object.keys(o.mods || {}).forEach(k => { if (it.ings.includes(k) && o.mods[k] !== 'regular' && modOptions(k).includes(o.mods[k])) d.mods[k] = o.mods[k]; });
+    (o.adds || []).forEach(k => { if (ADDABLE.includes(k) && !it.ings.includes(k) && !d.adds.includes(k)) d.adds.push(k); });
+    EXTRAS.forEach(g => { const v = (o.extras || {})[g.id]; if (g.options.some(x => x[0] === v)) d.extras[g.id] = v; });
+    return d;
+  }
+  function decodeOrder(text) {
+    const m = String(text).match(/DF1\.([A-Za-z0-9_-]+)/);
+    if (!m) return null;
+    try {
+      let b = m[1].replace(/-/g, '+').replace(/_/g, '/');
+      while (b.length % 4) b += '=';
+      const o = JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(b), c => c.charCodeAt(0))));
+      if (!o || !ITEMS[o.i]) return null;
+      return cleanDraft({ name: o.n, itemId: o.i, bread: o.b, toasted: o.t, mods: o.m, adds: o.a, extras: o.x, notes: o.s });
+    } catch (e) { return null; }
+  }
+  const normTxt = s => String(s || '').toLowerCase().replace(/[®™]/g, '').replace(/[^a-z0-9#&]+/g, ' ').trim();
+  function parseOrderText(text) {
+    const lines = String(text).split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+    const get = re => { for (const l of lines) { const m = l.match(re); if (m) return m[1].trim(); } return ''; };
+    const problems = [];
+    const o = { mods: {}, adds: [], extras: {} };
+    o.name = get(/^(?:jimmy john'?s order for|name)\s*:?\s*(.+)$/i);
+    const sw = get(/^sandwich\s*:\s*(.+)$/i);
+    let it = null;
+    const num = sw.match(/#\s*(\d+)/);
+    if (num) it = Object.values(ITEMS).find(x => x.num === num[1]);
+    if (!it && sw) {
+      const want = normTxt(sw);
+      it = Object.values(ITEMS).find(x => want.includes(normTxt(x.name).replace(/^the /, '')));
+    }
+    if (!it) return { draft: cleanDraft(o), problems };
+    o.itemId = it.id;
+    const bread = normTxt(get(/^bread\s*:\s*(.+)$/i));
+    if (bread) {
+      o.bread = /giant|16/.test(bread) ? 'french16' : /wheat/.test(bread) ? 'wheat' : /unwich|lettuce wrap/.test(bread) ? 'unwich' : 'french8';
+      o.toasted = /toasted/.test(bread);
+    }
+    const ingByWord = word => Object.keys(ING).find(k => normTxt(ING[k].noun) === word || normTxt(ING[k].label) === word);
+    get(/^customi[sz]ations?\s*:\s*(.+)$/i).split(/[,;]/).map(x => x.trim()).filter(x => x && !/^(none|as is)$/i.test(x)).forEach(part => {
+      const m = part.match(/^(no|extra|add)\s+(.+)$/i);
+      const k = m && ingByWord(normTxt(m[2]));
+      const verb = m && m[1].toLowerCase();
+      if (k && verb === 'add' && ADDABLE.includes(k) && !it.ings.includes(k)) o.adds.push(k);
+      else if (k && verb !== 'add' && it.ings.includes(k) && modOptions(k).includes(verb === 'no' ? 'none' : 'extra')) o.mods[k] = verb === 'no' ? 'none' : 'extra';
+      else problems.push(part);
+    });
+    get(/^extras?\s*:\s*(.+)$/i).split(/[,;]/).map(x => x.trim()).filter(x => x && !/^none$/i.test(x)).forEach(part => {
+      const want = normTxt(part);
+      let hit = null;
+      EXTRAS.forEach(g => g.options.forEach(op => { if (!hit && (normTxt(op[2]) === want || normTxt(op[1]) === want)) hit = [g.id, op[0]]; }));
+      if (hit) o.extras[hit[0]] = hit[1]; else problems.push(part);
+    });
+    const notes = get(/^special instructions\s*:\s*(.+)$/i);
+    o.notes = /^none$/i.test(notes) ? '' : notes;
+    if (problems.length) o.notes = (o.notes ? o.notes + ' ' : '') + '(Also asked for: ' + problems.join(', ') + ')';
+    return { draft: cleanDraft(o), problems };
+  }
+  function showPasteModal(err) {
+    $('#modal-root').innerHTML = `<div class="overlay" data-act="modal-bg"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="m-title">
+      <h3 id="m-title">Paste an order</h3>
+      <p class="hint">Paste the order a guest texted you. The app fills it in, then you check it and tap Submit Order.</p>
+      <textarea class="textarea" id="paste-text" placeholder="Jimmy John's order for …&#10;Sandwich: …"></textarea>
+      ${err ? `<p class="error" role="alert">${esc(err)}</p>` : ''}
+      <div class="btn-row"><button class="btn btn-secondary btn-sm" data-act="modal-close">Cancel</button>
+      <button class="btn btn-primary btn-sm" data-act="paste-fill">Fill in order</button></div></div></div>`;
+    $('#paste-text').focus();
+  }
+  function fillFromPaste() {
+    const el = $('#paste-text');
+    const text = el ? el.value : '';
+    if (!text.trim()) { showPasteModal('Paste the order text first.'); return; }
+    let draft = decodeOrder(text), problems = [];
+    if (!draft) { const r = parseOrderText(text); draft = r.draft; problems = r.problems; }
+    if (!draft.itemId) { showPasteModal('Couldn’t find a sandwich in that text. Check it has a line like “Sandwich: #2 Big John”.'); $('#paste-text').value = text; return; }
+    closeModal();
+    S.view = 'flow'; S.target = null; S.returnTo = 'admin'; S.draft = draft; S.pasteInfo = { problems };
+    goStep(cleanName(draft.name).length >= 2 ? 4 : 0);
+  }
+
   /* ------------------------------------------------------------------ modal & toast */
   let toastTimer = null;
   function toast(msg) {
@@ -1130,6 +1240,7 @@ table.orders td .guest { font-weight: 600; }
         if (st && st.status) await writeStatus(key, st.status, entry.rev);
       }
       S.lastSaved = Object.assign({ wasUpdate: !!prev }, entry);
+      S.pasteInfo = null;
       S.submitting = false;
       store.del(DRAFT_KEY);
       S.view = 'done'; S.target = null; S.draft = blankDraft(); S.step = 0;
@@ -1197,10 +1308,8 @@ table.orders td .guest { font-weight: 600; }
       case 'extra': { if (el.dataset.val) d.extras[el.dataset.grp] = el.dataset.val; else delete d.extras[el.dataset.grp]; persistDraft(); render(true); break; }
       case 'submit': submit(); break;
       case 'copy-mine': {
-        const desc = describe(d);
-        if (!desc) break;
-        const txt = [`Jimmy John's order for ${cleanName(d.name)}`, `Sandwich: ${(desc.num ? '#' + desc.num + ' ' : '') + desc.item}`, `Bread: ${desc.bread}`,
-          `Customizations: ${desc.customizations.join(', ') || 'None'}`, `Extras: ${desc.extras.join(', ') || 'None'}`, `Special Instructions: ${desc.notes || 'None'}`].join('\n');
+        const txt = orderCopyText(d);
+        if (!txt) break;
         copyText(txt, 'Order copied. Paste it into a text to the host.');
         break;
       }
@@ -1209,8 +1318,10 @@ table.orders td .guest { font-weight: 600; }
       case 'open-admin': if (S.isOwner) { S.view = 'admin'; subscribeAdmin(); render(); window.scrollTo(0, 0); } break;
       case 'close-admin': S.view = 'flow'; S.returnTo = null; render(); window.scrollTo(0, 0); break;
       case 'back-admin': S.view = 'admin'; S.returnTo = null; render(); window.scrollTo(0, 0); break;
-      case 'host-add': S.view = 'flow'; S.target = null; S.returnTo = 'admin'; S.draft = blankDraft(); goStep(0); break;
-      case 'cancel-host-entry': S.view = 'admin'; S.returnTo = null; S.target = null; S.draft = blankDraft(); render(); window.scrollTo(0, 0); break;
+      case 'host-add': S.pasteInfo = null; S.view = 'flow'; S.target = null; S.returnTo = 'admin'; S.draft = blankDraft(); goStep(0); break;
+      case 'host-paste': showPasteModal(); break;
+      case 'paste-fill': fillFromPaste(); break;
+      case 'cancel-host-entry': S.pasteInfo = null; S.view = 'admin'; S.returnTo = null; S.target = null; S.draft = blankDraft(); render(); window.scrollTo(0, 0); break;
       case 'status': {
         const r = findRow(el.dataset.key);
         if (r && r.status !== el.dataset.val) { writeStatus(r.key, el.dataset.val, r.rev || 1); renderAdminBody(); }
