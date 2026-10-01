@@ -1,4 +1,6 @@
-# Rehearsal Dinner: Jimmy John's order collector
+# Wedding Day: Jimmy John's order collector
+
+Collects everyone's Jimmy John's order for the food while the wedding party gets ready.
 
 Live page: https://claude.ai/artifact/YG7qQpdb5cTnCVx8j8qQW9
 
