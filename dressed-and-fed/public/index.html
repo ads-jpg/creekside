@@ -214,6 +214,13 @@ details.paste-details > summary::-webkit-details-marker { display: none; }
 details.paste-details > summary::before { content: "+ "; color: var(--accent); }
 details.paste-details[open] > summary::before { content: "– "; }
 .login { max-width: 420px; margin: 0 auto; }
+.wrap.tight-bottom { padding-block: 20px 6px; }
+.wrap.wide.public-dash { padding-block: 10px 140px; }
+.public-dash .dash-head h2 { font-family: var(--display); font-weight: 500; font-size: clamp(1.5rem, 4vw, 2rem); }
+.st-pill { display: inline-block; padding: 4px 12px; border-radius: 999px; font-size: .8rem; font-weight: 600; white-space: nowrap; }
+.st-pill[data-s="Submitted"] { background: var(--warn-soft); color: var(--warn); }
+.st-pill[data-s="Reviewed"] { background: var(--info-soft); color: var(--info); }
+.st-pill[data-s="Ordered"] { background: var(--ok-soft); color: var(--ok); }
 .host-card h2 { font-family: var(--display); font-weight: 500; font-size: 1.35rem; }
 .paste-card { border: 2px solid var(--accent); }
 .paste-card h2 { font-family: var(--display); font-weight: 500; font-size: 1.5rem; }
@@ -540,12 +547,12 @@ table.orders td .guest { font-weight: 600; }
     S.ready = true;
     const j = JSON.stringify([S.orders, S.online]);
     if (j !== lastJson) { lastJson = j; onData(); }
-    else if (S.view === 'admin') updateLive();
+    else updateLive();
   }
   // Update only the parts that show shared data, so typing isn't interrupted.
   function onData() {
     if (S.view === 'admin') renderAdminBody();
-    else if (S.view === 'flow' && S.step === 0) { const a = $('#mine-slot'), b = $('#who-slot'); if (a) a.innerHTML = mineCard(); if (b) b.innerHTML = whoCard(); }
+    else if (S.view === 'flow' && S.step === 0) { const a = $('#mine-slot'); if (a) a.innerHTML = mineCard(); renderPublicDash(); }
     else if (S.view === 'flow' && S.step === 4) render(true);
   }
   const ready = refresh();
@@ -643,8 +650,12 @@ table.orders td .guest { font-weight: 600; }
     else body = stepReview();
     const forHost = S.returnTo === 'admin';
     const right = forHost ? `<button class="linkbtn" data-act="cancel-host-entry">← Dashboard</button>` : hostLink();
-    return `<main class="wrap">${topline(right)}${s === 0 ? '' : progress()}${body}
-      <p class="foot">Menu from Jimmy John's. Availability can vary by location.${S.isOwner ? '' : ' · <a href="#host" data-act="go-login" style="color:inherit">Host</a>'}</p></main>`;
+    const foot = `<p class="foot">Menu from Jimmy John's. Availability can vary by location.${S.isOwner ? '' : ' · <a href="#host" data-act="go-login" style="color:inherit">Host</a>'}</p>`;
+    if (s === 0 && !forHost) {
+      return `<main class="wrap tight-bottom">${topline(right)}${body}</main>
+        <section class="wrap wide public-dash" aria-label="Who's ordered"><div id="who-slot" style="display:flex;flex-direction:column;gap:18px">${publicDash()}</div>${foot}</section>`;
+    }
+    return `<main class="wrap">${topline(right)}${s === 0 ? '' : progress()}${body}${foot}</main>`;
   }
 
   function mineCard() {
@@ -659,18 +670,6 @@ table.orders td .guest { font-weight: 600; }
             <button class="btn btn-ghost btn-sm" data-act="cancel-mine" data-id="${esc(e.id)}">Cancel</button></div>
           </div>`).join('')}</div>
         <p class="hint">To order for another person, enter their name below.</p>
-      </section>`;
-  }
-  function whoCard() {
-    if (!S.ready) return `<section class="card"><div class="eyebrow">Who's ordered</div><p class="empty-sm">Loading orders…</p></section>`;
-    if (!S.online) return `<div class="notice warn"><b>Can't reach the order list right now.</b> You can still choose your food; we'll try again when you submit.</div>`;
-    const rows = S.orders.slice().sort((a, b) => normName(a.name).localeCompare(normName(b.name)));
-    return `<section class="card" aria-labelledby="who-h">
-        <div class="eyebrow" id="who-h">Who's ordered so far (${rows.length})</div>
-        ${rows.length ? `<ul class="who-list">${rows.map(o => `<li><span class="who">${esc(o.name)}</span>
-          <span class="what">${esc((o.num ? '#' + o.num + ' ' : '') + o.item)} · ${esc(o.bread)}</span>
-          ${(o.customizations || []).length ? `<span class="chg">${esc(o.customizations.join(', '))}</span>` : ''}</li>`).join('')}</ul>`
-          : '<p class="empty-sm">No orders yet. Be the first!</p>'}
       </section>`;
   }
   function stepName() {
@@ -701,7 +700,7 @@ table.orders td .guest { font-weight: 600; }
         </div>
         <p class="hint">Takes about a minute: pick a sandwich, adjust it, add any sides, then review.</p>
       </section>
-      ${forHost ? '' : `<div id="who-slot">${whoCard()}</div>`}`;
+`;
   }
 
   function stepSandwich() {
@@ -944,6 +943,36 @@ table.orders td .guest { font-weight: 600; }
     const host = $('#admin-body');
     if (!host) return;
     updateLive();
+    host.innerHTML = dashHTML(true);
+    refocusSearch();
+  }
+  function publicDash() {
+    let body;
+    if (!S.ready) body = `<div class="card dash-empty"><b>Loading orders…</b></div>`;
+    else if (!S.online && !S.orders.length) body = `<div class="notice warn"><b>Can't reach the order list right now.</b> You can still choose your food; we'll try again when you submit.</div>`;
+    else body = dashHTML(false);
+    return `<div class="dash-head">
+        <div><div class="eyebrow">Everyone's orders</div><h2>Who's Ordered</h2></div>
+        <span class="live" id="live"></span>
+      </div>${body}`;
+  }
+  function renderPublicDash() {
+    const slot = $('#who-slot');
+    if (!slot) return;
+    slot.innerHTML = publicDash();
+    updateLive();
+    refocusSearch();
+  }
+  function renderDash() { if (S.view === 'admin') renderAdminBody(); else renderPublicDash(); }
+  // keep focus in the search box while the list re-renders around it
+  function refocusSearch() {
+    if (!S._refocusSearch) return;
+    const el = $('#admin-search');
+    if (el) { el.focus(); const n = el.value.length; el.setSelectionRange(n, n); }
+    S._refocusSearch = false;
+  }
+
+  function dashHTML(isHost) {
     const all = adminRows();
     const t = tally(all);
     const stc = { Submitted: 0, Reviewed: 0, Ordered: 0 };
@@ -957,9 +986,10 @@ table.orders td .guest { font-weight: 600; }
     const sortOpts = [['name-asc', 'Name A–Z'], ['name-desc', 'Name Z–A'], ['sandwich', 'Sandwich #'], ['newest', 'Recently updated'], ['oldest', 'First submitted']]
       .map(o => `<option value="${o[0]}" ${S.admin.sort === o[0] ? 'selected' : ''}>Sort: ${o[1]}</option>`).join('');
 
-    const statusSeg = r => `<div class="status" role="radiogroup" aria-label="Status for ${esc(r.name)}">${STATUSES.map(s =>
+    const statusSeg = r => !isHost ? `<span class="st-pill" data-s="${esc(r.status)}">${esc(r.status)}</span>` : `<div class="status" role="radiogroup" aria-label="Status for ${esc(r.name)}">${STATUSES.map(s =>
       `<button role="radio" aria-checked="${r.status === s}" data-act="status" data-key="${esc(r.key)}" data-val="${s}">${s}</button>`).join('')}</div>`;
-    const flags = r => `${r.changedSince ? `<span class="flag">Changed after ${esc(r.status.toLowerCase())}</span> ` : ''}${r.dupName ? `<span class="flag">Same name twice</span>` : ''}`;
+    const rowActs = r => isHost ? `<div class="rowacts"><button class="iconbtn" data-act="admin-edit" data-key="${esc(r.key)}">Edit</button><button class="iconbtn del" data-act="admin-del" data-key="${esc(r.key)}">Remove</button></div>` : '';
+    const flags = r => !isHost ? '' : `${r.changedSince ? `<span class="flag">Changed after ${esc(r.status.toLowerCase())}</span> ` : ''}${r.dupName ? `<span class="flag">Same name twice</span>` : ''}`;
     const joinOr = (arr, none) => arr && arr.length ? arr.map(esc).join(', ') : `<span class="empty-sm">${none}</span>`;
 
     const table = `<div class="table-wrap"><table class="orders">
@@ -973,7 +1003,7 @@ table.orders td .guest { font-weight: 600; }
         <td>${joinOr(r.extrasList, 'None')}</td>
         <td>${r.notes ? esc(r.notes) : '<span class="empty-sm">None</span>'}</td>
         <td class="when">${esc(fmtTime(r.submittedAt))}${r.rev > 1 ? `<br><small>edited ${esc(fmtTime(r.updatedAt))}</small>` : ''}</td>
-        <td><div class="st-cell">${statusSeg(r)}<div class="rowacts"><button class="iconbtn" data-act="admin-edit" data-key="${esc(r.key)}">Edit</button><button class="iconbtn del" data-act="admin-del" data-key="${esc(r.key)}">Remove</button></div></div></td>
+        <td><div class="st-cell">${statusSeg(r)}${rowActs(r)}</div></td>
       </tr>`).join('')}</tbody></table></div>`;
 
     const cards = `<div class="cards">${rows.map(r => `<article class="ocard">
@@ -983,13 +1013,13 @@ table.orders td .guest { font-weight: 600; }
           <dt>Changes</dt><dd>${joinOr(r.customizations, 'As is')}</dd>
           <dt>Extras</dt><dd>${joinOr(r.extrasList, 'None')}</dd>
           <dt>Notes</dt><dd>${r.notes ? esc(r.notes) : '<span class="empty-sm">None</span>'}</dd></dl>
-        <div class="bottom">${statusSeg(r)}<div class="rowacts"><button class="iconbtn" data-act="admin-edit" data-key="${esc(r.key)}">Edit</button><button class="iconbtn del" data-act="admin-del" data-key="${esc(r.key)}">Remove</button></div></div>
+        <div class="bottom">${statusSeg(r)}${rowActs(r)}</div>
       </article>`).join('')}</div>`;
 
-    const empty = !all.length ? `<div class="card dash-empty"><b>No orders yet</b><span>Orders appear here as soon as people submit them. Share the page's link, or use “Add an order” to enter one yourself.</span></div>`
+    const empty = !all.length ? `<div class="card dash-empty"><b>No orders yet</b><span>${isHost ? 'Orders appear here as soon as people submit them. Share the page’s link, or use “Add an order” to enter one yourself.' : 'Be the first! Orders show up here as soon as they’re submitted.'}</span></div>`
       : (!rows.length ? `<div class="card dash-empty"><b>No matches</b><span>No orders match this search or filter.</span></div>` : '');
 
-    host.innerHTML = `
+    return `
       <div style="display:flex;flex-direction:column;gap:18px">
       <div class="stats">
         <div class="stat total"><span class="eyebrow">Total orders</span><span class="n" id="total-orders">${all.length}</span></div>
@@ -1009,13 +1039,13 @@ table.orders td .guest { font-weight: 600; }
           ${t.extras.length ? `<ul class="tally" id="extra-summary">${t.extras.map(([k, n]) => `<li><span>${esc(k)}</span><span class="c">${n}</span></li>`).join('')}</ul>` : '<p class="empty-sm">No extras yet.</p>'}
         </section>
       </div>
-      <div class="actions">
+      ${!isHost ? '' : `<div class="actions">
         <button class="btn btn-primary btn-sm" data-act="copy-all" ${all.length ? '' : 'disabled'}>Copy All Orders</button>
         <button class="btn btn-secondary btn-sm" data-act="export-csv" ${all.length ? '' : 'disabled'}>Export Orders (CSV)</button>
         <button class="btn btn-secondary btn-sm" data-act="export-pdf" ${all.length ? '' : 'disabled'}>Printable PDF</button>
         <button class="btn btn-secondary btn-sm" data-act="print" ${all.length ? '' : 'disabled'}>Print</button>
         <button class="btn btn-secondary btn-sm" data-act="host-add">Add an order</button>
-      </div>
+      </div>`}
       <div class="toolbar">
         <input id="admin-search" class="input" type="search" placeholder="Search by guest name" value="${esc(S.admin.search)}" aria-label="Search orders by guest name">
         <select id="admin-filter" class="select" aria-label="Filter by sandwich"><option value="all">All sandwiches</option>${filterOpts}</select>
@@ -1023,14 +1053,7 @@ table.orders td .guest { font-weight: 600; }
       </div>
       ${empty}
       ${rows.length ? table + cards : ''}
-
       </div>`;
-    // keep focus in the search box while the list re-renders around it
-    if (S._refocusSearch) {
-      const el = $('#admin-search');
-      if (el) { el.focus(); const n = el.value.length; el.setSelectionRange(n, n); }
-      S._refocusSearch = false;
-    }
   }
 
   /* ------------------------------------------------------------------ exports */
@@ -1443,12 +1466,12 @@ table.orders td .guest { font-weight: 600; }
     const t = ev.target;
     if (t.id === 'guest-name') { S.draft.name = t.value; if (S.nameError && cleanName(t.value).length >= 2) { S.nameError = false; const er = $('#name-err'); if (er) er.remove(); t.removeAttribute('aria-invalid'); } persistDraft(); }
     else if (t.id === 'notes') { S.draft.notes = t.value; persistDraft(); }
-    else if (t.id === 'admin-search') { S.admin.search = t.value; S._refocusSearch = true; renderAdminBody(); }
+    else if (t.id === 'admin-search') { S.admin.search = t.value; S._refocusSearch = true; renderDash(); }
   });
   document.addEventListener('change', ev => {
     const t = ev.target;
-    if (t.id === 'admin-filter') { S.admin.filter = t.value; renderAdminBody(); }
-    else if (t.id === 'admin-sort') { S.admin.sort = t.value; renderAdminBody(); }
+    if (t.id === 'admin-filter') { S.admin.filter = t.value; renderDash(); }
+    else if (t.id === 'admin-sort') { S.admin.sort = t.value; renderDash(); }
   });
   document.addEventListener('keydown', ev => {
     if (ev.key === 'Enter' && ev.target.id === 'guest-name') { ev.preventDefault(); next(); }

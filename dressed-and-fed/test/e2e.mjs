@@ -64,7 +64,7 @@ const sarah = await phone();
   const p = sarah.page;
   check('Welcome screen shows name, subtitle and note', (await p.textContent('h1')).includes('Dressed & Fed')
     && (await p.textContent('.hero .sub')).includes("Please select your Jimmy John's order below."));
-  check('Who\'s ordered list starts empty', (await p.textContent('#who-slot')).includes('No orders yet'));
+  check('Public dashboard starts empty', (await p.textContent('#who-slot')).includes('No orders yet'));
   check('Guests see no host dashboard button', (await p.locator('.host-card').count()) === 0);
   await shot(p, '01-welcome');
   await barBtn(p).click();
@@ -109,7 +109,12 @@ const sarah = await phone();
 const mike = await phone();
 {
   const p = mike.page;
-  check('Another phone sees everyone who ordered', (await p.textContent('#who-slot')).includes('Who\'s ordered so far (2)'));
+  check('Another phone sees everyone who ordered', (await p.textContent('#who-slot #total-orders')) === '2' && (await p.textContent('#who-slot')).includes('Tom Johnson'));
+  check('Public dashboard shows summaries', /#4Turkey Tom®\s*1/.test(await p.textContent('#who-slot #sandwich-summary')) && (await p.locator('#who-slot #mod-summary').count()) === 1);
+  check('Public dashboard has no host controls', (await p.locator('#who-slot [data-act="status"], #who-slot [data-act="admin-del"], #who-slot [data-act="admin-edit"], #who-slot [data-act="copy-all"]').count()) === 0 && (await p.locator('#who-slot .ocard .st-pill').count()) === 2);
+  await p.fill('#admin-search', 'tom');
+  check('Guests can search the public dashboard', (await p.locator('#who-slot .ocard').count()) === 1 && await p.evaluate(() => document.activeElement.id === 'admin-search'));
+  await p.fill('#admin-search', '');
   await submitOrder(p, { name: 'Mike Smith', item: 'turkeytom', bread: 'wheat', mods: [['mayo', 'none']], extras: [['dessert', 'chocchip']] });
   check('Second guest saved separately', (await apiList()).length === 3);
   // try to take over Sarah's name from a different phone
@@ -234,7 +239,7 @@ const host = await phone({ viewport: { width: 1360, height: 900 }, deviceScaleFa
   check('Host can remove an order', (await p.textContent('#total-orders')) === '5' && (await apiList()).length === 5);
   check('No page errors (host)', !host.errors.length, host.errors.join(' | '));
   await tap(p, '[data-act="host-lock"]');
-  check('Lock signs the host out', (await p.locator('#total-orders').count()) === 0 && (await p.evaluate(() => localStorage.getItem('dnf-host-passcode'))) === null);
+  check('Lock signs the host out', (await p.locator('#admin-body').count()) === 0 && (await p.locator('#who-slot [data-act="status"]').count()) === 0 && (await p.evaluate(() => localStorage.getItem('dnf-host-passcode'))) === null);
 
   const hm = await phone({ colorScheme: 'dark', hash: '/#host' });
   await hm.page.fill('#host-pass', PASS); await hm.page.press('#host-pass', 'Enter');
