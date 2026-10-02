@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta name="x-apple-disable-message-reformatting"/>
+<meta content="light" name="color-scheme"/>
+<meta content="light" name="supported-color-schemes"/>
+<title>
+      You've still got a Snackify gift card to spend
+    </title>
+<!--[if mso]>
+<xml><o:OfficeDocumentSettings><o:PixelsPerInch>96</o:PixelsPerInch></o:OfficeDocumentSettings></xml>
+<![endif]-->
+<style>a:hover {color:#4f6a06}</style><style>@media only screen and (max-width: 620px) {
+    .wrap {
+        width: 100% !important
+        }
+    .pad-lg {
+        padding-left: 22px !important;
+        padding-right: 22px !important
+        }
+    .h1 {
+        font-size: 29px !important
+        }
+    .h2 {
+        font-size: 23px !important
+        }
+    .amount {
+        font-size: 44px !important
+        }
+    .tile {
+        display: block !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important
+        }
+    .tile-img {
+        max-width: 210px !important
+        }
+    }</style></head>
+<body style="-ms-text-size-adjust:100%; -webkit-text-size-adjust:100%; background:#eceff0; margin:0; padding:0"> <!-- Preheader -->
+<div style="display:none; font-size:1px; color:#eceff0; line-height:1px; max-height:0; max-width:0; opacity:0; overflow:hidden; mso-hide:all;">
+      Your Snackify gift card is ready when you are. Treat yourself to something good.
+  ͏&#8204;&nbsp;͏&#8204;&nbsp;͏&#8204;&nbsp;͏&#8204;&nbsp;͏&#8204;&nbsp;͏&#8204;&nbsp;͏&#8204;&nbsp;͏&#8204;&nbsp;͏&#8204;&nbsp;͏&#8204;&nbsp;͏&#8204;&nbsp;͏&#8204;&nbsp;͏&#8204;&nbsp;͏&#8204;&nbsp;͏&#8204;&nbsp;͏&#8204;&nbsp;
+    </div>
+<table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse; mso-table-lspace:0; mso-table-rspace:0; width:100%; background:#eceff0" width="100%">
+<tbody>
+<tr>
+<td align="center" style="padding:32px 16px; font-family:'Poppins',Helvetica,Arial,sans-serif;">
+<table align="center" border="0" cellpadding="0" cellspacing="0" class="wrap" role="presentation" style="border-collapse:collapse; mso-table-lspace:0; mso-table-rspace:0; width:600px; max-width:100%; margin:0 auto; background:#fff" width="600">
+<tbody> <!-- ============ HEADER / LOGO ============ -->
+<tr>
+<td style="background:#f4f4f4; padding:28px 32px; text-align:center;">
+<img alt="Snackify" src="https://d3k81ch9hvuctc.cloudfront.net/company/Lxwg3D/images/b9285400-ba48-45d3-be3e-bff183c16cdc.png" style="-ms-interpolation-mode:bicubic; border:0; outline:none; text-decoration:none; display:block; margin:0 auto; width:190px; max-width:190px; height:auto" width="190"/>
+</td>
+</tr>
+<tr>
+<td style="height:8px; background:#afdc36; font-size:0; line-height:8px;">
+                    &nbsp;
+                  </td>
+</tr>
+<!-- ============ HERO ============ -->
+<tr>
+<td class="pad-lg" style="background:#1b4d3e; padding:44px 44px 8px 44px; text-align:center;">
+<div style="display:inline-block; background:#25604f; color:#afdc36; font-size:12px; font-weight:600; letter-spacing:1.6px; text-transform:uppercase; padding:8px 16px; border-radius:999px; margin-bottom:22px;">
+                      Friendly reminder
+                    </div>
+<h1 class="h1" style="margin:0; font-family:'Rokkitt','Roboto Slab',Rockwell,Georgia,serif; font-size:38px; line-height:1.18; font-weight:700; color:#ffffff;">
+                      Your snacks are still <span style="color:#afdc36;">waiting</span>.
+                    </h1>
+<p style="margin:18px 0 0 0; font-size:16px; line-height:1.6; color:#cfe0d5;">
+                      {% if first_name %}Hi {{ first_name }}! {% endif %}Just a heads-up that you have a Snackify gift card ready to spend.
+                    </p>
+</td>
+</tr>
+<!-- ============================================================
+     GIFT CARD REMINDER  (Gift Card Pro -> Klaviyo)
+     Trigger metric: same GCP gift card metric as the delivery email
+     Flow: add a time delay (e.g. 14 days) after the original send
+     ============================================================ -->
+<tr>
+<td class="pad-lg" style="background:#1b4d3e; padding:28px 44px 44px 44px;">
+<table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse; mso-table-lspace:0; mso-table-rspace:0; width:100%" width="100%">
+<tbody>
+<tr>
+<td style="background:#afdc36; border-radius:18px; padding:30px 26px; text-align:center;">
+<!-- Card artwork chosen at checkout (optional) -->
+                            {% if event.giftcard.selected_card_image %}
+                            <img alt="Your Snackify gift card" src="{{ event.giftcard.selected_card_image }}" style="-ms-interpolation-mode:bicubic; border:0; outline:none; text-decoration:none; display:block; margin:0 auto 22px auto; width:100%; max-width:300px; height:auto; border-radius:12px" width="300"/>
+                            {% endif %}
+<div style="font-size:12px; font-weight:600; letter-spacing:1.6px; text-transform:uppercase; color:#3f6b12;">
+                              Your gift card
+                            </div>
+<div class="amount" style="margin-top:6px; font-family:'Rokkitt','Roboto Slab',Rockwell,Georgia,serif; font-size:52px; line-height:1.05; font-weight:700; color:#1b4d3e;">
+                              {% if event.giftcard.currency == 'USD' %}${% elif event.giftcard.currency == 'CAD' %}CA${% elif event.giftcard.currency == 'GBP' %}£{% elif event.giftcard.currency == 'EUR' %}€{% elif event.giftcard.currency == 'AUD' %}A${% else %}{{ event.giftcard.currency }} {% endif %}{{ event.giftcard.amount|floatformat:2 }}
+                            </div>
+<!-- The note that came with it -->
+                            {% if event.giftcard.message_text %}
+<table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse; mso-table-lspace:0; mso-table-rspace:0; width:100%; margin-top:20px" width="100%">
+<tbody>
+<tr>
+<td style="background:#f6f8f2; border-radius:12px; padding:18px 20px; text-align:left;">
+<div style="font-size:11px; font-weight:600; letter-spacing:1.4px; text-transform:uppercase; color:#6c7570;">
+                                      A note from the sender
+                                    </div>
+<p style="margin:7px 0 0 0; font-size:15px; line-height:1.6; color:#1b4d3e;">
+                                      &ldquo;{{ event.giftcard.message_text }}&rdquo;
+                                    </p>
+</td>
+</tr>
+</tbody>
+</table>
+                            {% endif %}
+<table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse; mso-table-lspace:0; mso-table-rspace:0; margin:24px auto 0 auto">
+<tbody>
+<tr>
+<td bgcolor="#1b4d3e" style="background:#1b4d3e; border-radius:999px; mso-padding-alt:16px 34px;"> <a href="https://{{ event.shop.domain }}/a/gc/gift-card/{{ event.giftcard.uuid }}/" style='color:#fff; display:inline-block; padding:16px 34px; font-family:"Poppins", Helvetica, Arial, sans-serif; font-size:15px; font-weight:700; letter-spacing:0.4px; text-decoration:none; border-radius:999px'>View My Gift Card</a>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<!-- ==================== END GIFT CARD SUMMARY ==================== -->
+<!-- ============ HOW TO USE IT ============ -->
+<tr>
+<td class="pad-lg" style="background:#ffffff; padding:40px 44px 8px 44px; text-align:center;">
+<h2 class="h2" style="margin:0; font-family:'Rokkitt','Roboto Slab',Rockwell,Georgia,serif; font-size:28px; line-height:1.3; font-weight:700; color:#1b4d3e;">
+                      Spending it is easy
+                    </h2>
+<p style="margin:12px 0 0 0; font-size:16px; line-height:1.7; color:#5c6367;">
+                      Fill your cart with snacks you love, then enter your gift card code at checkout. The balance comes off automatically, and anything left over stays on the card for next time.
+                    </p>
+<p style="margin:14px 0 0 0; font-size:15px; line-height:1.7; color:#5c6367;">
+                      Can't find your code? Tap <strong>View My Gift Card</strong> above, or <a href="https://www.snackify.co/pages/contact" style="color:#6f8f13; font-weight:600">get in touch</a> and we'll help.
+                    </p>
+</td>
+</tr>
+<!-- ============ PRODUCTS ============ -->
+<tr>
+<td style="background:#ffffff; padding:30px 36px 12px 36px; text-align:center;">
+<h2 class="h2" style="margin:0; font-family:'Rokkitt','Roboto Slab',Rockwell,Georgia,serif; font-size:26px; line-height:1.3; font-weight:700; color:#1b4d3e;">
+                      Need some inspiration?
+                    </h2>
+<p style="margin:12px 0 0 0; font-size:16px; line-height:1.6; color:#5c6367;">
+                      A few favorites to put that gift card toward.
+                    </p>
+</td>
+</tr>
+<tr>
+<td style="background:#ffffff; padding:16px 28px 8px 28px;">
+<table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:separate; mso-table-lspace:0; mso-table-rspace:0; border-spacing:8px" width="100%">
+<tbody>
+<tr>
+<td class="tile" style="background:#f6f8f2; border-radius:14px; padding:14px 10px; text-align:center; vertical-align:top;" width="33%"> <a href="https://www.snackify.co/products/celebration-box" style="color:#6f8f13; text-decoration:none"> <img alt="Celebration Box" class="tile-img" src="https://d3k81ch9hvuctc.cloudfront.net/company/Lxwg3D/images/119a4387-2d80-4544-8f09-5bf055aca6b5.png" style="-ms-interpolation-mode:bicubic; border:0; outline:none; text-decoration:none; display:block; margin:0 auto 10px auto; width:100%; max-width:150px; height:auto; border-radius:10px" width="150"/><span style="display:block; font-size:14px; font-weight:700; color:#1b4d3e;">Celebration Box</span><span style="display:block; font-size:13px; color:#6c7570; margin-top:3px;">$32.99</span></a>
+</td>
+<td class="tile" style="background:#f6f8f2; border-radius:14px; padding:14px 10px; text-align:center; vertical-align:top;" width="33%"> <a href="https://www.snackify.co/products/office-snacks-box" style="color:#6f8f13; text-decoration:none"> <img alt="Office Snacks Box" class="tile-img" src="https://d3k81ch9hvuctc.cloudfront.net/company/Lxwg3D/images/d413801f-be24-40f7-8ef9-7d801cc93f7d.png" style="-ms-interpolation-mode:bicubic; border:0; outline:none; text-decoration:none; display:block; margin:0 auto 10px auto; width:100%; max-width:150px; height:auto; border-radius:10px" width="150"/><span style="display:block; font-size:14px; font-weight:700; color:#1b4d3e;">Office Snacks Box</span><span style="display:block; font-size:13px; color:#6c7570; margin-top:3px;">from $36.99</span></a>
+</td>
+<td class="tile" style="background:#f6f8f2; border-radius:14px; padding:14px 10px; text-align:center; vertical-align:top;" width="33%"> <a href="https://www.snackify.co/products/wellness-box" style="color:#6f8f13; text-decoration:none"> <img alt="Wellness Box" class="tile-img" src="https://d3k81ch9hvuctc.cloudfront.net/company/Lxwg3D/images/4b49f675-0abb-4fbe-836f-3c0d5ed5fc73.png" style="-ms-interpolation-mode:bicubic; border:0; outline:none; text-decoration:none; display:block; margin:0 auto 10px auto; width:100%; max-width:150px; height:auto; border-radius:10px" width="150"/><span style="display:block; font-size:14px; font-weight:700; color:#1b4d3e;">Wellness Box</span><span style="display:block; font-size:13px; color:#6c7570; margin-top:3px;">$39.99</span></a>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td class="pad-lg" style="background:#ffffff; padding:18px 44px 44px 44px; text-align:center;">
+<table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse; mso-table-lspace:0; mso-table-rspace:0; margin:0 auto">
+<tbody>
+<tr>
+<td bgcolor="#f3877f" style="background:#f3877f; border-radius:999px; mso-padding-alt:15px 34px;"> <a href="https://www.snackify.co/collections/snack-boxes" style='color:#fff; display:inline-block; padding:15px 34px; font-family:"Poppins", Helvetica, Arial, sans-serif; font-size:15px; font-weight:700; letter-spacing:0.4px; text-decoration:none; border-radius:999px'>Shop All Snack Boxes</a>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<!-- ============ FOOTER ============ -->
+<tr>
+<td style="height:8px; background:#afdc36; font-size:0; line-height:8px;">
+                    &nbsp;
+                  </td>
+</tr>
+<tr>
+<td class="pad-lg" style="background:#1b4d3e; padding:36px 44px 32px 44px; text-align:center;">
+<img alt="Snackify" src="https://d3k81ch9hvuctc.cloudfront.net/company/Lxwg3D/images/b9285400-ba48-45d3-be3e-bff183c16cdc.png" style="-ms-interpolation-mode:bicubic; border:0; outline:none; text-decoration:none; display:block; margin:0 auto 20px auto; width:140px; max-width:140px; height:auto" width="140"/>
+<table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse; mso-table-lspace:0; mso-table-rspace:0; margin:0 auto">
+<tbody>
+<tr>
+<td style="padding:0 10px; font-size:13px; font-weight:600;">
+<a href="https://www.snackify.co/collections/shop-all-products" style="color:#afdc36; text-decoration:none">Shop</a>
+</td>
+<td style="padding:0 10px; font-size:13px; font-weight:600;">
+<a href="https://www.snackify.co/pages/corporate-gifting" style="color:#afdc36; text-decoration:none">Corporate Gifting</a>
+</td>
+<td style="padding:0 10px; font-size:13px; font-weight:600;">
+<a href="https://www.snackify.co/pages/snackify-faqs" style="color:#afdc36; text-decoration:none">FAQs</a>
+</td>
+<td style="padding:0 10px; font-size:13px; font-weight:600;">
+<a href="https://www.snackify.co/pages/contact" style="color:#afdc36; text-decoration:none">Contact</a>
+</td>
+</tr>
+</tbody>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse; mso-table-lspace:0; mso-table-rspace:0; margin:22px auto 0 auto">
+<tbody>
+<tr>
+<td style="padding:0 6px;">
+<a href="https://www.instagram.com/snackifycollective" style="color:#6f8f13"> <img alt="Instagram" height="32" src="https://d3k81ch9hvuctc.cloudfront.net/company/Lxwg3D/images/6f8de4b5-3003-467a-9242-c71740ca241d.png" style="-ms-interpolation-mode:bicubic; border:0; outline:none; text-decoration:none; display:block; width:32px; height:32px" width="32"/></a>
+</td>
+<td style="padding:0 6px;">
+<a href="https://www.facebook.com/snackifycollective" style="color:#6f8f13"> <img alt="Facebook" height="32" src="https://d3k81ch9hvuctc.cloudfront.net/company/Lxwg3D/images/507bdfb6-553b-40c3-8969-9976b59425f9.png" style="-ms-interpolation-mode:bicubic; border:0; outline:none; text-decoration:none; display:block; width:32px; height:32px" width="32"/></a>
+</td>
+<td style="padding:0 0 0 10px; font-size:13px; font-weight:600;">
+<a href="https://www.instagram.com/snackifycollective" style="color:#afdc36; text-decoration:none">@snackifycollective</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p style="margin:20px 0 0 0; font-size:12px; line-height:1.7; color:#9dbcac;">
+                      Gift cards expire one year from the date of issue.
+                    </p>
+<p style="margin:10px 0 0 0; font-size:12px; line-height:1.7; color:#9dbcac;">
+                      Snackify is 100% customer funded. Thanks for supporting emerging brands.<br/>© 2026 Snackify ·
+                      <a href="{% unsubscribe %}" style="color:#9dbcac; text-decoration:underline">Unsubscribe</a> ·
+                      <a href="{% manage_preferences %}" style="color:#9dbcac; text-decoration:underline">Manage preferences</a>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>
