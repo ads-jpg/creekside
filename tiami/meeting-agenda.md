@@ -1,4 +1,4 @@
-# Tiami Recurring Meeting Agenda: Budget & Performance (30 min)
+# Recurring Meeting Agenda: Budget & Performance (30 min)
 
 1. **Budget check (5 min).** Agreed daily/monthly cap per channel, spend to date, projected month-end.
 2. **Performance review (10 min).** Purchases, cost per purchase, and ROAS by channel, compared with last period.
