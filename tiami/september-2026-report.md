@@ -18,7 +18,7 @@
 We want to be transparent about why spend landed where it did. Every change in September came from a conversation with your team, and we acted on what we understood your direction to be:
 
 - **September 9 — Channel direction.** In our meeting and Slack thread, the discussion was to **keep Google running and turn Meta off.** We followed that: Meta was paused and Google became the main channel.
-- **September 11 — Brand protection.** We discussed the need to **protect the Tiami brand** in search. That conversation did not mention a $50/day cap, so we kept Google funded enough to hold brand terms and stay competitive.
+- **September 11 — Brand protection.** We discussed the need to **protect the Tiami brand** in search. No budget cap was set in that conversation. From the start, we were asked to make sure Tiami didn't lose out to competitors, so we kept Google funded enough to hold brand terms and stay competitive.
 - **September 29 — Performance report.** We sent a written Google update showing what we were seeing, including spend and results to date.
 
 ### What the Slack conversation shows
@@ -49,7 +49,7 @@ We want to be transparent about why spend landed where it did. Every change in S
 
 Across this thread, the direction was to turn off Meta and keep Google on to protect the brand. No daily budget cap for Google was mentioned. We kept Google running based on that direction, with your money and your goals in mind.
 
-Looking back, we can see that a $50/day budget was expected and that it never made it into those conversations in writing. That's a communication gap, and we share responsibility for it. We should have restated the daily budget limit in writing every time we changed channels or campaign goals. The spend was not random. It followed the direction we believed we had, but we know the outcome wasn't what you expected.
+No specific budget was set for Google during this period. We were told to keep branded search on, and from the start our direction was to make sure Tiami didn't lose out to competitors. Every decision we made was aimed at that goal. We want Tiami to be successful, and we managed the account the way we believed would get you there.
 
 ## 3. What We're Changing
 
@@ -61,7 +61,7 @@ We take your budget seriously. Every dollar we spend is your money, and we never
 
 ## 4. Complimentary Offer: NightArk Site Audit & SEO Fixes
 
-To make up for the miscommunication, we'd like to **audit the NightArk website and fix the SEO issues we find, at no cost.**
+Because we want Tiami to be successful, we'd like to **audit the NightArk website and fix the SEO issues we find, at no cost.**
 
 One issue we've already spotted: **"Duvet" still shows up in the SEO titles/meta descriptions on many top pages.** That's leftover copy that confuses search engines and shoppers and pulls down relevance and click-through rate. The audit would cover:
 
