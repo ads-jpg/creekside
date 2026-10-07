@@ -21,15 +21,43 @@ We want to be transparent about why spend landed where it did. Every change in S
 - **September 11 — Brand protection.** We discussed the need to **protect the Tiami brand** in search. That conversation did not mention a $50/day cap, so we kept Google funded enough to hold brand terms and stay competitive.
 - **September 29 — Performance report.** We sent a written Google update showing what we were seeing, including spend and results to date.
 
+### What the Slack conversation shows
+
+**Wednesday, September 9**
+
+> **Lindsey (Creekside), 12:09 PM:** @David W @Tricia Leone after reviewing this my thoughts are to keep branded search for Tiami and turn off meta. $10 a day will not drive the needle at all for us so it would be better to just turn it off.
+>
+> **Tricia Leone, 7:32 PM:** @David W Did you see this? Are you aligned on turning spend off completely?
+>
+> **David W, 7:33 PM:** Let's confirm tomorrow.
+
+**Thursday, September 10**
+
+> **Tricia Leone, 12:55 PM:** @Lindsey should we connect quick today on this? or did we already turn it off?
+>
+> **Lindsey (Creekside), 6:00 PM:** I turned off meta. What do you want me to do with Google?
+>
+> **Tricia Leone, 6:08 PM:** We def need to leave Google on IMO - right @David W?
+
+**Friday, September 11**
+
+> **David W, 9:40 AM:** Yes. Protecting our brand … the nuance is that if nobody is bidding for our term and we can get organic search to put us top of the page we don't need it but if we are below the engineering Tiami company … then we need to protect.
+>
+> **Tricia Leone, 10:01 AM:** We've had two orders come from google today 🎉
+>
+> **Lindsey (Creekside), 10:10 AM:** Yes!
+
+Across this thread, the direction was to turn off Meta and keep Google on to protect the brand. No daily budget cap for Google was mentioned. We kept Google running based on that direction, with your money and your goals in mind.
+
 Looking back, we can see that a $50/day budget was expected and that it never made it into those conversations in writing. That's a communication gap, and we share responsibility for it. We should have restated the daily budget limit in writing every time we changed channels or campaign goals. The spend was not random. It followed the direction we believed we had, but we know the outcome wasn't what you expected.
 
 ## 3. What We're Changing
 
-1. **Written budget confirmation.** Any budget or channel change gets confirmed in writing (Slack or email) with a daily and monthly cap before we make it.
-2. **Standing budget review in every meeting.** We'll go through a shared Budget & Performance Checklist (attached) at every call.
-3. **Weekly meeting summary.** After each weekly meeting, we'll send you a written summary with the agreed budget for each channel, ad spend to date, and any decisions made, so we're always on the same page.
-4. **Pacing alerts.** If any channel is pacing more than 10% over its agreed monthly budget, we'll tell you within 24 hours.
-5. **Mid-month check-in.** On the 15th we'll send a short note with spend to date, projected month-end spend, and purchases.
+We take your budget seriously. Every dollar we spend is your money, and we never want to spend more than you're comfortable with. To make sure that doesn't happen again:
+
+1. **Standing budget review in every meeting.** We'll go through a shared Budget & Performance Checklist (attached) at every call.
+2. **Pacing alerts.** If any channel is pacing more than 10% over its agreed monthly budget, we'll tell you within 24 hours.
+3. **Mid-month check-in.** On the 15th we'll send a short note with spend to date, projected month-end spend, and purchases.
 
 ## 4. Complimentary Offer: NightArk Site Audit & SEO Fixes
 
