@@ -1,0 +1,132 @@
+<title>Mark My Words Media Performance</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: single report column; form-fill block leads, then spend efficiency, weekly trend, campaigns, notes */
+:root{
+  --bg:#f7f8f6;--surface:#ffffff;--fg:#1d2420;--muted:#5d6862;--line:#dde3df;
+  --accent:#1f6f54;--accent-soft:#e1efe8;--bar:#9fbfb0;--warn:#a2581a;
+  --display:"Fraunces",Georgia,serif;--body:"IBM Plex Sans",system-ui,sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#121614;--surface:#1a201d;--fg:#e6ebe8;--muted:#9aa69f;--line:#2b3430;
+  --accent:#5fc49b;--accent-soft:#1d3329;--bar:#3c5b4d;--warn:#e0a061;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#121614;--surface:#1a201d;--fg:#e6ebe8;--muted:#9aa69f;--line:#2b3430;
+  --accent:#5fc49b;--accent-soft:#1d3329;--bar:#3c5b4d;--warn:#e0a061;color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.55}
+.wrap{max-width:880px;margin:0 auto;padding-inline:20px;padding-block:36px 56px;display:grid;gap:36px}
+h1,h2{font-family:var(--display);font-weight:600;text-wrap:balance;margin:0}
+h1{font-size:clamp(26px,5vw,36px);line-height:1.15}
+h2{font-size:20px}
+.eyebrow{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 6px}
+.meta{color:var(--muted);margin:8px 0 0}
+.num{font-variant-numeric:tabular-nums}
+.hero{background:var(--accent-soft);border-radius:10px;padding:24px;display:grid;gap:20px}
+.hero-top{display:flex;flex-wrap:wrap;gap:12px 40px;align-items:flex-end}
+.big{font-family:var(--display);font-size:clamp(56px,12vw,84px);line-height:1;color:var(--accent)}
+.hero-top p{margin:0;max-width:44ch}
+.split{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.split div{background:var(--surface);border-radius:8px;padding:12px 14px}
+.split b{display:block;font-size:22px;font-family:var(--mono);font-weight:500}
+.split span{font-size:13px;color:var(--muted)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.kpis div{background:var(--surface);padding:14px 16px}
+.kpis b{display:block;font-family:var(--mono);font-weight:500;font-size:20px}
+.kpis span{font-size:13px;color:var(--muted)}
+section{display:grid;gap:14px;min-width:0}
+.weeks{display:grid;gap:8px}
+.wk{display:grid;grid-template-columns:110px 1fr 70px;gap:12px;align-items:center;font-size:14px}
+.track{height:18px;background:var(--line);border-radius:3px;position:relative}
+.fill{height:100%;background:var(--bar);border-radius:3px}
+.dots{position:absolute;inset:0;display:flex;align-items:center;gap:4px;padding-left:6px}
+.dots i{width:10px;height:10px;border-radius:50%;background:var(--accent);border:2px solid var(--surface)}
+.wk .r{text-align:right;font-family:var(--mono);color:var(--muted)}
+.legend{font-size:13px;color:var(--muted);display:flex;gap:18px;flex-wrap:wrap}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+.tbl{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:14px;min-width:640px}
+th,td{padding:10px 8px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+th{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:500}
+td{font-variant-numeric:tabular-nums}
+td.ff{font-weight:600;color:var(--accent)}
+tfoot td{font-weight:600;border-bottom:none}
+ul{margin:0;padding-left:20px;display:grid;gap:8px;max-width:70ch}
+.note{font-size:13px;color:var(--muted);max-width:70ch;margin:0}
+.flag{color:var(--warn);font-weight:600}
+@media (max-width:480px){.wk{grid-template-columns:84px 1fr 56px;gap:8px}}
+</style>
+
+<div class="wrap">
+  <header>
+    <p class="eyebrow">Meta Ads · Performance report</p>
+    <h1>Mark My Words Media</h1>
+    <p class="meta">Aug 31 – Oct 6, 2026 · Ad account act_1228742844209195 · Prepared Oct 7, 2026 by Creekside Marketing</p>
+  </header>
+
+  <div class="hero">
+    <div class="hero-top">
+      <div>
+        <p class="eyebrow">Form fills</p>
+        <div class="big num">7</div>
+      </div>
+      <p>All 7 form fills came in the last 7 days (Sep 30 – Oct 6), after the lead campaign was relaunched and the Form Start campaign went live. The five weeks before that produced none.</p>
+    </div>
+    <div class="split">
+      <div><b class="num">$310.65</b><span>Cost per form fill, full period</span></div>
+      <div><b class="num">$177.01</b><span>Cost per form fill, last 7 days</span></div>
+      <div><b class="num">3</b><span>CS | Leads | 8/24</span></div>
+      <div><b class="num">2</b><span>CS | Form Start | 9/1</span></div>
+      <div><b class="num">2</b><span>Traffic | 8/24</span></div>
+    </div>
+  </div>
+
+  <div class="kpis">
+    <div><b class="num">$2,174.56</b><span>Spend</span></div>
+    <div><b class="num">81,434</b><span>Impressions</span></div>
+    <div><b class="num">2,342</b><span>Link clicks</span></div>
+    <div><b class="num">2.88%</b><span>CTR</span></div>
+    <div><b class="num">$0.93</b><span>CPC</span></div>
+    <div><b class="num">0.30%</b><span>Click → form fill</span></div>
+  </div>
+
+  <section>
+    <h2>Weekly spend and form fills</h2>
+    <div class="legend"><span><i style="background:var(--bar)"></i>Spend (bar scaled to $913)</span><span><i style="background:var(--accent);border-radius:50%"></i>One form fill</span></div>
+    <div class="weeks">
+      <div class="wk"><span>Aug 31 – Sep 6</span><div class="track"><div class="fill" style="width:7.8%"></div></div><span class="r">$71</span></div>
+      <div class="wk"><span>Sep 7 – 13</span><div class="track"><div class="fill" style="width:6.9%"></div></div><span class="r">$63</span></div>
+      <div class="wk"><span>Sep 14 – 20</span><div class="track"><div class="fill" style="width:71.4%"></div></div><span class="r">$652</span></div>
+      <div class="wk"><span>Sep 21 – 27</span><div class="track"><div class="fill" style="width:13.8%"></div></div><span class="r">$126</span></div>
+      <div class="wk"><span>Sep 28 – Oct 4</span><div class="track"><div class="fill" style="width:100%"></div><div class="dots"><i></i><i></i><i></i><i></i><i></i><i></i></div></div><span class="r">$913</span></div>
+      <div class="wk"><span>Oct 5 – 6</span><div class="track"><div class="fill" style="width:38.1%"></div><div class="dots"><i></i></div></div><span class="r">$348</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>By campaign</h2>
+    <div class="tbl">
+      <table>
+        <thead><tr><th>Campaign</th><th>Form fills</th><th>Cost / fill</th><th>Spend</th><th>Impr.</th><th>Clicks</th><th>CTR</th><th>CPC</th><th>Live since</th></tr></thead>
+        <tbody>
+          <tr><td>CS | Leads | 8/24</td><td class="ff">3</td><td>$391.84</td><td>$1,175.51</td><td>12,328</td><td>306</td><td>2.48%</td><td>$3.84</td><td>Sep 15</td></tr>
+          <tr><td>CS | Form Start | 9/1</td><td class="ff">2</td><td>$337.39</td><td>$674.77</td><td>19,976</td><td>1,027</td><td>5.14%</td><td>$0.66</td><td>Oct 2</td></tr>
+          <tr><td>Traffic | 8/24</td><td class="ff">2</td><td>$162.14</td><td>$324.28</td><td>49,130</td><td>1,009</td><td>2.05%</td><td>$0.32</td><td>Aug 31</td></tr>
+        </tbody>
+        <tfoot><tr><td>Total</td><td class="ff">7</td><td>$310.65</td><td>$2,174.56</td><td>81,434</td><td>2,342</td><td>2.88%</td><td>$0.93</td><td></td></tr></tfoot>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>What we see</h2>
+    <ul>
+      <li><span class="flag">Lead campaign's first run produced nothing.</span> CS | Leads spent $684 from Sep 15–22 with zero form fills, then went dark until Sep 29. Since the relaunch it has 3 fills on $491 ($164 each).</li>
+      <li><b>Form Start is the volume engine.</b> 5.14% CTR and $0.66 CPC are the best in the account, and it is spending about $135/day. Two fills in five days puts it at $337 per fill so far, which is still early.</li>
+      <li><b>Traffic is cheap but not built for leads.</b> It drives 60% of impressions for 15% of spend. Its two fills on Oct 4 are welcome but shouldn't be counted on.</li>
+      <li><b>Next:</b> watch Form Start for another week before shifting budget, and compare these fill counts against the form submissions Dave sees on his side.</li>
+    </ul>
+  </section>
+
+  <p class="note">Source: Creekside's daily Meta Ads sync, Aug 31 – Oct 6, 2026. Form fills are the conversions Meta reports for each campaign. Meta's own last-30-day account view shows 10 conversions on $2,106 of spend, so attribution windows differ slightly from the daily sync. Inactive legacy campaigns had no spend and are left out.</p>
+</div>
