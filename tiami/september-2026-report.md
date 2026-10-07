@@ -58,23 +58,10 @@ We take your budget seriously. Every dollar we spend is your money, and we never
 2. **Budget recap after each meeting.** After every meeting, we'll send you a recap of the budget for each channel and ad spend to date, so we're always on the same page.
 3. **Mid-month check-in.** On the 15th we'll send a short note with spend to date, projected month-end spend, and purchases.
 
-## 4. Complimentary Offer: NightLark Site Audit & SEO Fixes
-
-We have noticed that there are still SEO issues on NightLark. We'd like to help with this to make sure you find success, and it's a top priority for us. We'll **audit the NightLark website and fix the SEO issues we find, at no cost.**
-
-One issue we've already spotted: **"Duvet" still shows up in the SEO titles/meta descriptions on many top pages.** That's leftover copy that confuses search engines and shoppers and pulls down relevance and click-through rate. The audit would cover:
-
-- Page titles, meta descriptions, and H1s on top pages (removing the old "Duvet" copy)
-- Indexing and crawl errors, broken links, redirects
-- Page speed and mobile usability
-- Product/collection page structure and schema markup
-- A prioritized fix list, with the fixes done by our team
-
-## 5. Next Steps
+## 4. Next Steps
 
 - Confirm the October budget: daily and monthly cap per channel, in writing
 - Pick a time for the first review using the new checklist
-- Approve the NightLark audit, and we'll start right away
 
 Thank you for your trust. We're committed to making sure your budget is always used the way you intend.
 
