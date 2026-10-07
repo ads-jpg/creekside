@@ -55,7 +55,7 @@ No specific budget was set for Google during this period. We were told to keep b
 We take your budget seriously. Every dollar we spend is your money, and we never want to spend more than you're comfortable with. To make sure that doesn't happen again:
 
 1. **Standing budget review in every meeting.** We'll go through a shared Budget & Performance Checklist (attached) at every call.
-2. **Pacing alerts.** If any channel is pacing more than 10% over its agreed monthly budget, we'll tell you within 24 hours.
+2. **Budget recap after each meeting.** After every meeting, we'll send you a recap of the budget for each channel and ad spend to date, so we're always on the same page.
 3. **Mid-month check-in.** On the 15th we'll send a short note with spend to date, projected month-end spend, and purchases.
 
 ## 4. Complimentary Offer: NightLark Site Audit & SEO Fixes
