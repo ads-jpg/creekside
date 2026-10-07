@@ -5,13 +5,13 @@
 
 ## 1. Results Summary
 
-| Channel | Spend | Purchases | Cost per Purchase |
-|---|---|---|---|
-| Meta | $3,126.00 | [#] | [$] |
-| Google | $8,700.00 | [#] | [$] |
-| **Total** | **$11,826.00** | **10** | **$1,182.60** |
-
-*[Fill in the Meta/Google purchase split — combined total is 10.]*
+| | Amount |
+|---|---|
+| Meta spend | $3,126.00 |
+| Google spend | $8,700.00 |
+| **Total ad spend** | **$11,826.00** |
+| **Purchases tracked (Meta + Google)** | **10** |
+| **Blended cost per purchase** | **$1,182.60** |
 
 ## 2. How Budget Decisions Were Made
 
@@ -27,8 +27,9 @@ Looking back, we can see that a $50/day budget was expected and that it never ma
 
 1. **Written budget confirmation.** Any budget or channel change gets confirmed in writing (Slack or email) with a daily and monthly cap before we make it.
 2. **Standing budget review in every meeting.** We'll go through a shared Budget & Performance Checklist (attached) at every call.
-3. **Pacing alerts.** If any channel is pacing more than 10% over its agreed monthly budget, we'll tell you within 24 hours.
-4. **Mid-month check-in.** On the 15th we'll send a short note with spend to date, projected month-end spend, and purchases.
+3. **Weekly meeting summary.** After each weekly meeting, we'll send you a written summary with the agreed budget for each channel, ad spend to date, and any decisions made, so we're always on the same page.
+4. **Pacing alerts.** If any channel is pacing more than 10% over its agreed monthly budget, we'll tell you within 24 hours.
+5. **Mid-month check-in.** On the 15th we'll send a short note with spend to date, projected month-end spend, and purchases.
 
 ## 4. Complimentary Offer: NightArk Site Audit & SEO Fixes
 
