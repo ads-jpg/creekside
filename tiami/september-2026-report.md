@@ -11,7 +11,7 @@
 | Google spend | $8,700.00 |
 | **Total ad spend** | **$11,826.00** |
 | **Purchases tracked (Meta + Google)** | **10** |
-| **Blended cost per purchase** | **$1,182.60** |
+| **Revenue** | **$31,000.00** |
 
 ## 2. How Budget Decisions Were Made
 
@@ -44,8 +44,7 @@ We want to be transparent about why spend landed where it did. Every change in S
 > **David W, 9:40 AM:** Yes. Protecting our brand … the nuance is that if nobody is bidding for our term and we can get organic search to put us top of the page we don't need it but if we are below the engineering Tiami company … then we need to protect.
 >
 > **Tricia Leone, 10:01 AM:** We've had two orders come from google today 🎉
->
-> **Lindsey (Creekside), 10:10 AM:** Yes!
+
 
 Across this thread, the direction was to turn off Meta and keep Google on to protect the brand. No daily budget cap for Google was mentioned. We kept Google running based on that direction, with your money and your goals in mind.
 
@@ -59,9 +58,9 @@ We take your budget seriously. Every dollar we spend is your money, and we never
 2. **Pacing alerts.** If any channel is pacing more than 10% over its agreed monthly budget, we'll tell you within 24 hours.
 3. **Mid-month check-in.** On the 15th we'll send a short note with spend to date, projected month-end spend, and purchases.
 
-## 4. Complimentary Offer: NightArk Site Audit & SEO Fixes
+## 4. Complimentary Offer: NightLark Site Audit & SEO Fixes
 
-Because we want Tiami to be successful, we'd like to **audit the NightArk website and fix the SEO issues we find, at no cost.**
+We have noticed that there are still SEO issues on NightLark. We'd like to help with this to make sure you find success, and it's a top priority for us. We'll **audit the NightLark website and fix the SEO issues we find, at no cost.**
 
 One issue we've already spotted: **"Duvet" still shows up in the SEO titles/meta descriptions on many top pages.** That's leftover copy that confuses search engines and shoppers and pulls down relevance and click-through rate. The audit would cover:
 
@@ -75,7 +74,7 @@ One issue we've already spotted: **"Duvet" still shows up in the SEO titles/meta
 
 - Confirm the October budget: daily and monthly cap per channel, in writing
 - Pick a time for the first review using the new checklist
-- Approve the NightArk audit, and we'll start right away
+- Approve the NightLark audit, and we'll start right away
 
 Thank you for your trust. We're committed to making sure your budget is always used the way you intend.
 
