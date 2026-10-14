@@ -81,7 +81,7 @@
      Flow: add a time delay (e.g. 14 days) after the original send
      ============================================================ -->
 <tr>
-<td class="pad-lg" style="background:#1b4d3e; padding:28px 44px 44px 44px;">
+<td class="pad-lg" style="background:#1b4d3e; padding:48px 44px 44px 44px;">
 <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse; mso-table-lspace:0; mso-table-rspace:0; width:100%" width="100%">
 <tbody>
 <tr>
@@ -93,7 +93,7 @@
 <div style="font-size:12px; font-weight:600; letter-spacing:1.6px; text-transform:uppercase; color:#3f6b12;">
                               Your gift card
                             </div>
-<div class="amount" style="margin-top:6px; font-family:'Rokkitt','Roboto Slab',Rockwell,Georgia,serif; font-size:52px; line-height:1.05; font-weight:700; color:#1b4d3e;">
+<div class="amount" style="margin-top:14px; font-family:'Rokkitt','Roboto Slab',Rockwell,Georgia,serif; font-size:52px; line-height:1.05; font-weight:700; color:#1b4d3e;">
                               {% if event.giftcard.currency == 'USD' %}${% elif event.giftcard.currency == 'CAD' %}CA${% elif event.giftcard.currency == 'GBP' %}£{% elif event.giftcard.currency == 'EUR' %}€{% elif event.giftcard.currency == 'AUD' %}A${% else %}{{ event.giftcard.currency }} {% endif %}{{ event.giftcard.amount|floatformat:2 }}
                             </div>
 <!-- The note that came with it -->
