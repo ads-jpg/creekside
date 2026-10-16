@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nexa Mortgage Ads Report</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Source+Sans+3:wght@400;500;600&display=swap">
+<script src="/d3.min.js"></script>
+<style>
+/* Layout: one centered column, headline figures, then campaign table, two charts, ad table, notes. */
+:root {
+  --bg: #f6f7f9; --panel: #ffffff; --fg: #17202b; --muted: #5b6877; --line: #dfe3e8;
+  --accent: #1f5f8b; --c2: #c27c2c; --c3: #6a8f6b; --bar-muted: #c9d2dc; --grid: #e9edf1;
+  --ok: #1d7a46; --bad: #b3261e;
+  --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --sans: "Source Sans 3", -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --radius: 10px;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #0f141a; --panel: #161d25; --fg: #e8edf2; --muted: #9aa7b5; --line: #26303b;
+    --accent: #6fb0dc; --c2: #e0a35a; --c3: #8fb890; --bar-muted: #3a4652; --grid: #202a34;
+    --ok: #5cc98a; --bad: #f08a80; color-scheme: dark; }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--sans); font-size: 15px; line-height: 1.5; }
+.wrap { max-width: 72rem; margin-inline: auto; padding-block: 32px 48px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: flex; flex-direction: column; gap: 28px; }
+.head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px; }
+.head-text { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.eyebrow { font-size: 12px; color: var(--muted); letter-spacing: .05em; text-transform: uppercase; }
+h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(28px, 4vw, 38px); margin: 0; line-height: 1.15; text-wrap: balance; }
+.take { margin: 0; max-width: 65ch; font-size: 16px; }
+.take b { font-weight: 600; }
+.controls { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+select { font: inherit; padding: 6px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); color: var(--fg); }
+select:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.updated { font-size: 12px; color: var(--muted); }
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 10.5rem), 1fr)); gap: 12px; }
+.kpi { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 18px; display: flex; flex-direction: column; gap: 4px; }
+.kpi-label, .kpi-note { font-size: 12px; color: var(--muted); }
+.kpi-value { font-family: var(--serif); font-size: 30px; font-variant-numeric: tabular-nums; line-height: 1.2; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr)); gap: 12px; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.card h2 { font-size: 17px; font-weight: 600; margin: 0; }
+.note { font-size: 13px; color: var(--muted); margin: 0; }
+.scroll { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; font-variant-numeric: tabular-nums; }
+th { text-align: right; font-weight: 500; color: var(--muted); padding: 6px 10px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+td { text-align: right; padding: 7px 10px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+th:first-child, td:first-child { text-align: left; }
+td.name { white-space: normal; min-width: 13rem; }
+td.name small { display: block; color: var(--muted); font-size: 11px; word-break: break-all; }
+.pill { display: inline-block; padding: 0 8px; border-radius: 999px; border: 1px solid var(--line); font-size: 12px; }
+.pill.on { color: var(--ok); }
+.pill.off { color: var(--muted); }
+.chart { position: relative; min-height: 240px; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 12px; color: var(--muted); }
+.legend i, .tip i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: middle; }
+.tip { position: absolute; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; box-shadow: 0 6px 20px rgba(0,0,0,.15); padding: 6px 10px; font-size: 12px; pointer-events: none; white-space: nowrap; z-index: 2; }
+.tip .d { color: var(--muted); }
+.notes { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); gap: 12px; }
+.notes ul { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: column; gap: 6px; }
+.code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 8px; overflow-x: auto; white-space: nowrap; }
+.empty { color: var(--muted); font-size: 13px; padding: 24px 0; text-align: center; }
+.error { border: 1px solid var(--bad); color: var(--bad); background: var(--panel); border-radius: var(--radius); padding: 14px 18px; }
+.loading .kpi-value, .loading .take { opacity: .35; }
+</style>
+</head>
+<body>
+<div class="wrap" id="app">
+  <header class="head">
+    <div class="head-text">
+      <div class="eyebrow" id="eyebrow">Meta Ads · Prepared for Dan Bertsche, Nexa Mortgage</div>
+      <h1>Nexa Mortgage ads report</h1>
+      <p class="take" id="take">Loading the latest numbers from Meta…</p>
+    </div>
+    <div class="controls">
+      <label for="range" class="updated">Date range</label>
+      <select id="range">
+        <option value="maximum">Since launch</option>
+        <option value="last_7d">Last 7 days</option>
+        <option value="last_14d">Last 14 days</option>
+        <option value="last_30d">Last 30 days</option>
+        <option value="this_month">This month</option>
+        <option value="last_month">Last month</option>
+      </select>
+      <span class="updated" id="updated"></span>
+    </div>
+  </header>
+
+  <div class="error" id="error" hidden></div>
+
+  <section class="kpis" id="kpis">
+    <div class="kpi"><span class="kpi-label">Total ad spend</span><span class="kpi-value" data-k="spend">—</span><span class="kpi-note">All campaigns</span></div>
+    <div class="kpi"><span class="kpi-label">Qualified calls</span><span class="kpi-value" data-k="calls">—</span><span class="kpi-note">Calls lasting 20 seconds or more</span></div>
+    <div class="kpi"><span class="kpi-label">Cost per call</span><span class="kpi-value" data-k="costPerCallActive">—</span><span class="kpi-note">Active lead campaigns</span></div>
+    <div class="kpi"><span class="kpi-label">Video ThruPlays</span><span class="kpi-value" data-k="thruplays">—</span><span class="kpi-note">Watched 15s or to the end</span></div>
+    <div class="kpi"><span class="kpi-label">Cost per ThruPlay</span><span class="kpi-value" data-k="costPerThruplay">—</span><span class="kpi-note">Awareness video</span></div>
+  </section>
+
+  <section class="card">
+    <h2>Campaigns</h2>
+    <p class="note">Every Nexa campaign in the selected range, largest spend first.</p>
+    <div class="scroll"><table id="camp">
+      <thead><tr><th>Campaign</th><th>Status</th><th>Spend</th><th>Impressions</th><th>Clicks</th><th>CTR</th><th>CPM</th><th>Calls</th><th>Cost / call</th></tr></thead>
+      <tbody></tbody>
+    </table></div>
+  </section>
+
+  <div class="grid">
+    <section class="card">
+      <h2>Daily spend and calls</h2>
+      <p class="note">Spend per day, stacked by campaign. The number above each bar is qualified calls that day.</p>
+      <div class="legend" id="legend"></div>
+      <div class="chart" id="daily"></div>
+    </section>
+    <section class="card">
+      <h2>Video retention</h2>
+      <p class="note">How far viewers got into the video, as a share of everyone who started it.</p>
+      <div class="chart" id="video"></div>
+    </section>
+  </div>
+
+  <section class="card">
+    <h2>Ads</h2>
+    <p class="note">Each ad across all campaigns, largest spend first.</p>
+    <div class="scroll"><table id="ads">
+      <thead><tr><th>Ad</th><th>Spend</th><th>Impressions</th><th>Clicks</th><th>CTR</th><th>Page views</th><th>Calls</th><th>Cost / call</th></tr></thead>
+      <tbody></tbody>
+    </table></div>
+  </section>
+
+  <section class="notes">
+    <div class="card">
+      <h2>How to read this</h2>
+      <ul>
+        <li>Numbers come straight from Meta and refresh every 15 minutes. Meta can revise the last day or two as late conversions come in.</li>
+        <li>A qualified call is a call from the ad that lasts at least 20 seconds.</li>
+        <li>CPMs on lead campaigns run high because housing and credit ads use Meta's special ad category, which limits targeting.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>How campaigns are named</h2>
+      <p class="note">Every campaign, ad set and ad starts with the client code, so Nexa's results are easy to separate from the rest of the account.</p>
+      <div class="code">DANBNEXA_DanBertsche-NEXA_LEADS_2026-10-13</div>
+      <ul>
+        <li><b>DANBNEXA</b> client code</li>
+        <li><b>DanBertsche-NEXA</b> loan officer and brand</li>
+        <li><b>LEADS</b> or <b>AWARE</b> campaign objective</li>
+        <li><b>2026-10-13</b> build date</li>
+      </ul>
+    </div>
+  </section>
+</div>
+
+<script>
+(function () {
+  const money = d3.format('$,.2f'), money0 = d3.format('$,.0f'), int = d3.format(','), pct = d3.format('.1%');
+  const cents = (v) => v < 1 ? (v * 100).toFixed(1) + '¢' : money(v);
+  const opt = (f) => (v) => v === null || v === undefined ? '—' : f(v);
+  const dayFmt = d3.utcFormat('%b %-d');
+  const css = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+  const palette = () => [css('--accent'), css('--c2'), css('--c3'), css('--bar-muted')];
+  const app = document.getElementById('app');
+  const rangeEl = document.getElementById('range');
+  let report = null;
+
+  try { const saved = localStorage.getItem('nexa-range'); if (saved) rangeEl.value = saved; } catch (e) {}
+
+  async function load() {
+    app.classList.add('loading');
+    document.getElementById('error').hidden = true;
+    try {
+      const res = await fetch('/api/report?range=' + encodeURIComponent(rangeEl.value));
+      const body = await res.json();
+      if (!res.ok) throw new Error(body.error || 'The report could not load.');
+      report = body;
+      render();
+    } catch (err) {
+      const el = document.getElementById('error');
+      el.textContent = 'Could not load the latest numbers from Meta: ' + err.message;
+      el.hidden = false;
+    } finally {
+      app.classList.remove('loading');
+    }
+  }
+
+  function render() {
+    const r = report, t = r.totals;
+    const range = r.from && r.to ? dayFmt(new Date(r.from)) + ' – ' + dayFmt(new Date(r.to)) + ', ' + r.to.slice(0, 4) : 'No delivery in this range';
+    document.getElementById('eyebrow').textContent = 'Meta Ads · ' + range + ' · Prepared for Dan Bertsche, Nexa Mortgage';
+    document.getElementById('updated').textContent = 'Updated ' + new Date(r.generatedAt).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
+
+    const fmt = { spend: money, calls: int, costPerCallActive: opt(money), thruplays: int, costPerThruplay: opt(cents) };
+    document.querySelectorAll('.kpi-value').forEach((el) => { el.textContent = fmt[el.dataset.k](t[el.dataset.k]); });
+
+    const take = document.getElementById('take');
+    take.textContent = '';
+    const b = (s) => { const e = document.createElement('b'); e.textContent = s; return e; };
+    if (!r.campaigns.length) take.textContent = 'No Nexa campaigns delivered in this range.';
+    else if (t.calls > 0) take.append('Nexa ads have produced ', b(int(t.calls)), t.calls === 1 ? ' qualified call' : ' qualified calls', ' on ', b(money(t.spend)), ' of spend in this range', t.costPerCallActive !== null ? ', with active lead campaigns at ' : '.', ...(t.costPerCallActive !== null ? [b(money(t.costPerCallActive)), ' per call.'] : []));
+    else take.append('Nexa ads have spent ', b(money(t.spend)), ' in this range with no qualified calls yet.');
+
+    fillTable('camp', r.campaigns, (c) => [
+      nameCell(c.label, c.name), pill(c.status), money(c.spend), int(c.impressions), int(c.clicks), pct(c.ctr), money(c.cpm), int(c.calls), opt(money)(c.costPerCall)
+    ]);
+    fillTable('ads', r.ads, (a) => [
+      nameCell(a.ad, a.campaign), money(a.spend), int(a.impressions), int(a.clicks), pct(a.ctr), int(a.landingPageViews), int(a.calls), opt(money)(a.costPerCall)
+    ]);
+    drawDaily(r);
+    drawVideo(r);
+  }
+
+  function nameCell(main, sub) {
+    const td = document.createElement('td'); td.className = 'name';
+    td.append(main);
+    if (sub && sub !== main) { const s = document.createElement('small'); s.textContent = sub; td.append(s); }
+    return td;
+  }
+  function pill(status) {
+    const td = document.createElement('td'); const s = document.createElement('span');
+    s.className = 'pill ' + (status === 'Active' ? 'on' : 'off'); s.textContent = status; td.append(s); return td;
+  }
+  function fillTable(id, rows, cells) {
+    const tbody = document.querySelector('#' + id + ' tbody');
+    tbody.textContent = '';
+    if (!rows.length) { const td = tbody.insertRow().insertCell(); td.colSpan = 9; td.className = 'empty'; td.textContent = 'Nothing delivered in this range.'; return; }
+    rows.forEach((row) => {
+      const tr = tbody.insertRow();
+      cells(row).forEach((c) => { if (c instanceof Node) tr.append(c); else tr.insertCell().textContent = c; });
+    });
+  }
+
+  function drawDaily(r) {
+    const box = document.getElementById('daily'), legend = document.getElementById('legend');
+    box.textContent = ''; legend.textContent = '';
+    if (!r.daily.length) { box.innerHTML = '<div class="empty">No daily data in this range.</div>'; return; }
+    const camps = r.campaigns.map((c) => c.label);
+    const colors = palette();
+    const color = (c) => colors[Math.max(0, camps.indexOf(c)) % colors.length];
+    camps.forEach((c) => { const s = document.createElement('span'); const i = document.createElement('i'); i.style.background = color(c); s.append(i, c); legend.append(s); });
+    const days = Array.from(new Set(r.daily.map((d) => d.day))).sort();
+    const stacked = days.map((day) => {
+      let y0 = 0; const segs = [];
+      camps.forEach((c) => { const v = r.daily.filter((x) => x.day === day && x.campaign === c).reduce((a, x) => a + x.spend, 0); if (v > 0) segs.push({ c, y0, y1: y0 + v, v }); y0 += v; });
+      return { day, segs, total: y0, calls: r.daily.filter((x) => x.day === day).reduce((a, x) => a + x.calls, 0) };
+    });
+    const W = Math.max(280, box.clientWidth), H = 240;
+    const svg = d3.select(box).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('height', H);
+    const y = d3.scaleLinear([0, (d3.max(stacked, (s) => s.total) || 1) * 1.18], [H - 28, 12]).nice();
+    const ticks = y.ticks(4);
+    const probe = svg.append('text').attr('font-size', 11).text(money0(ticks[ticks.length - 1]));
+    const ml = probe.node().getComputedTextLength() + 10; probe.remove();
+    const x = d3.scaleBand(days, [ml, W - 4]).padding(0.35);
+    svg.append('g').selectAll('line').data(ticks).join('line').attr('x1', ml).attr('x2', W - 4).attr('y1', y).attr('y2', y).attr('stroke', css('--grid'));
+    svg.append('g').selectAll('text').data(ticks).join('text').attr('x', ml - 6).attr('y', y).attr('dy', '0.32em').attr('text-anchor', 'end').attr('font-size', 11).attr('fill', css('--muted')).text(money0);
+    const every = Math.ceil(days.length / Math.max(1, Math.floor((W - ml) / 56)));
+    svg.append('g').selectAll('text').data(days.filter((d, i) => i % every === 0)).join('text').attr('x', (d) => x(d) + x.bandwidth() / 2).attr('y', H - 8).attr('text-anchor', 'middle').attr('font-size', 11).attr('fill', css('--muted')).text((d) => dayFmt(new Date(d)));
+    const bw = Math.min(x.bandwidth(), 56);
+    const tip = d3.select(box).append('div').attr('class', 'tip').style('display', 'none');
+    const g = svg.append('g').selectAll('g').data(stacked).join('g');
+    g.selectAll('rect').data((s) => s.segs.map((sg) => ({ ...sg, day: s.day }))).join('rect')
+      .attr('x', (sg) => x(sg.day) + (x.bandwidth() - bw) / 2).attr('width', bw)
+      .attr('y', (sg) => y(sg.y1)).attr('height', (sg) => Math.max(0, y(sg.y0) - y(sg.y1) - 1)).attr('rx', 3).attr('fill', (sg) => color(sg.c));
+    if (x.bandwidth() >= 22) g.filter((s) => s.calls > 0).append('text').attr('x', (s) => x(s.day) + x.bandwidth() / 2).attr('y', (s) => y(s.total) - 6).attr('text-anchor', 'middle').attr('font-size', 12).attr('font-weight', 600).attr('fill', css('--fg')).text((s) => s.calls);
+    g.append('rect').attr('x', (s) => x(s.day)).attr('width', x.bandwidth()).attr('y', 0).attr('height', H - 24).attr('fill', 'transparent')
+      .on('mousemove', function (ev, s) {
+        tip.style('display', null).html('');
+        tip.append('div').attr('class', 'd').text(d3.utcFormat('%a, %b %-d')(new Date(s.day)));
+        s.segs.forEach((sg) => { const l = tip.append('div'); l.append('i').style('background', color(sg.c)); l.append('span').text(sg.c + ': ' + money(sg.v)); });
+        tip.append('div').text('Qualified calls: ' + s.calls);
+        const [mx, my] = d3.pointer(ev, box); const tw = tip.node().offsetWidth;
+        tip.style('left', Math.max(0, Math.min(mx + 12, box.clientWidth - tw)) + 'px').style('top', Math.max(0, my - 40) + 'px');
+      })
+      .on('mouseleave', () => tip.style('display', 'none'));
+  }
+
+  function drawVideo(r) {
+    const box = document.getElementById('video');
+    box.textContent = '';
+    if (!r.video.length) { box.innerHTML = '<div class="empty">No video views in this range.</div>'; return; }
+    const base = r.video[0].count;
+    const W = Math.max(280, box.clientWidth), rowH = 34, H = r.video.length * rowH + 8, labW = 108, valW = 100;
+    const svg = d3.select(box).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('height', H);
+    const x = d3.scaleLinear([0, base], [0, W - labW - valW]);
+    const g = svg.selectAll('g').data(r.video).join('g').attr('transform', (d, i) => `translate(0,${i * rowH + 4})`);
+    g.append('text').attr('y', 13).attr('dy', '0.32em').attr('font-size', 12).attr('fill', css('--muted')).text((d) => d.stage);
+    g.append('rect').attr('x', labW).attr('y', 4).attr('height', 18).attr('rx', 4).attr('width', (d) => Math.max(2, x(d.count))).attr('fill', (d, i) => i === r.video.length - 1 ? css('--accent') : css('--bar-muted'));
+    g.append('text').attr('x', (d) => labW + x(d.count) + 8).attr('y', 13).attr('dy', '0.32em').attr('font-size', 12).attr('fill', css('--fg')).text((d) => int(d.count) + ' · ' + pct(d.count / base));
+  }
+
+  rangeEl.addEventListener('change', () => { try { localStorage.setItem('nexa-range', rangeEl.value); } catch (e) {} load(); });
+  let rw; window.addEventListener('resize', () => { clearTimeout(rw); rw = setTimeout(() => report && render(), 150); });
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => report && render());
+  load();
+  setInterval(load, 15 * 60 * 1000);
+})();
+</script>
+</body>
+</html>
