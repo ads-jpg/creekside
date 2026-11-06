@@ -47,6 +47,8 @@ function getSnapshotReport(start) {
       dailyRows: snapshot.dailyRowsOf(snap),
     }),
     priorMissing: !priorSnap,
+    notes: snap.notes ? { week, ...snap.notes } : null,
+    archive: snapshot.allNotes(DATA_DIR).filter((n) => n.week.start !== week.start),
     accountId: snap.accountId || config.accountId,
     timeZone: config.timeZone,
     source: snap.source || 'AdKit (Meta Ads)',

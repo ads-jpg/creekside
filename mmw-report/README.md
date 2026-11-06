@@ -43,6 +43,8 @@ Each file in `data/weeks/` is named after the week's Monday (`2026-10-26.json`) 
 node scripts/check-week.js 2026-10-26
 ```
 
+A week file can also hold the week's **report notes** (`notes`, described in `lib/snapshot.js`), shown at the bottom of the page in the same sections as the other Creekside reports: Performance Snapshot, What We Changed, What's Working / What's Not, Next Steps and Client Needs. Notes from earlier weeks appear under Archive.
+
 It prints the week's totals (by ad and by day) and the three costs, to compare with AdKit, and stops with an error if the file is malformed or the two totals disagree.
 
 ## Checking the event mapping

@@ -24,6 +24,12 @@ const nums = ['spend', 'form_fills', 'leads'];
   if (!(d.date >= week.start && d.date <= week.end)) problems.push(`daily[${i}].date ${d.date} is outside the week`);
   for (const k of nums) if (typeof d[k] !== 'number') problems.push(`daily[${i}].${k} must be a number`);
 });
+if (snap.notes) {
+  const keys = ['performanceSnapshot', 'whatWeChanged', 'workingNotWorking', 'nextSteps', 'clientNeeds'];
+  if (!/^20\d{2}-[01]\d-[0-3]\d$/.test(snap.notes.date || '')) problems.push('notes.date must be a date like 2026-11-06');
+  for (const k of keys) if (!Array.isArray(snap.notes[k]) || snap.notes[k].some((t) => typeof t !== 'string')) problems.push(`notes.${k} must be a list of paragraphs`);
+  for (const k of Object.keys(snap.notes)) if (k !== 'date' && !keys.includes(k)) problems.push(`notes.${k} is not a notes section`);
+}
 if (problems.length) { console.error('Problems:\n- ' + problems.join('\n- ')); process.exit(1); }
 
 const r = buildReport({ week, prior: { start: addDays(start, -7), end: addDays(start, -1) },

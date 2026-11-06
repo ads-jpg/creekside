@@ -65,6 +65,18 @@ th, td { text-align: right; padding: 7px 8px; border-bottom: 1px solid var(--lin
 th { color: var(--muted); font-weight: 500; }
 th:first-child, td:first-child { text-align: left; white-space: normal; min-width: 160px; }
 td.hl { font-weight: 600; }
+.notes { display: grid; gap: 14px; }
+.notes h2 { margin: 0; font: 500 13px/1.2 var(--body); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.note { display: grid; gap: 4px; }
+.note-date { font: 400 22px/1.2 var(--display); }
+.note-week { font-size: 12px; color: var(--muted); }
+.note h3 { margin: 14px 0 2px; font-size: 15px; font-weight: 600; }
+.note p { margin: 0 0 6px; max-width: 75ch; }
+.note ol { margin: 0 0 6px; padding-left: 20px; max-width: 75ch; }
+.archive { border-top: 1px solid var(--line); padding-top: 10px; }
+.archive > summary { font-size: 13px; }
+.archive .note { padding: 12px 0; border-bottom: 1px solid var(--line); }
+.archive .note-date { font-size: 18px; }
 details { font-size: 13px; color: var(--muted); }
 summary { cursor: pointer; color: var(--fg); }
 dl { display: grid; grid-template-columns: max-content 1fr; gap: 6px 16px; max-width: 85ch; }
@@ -150,6 +162,15 @@ footer { font-size: 12px; color: var(--muted); }
     </table></div>
   </section>
 
+  <section class="card notes" id="notes" hidden>
+    <h2>Report notes</h2>
+    <div id="noteNow"></div>
+    <details class="archive" id="archiveBox" hidden>
+      <summary>Archive</summary>
+      <div id="archive"></div>
+    </details>
+  </section>
+
   <details>
     <summary>Definitions and what's included</summary>
     <dl>
@@ -203,7 +224,32 @@ footer { font-size: 12px; color: var(--muted); }
     if (t) { $('#topName').textContent = t.name; $('#topLeads').textContent = count.format(t.leads); $('#topAppts').textContent = count.format(t.appts); }
     $('#weekLabel').textContent = 'Week of ' + fmtDate(report.week.start, { month: 'short', day: 'numeric' }) + ' – ' + fmtDate(report.week.end, { month: 'short', day: 'numeric', year: 'numeric' });
     $('#footer').textContent = 'Ad account ' + report.accountId + ' · Data from ' + (report.source || 'Meta') + ', updated ' + new Date(report.fetchedAt).toLocaleString() + '.' + (report.priorMissing ? ' No data saved for the prior week, so there is no comparison.' : '');
-    drawFunnel(); drawDaily(); drawTables();
+    drawFunnel(); drawDaily(); drawTables(); drawNotes();
+  }
+
+  const NOTE_SECTIONS = [
+    ['performanceSnapshot', 'Performance Snapshot'], ['whatWeChanged', 'What We Changed'],
+    ['workingNotWorking', "What's Working / What's Not"], ['nextSteps', 'Next Steps'], ['clientNeeds', 'Client Needs'],
+  ];
+  function noteEl(n) {
+    const box = el('article', { className: 'note' });
+    box.append(el('div', { className: 'note-date', textContent: fmtDate(n.date, { month: 'short', day: 'numeric', year: 'numeric' }) }));
+    box.append(el('div', { className: 'note-week', textContent: 'Week of ' + fmtDate(n.week.start, { month: 'short', day: 'numeric' }) + ' – ' + fmtDate(n.week.end, { month: 'short', day: 'numeric' }) }));
+    NOTE_SECTIONS.forEach(([k, title]) => {
+      const paras = n[k];
+      if (!Array.isArray(paras) || !paras.length) return;
+      box.append(el('h3', { textContent: title }));
+      if (k === 'nextSteps' && paras.length > 1) box.append(el('ol', {}, ...paras.map((t) => el('li', { textContent: t }))));
+      else paras.forEach((t) => box.append(el('p', { textContent: t })));
+    });
+    return box;
+  }
+  function drawNotes() {
+    const now = report.notes, older = report.archive || [];
+    $('#notes').hidden = !now && !older.length;
+    $('#noteNow').replaceChildren(...(now ? [noteEl(now)] : [el('p', { className: 'note', textContent: 'No notes for this week yet.' })]));
+    $('#archiveBox').hidden = !older.length;
+    $('#archive').replaceChildren(...older.map(noteEl));
   }
 
   function drawFunnel() {

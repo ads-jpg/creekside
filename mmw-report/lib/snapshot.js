@@ -8,7 +8,12 @@
 //   "source": "AdKit (Meta Ads)", "accountId": "act_…", "updatedAt": "<ISO time>",
 //   "ads":   [{ "id", "name", "adset", "campaign", "spend", "impressions", "link_clicks",
 //               "landing_page_views", "form_fills", "leads", "schedule_cost_per" }],
-//   "daily": [{ "date", "spend", "form_fills", "leads", "schedule_cost_per" }]
+//   "daily": [{ "date", "spend", "form_fills", "leads", "schedule_cost_per" }],
+//   "notes": {            // optional: the written report notes for this week
+//     "date": "2026-11-06",
+//     "performanceSnapshot": ["…"], "whatWeChanged": ["…"], "workingNotWorking": ["…"],
+//     "nextSteps": ["…"], "clientNeeds": ["…"]      (each a list of paragraphs)
+//   }
 // }
 //
 // schedule_cost_per is Meta's cost per Schedule (null when there were none):
@@ -56,4 +61,11 @@ const adRowsOf = (snap) => (snap ? snap.ads : []).map((a) =>
 const dailyRowsOf = (snap) => (snap ? snap.daily : []).map((d) =>
   toMetaRow(d, { date_start: d.date, date_stop: d.date }));
 
-module.exports = { listWeeks, readWeek, adRowsOf, dailyRowsOf };
+// Report notes saved with each week (optional), newest first, for the archive.
+function allNotes(dir) {
+  return listWeeks(dir)
+    .map((start) => { const w = readWeek(dir, start); return w && w.notes ? { week: w.week, ...w.notes } : null; })
+    .filter(Boolean);
+}
+
+module.exports = { listWeeks, readWeek, adRowsOf, dailyRowsOf, allNotes };
