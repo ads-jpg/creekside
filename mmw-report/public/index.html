@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mark My Words Media Weekly Report</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Layout: one column report — header, three KPI cards, delivery strip, funnel + daily, tables. */
+:root {
+  --bg: #f6f7f9; --panel: #ffffff; --fg: #17202b; --muted: #5d6877; --line: #dfe3e9;
+  --accent: #2557d6; --s1: #2557d6; --s2: #d9822b; --s3: #1f9d74; --grid: #e9edf2;
+  --good: #1a7f5a; --bad: #c0392b; --skeleton: #e6eaf0;
+  --display: "Fraunces", Georgia, serif; --body: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #11151b; --panel: #181e26; --fg: #e8ecf1; --muted: #9aa5b3; --line: #2a3340;
+    --accent: #7ea2ff; --s1: #7ea2ff; --s2: #f0a35e; --s3: #4cc89d; --grid: #222a35;
+    --good: #4cc89d; --bad: #ff7b6b; --skeleton: #252d38; color-scheme: dark;
+  }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 15px/1.5 var(--body); font-variant-numeric: tabular-nums; }
+.wrap { max-width: 1180px; margin: 0 auto; padding: 32px max(16px, env(safe-area-inset-left)) 48px max(16px, env(safe-area-inset-right)); display: grid; gap: 28px; }
+header { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px; }
+h1 { margin: 0; font: 400 clamp(26px, 4vw, 34px)/1.15 var(--display); text-wrap: balance; }
+.sub { margin: 4px 0 0; color: var(--muted); }
+label.pick { display: grid; gap: 4px; font-size: 12px; color: var(--muted); letter-spacing: .02em; }
+select, button { font: inherit; color: var(--fg); background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 7px 10px; }
+button { cursor: pointer; }
+select:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.controls { display: flex; gap: 8px; align-items: flex-end; flex-wrap: wrap; }
+.take { margin: 0; max-width: 72ch; font-size: 16px; }
+.take b { font-weight: 600; }
+.kpis { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 20px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.card h2 { margin: 0; font-size: 16px; font-weight: 500; }
+.kpi h2 { font-size: 14px; color: var(--muted); font-weight: 500; letter-spacing: .01em; }
+.big { font: 400 44px/1.05 var(--display); }
+.meta { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 13px; color: var(--muted); }
+.chg { font-weight: 600; }
+.chg.good { color: var(--good); } .chg.bad { color: var(--bad); }
+.strip { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr)); padding: 14px 0; border-block: 1px solid var(--line); }
+.strip div { display: grid; gap: 2px; }
+.strip span:first-child { font-size: 12px; color: var(--muted); }
+.strip span:last-child { font-size: 19px; }
+.two { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); }
+.note { margin: 0; font-size: 13px; color: var(--muted); }
+.frow { display: grid; grid-template-columns: 150px 1fr; gap: 10px; align-items: center; }
+.frow b { display: block; font-size: 16px; }
+.flabel { font-size: 13px; }
+.fbar { height: 22px; border-radius: 4px; min-width: 3px; }
+.fstep { grid-column: 2; font-size: 12px; color: var(--muted); margin: -2px 0 6px; }
+.chart { position: relative; min-height: 240px; }
+.legend { display: flex; gap: 16px; flex-wrap: wrap; font-size: 12px; color: var(--muted); }
+.legend i, .tip i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; }
+.tip { position: absolute; pointer-events: none; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; box-shadow: 0 6px 20px rgba(0,0,0,.12); padding: 6px 10px; font-size: 12px; white-space: nowrap; }
+.tip .d { color: var(--muted); margin-bottom: 2px; }
+.tablewrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th, td { text-align: right; padding: 7px 8px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+th { color: var(--muted); font-weight: 500; }
+th:first-child, td:first-child { text-align: left; white-space: normal; min-width: 160px; }
+td.hl { font-weight: 600; }
+details { font-size: 13px; color: var(--muted); }
+summary { cursor: pointer; color: var(--fg); }
+dl { display: grid; grid-template-columns: max-content 1fr; gap: 6px 16px; max-width: 85ch; }
+dt { color: var(--fg); } dd { margin: 0; }
+.err { background: var(--panel); border: 1px solid var(--bad); color: var(--fg); border-radius: 12px; padding: 16px; }
+.loading .val { color: transparent; background: var(--skeleton); border-radius: 6px; }
+footer { font-size: 12px; color: var(--muted); }
+@media (max-width: 480px) { .frow { grid-template-columns: 110px 1fr; } dl { grid-template-columns: 1fr; } .big { font-size: 38px; } }
+</style>
+</head>
+<body>
+<div class="wrap loading" id="app">
+  <header>
+    <div>
+      <h1>Mark My Words Media weekly report</h1>
+      <p class="sub">Meta Ads · <span id="weekLabel">Loading…</span></p>
+    </div>
+    <div class="controls">
+      <label class="pick" for="week">Week (Mon–Sun)<select id="week" aria-label="Week"></select></label>
+      <button id="refresh" type="button">Refresh</button>
+    </div>
+  </header>
+
+  <div id="error" class="err" hidden></div>
+
+  <p class="take" id="takeaway">This week, <b class="val" data-k="totals.spend" data-f="money">$000</b> in ad spend produced <b class="val" data-k="totals.formFills">00</b> form fills, <b class="val" data-k="totals.leads">00</b> leads and <b class="val" data-k="totals.appts">0</b> booked appointments.<span id="topLine"> The <b id="topName">—</b> ad set brought in <b id="topLeads">—</b> of the leads and <b id="topAppts">—</b> of the appointments.</span></p>
+
+  <section class="kpis" aria-label="Key metrics">
+    <article class="card kpi">
+      <h2>Cost per form fill</h2>
+      <div class="big val" data-k="totals.costPerFormFill" data-f="money">$00.00</div>
+      <div class="meta"><span><span class="val" data-k="totals.formFills">00</span> form fills</span><span><span class="chg" data-chg="costPerFormFill"></span> vs prior week (<span class="val" data-k="priorTotals.costPerFormFill" data-f="money">$00</span>)</span></div>
+    </article>
+    <article class="card kpi">
+      <h2>Cost per lead</h2>
+      <div class="big val" data-k="totals.costPerLead" data-f="money">$00.00</div>
+      <div class="meta"><span><span class="val" data-k="totals.leads">00</span> leads</span><span><span class="chg" data-chg="costPerLead"></span> vs prior week (<span class="val" data-k="priorTotals.costPerLead" data-f="money">$00</span>)</span></div>
+    </article>
+    <article class="card kpi">
+      <h2>Cost per appointment booked</h2>
+      <div class="big val" data-k="totals.costPerAppt" data-f="money">$00.00</div>
+      <div class="meta"><span><span class="val" data-k="totals.appts">0</span> appointments</span><span><span class="chg" data-chg="costPerAppt"></span> vs prior week (<span class="val" data-k="priorTotals.costPerAppt" data-f="money">$00</span>)</span></div>
+    </article>
+  </section>
+
+  <section class="strip" aria-label="Delivery">
+    <div><span>Spend</span><span class="val" data-k="totals.spend" data-f="money">$000</span></div>
+    <div><span>Impressions</span><span class="val" data-k="totals.impressions">00,000</span></div>
+    <div><span>Link clicks</span><span class="val" data-k="totals.linkClicks">000</span></div>
+    <div><span>Landing page views</span><span class="val" data-k="totals.landingPageViews">000</span></div>
+    <div><span>Prior week spend</span><span class="val" data-k="priorTotals.spend" data-f="money">$000</span></div>
+  </section>
+
+  <div class="two">
+    <section class="card">
+      <h2>From landing page to appointment</h2>
+      <p class="note">How many visitors moved to each next step this week.</p>
+      <div id="funnel"></div>
+    </section>
+    <section class="card">
+      <h2>Results by day</h2>
+      <p class="note">Form fills, leads and appointments each day. Hover a day for spend.</p>
+      <div class="legend"><span><i style="background:var(--s1)"></i>Form fills</span><span><i style="background:var(--s2)"></i>Leads</span><span><i style="background:var(--s3)"></i>Appointments</span></div>
+      <div class="chart" id="daily"></div>
+    </section>
+  </div>
+
+  <section class="card">
+    <h2>By ad set</h2>
+    <p class="note">The same three costs for each ad set that spent this week.</p>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Ad set</th><th>Spend</th><th>Form fills</th><th>Cost / form fill</th><th>Leads</th><th>Cost / lead</th><th>Appts</th><th>Cost / appt</th></tr></thead>
+      <tbody id="adsets"></tbody>
+    </table></div>
+  </section>
+
+  <section class="card">
+    <h2>By ad</h2>
+    <p class="note">Every ad that spent this week, highest spend first.</p>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Ad</th><th>Ad set</th><th>Spend</th><th>Form fills</th><th>Cost / form fill</th><th>Leads</th><th>Cost / lead</th><th>Appts</th><th>Cost / appt</th></tr></thead>
+      <tbody id="ads"></tbody>
+    </table></div>
+  </section>
+
+  <details>
+    <summary>Definitions and what's included</summary>
+    <dl>
+      <dt>Form fill</dt><dd>The Meta pixel's custom "form_start" event, which is what the campaign optimizes for.</dd>
+      <dt>Lead</dt><dd>The Meta pixel's standard Lead event.</dd>
+      <dt>Appointment booked</dt><dd>The Meta pixel's Schedule event. Where Meta reports only a cost per Schedule, the count is spend divided by that cost, rounded.</dd>
+      <dt>Cost per …</dt><dd>Spend divided by that count. Blank when the count is zero.</dd>
+      <dt>Week</dt><dd>Monday to Sunday in the ad account's time zone. The prior week is the seven days before.</dd>
+      <dt>Attribution</dt><dd>The ad account's default attribution setting in Meta Ads Manager.</dd>
+    </dl>
+  </details>
+
+  <footer id="footer"></footer>
+</div>
+
+<script>
+(() => {
+  const $ = (s) => document.querySelector(s);
+  const money = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' });
+  const count = new Intl.NumberFormat('en-US');
+  const pct = (v) => (v * 100).toFixed(1) + '%';
+  const fmtDate = (iso, opts) => new Date(iso + 'T12:00:00Z').toLocaleDateString('en-US', { timeZone: 'UTC', ...opts });
+  const get = (o, path) => path.split('.').reduce((a, k) => (a == null ? a : a[k]), o);
+  const el = (tag, attrs = {}, ...kids) => { const e = document.createElement(tag); Object.assign(e, attrs); e.append(...kids); return e; };
+  const NS = 'http://www.w3.org/2000/svg';
+  const svgEl = (tag, attrs) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); return e; };
+
+  let report = null;
+
+  async function api(path) {
+    const res = await fetch(path, { headers: { Accept: 'application/json' } });
+    const body = await res.json().catch(() => ({}));
+    if (!res.ok) throw new Error(body.error || 'The report could not be loaded (HTTP ' + res.status + ').');
+    return body;
+  }
+
+  function fill() {
+    document.querySelectorAll('[data-k]').forEach((n) => {
+      const v = get(report, n.dataset.k);
+      n.textContent = v == null ? '—' : n.dataset.f === 'money' ? money.format(v) : count.format(v);
+    });
+    document.querySelectorAll('[data-chg]').forEach((n) => {
+      const v = report.changes[n.dataset.chg];
+      n.className = 'chg';
+      if (v == null) { n.textContent = 'n/a'; return; }
+      n.textContent = (v > 0 ? '▲ +' : v < 0 ? '▼ ' : '') + pct(v);
+      n.classList.add(v < 0 ? 'good' : v > 0 ? 'bad' : 'flat'); // lower cost is better
+    });
+    const t = report.topAdset;
+    $('#topLine').hidden = !t || !t.leads;
+    if (t) { $('#topName').textContent = t.name; $('#topLeads').textContent = count.format(t.leads); $('#topAppts').textContent = count.format(t.appts); }
+    $('#weekLabel').textContent = 'Week of ' + fmtDate(report.week.start, { month: 'short', day: 'numeric' }) + ' – ' + fmtDate(report.week.end, { month: 'short', day: 'numeric', year: 'numeric' });
+    $('#footer').textContent = 'Ad account ' + report.accountId + ' · Data from the Meta Marketing API, fetched ' + new Date(report.fetchedAt).toLocaleString() + '.';
+    drawFunnel(); drawDaily(); drawTables();
+  }
+
+  function drawFunnel() {
+    const box = $('#funnel'); box.replaceChildren();
+    const colors = ['var(--muted)', 'var(--s1)', 'var(--s2)', 'var(--s3)'];
+    const max = Math.max(1, ...report.funnel.map((s) => s.count));
+    report.funnel.forEach((s, i) => {
+      if (i > 0) box.append(el('div', { className: 'frow' }, el('span'), el('div', { className: 'fstep', textContent: '↓ ' + (s.rate == null ? 'n/a' : pct(s.rate)) + ' of the step above' })));
+      const bar = el('div', { className: 'fbar' }); bar.style.width = (100 * s.count / max) + '%'; bar.style.background = colors[i];
+      box.append(el('div', { className: 'frow' }, el('div', { className: 'flabel' }, el('b', { textContent: count.format(s.count) }), s.step), el('div', {}, bar)));
+    });
+  }
+
+  function drawDaily() {
+    const box = $('#daily'); box.replaceChildren();
+    const rows = report.days;
+    const series = [['formFills', 'Form fills', 'var(--s1)'], ['leads', 'Leads', 'var(--s2)'], ['appts', 'Appointments', 'var(--s3)']];
+    const W = Math.max(box.clientWidth, 280), H = 230, m = { t: 10, r: 8, b: 26, l: 30 };
+    const maxV = Math.max(1, ...rows.flatMap((r) => series.map(([k]) => r[k])));
+    const step = Math.max(1, Math.ceil(maxV / 4)), top = step * 4;
+    const y = (v) => m.t + (H - m.t - m.b) * (1 - v / top);
+    const band = (W - m.l - m.r) / rows.length, inner = band * 0.72, bw = Math.min(inner / 3 - 2, 28);
+    const svg = svgEl('svg', { width: '100%', viewBox: `0 0 ${W} ${H}`, role: 'img', 'aria-label': 'Daily form fills, leads and appointments' });
+    for (let v = 0; v <= top; v += step) {
+      svg.append(svgEl('line', { x1: m.l, x2: W - m.r, y1: y(v), y2: y(v), stroke: v === 0 ? 'var(--muted)' : 'var(--grid)' }));
+      const t = svgEl('text', { x: m.l - 6, y: y(v), dy: '0.32em', 'text-anchor': 'end', fill: 'var(--muted)', 'font-size': 11 }); t.textContent = v; svg.append(t);
+    }
+    const tip = el('div', { className: 'tip', hidden: true });
+    rows.forEach((r, i) => {
+      const x0 = m.l + band * i + (band - inner) / 2;
+      series.forEach(([k, , c], j) => {
+        svg.append(svgEl('rect', { x: x0 + j * (inner / 3) + (inner / 3 - bw) / 2, y: y(r[k]), width: bw, height: Math.max(0, y(0) - y(r[k])), rx: 2, fill: c }));
+      });
+      const lab = svgEl('text', { x: m.l + band * i + band / 2, y: H - 8, 'text-anchor': 'middle', fill: 'var(--muted)', 'font-size': 11 });
+      lab.textContent = fmtDate(r.date, { weekday: 'short', day: 'numeric' }); svg.append(lab);
+      const hit = svgEl('rect', { x: m.l + band * i, y: m.t, width: band, height: H - m.t - m.b, fill: 'transparent' });
+      hit.addEventListener('pointermove', (ev) => {
+        tip.replaceChildren(el('div', { className: 'd', textContent: fmtDate(r.date, { weekday: 'short', month: 'short', day: 'numeric' }) + ' · ' + money.format(r.spend) + ' spend' }),
+          ...series.map(([k, label, c]) => { const i2 = el('i'); i2.style.background = c; return el('div', {}, i2, label + ': ' + count.format(r[k])); }));
+        tip.hidden = false;
+        const bx = box.getBoundingClientRect();
+        tip.style.left = Math.max(0, Math.min(ev.clientX - bx.left + 12, box.clientWidth - tip.offsetWidth)) + 'px'; tip.style.top = '8px';
+      });
+      hit.addEventListener('pointerleave', () => { tip.hidden = true; });
+      svg.append(hit);
+    });
+    box.append(svg, tip);
+  }
+
+  function drawTables() {
+    const cols = [['spend', 'm'], ['formFills', 'n'], ['costPerFormFill', 'm', 1], ['leads', 'n'], ['costPerLead', 'm', 1], ['appts', 'n'], ['costPerAppt', 'm', 1]];
+    const cell = (v, f, hl) => el('td', { className: hl ? 'hl' : '', textContent: v == null ? '—' : f === 'm' ? money.format(v) : count.format(v) });
+    $('#adsets').replaceChildren(...report.adsets.map((r) => el('tr', {}, el('td', { textContent: r.name }), ...cols.map(([k, f, hl]) => cell(r[k], f, hl)))));
+    $('#ads').replaceChildren(...report.ads.map((r) => el('tr', {}, el('td', { textContent: r.name }), el('td', { textContent: r.adset }), ...cols.map(([k, f, hl]) => cell(r[k], f, hl)))));
+  }
+
+  async function load(start, refresh) {
+    $('#app').classList.add('loading'); $('#error').hidden = true;
+    try {
+      report = await api('/api/report?start=' + encodeURIComponent(start) + (refresh ? '&refresh=1' : ''));
+      $('#app').classList.remove('loading');
+      fill();
+      history.replaceState(null, '', '?week=' + report.week.start);
+    } catch (e) {
+      $('#error').textContent = e.message; $('#error').hidden = false;
+    }
+  }
+
+  async function init() {
+    try {
+      const { weeks } = await api('/api/weeks');
+      const sel = $('#week');
+      sel.replaceChildren(...weeks.map((w) => new Option(fmtDate(w.start, { month: 'short', day: 'numeric' }) + ' – ' + fmtDate(w.end, { month: 'short', day: 'numeric' }), w.start)));
+      const wanted = new URLSearchParams(location.search).get('week');
+      if (wanted && weeks.some((w) => w.start === wanted)) sel.value = wanted;
+      sel.addEventListener('change', () => load(sel.value));
+      $('#refresh').addEventListener('click', () => load(sel.value, true));
+      let t; addEventListener('resize', () => { clearTimeout(t); t = setTimeout(() => report && drawDaily(), 150); });
+      load(sel.value);
+    } catch (e) {
+      $('#error').textContent = e.message; $('#error').hidden = false;
+    }
+  }
+  init();
+})();
+</script>
+</body>
+</html>

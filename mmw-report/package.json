@@ -1,0 +1,12 @@
+{
+  "name": "mmw-weekly-report",
+  "version": "1.0.0",
+  "description": "Live weekly Meta Ads report for Mark My Words Media: cost per form fill, lead and appointment.",
+  "main": "server.js",
+  "type": "commonjs",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test test/*.test.js"
+  }
+}
