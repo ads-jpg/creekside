@@ -2,7 +2,10 @@
 
 A live web page with the weekly Meta Ads report for Mark My Words Media. The three KPIs at the top are **cost per form fill**, **cost per lead** and **cost per appointment booked**, each compared with the week before. Below them are a funnel, results by day, and tables by ad set and by ad.
 
-The page reads the Meta Marketing API every time someone opens it, with results cached for 15 minutes. It opens on the last full Monday–Sunday week, and a dropdown goes back 12 weeks.
+The data comes from one of two places:
+
+- **Weekly AdKit data (the default).** With no Meta token set, the page reads the weeks saved in `data/weeks/`, one file per Monday–Sunday week. A scheduled Claude task pulls each finished week from AdKit every Monday, saves it there and pushes, and Railway redeploys automatically. The dropdown lists every saved week.
+- **Live Meta API.** If `META_ACCESS_TOKEN` is set, the page calls the Meta Marketing API instead, with results cached for 15 minutes, and the dropdown goes back 12 weeks.
 
 No dependencies. Needs Node 20 or later.
 
@@ -11,7 +14,7 @@ No dependencies. Needs Node 20 or later.
 1. In Railway: **New Project → Deploy from GitHub repo** → `ads-jpg/creekside`.
 2. In the service's **Settings → Source**, set **Root Directory** to `mmw-report`.
 3. In **Variables**, add:
-   - `META_ACCESS_TOKEN`: a Meta token with `ads_read` on the ad account. Use a System User token from Business Settings; a personal token expires in about 60 days.
+   - `META_ACCESS_TOKEN` (optional): only to read Meta live instead of the saved AdKit weeks. A Meta token with `ads_read` on the ad account. Use a System User token from Business Settings; a personal token expires in about 60 days.
    - `REPORT_PASSWORD` (recommended): the password for the page. Any username works.
    - `META_AD_ACCOUNT_ID` is already set to `act_1228742844209195` in the code, so you only need it to report on another account.
 4. In **Settings → Networking**, click **Generate Domain** to get the public URL.
@@ -31,6 +34,16 @@ Railway sets `PORT` itself. `railway.json` sets the start command and a `/health
 | `FORM_FILL_EVENT` | `offsite_conversion.fb_pixel_custom.form_start` | Meta event counted as a form fill |
 | `LEAD_EVENT` | `offsite_conversion.fb_pixel_lead` | Meta event counted as a lead |
 | `APPOINTMENT_EVENT_MATCH` | `schedule` | Text matched in an event's name to count appointments |
+
+## Saved weeks from AdKit
+
+Each file in `data/weeks/` is named after the week's Monday (`2026-10-26.json`) and holds that week's ads and days; `lib/snapshot.js` describes the fields. After saving a week, check it:
+
+```bash
+node scripts/check-week.js 2026-10-26
+```
+
+It prints the week's totals (by ad and by day) and the three costs, to compare with AdKit, and stops with an error if the file is malformed or the two totals disagree.
 
 ## Checking the event mapping
 

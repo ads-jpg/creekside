@@ -1,0 +1,20 @@
+{
+  "week": { "start": "2026-10-19", "end": "2026-10-25" },
+  "source": "AdKit (Meta Ads)",
+  "accountId": "act_1228742844209195",
+  "updatedAt": "2026-11-06T05:27:00Z",
+  "ads": [
+    { "id": "120248803222400767", "name": "video 2", "adset": "Leads | Broad + Exclusions | Sign", "campaign": "CS | Form Start | Updated 10/23", "spend": 367.72, "impressions": 9560, "link_clicks": 424, "landing_page_views": 383, "form_fills": 12, "leads": 0, "schedule_cost_per": null },
+    { "id": "120248803222380767", "name": "video 1", "adset": "Leads | Broad + Exclusions | Sign", "campaign": "CS | Form Start | Updated 10/23", "spend": 304.36, "impressions": 6411, "link_clicks": 621, "landing_page_views": 446, "form_fills": 18, "leads": 0, "schedule_cost_per": null },
+    { "id": "120249027331380767", "name": "Print United", "adset": "Leads | Men Broad | Print Shop", "campaign": "CS | Form Start | Updated 10/23", "spend": 170.5, "impressions": 4376, "link_clicks": 188, "landing_page_views": 163, "form_fills": 11, "leads": 0, "schedule_cost_per": null },
+    { "id": "120249027331370767", "name": "Print Van", "adset": "Leads | Men Broad | Print Shop", "campaign": "CS | Form Start | Updated 10/23", "spend": 119.2, "impressions": 5065, "link_clicks": 112, "landing_page_views": 97, "form_fills": 4, "leads": 0, "schedule_cost_per": null }
+  ],
+  "daily": [
+    { "date": "2026-10-20", "spend": 92.56, "form_fills": 10, "leads": 0, "schedule_cost_per": null },
+    { "date": "2026-10-21", "spend": 201.76, "form_fills": 10, "leads": 0, "schedule_cost_per": null },
+    { "date": "2026-10-22", "spend": 212.5, "form_fills": 8, "leads": 0, "schedule_cost_per": null },
+    { "date": "2026-10-23", "spend": 184.86, "form_fills": 8, "leads": 0, "schedule_cost_per": null },
+    { "date": "2026-10-24", "spend": 121.11, "form_fills": 3, "leads": 0, "schedule_cost_per": null },
+    { "date": "2026-10-25", "spend": 148.99, "form_fills": 6, "leads": 0, "schedule_cost_per": null }
+  ]
+}

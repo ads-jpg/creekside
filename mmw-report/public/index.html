@@ -202,7 +202,7 @@ footer { font-size: 12px; color: var(--muted); }
     $('#topLine').hidden = !t || !t.leads;
     if (t) { $('#topName').textContent = t.name; $('#topLeads').textContent = count.format(t.leads); $('#topAppts').textContent = count.format(t.appts); }
     $('#weekLabel').textContent = 'Week of ' + fmtDate(report.week.start, { month: 'short', day: 'numeric' }) + ' – ' + fmtDate(report.week.end, { month: 'short', day: 'numeric', year: 'numeric' });
-    $('#footer').textContent = 'Ad account ' + report.accountId + ' · Data from the Meta Marketing API, fetched ' + new Date(report.fetchedAt).toLocaleString() + '.';
+    $('#footer').textContent = 'Ad account ' + report.accountId + ' · Data from ' + (report.source || 'Meta') + ', updated ' + new Date(report.fetchedAt).toLocaleString() + '.' + (report.priorMissing ? ' No data saved for the prior week, so there is no comparison.' : '');
     drawFunnel(); drawDaily(); drawTables();
   }
 

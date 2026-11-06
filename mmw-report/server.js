@@ -6,6 +6,9 @@ const path = require('node:path');
 const crypto = require('node:crypto');
 const { createMetaClient, MetaError } = require('./lib/meta');
 const { buildReport, recentWeeks, weekFrom, addDays } = require('./lib/report');
+const snapshot = require('./lib/snapshot');
+
+const DATA_DIR = path.join(__dirname, 'data', 'weeks');
 
 const config = {
   port: Number(process.env.PORT) || 3000,
@@ -29,6 +32,28 @@ const meta = config.token
 
 const cache = new Map();
 
+// Without a Meta token, the report reads weekly snapshots saved from AdKit.
+function getSnapshotReport(start) {
+  const week = weekFrom(start);
+  const prior = { start: addDays(week.start, -7), end: addDays(week.start, -1) };
+  const snap = snapshot.readWeek(DATA_DIR, week.start);
+  if (!snap) return null;
+  const priorSnap = snapshot.readWeek(DATA_DIR, prior.start);
+  return {
+    ...buildReport({
+      week, prior,
+      adRows: snapshot.adRowsOf(snap),
+      priorAdRows: snapshot.adRowsOf(priorSnap),
+      dailyRows: snapshot.dailyRowsOf(snap),
+    }),
+    priorMissing: !priorSnap,
+    accountId: snap.accountId || config.accountId,
+    timeZone: config.timeZone,
+    source: snap.source || 'AdKit (Meta Ads)',
+    fetchedAt: snap.updatedAt,
+  };
+}
+
 async function getReport(start) {
   const week = weekFrom(start);
   const prior = { start: addDays(week.start, -7), end: addDays(week.start, -1) };
@@ -45,6 +70,7 @@ async function getReport(start) {
     ...buildReport({ week, prior, adRows, priorAdRows, dailyRows, events: config.events }),
     accountId: config.accountId,
     timeZone: config.timeZone,
+    source: 'Meta Marketing API',
     fetchedAt: new Date().toISOString(),
   };
   cache.set(key, { at: Date.now(), report });
@@ -94,7 +120,20 @@ const server = http.createServer(async (req, res) => {
   try {
     if (url.pathname === '/' || url.pathname === '/index.html') return send(res, 200, indexHtml, 'text/html; charset=utf-8');
 
-    if (url.pathname === '/api/weeks') return send(res, 200, { weeks: recentWeeks(config.timeZone, 12) });
+    if (url.pathname === '/api/weeks') {
+      const weeks = meta
+        ? recentWeeks(config.timeZone, 12)
+        : snapshot.listWeeks(DATA_DIR).map((start) => weekFrom(start));
+      return send(res, 200, { weeks });
+    }
+
+    if (url.pathname === '/api/report' && !meta) {
+      const start = url.searchParams.get('start') || snapshot.listWeeks(DATA_DIR)[0];
+      if (!start) return send(res, 503, { error: 'No weekly data has been saved yet.' });
+      if (!DATE_RE.test(start)) return send(res, 400, { error: 'start must be a date like 2026-10-26' });
+      const report = getSnapshotReport(start);
+      return report ? send(res, 200, report) : send(res, 404, { error: 'No data saved for that week.' });
+    }
 
     if (url.pathname === '/api/report' || url.pathname === '/api/events') {
       if (!meta) return send(res, 503, { error: 'META_ACCESS_TOKEN is not set on the server.' });

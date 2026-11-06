@@ -1,0 +1,21 @@
+{
+  "week": { "start": "2026-10-26", "end": "2026-11-01" },
+  "source": "AdKit (Meta Ads)",
+  "accountId": "act_1228742844209195",
+  "updatedAt": "2026-11-06T05:20:00Z",
+  "ads": [
+    { "id": "120248803222400767", "name": "video 2", "adset": "Leads | Broad + Exclusions | Sign", "campaign": "CS | Form Start | Updated 10/23", "spend": 273.76, "impressions": 6388, "link_clicks": 307, "landing_page_views": 278, "form_fills": 28, "leads": 1, "schedule_cost_per": null },
+    { "id": "120249027331380767", "name": "Print United", "adset": "Leads | Men Broad | Print Shop", "campaign": "CS | Form Start | Updated 10/23", "spend": 262.73, "impressions": 8657, "link_clicks": 177, "landing_page_views": 158, "form_fills": 25, "leads": 14, "schedule_cost_per": 131.365 },
+    { "id": "120249027331370767", "name": "Print Van", "adset": "Leads | Men Broad | Print Shop", "campaign": "CS | Form Start | Updated 10/23", "spend": 86.36, "impressions": 3055, "link_clicks": 73, "landing_page_views": 62, "form_fills": 7, "leads": 3, "schedule_cost_per": 86.36 },
+    { "id": "120248803222380767", "name": "video 1", "adset": "Leads | Broad + Exclusions | Sign", "campaign": "CS | Form Start | Updated 10/23", "spend": 70.28, "impressions": 1459, "link_clicks": 57, "landing_page_views": 46, "form_fills": 6, "leads": 1, "schedule_cost_per": null }
+  ],
+  "daily": [
+    { "date": "2026-10-26", "spend": 134.6, "form_fills": 16, "leads": 4, "schedule_cost_per": null },
+    { "date": "2026-10-27", "spend": 136.67, "form_fills": 14, "leads": 4, "schedule_cost_per": 136.67 },
+    { "date": "2026-10-28", "spend": 132.34, "form_fills": 9, "leads": 1, "schedule_cost_per": 132.34 },
+    { "date": "2026-10-29", "spend": 104.01, "form_fills": 8, "leads": 0, "schedule_cost_per": 104.01 },
+    { "date": "2026-10-30", "spend": 101.88, "form_fills": 8, "leads": 5, "schedule_cost_per": null },
+    { "date": "2026-10-31", "spend": 80.67, "form_fills": 10, "leads": 5, "schedule_cost_per": null },
+    { "date": "2026-11-01", "spend": 2.96, "form_fills": 1, "leads": 0, "schedule_cost_per": null }
+  ]
+}
