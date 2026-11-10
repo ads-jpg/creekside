@@ -41,5 +41,5 @@ Ads promised live within 21 days of contract (target ~Nov 24). Ads managed by Li
 
 ## Creative and follow-ups
 - [ ] Send video scripts (`Steve_Elmer_Reverse_Mortgage_Video_Scripts.docx`); Steve fills in his "why I do this" line
-- [ ] Send Nick Bandy (South River) reverse-mortgage testimonial: still a placeholder in Queenie's Nov 4 draft
+- [ ] Send Nick Bandy (South River) testimonial: https://youtube.com/shorts/2l0U4Lp_nDE (in the onboarding agenda; still a placeholder in Queenie's Nov 4 draft)
 - [ ] Book onboarding call with Lindsey; set up bi-weekly reviews and reporting dashboard
