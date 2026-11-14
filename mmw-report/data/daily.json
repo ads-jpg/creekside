@@ -1,0 +1,390 @@
+{
+  "range": {
+    "from": "2026-09-07",
+    "to": "2026-11-08"
+  },
+  "source": "AdKit (Meta Ads)",
+  "accountId": "act_1228742844209195",
+  "updatedAt": "2026-11-14T16:30:00Z",
+  "note": "Account-wide totals by day, all campaigns, used for the 7-day and 30-day view. Days with no spend are left out.",
+  "daily": [
+    {
+      "date": "2026-09-07",
+      "spend": 9.28,
+      "form_fills": 0,
+      "leads": 0,
+      "schedule_cost_per": null
+    },
+    {
+      "date": "2026-09-08",
+      "spend": 14.7,
+      "form_fills": 0,
+      "leads": 0,
+      "schedule_cost_per": null
+    },
+    {
+      "date": "2026-09-09",
+      "spend": 8.1,
+      "form_fills": 0,
+      "leads": 0,
+      "schedule_cost_per": null
+    },
+    {
+      "date": "2026-09-10",
+      "spend": 7.98,
+      "form_fills": 0,
+      "leads": 0,
+      "schedule_cost_per": null
+    },
+    {
+      "date": "2026-09-11",
+      "spend": 6.77,
+      "form_fills": 0,
+      "leads": 0,
+      "schedule_cost_per": null
+    },
+    {
+      "date": "2026-09-12",
+      "spend": 6.15,
+      "form_fills": 0,
+      "leads": 0,
+      "schedule_cost_per": null
+    },
+    {
+      "date": "2026-09-13",
+      "spend": 10.32,
+      "form_fills": 0,
+      "leads": 0,
+      "schedule_cost_per": null
+    },
+    {
+      "date": "2026-09-14",
+      "spend": 15.33,
+      "form_fills": 0,
+      "leads": 0,
+      "schedule_cost_per": null
+    },
+    {
+      "date": "2026-09-15",
+      "spend": 70.49,
+      "form_fills": 0,
+      "leads": 0,
+      "schedule_cost_per": null
+    },
+    {
+      "date": "2026-09-16",
+      "spend": 85.79,
+      "form_fills": 0,
+      "leads": 1,
+      "schedule_cost_per": null
+    },
+    {
+      "date": "2026-09-17",
+      "spend": 75.3,
+      "form_fills": 0,
+      "leads": 1,
+      "schedule_cost_per": null
+    },
+    {
+      "date": "2026-09-18",
+      "spend": 138.2,
+      "form_fills": 0,
+      "leads": 1,
+      "schedule_cost_per": null
+    },
+    {
+      "date": "2026-09-19",
+      "spend": 122.87,
+      "form_fills": 0,
+      "leads": 0,
+      "schedule_cost_per": null
+    },
+    {
+      "date": "2026-09-20",
+      "spend": 144.89,
+      "form_fills": 0,
+      "leads": 0,
+      "schedule_cost_per": null
+    },
+    {
+      "date": "2026-09-21",
+      "spend": 115.48,
+      "form_fills": 0,
+      "leads": 0,
+      "schedule_cost_per": null
+    },
+    {
+      "date": "2026-09-22",
+      "spend": 11.03,
+      "form_fills": 0,
+      "leads": 0,
+      "schedule_cost_per": null
+    },
+    {
+      "date": "2026-09-29",
+      "spend": 22.7,
+      "form_fills": 0,
+      "leads": 0,
+      "schedule_cost_per": null
+    },
+    {
+      "date": "2026-09-30",
+      "spend": 184.07,
+      "form_fills": 0,
+      "leads": 1,
+      "schedule_cost_per": null
+    },
+    {
+      "date": "2026-10-01",
+      "spend": 190.31,
+      "form_fills": 0,
+      "leads": 2,
+      "schedule_cost_per": null
+    },
+    {
+      "date": "2026-10-02",
+      "spend": 244.17,
+      "form_fills": 0,
+      "leads": 0,
+      "schedule_cost_per": null
+    },
+    {
+      "date": "2026-10-03",
+      "spend": 177.11,
+      "form_fills": 3,
+      "leads": 0,
+      "schedule_cost_per": null
+    },
+    {
+      "date": "2026-10-04",
+      "spend": 96.4,
+      "form_fills": 2,
+      "leads": 3,
+      "schedule_cost_per": null
+    },
+    {
+      "date": "2026-10-05",
+      "spend": 178.2,
+      "form_fills": 9,
+      "leads": 1,
+      "schedule_cost_per": null
+    },
+    {
+      "date": "2026-10-06",
+      "spend": 171.55,
+      "form_fills": 7,
+      "leads": 0,
+      "schedule_cost_per": null
+    },
+    {
+      "date": "2026-10-07",
+      "spend": 93.09,
+      "form_fills": 8,
+      "leads": 0,
+      "schedule_cost_per": null
+    },
+    {
+      "date": "2026-10-08",
+      "spend": 78.1,
+      "form_fills": 3,
+      "leads": 0,
+      "schedule_cost_per": null
+    },
+    {
+      "date": "2026-10-09",
+      "spend": 70.54,
+      "form_fills": 4,
+      "leads": 0,
+      "schedule_cost_per": null
+    },
+    {
+      "date": "2026-10-10",
+      "spend": 49.64,
+      "form_fills": 1,
+      "leads": 0,
+      "schedule_cost_per": null
+    },
+    {
+      "date": "2026-10-11",
+      "spend": 118.55,
+      "form_fills": 6,
+      "leads": 0,
+      "schedule_cost_per": null
+    },
+    {
+      "date": "2026-10-12",
+      "spend": 63.14,
+      "form_fills": 1,
+      "leads": 0,
+      "schedule_cost_per": null
+    },
+    {
+      "date": "2026-10-13",
+      "spend": 118.27,
+      "form_fills": 6,
+      "leads": 0,
+      "schedule_cost_per": null
+    },
+    {
+      "date": "2026-10-14",
+      "spend": 96.88,
+      "form_fills": 7,
+      "leads": 0,
+      "schedule_cost_per": null
+    },
+    {
+      "date": "2026-10-15",
+      "spend": 94.9,
+      "form_fills": 5,
+      "leads": 0,
+      "schedule_cost_per": null
+    },
+    {
+      "date": "2026-10-16",
+      "spend": 2.38,
+      "form_fills": 0,
+      "leads": 0,
+      "schedule_cost_per": null
+    },
+    {
+      "date": "2026-10-20",
+      "spend": 92.56,
+      "form_fills": 10,
+      "leads": 0,
+      "schedule_cost_per": null
+    },
+    {
+      "date": "2026-10-21",
+      "spend": 201.76,
+      "form_fills": 10,
+      "leads": 0,
+      "schedule_cost_per": null
+    },
+    {
+      "date": "2026-10-22",
+      "spend": 212.5,
+      "form_fills": 8,
+      "leads": 0,
+      "schedule_cost_per": null
+    },
+    {
+      "date": "2026-10-23",
+      "spend": 184.86,
+      "form_fills": 8,
+      "leads": 0,
+      "schedule_cost_per": null
+    },
+    {
+      "date": "2026-10-24",
+      "spend": 121.11,
+      "form_fills": 3,
+      "leads": 0,
+      "schedule_cost_per": null
+    },
+    {
+      "date": "2026-10-25",
+      "spend": 148.99,
+      "form_fills": 6,
+      "leads": 0,
+      "schedule_cost_per": null
+    },
+    {
+      "date": "2026-10-26",
+      "spend": 134.6,
+      "form_fills": 16,
+      "leads": 4,
+      "schedule_cost_per": null
+    },
+    {
+      "date": "2026-10-27",
+      "spend": 136.67,
+      "form_fills": 14,
+      "leads": 4,
+      "schedule_cost_per": 136.67
+    },
+    {
+      "date": "2026-10-28",
+      "spend": 132.34,
+      "form_fills": 9,
+      "leads": 1,
+      "schedule_cost_per": 132.34
+    },
+    {
+      "date": "2026-10-29",
+      "spend": 104.01,
+      "form_fills": 8,
+      "leads": 0,
+      "schedule_cost_per": 104.01
+    },
+    {
+      "date": "2026-10-30",
+      "spend": 101.88,
+      "form_fills": 8,
+      "leads": 5,
+      "schedule_cost_per": null
+    },
+    {
+      "date": "2026-10-31",
+      "spend": 80.67,
+      "form_fills": 10,
+      "leads": 5,
+      "schedule_cost_per": null
+    },
+    {
+      "date": "2026-11-01",
+      "spend": 2.96,
+      "form_fills": 1,
+      "leads": 0,
+      "schedule_cost_per": null
+    },
+    {
+      "date": "2026-11-02",
+      "spend": 56.55,
+      "form_fills": 1,
+      "leads": 0,
+      "schedule_cost_per": 56.55
+    },
+    {
+      "date": "2026-11-03",
+      "spend": 144.53,
+      "form_fills": 13,
+      "leads": 0,
+      "schedule_cost_per": 144.53
+    },
+    {
+      "date": "2026-11-04",
+      "spend": 180.24,
+      "form_fills": 9,
+      "leads": 2,
+      "schedule_cost_per": null
+    },
+    {
+      "date": "2026-11-05",
+      "spend": 142.51,
+      "form_fills": 7,
+      "leads": 1,
+      "schedule_cost_per": 142.51
+    },
+    {
+      "date": "2026-11-06",
+      "spend": 165.74,
+      "form_fills": 8,
+      "leads": 0,
+      "schedule_cost_per": null
+    },
+    {
+      "date": "2026-11-07",
+      "spend": 146.31,
+      "form_fills": 10,
+      "leads": 0,
+      "schedule_cost_per": null
+    },
+    {
+      "date": "2026-11-08",
+      "spend": 145.21,
+      "form_fills": 3,
+      "leads": 2,
+      "schedule_cost_per": null
+    }
+  ]
+}

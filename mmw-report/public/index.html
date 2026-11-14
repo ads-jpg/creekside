@@ -65,6 +65,8 @@ th, td { text-align: right; padding: 7px 8px; border-bottom: 1px solid var(--lin
 th { color: var(--muted); font-weight: 500; }
 th:first-child, td:first-child { text-align: left; white-space: normal; min-width: 160px; }
 td.hl { font-weight: 600; }
+.ptable td:nth-child(2), .ptable td:nth-child(4) { font-size: 15px; }
+.ptable td .was { display: block; font-size: 11px; color: var(--muted); font-weight: 400; }
 .notes { display: grid; gap: 14px; }
 .notes h2 { margin: 0; font: 500 13px/1.2 var(--body); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
 .note { display: grid; gap: 4px; }
@@ -120,6 +122,15 @@ footer { font-size: 12px; color: var(--muted); }
       <div class="big val" data-k="totals.costPerAppt" data-f="money">$00.00</div>
       <div class="meta"><span><span class="val" data-k="totals.appts">0</span> appointments</span><span><span class="chg" data-chg="costPerAppt"></span> vs prior week (<span class="val" data-k="priorTotals.costPerAppt" data-f="money">$00</span>)</span></div>
     </article>
+  </section>
+
+  <section class="card" id="periods" aria-labelledby="periodsTitle">
+    <h2 id="periodsTitle">7-day and 30-day view</h2>
+    <p class="note" id="periodNote">Each period ends on the last day of the selected week and is compared with the same number of days just before it.</p>
+    <div class="tablewrap"><table class="ptable">
+      <thead><tr><th scope="col">Metric</th><th scope="col" id="p7h">Last 7 days</th><th scope="col">vs prior 7 days</th><th scope="col" id="p30h">Last 30 days</th><th scope="col">vs prior 30 days</th></tr></thead>
+      <tbody id="ptbody"></tbody>
+    </table></div>
   </section>
 
   <section class="strip" aria-label="Delivery">
@@ -224,7 +235,43 @@ footer { font-size: 12px; color: var(--muted); }
     if (t) { $('#topName').textContent = t.name; $('#topLeads').textContent = count.format(t.leads); $('#topAppts').textContent = count.format(t.appts); }
     $('#weekLabel').textContent = 'Week of ' + fmtDate(report.week.start, { month: 'short', day: 'numeric' }) + ' – ' + fmtDate(report.week.end, { month: 'short', day: 'numeric', year: 'numeric' });
     $('#footer').textContent = 'Ad account ' + report.accountId + ' · Data from ' + (report.source || 'Meta') + ', updated ' + new Date(report.fetchedAt).toLocaleString() + '.' + (report.priorMissing ? ' No data saved for the prior week, so there is no comparison.' : '');
-    drawFunnel(); drawDaily(); drawTables(); drawNotes();
+    drawPeriods(); drawFunnel(); drawDaily(); drawTables(); drawNotes();
+  }
+
+  // Rows of the 7-day / 30-day table: label, field, format, which direction is good.
+  const PERIOD_ROWS = [
+    ['Spend', 'spend', 'm', 'neutral'], ['Form fills', 'formFills', 'n', 'up'], ['Cost / form fill', 'costPerFormFill', 'm', 'down'],
+    ['Leads', 'leads', 'n', 'up'], ['Cost / lead', 'costPerLead', 'm', 'down'],
+    ['Appointments', 'appts', 'n', 'up'], ['Cost / appointment', 'costPerAppt', 'm', 'down'],
+  ];
+  function drawPeriods() {
+    const ps = report.periods;
+    $('#periods').hidden = !Array.isArray(ps) || ps.length < 2;
+    if ($('#periods').hidden) return;
+    const range = (a, b) => fmtDate(a, { month: 'short', day: 'numeric' }) + ' – ' + fmtDate(b, { month: 'short', day: 'numeric' });
+    const fmt = (v, f) => v == null ? '—' : f === 'm' ? money.format(v) : count.format(v);
+    $('#p7h').textContent = 'Last 7 days (' + range(ps[0].start, ps[0].end) + ')';
+    $('#p30h').textContent = 'Last 30 days (' + range(ps[1].start, ps[1].end) + ')';
+    $('#ptbody').replaceChildren(...PERIOD_ROWS.map(([label, k, f, dir]) => {
+      const cells = [el('td', { textContent: label })];
+      ps.forEach((p) => {
+        cells.push(el('td', { className: 'hl', textContent: p.complete ? fmt(p.totals[k], f) : 'Not enough data' }));
+        const v = p.changes[k];
+        const td = el('td');
+        if (v == null) td.textContent = '—';
+        else {
+          const c = el('span', { className: 'chg', textContent: (v > 0 ? '▲ +' : v < 0 ? '▼ ' : '') + pct(v) });
+          if (v !== 0 && dir !== 'neutral') c.classList.add((dir === 'up') === (v > 0) ? 'good' : 'bad');
+          td.append(c);
+        }
+        if (p.priorComplete && p.priorTotals[k] != null) td.append(el('span', { className: 'was', textContent: 'was ' + fmt(p.priorTotals[k], f) }));
+        cells.push(td);
+      });
+      return el('tr', {}, ...cells);
+    }));
+    const gaps = ps.filter((p) => !p.priorComplete).map((p) => 'the ' + p.days + ' days before ' + fmtDate(p.start, { month: 'short', day: 'numeric' }));
+    $('#periodNote').textContent = 'Each period ends on the last day of the selected week and is compared with the same number of days just before it.'
+      + (gaps.length ? ' No data is saved for ' + gaps.join(' or ') + ', so that comparison is left blank.' : '');
   }
 
   const NOTE_SECTIONS = [

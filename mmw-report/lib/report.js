@@ -134,6 +134,41 @@ function buildReport({ week, prior, adRows, priorAdRows, dailyRows, events = DEF
   };
 }
 
+// ---- 7-day and 30-day view ----
+
+// Totals for the 7 and 30 days ending on `end`, each against the same number of
+// days just before. `covered(date)` says whether data exists for a day; a period
+// with uncovered days is marked incomplete rather than counted as zero.
+function buildPeriods({ end, dailyRows, events = DEFAULT_EVENTS, covered = () => true }) {
+  const dayMap = new Map();
+  for (const r of dailyRows) dayMap.set(r.date_start, add(dayMap.get(r.date_start) || emptyTotals(), countsFor(r, events)));
+  const sum = (from, to) => {
+    const t = emptyTotals();
+    let complete = true;
+    for (let d = from; d <= to; d = addDays(d, 1)) {
+      if (!covered(d)) complete = false;
+      add(t, dayMap.get(d) || emptyTotals());
+    }
+    return { totals: withCosts(t), complete };
+  };
+  const keys = ['spend', 'formFills', 'costPerFormFill', 'leads', 'costPerLead', 'appts', 'costPerAppt'];
+  return [7, 30].map((n) => {
+    const start = addDays(end, -(n - 1));
+    const priorEnd = addDays(start, -1);
+    const priorStart = addDays(start, -n);
+    const now = sum(start, end);
+    const before = sum(priorStart, priorEnd);
+    const changes = {};
+    for (const k of keys) changes[k] = before.complete ? change(now.totals[k], before.totals[k]) : null;
+    return {
+      days: n, start, end, priorStart, priorEnd,
+      totals: now.totals, priorTotals: before.totals,
+      complete: now.complete, priorComplete: before.complete,
+      changes,
+    };
+  });
+}
+
 // ---- dates ----
 
 // Today's date (YYYY-MM-DD) in the ad account's time zone.
@@ -168,4 +203,4 @@ function weekFrom(start) {
   return { start: s, end: addDays(s, 6) };
 }
 
-module.exports = { buildReport, countsFor, recentWeeks, weekFrom, addDays, mondayOf, todayIn, DEFAULT_EVENTS };
+module.exports = { buildReport, buildPeriods, countsFor, recentWeeks, weekFrom, addDays, mondayOf, todayIn, DEFAULT_EVENTS };

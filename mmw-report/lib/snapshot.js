@@ -68,4 +68,31 @@ function allNotes(dir) {
     .filter(Boolean);
 }
 
-module.exports = { listWeeks, readWeek, adRowsOf, dailyRowsOf, allNotes };
+// Every saved day, for the 7-day and 30-day view: data/daily.json (account totals
+// by day over `range`, saved from AdKit) plus each week file's days, which win
+// where both have a day. `covered(date)` is true for days inside data/daily.json's
+// range or a saved week; days with no spend are simply absent within those.
+//
+// data/daily.json: { "range": { "from", "to" }, "source", "accountId", "updatedAt",
+//                    "daily": [{ "date", "spend", "form_fills", "leads", "schedule_cost_per" }] }
+function allDays(weeksDir) {
+  const histFile = path.join(weeksDir, '..', 'daily.json');
+  const hist = fs.existsSync(histFile) ? JSON.parse(fs.readFileSync(histFile, 'utf8')) : null;
+  const byDate = new Map();
+  const ranges = [];
+  if (hist) {
+    for (const d of hist.daily || []) byDate.set(d.date, d);
+    if (hist.range) ranges.push([hist.range.from, hist.range.to]);
+  }
+  for (const start of listWeeks(weeksDir)) {
+    const w = readWeek(weeksDir, start);
+    if (!w) continue;
+    for (const d of w.daily || []) byDate.set(d.date, d);
+    ranges.push([w.week.start, w.week.end]);
+  }
+  const days = [...byDate.values()].map((d) => toMetaRow(d, { date_start: d.date, date_stop: d.date }));
+  const covered = (date) => ranges.some(([a, b]) => date >= a && date <= b);
+  return { days, covered };
+}
+
+module.exports = { listWeeks, readWeek, adRowsOf, dailyRowsOf, allNotes, allDays };

@@ -5,7 +5,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const crypto = require('node:crypto');
 const { createMetaClient, MetaError } = require('./lib/meta');
-const { buildReport, recentWeeks, weekFrom, addDays } = require('./lib/report');
+const { buildReport, buildPeriods, recentWeeks, weekFrom, addDays } = require('./lib/report');
 const snapshot = require('./lib/snapshot');
 
 const DATA_DIR = path.join(__dirname, 'data', 'weeks');
@@ -39,6 +39,7 @@ function getSnapshotReport(start) {
   const snap = snapshot.readWeek(DATA_DIR, week.start);
   if (!snap) return null;
   const priorSnap = snapshot.readWeek(DATA_DIR, prior.start);
+  const { days, covered } = snapshot.allDays(DATA_DIR);
   return {
     ...buildReport({
       week, prior,
@@ -46,6 +47,7 @@ function getSnapshotReport(start) {
       priorAdRows: snapshot.adRowsOf(priorSnap),
       dailyRows: snapshot.dailyRowsOf(snap),
     }),
+    periods: buildPeriods({ end: week.end, dailyRows: days, covered }),
     priorMissing: !priorSnap,
     notes: snap.notes ? { week, ...snap.notes } : null,
     archive: snapshot.allNotes(DATA_DIR).filter((n) => n.week.start !== week.start),
@@ -63,13 +65,15 @@ async function getReport(start) {
   const hit = cache.get(key);
   if (hit && Date.now() - hit.at < config.cacheMs) return hit.report;
 
-  const [adRows, priorAdRows, dailyRows] = await Promise.all([
+  const [adRows, priorAdRows, dailyRows, sixtyDays] = await Promise.all([
     meta.insights({ level: 'ad', since: week.start, until: week.end }),
     meta.insights({ level: 'ad', since: prior.start, until: prior.end }),
     meta.insights({ level: 'account', since: week.start, until: week.end, daily: true }),
+    meta.insights({ level: 'account', since: addDays(week.end, -59), until: week.end, daily: true }),
   ]);
   const report = {
     ...buildReport({ week, prior, adRows, priorAdRows, dailyRows, events: config.events }),
+    periods: buildPeriods({ end: week.end, dailyRows: sixtyDays, events: config.events }),
     accountId: config.accountId,
     timeZone: config.timeZone,
     source: 'Meta Marketing API',

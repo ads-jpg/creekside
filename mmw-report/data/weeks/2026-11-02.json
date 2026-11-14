@@ -1,0 +1,114 @@
+{
+  "week": {
+    "start": "2026-11-02",
+    "end": "2026-11-08"
+  },
+  "source": "AdKit (Meta Ads)",
+  "accountId": "act_1228742844209195",
+  "updatedAt": "2026-11-14T16:30:00Z",
+  "ads": [
+    {
+      "id": "120248803222380767",
+      "name": "video 1",
+      "adset": "Leads | Broad + Exclusions | Sign",
+      "campaign": "CS | Form Start | Updated 10/23",
+      "spend": 363.53,
+      "impressions": 9991,
+      "link_clicks": 342,
+      "landing_page_views": 315,
+      "form_fills": 27,
+      "leads": 3,
+      "schedule_cost_per": null
+    },
+    {
+      "id": "120249027331380767",
+      "name": "Print United",
+      "adset": "Leads | Men Broad | Print Shop",
+      "campaign": "CS | Form Start | Updated 10/23",
+      "spend": 358.63,
+      "impressions": 13357,
+      "link_clicks": 246,
+      "landing_page_views": 218,
+      "form_fills": 6,
+      "leads": 2,
+      "schedule_cost_per": 119.54
+    },
+    {
+      "id": "120248803222400767",
+      "name": "video 2",
+      "adset": "Leads | Broad + Exclusions | Sign",
+      "campaign": "CS | Form Start | Updated 10/23",
+      "spend": 135.15,
+      "impressions": 4589,
+      "link_clicks": 221,
+      "landing_page_views": 201,
+      "form_fills": 16,
+      "leads": 0,
+      "schedule_cost_per": null
+    },
+    {
+      "id": "120249027331370767",
+      "name": "Print Van",
+      "adset": "Leads | Men Broad | Print Shop",
+      "campaign": "CS | Form Start | Updated 10/23",
+      "spend": 123.78,
+      "impressions": 3750,
+      "link_clicks": 72,
+      "landing_page_views": 66,
+      "form_fills": 2,
+      "leads": 0,
+      "schedule_cost_per": null
+    }
+  ],
+  "daily": [
+    {
+      "date": "2026-11-02",
+      "spend": 56.55,
+      "form_fills": 1,
+      "leads": 0,
+      "schedule_cost_per": 56.55
+    },
+    {
+      "date": "2026-11-03",
+      "spend": 144.53,
+      "form_fills": 13,
+      "leads": 0,
+      "schedule_cost_per": 144.53
+    },
+    {
+      "date": "2026-11-04",
+      "spend": 180.24,
+      "form_fills": 9,
+      "leads": 2,
+      "schedule_cost_per": null
+    },
+    {
+      "date": "2026-11-05",
+      "spend": 142.51,
+      "form_fills": 7,
+      "leads": 1,
+      "schedule_cost_per": 142.51
+    },
+    {
+      "date": "2026-11-06",
+      "spend": 165.74,
+      "form_fills": 8,
+      "leads": 0,
+      "schedule_cost_per": null
+    },
+    {
+      "date": "2026-11-07",
+      "spend": 146.31,
+      "form_fills": 10,
+      "leads": 0,
+      "schedule_cost_per": null
+    },
+    {
+      "date": "2026-11-08",
+      "spend": 145.21,
+      "form_fills": 3,
+      "leads": 2,
+      "schedule_cost_per": null
+    }
+  ]
+}
