@@ -47,6 +47,10 @@ A week file can also hold the week's **report notes** (`notes`, described in `li
 
 It prints the week's totals (by ad and by day) and the three costs, to compare with AdKit, and stops with an error if the file is malformed or the two totals disagree.
 
+## 7-day and 30-day view
+
+Below the three KPIs, a table compares the 7 and 30 days ending on the selected week's Sunday with the same number of days before. With saved AdKit data it uses every saved week's days plus `data/daily.json`, account totals by day over its `range` (described in `lib/snapshot.js`). A period that reaches a day with no saved data shows "Not enough data", or leaves its comparison blank, instead of counting that day as zero. With a Meta token it reads the 60 days from Meta directly.
+
 ## Checking the event mapping
 
 `/api/events?start=2026-10-26` lists every event name Meta returned for that week, with counts and costs. If a KPI shows 0 when it shouldn't, find the right event name there and set the matching variable.
