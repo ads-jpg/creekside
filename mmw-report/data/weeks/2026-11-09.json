@@ -1,0 +1,126 @@
+{
+  "week": {
+    "start": "2026-11-09",
+    "end": "2026-11-15"
+  },
+  "source": "AdKit (Meta Ads)",
+  "accountId": "act_1228742844209195",
+  "updatedAt": "2026-11-16T12:46:30Z",
+  "ads": [
+    {
+      "id": "120248803222380767",
+      "name": "video 1",
+      "adset": "Leads | Broad + Exclusions | Sign",
+      "campaign": "CS | Form Start | Updated 10/23",
+      "spend": 409.14,
+      "impressions": 10158,
+      "link_clicks": 344,
+      "landing_page_views": 318,
+      "form_fills": 30,
+      "leads": 0,
+      "schedule_cost_per": null
+    },
+    {
+      "id": "120249027331380767",
+      "name": "Print United",
+      "adset": "Leads | Men Broad | Print Shop",
+      "campaign": "CS | Form Start | Updated 10/23",
+      "spend": 369.79,
+      "impressions": 10946,
+      "link_clicks": 218,
+      "landing_page_views": 185,
+      "form_fills": 11,
+      "leads": 2,
+      "schedule_cost_per": null
+    },
+    {
+      "id": "120249027331370767",
+      "name": "Print Van",
+      "adset": "Leads | Men Broad | Print Shop",
+      "campaign": "CS | Form Start | Updated 10/23",
+      "spend": 53.96,
+      "impressions": 1555,
+      "link_clicks": 42,
+      "landing_page_views": 35,
+      "form_fills": 2,
+      "leads": 0,
+      "schedule_cost_per": null
+    }
+  ],
+  "daily": [
+    {
+      "date": "2026-11-09",
+      "spend": 99.08,
+      "form_fills": 1,
+      "leads": 0,
+      "schedule_cost_per": null
+    },
+    {
+      "date": "2026-11-10",
+      "spend": 131.12,
+      "form_fills": 9,
+      "leads": 0,
+      "schedule_cost_per": null
+    },
+    {
+      "date": "2026-11-11",
+      "spend": 103.68,
+      "form_fills": 9,
+      "leads": 2,
+      "schedule_cost_per": null
+    },
+    {
+      "date": "2026-11-12",
+      "spend": 137.6,
+      "form_fills": 5,
+      "leads": 0,
+      "schedule_cost_per": null
+    },
+    {
+      "date": "2026-11-13",
+      "spend": 122.78,
+      "form_fills": 7,
+      "leads": 0,
+      "schedule_cost_per": null
+    },
+    {
+      "date": "2026-11-14",
+      "spend": 99.54,
+      "form_fills": 5,
+      "leads": 0,
+      "schedule_cost_per": null
+    },
+    {
+      "date": "2026-11-15",
+      "spend": 139.09,
+      "form_fills": 7,
+      "leads": 0,
+      "schedule_cost_per": null
+    }
+  ],
+  "notes": {
+    "date": "2026-11-16",
+    "performanceSnapshot": [
+      "Nov 9 to Nov 15: 43 form fills, 2 leads and no booked appointments on $833 spent. That's $19.37 per form fill and $416.45 per lead.",
+      "The prior week (Nov 2 to 8) was 51 form fills, 5 leads and 3 appointments on $981 spent: $19.24 per form fill, $196.22 per lead and $327.03 per appointment. Cost per form fill held steady, but cost per lead more than doubled and no appointments were recorded this week."
+    ],
+    "whatWeChanged": [
+      "The video 2 ad (Sign ad set) and the Print Van ad (Print Shop ad set) are now paused. Video 2 had no spend this week; Print Van spent $53.96 before it stopped.",
+      "Each ad set now runs one ad: video 1 in the Sign ad set and Print United in the Print Shop ad set. Budgets are unchanged at $60 a day per ad set."
+    ],
+    "workingNotWorking": [
+      "Sign ad set (video 1): 30 form fills at $13.64 each, the cheapest in the account, but no leads and no appointments on $409 spent.",
+      "Print Shop ad set: 13 form fills at $32.60 each and both of the week's leads ($211.88 per lead), with no appointments. Print United brought in the 2 leads at $184.90 each.",
+      "Fewer people are finishing the form. 29% of form fills became leads the week of Oct 26, 10% the week of Nov 2 and 5% this week, while form fills fell less, from 66 to 51 to 43."
+    ],
+    "nextSteps": [
+      "Test the form ourselves on mobile and desktop, from the ad through to the thank-you page, to confirm it submits and the Lead event fires.",
+      "Compare the leads Meta recorded with the leads you received, to see whether the drop is real or a tracking issue.",
+      "If the form is working, shorten it or ask for contact details earlier, since most people who start it don't finish.",
+      "Keep Print United running. It has brought in 18 of the 26 leads since Oct 26."
+    ],
+    "clientNeeds": [
+      "Please tell us how many leads and booked appointments came in from Facebook and Instagram in each of the last two weeks, so we can check them against what Meta recorded."
+    ]
+  }
+}
