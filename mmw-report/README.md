@@ -4,8 +4,8 @@ A live web page with the weekly Meta Ads report for Mark My Words Media. The thr
 
 The data comes from one of two places:
 
-- **Weekly AdKit data (the default).** With no Meta token set, the page reads the weeks saved in `data/weeks/`, one file per Monday–Sunday week. A scheduled Claude task pulls each finished week from AdKit every Monday, saves it there and pushes, and Railway redeploys automatically. The dropdown lists every saved week.
-- **Live Meta API.** If `META_ACCESS_TOKEN` is set, the page calls the Meta Marketing API instead, with results cached for 15 minutes, and the dropdown goes back 12 weeks.
+- **Weekly AdKit data (the default).** Unless `REPORT_SOURCE=meta` is set, the page reads the weeks saved in `data/weeks/`, one file per Monday–Sunday week. A scheduled Claude task pulls each finished week from AdKit every Monday, saves it there and pushes, and Railway redeploys automatically. The dropdown lists every saved week.
+- **Live Meta API.** If `META_ACCESS_TOKEN` is set **and** `REPORT_SOURCE=meta`, the page calls the Meta Marketing API instead, with results cached for 15 minutes, and the dropdown goes back 12 weeks.
 
 No dependencies. Needs Node 20 or later.
 
@@ -26,6 +26,7 @@ Railway sets `PORT` itself. `railway.json` sets the start command and a `/health
 | Variable | Default | What it does |
 |---|---|---|
 | `META_ACCESS_TOKEN` | (required) | Meta Marketing API token |
+| `REPORT_SOURCE` | (AdKit) | Set to `meta` to read Meta live instead of the saved AdKit weeks (needs `META_ACCESS_TOKEN`) |
 | `META_AD_ACCOUNT_ID` | `act_1228742844209195` | Ad account to report on |
 | `REPORT_PASSWORD` | (none) | Password-protects every page except `/healthz` |
 | `REPORT_TIMEZONE` | `America/New_York` | Time zone the weeks are counted in (match the ad account) |
