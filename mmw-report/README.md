@@ -37,7 +37,7 @@ Railway sets `PORT` itself. `railway.json` sets the start command and a `/health
 
 ## Saved weeks from AdKit
 
-Each file in `data/weeks/` is named after the week's Monday (`2026-10-26.json`) and holds that week's ads and days; `lib/snapshot.js` describes the fields. After saving a week, check it:
+Each file in `data/weeks/` is named after its first day (`2026-10-26.json`) and holds that 7-day week's ads and days; `lib/snapshot.js` describes the fields. Weeks usually run Monday to Sunday, but a file can start on any day (for example `2026-11-11.json` covers Wednesday Nov 11 to Tuesday Nov 17). When no saved file starts 7 days earlier, add the prior 7 days' ads to the file as `priorAds` so the page can compare. After saving a week, check it:
 
 ```bash
 node scripts/check-week.js 2026-10-26

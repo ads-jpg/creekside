@@ -1,11 +1,11 @@
 {
   "range": {
     "from": "2026-09-07",
-    "to": "2026-11-08"
+    "to": "2026-11-10"
   },
   "source": "AdKit (Meta Ads)",
   "accountId": "act_1228742844209195",
-  "updatedAt": "2026-11-14T16:30:00Z",
+  "updatedAt": "2026-11-18T18:30:00Z",
   "note": "Account-wide totals by day, all campaigns, used for the 7-day and 30-day view. Days with no spend are left out.",
   "daily": [
     {
@@ -384,6 +384,20 @@
       "spend": 145.21,
       "form_fills": 3,
       "leads": 2,
+      "schedule_cost_per": null
+    },
+    {
+      "date": "2026-11-09",
+      "spend": 99.08,
+      "form_fills": 1,
+      "leads": 0,
+      "schedule_cost_per": null
+    },
+    {
+      "date": "2026-11-10",
+      "spend": 131.12,
+      "form_fills": 9,
+      "leads": 0,
       "schedule_cost_per": null
     }
   ]
