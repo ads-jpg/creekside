@@ -123,7 +123,10 @@ const DATE_RE = /^20\d{2}-[01]\d-[0-3]\d$/;
 const server = http.createServer(async (req, res) => {
   const url = new URL(req.url, 'http://localhost');
 
-  if (url.pathname === '/healthz') return send(res, 200, { ok: true });
+  // Also says which data the page reads and its newest week, to check a deploy at a glance.
+  if (url.pathname === '/healthz') {
+    return send(res, 200, { ok: true, source: liveMeta ? 'meta' : 'adkit', latestWeek: liveMeta ? null : snapshot.listWeeks(DATA_DIR)[0] || null });
+  }
 
   if (!authorized(req)) {
     res.writeHead(401, { 'WWW-Authenticate': 'Basic realm="Mark My Words Media report"' });
