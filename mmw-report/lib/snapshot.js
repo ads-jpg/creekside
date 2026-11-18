@@ -1,7 +1,8 @@
 'use strict';
 
-// Weekly snapshots saved from AdKit (data/weeks/<monday>.json), used when the
-// server has no Meta token. Each file holds one Monday–Sunday week:
+// Weekly snapshots saved from AdKit (data/weeks/<start>.json), used when the
+// server has no Meta token. Each file holds the 7 days from its start date,
+// usually a Monday–Sunday week, but any 7 days work (e.g. Wednesday to Tuesday):
 //
 // {
 //   "week": { "start": "2026-10-26", "end": "2026-11-01" },
@@ -9,6 +10,8 @@
 //   "ads":   [{ "id", "name", "adset", "campaign", "spend", "impressions", "link_clicks",
 //               "landing_page_views", "form_fills", "leads", "schedule_cost_per" }],
 //   "daily": [{ "date", "spend", "form_fills", "leads", "schedule_cost_per" }],
+//   "priorAds": [ … ],   // optional, same fields as ads: the 7 days before, used when
+//                        // no saved file starts on that day
 //   "notes": {            // optional: the written report notes for this week
 //     "date": "2026-11-06",
 //     "performanceSnapshot": ["…"], "whatWeChanged": ["…"], "workingNotWorking": ["…"],

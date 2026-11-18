@@ -5,7 +5,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const crypto = require('node:crypto');
 const { createMetaClient, MetaError } = require('./lib/meta');
-const { buildReport, buildPeriods, recentWeeks, weekFrom, addDays } = require('./lib/report');
+const { buildReport, buildPeriods, recentWeeks, weekFrom, sevenDaysFrom, addDays } = require('./lib/report');
 const snapshot = require('./lib/snapshot');
 
 const DATA_DIR = path.join(__dirname, 'data', 'weeks');
@@ -33,12 +33,15 @@ const meta = config.token
 const cache = new Map();
 
 // Without a Meta token, the report reads weekly snapshots saved from AdKit.
+// A saved report covers the 7 days from its start date, which need not be a Monday.
 function getSnapshotReport(start) {
-  const week = weekFrom(start);
+  const week = sevenDaysFrom(start);
   const prior = { start: addDays(week.start, -7), end: addDays(week.start, -1) };
   const snap = snapshot.readWeek(DATA_DIR, week.start);
   if (!snap) return null;
-  const priorSnap = snapshot.readWeek(DATA_DIR, prior.start);
+  // The prior 7 days: their own saved file if there is one, else this file's priorAds.
+  const priorFile = snapshot.readWeek(DATA_DIR, prior.start);
+  const priorSnap = priorFile || (snap.priorAds ? { ads: snap.priorAds } : null);
   const { days, covered } = snapshot.allDays(DATA_DIR);
   return {
     ...buildReport({
@@ -129,7 +132,7 @@ const server = http.createServer(async (req, res) => {
     if (url.pathname === '/api/weeks') {
       const weeks = meta
         ? recentWeeks(config.timeZone, 12)
-        : snapshot.listWeeks(DATA_DIR).map((start) => weekFrom(start));
+        : snapshot.listWeeks(DATA_DIR).map((start) => sevenDaysFrom(start));
       return send(res, 200, { weeks });
     }
 

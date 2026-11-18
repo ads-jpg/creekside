@@ -198,9 +198,14 @@ function recentWeeks(timeZone, count = 12, now = new Date()) {
   return out;
 }
 
+// Seven days starting on `start`, whatever day of the week it is (saved AdKit reports).
+function sevenDaysFrom(start) {
+  return { start, end: addDays(start, 6) };
+}
+
 function weekFrom(start) {
   const s = mondayOf(start);
   return { start: s, end: addDays(s, 6) };
 }
 
-module.exports = { buildReport, buildPeriods, countsFor, recentWeeks, weekFrom, addDays, mondayOf, todayIn, DEFAULT_EVENTS };
+module.exports = { buildReport, buildPeriods, countsFor, recentWeeks, weekFrom, sevenDaysFrom, addDays, mondayOf, todayIn, DEFAULT_EVENTS };
