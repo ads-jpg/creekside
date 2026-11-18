@@ -30,6 +30,10 @@ const meta = config.token
   ? createMetaClient({ token: config.token, accountId: config.accountId, version: config.apiVersion, baseUrl: config.graphUrl })
   : null;
 
+// The page reads the weeks saved from AdKit unless REPORT_SOURCE=meta (and a token is set).
+// A token alone only enables /api/events.
+const liveMeta = meta && (process.env.REPORT_SOURCE || '').toLowerCase() === 'meta';
+
 const cache = new Map();
 
 // Without a Meta token, the report reads weekly snapshots saved from AdKit.
@@ -130,13 +134,13 @@ const server = http.createServer(async (req, res) => {
     if (url.pathname === '/' || url.pathname === '/index.html') return send(res, 200, indexHtml, 'text/html; charset=utf-8');
 
     if (url.pathname === '/api/weeks') {
-      const weeks = meta
+      const weeks = liveMeta
         ? recentWeeks(config.timeZone, 12)
         : snapshot.listWeeks(DATA_DIR).map((start) => sevenDaysFrom(start));
       return send(res, 200, { weeks });
     }
 
-    if (url.pathname === '/api/report' && !meta) {
+    if (url.pathname === '/api/report' && !liveMeta) {
       const start = url.searchParams.get('start') || snapshot.listWeeks(DATA_DIR)[0];
       if (!start) return send(res, 503, { error: 'No weekly data has been saved yet.' });
       if (!DATE_RE.test(start)) return send(res, 400, { error: 'start must be a date like 2026-10-26' });
