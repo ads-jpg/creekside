@@ -1,0 +1,242 @@
+<title>BlushCam Holiday Emails</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@150,800&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Layout: a black brand header, then a two-column grid of email cards (preview left, send details right), grouped by offer. */
+:root {
+  --bg: #FBF7F8;
+  --surface: #FFFFFF;
+  --fg: #141213;
+  --muted: #6E6468;
+  --line: #E9DFE2;
+  --pink: #F7CAD6;
+  --pink-ink: #141213;
+  --accent: #C2185B;
+  --ink: #111111;
+  --on-ink: #FFFFFF;
+  --frame: #EFE8EA;
+  --display: 'Anybody', 'Arial Black', 'Helvetica Neue', Arial, sans-serif;
+  --body: 'Inter', -apple-system, 'Segoe UI', Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #141113; --surface: #1D191B; --fg: #F6EEF1; --muted: #B3A6AB; --line: #342C30;
+    --pink: #F7CAD6; --pink-ink: #141213; --accent: #FF8DB8; --ink: #0A0909; --on-ink: #FFFFFF; --frame: #282226;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #141113; --surface: #1D191B; --fg: #F6EEF1; --muted: #B3A6AB; --line: #342C30;
+  --pink: #F7CAD6; --pink-ink: #141213; --accent: #FF8DB8; --ink: #0A0909; --on-ink: #FFFFFF; --frame: #282226;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 15px; line-height: 1.55; }
+.wrap { max-width: 1120px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.display { font-family: var(--display); font-stretch: 150%; font-weight: 800; text-transform: uppercase; letter-spacing: .02em; text-wrap: balance; }
+.eyebrow { font-size: 12px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+
+.strip { background: var(--pink); color: var(--pink-ink); text-align: center; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; padding-block: 8px; margin-top: calc(-1 * env(safe-area-inset-top, 0px)); padding-top: calc(env(safe-area-inset-top, 0px) + 8px); }
+header.top { background: var(--ink); color: var(--on-ink); }
+header.top .wrap { padding-block: 40px 36px; display: grid; gap: 14px; }
+header.top h1 { margin: 0; font-size: clamp(30px, 6vw, 56px); line-height: 1.02; }
+header.top p { margin: 0; max-width: 62ch; color: #D9D2D5; }
+.meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+.chip { display: inline-flex; align-items: center; gap: 6px; border: 1px solid #3A3A3A; color: #F2F2F2; padding: 6px 12px; font-size: 13px; text-decoration: none; }
+.chip:hover, .chip:focus-visible { border-color: var(--pink); color: var(--pink); }
+
+nav.tabs { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); border-bottom: 1px solid var(--line); }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+nav.tabs .wrap { display: flex; gap: 4px; overflow-x: auto; padding-block: 0; }
+nav.tabs a { flex: none; padding: 14px 14px 12px; font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); text-decoration: none; border-bottom: 3px solid transparent; }
+nav.tabs a:hover, nav.tabs a:focus-visible { color: var(--fg); border-bottom-color: var(--pink); }
+
+section.group { padding-block: 44px 8px; }
+.group-head { display: grid; gap: 6px; margin-bottom: 22px; }
+.group-head h2 { margin: 0; font-size: clamp(22px, 3.4vw, 32px); line-height: 1.1; }
+.group-head p { margin: 0; color: var(--muted); max-width: 70ch; }
+.code-tag { display: inline-block; font-family: var(--display); font-stretch: 150%; font-weight: 800; letter-spacing: .18em; border: 2px dashed var(--accent); color: var(--fg); padding: 2px 10px; font-size: 14px; }
+
+.email { display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: 28px; background: var(--surface); border: 1px solid var(--line); padding: 22px; margin-bottom: 22px; }
+.shot { background: var(--frame); height: 520px; overflow-y: auto; overscroll-behavior: contain; border: 1px solid var(--line); }
+.shot img { display: block; width: 100%; height: auto; }
+.info { min-width: 0; display: grid; align-content: start; gap: 16px; }
+.info h3 { margin: 0; font-size: 22px; line-height: 1.15; }
+.step { display: inline-block; font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
+dl { margin: 0; display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 10px 14px; }
+dt { font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); padding-top: 2px; }
+dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+.copyable { display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+.mini { background: none; border: 1px solid var(--line); color: var(--muted); font: 600 11px var(--body); letter-spacing: .08em; text-transform: uppercase; padding: 3px 8px; cursor: pointer; }
+.mini:hover, .mini:focus-visible { color: var(--fg); border-color: var(--fg); }
+.summary { margin: 0; color: var(--fg); }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.btn { appearance: none; border: 2px solid var(--fg); background: var(--fg); color: var(--bg); font-family: var(--display); font-stretch: 150%; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; font-size: 13px; padding: 12px 18px; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; }
+.btn.ghost { background: transparent; color: var(--fg); }
+.btn:focus-visible, .mini:focus-visible, .chip:focus-visible, nav.tabs a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.status { font-size: 13px; color: var(--accent); min-height: 1.2em; }
+textarea.fallback { width: 100%; height: 140px; font: 12px/1.4 ui-monospace, Menlo, monospace; background: var(--bg); color: var(--fg); border: 1px solid var(--line); padding: 8px; }
+
+.checklist { background: var(--surface); border: 1px solid var(--line); padding: 24px; margin-block: 22px 48px; display: grid; gap: 14px; }
+.checklist h2 { margin: 0; font-size: 22px; }
+.checklist ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 12px; }
+.checklist li { display: grid; grid-template-columns: 18px minmax(0, 1fr); gap: 12px; align-items: start; }
+.checklist li::before { content: ""; width: 14px; height: 14px; margin-top: 4px; border: 2px solid var(--accent); }
+.checklist strong { font-weight: 600; }
+footer { color: var(--muted); font-size: 13px; padding-block: 0 40px; }
+
+@media (max-width: 760px) {
+  .email { grid-template-columns: minmax(0, 1fr); padding: 16px; gap: 18px; }
+  .shot { height: 420px; }
+  dl { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+  dd { margin-bottom: 10px; }
+}
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+</style>
+
+<div class="strip">5 campaigns · free strap offer + Black Friday</div>
+<header class="top">
+  <div class="wrap">
+    <span class="eyebrow" style="color:#F7CAD6">Blush™ Digicam · email campaigns</span>
+    <h1 class="display">Holiday email<br>campaigns</h1>
+    <p>Five ready-to-send HTML emails for blushcamera.com. Scroll each preview, then use <b>Copy HTML</b> to paste the email into Klaviyo or another email platform as a custom HTML template.</p>
+    <div class="meta">
+      <a class="chip" href="https://github.com/ads-jpg/creekside/pull/10" target="_blank" rel="noopener">Source: ads-jpg/creekside#10 ↗</a>
+      <a class="chip" href="https://blushcamera.com" target="_blank" rel="noopener">blushcamera.com ↗</a>
+    </div>
+  </div>
+</header>
+
+<nav class="tabs" aria-label="Sections">
+  <div class="wrap">
+    <a href="#free-strap">Free strap · 3</a>
+    <a href="#black-friday">Black Friday · 2</a>
+    <a href="#before-sending">Before sending</a>
+  </div>
+</nav>
+
+<main class="wrap">
+  <section class="group" id="free-strap">
+    <div class="group-head">
+      <span class="eyebrow">Offer 1</span>
+      <h2 class="display">Buy 2 cameras, get a free strap</h2>
+      <p>A three-email sequence: launch, gifting angle, then a last-chance reminder. The free gift is the Beaded Camera Strap ($55 value) in Blue, Pink or Black &amp; White Dot.</p>
+    </div>
+    <div id="list-strap"></div>
+  </section>
+
+  <section class="group" id="black-friday">
+    <div class="group-head">
+      <span class="eyebrow">Offer 2</span>
+      <h2 class="display">Black Friday 25% off</h2>
+      <p>Two emails: launch and last call. Both use the code <span class="code-tag">BC25</span> and show prices with the code applied.</p>
+    </div>
+    <div id="list-bf"></div>
+  </section>
+
+  <section class="checklist" id="before-sending">
+    <h2 class="display">Before sending</h2>
+    <ul>
+      <li><span><strong>Strap offer terms.</strong> The copy says "buy any 2 cameras, get a beaded strap free ($55 value)". Confirm this matches how the offer is set up in Shopify.</span></li>
+      <li><span><strong>Black Friday prices.</strong> These are the site's prices with BC25 applied as of Nov 19, 2026: Digicam $127.50, Bestie Bundle $240, Creator Pack $160, Travel Kit $176.25, Case $35.25.</span></li>
+      <li><span><strong>Review quotes.</strong> The quotes in emails 1, 2 and 5 are placeholders. Replace them with real customer reviews.</span></li>
+      <li><span><strong>Footer tags.</strong> The footer uses Klaviyo's unsubscribe, preferences and address tags. Swap them if you send from another platform.</span></li>
+      <li><span><strong>Tracking.</strong> Every link carries utm_source=email, utm_medium=email and a utm_campaign named after the email.</span></li>
+    </ul>
+  </section>
+
+  <footer>Images load from blushcamera.com's Shopify store. To change copy or images, edit <code>emails/blushcam/build.py</code> in the repo and rebuild.</footer>
+</main>
+
+<script>
+const EMAILS = [
+  { group: 'strap', n: 1, timing: 'Launch', file: '01-free-strap-launch',
+    subject: 'Two cams. One free strap.',
+    preheader: 'Buy any 2 Blush Digicams and your beaded camera strap is on us.',
+    summary: 'Announces the offer with a lifestyle hero, the three strap colors, a 3-step "how it works", the 2-Pack Bestie Bundle and the camera features.' },
+  { group: 'strap', n: 2, timing: 'Mid-offer', file: '02-free-strap-bestie-pair',
+    subject: 'Matching cams for you + your bestie',
+    preheader: 'Pick two Blush Digicams and get a free beaded strap. Gift one, keep one.',
+    summary: 'Gifting angle. Shows all 8 camera colors to pick a pair from, then sections on the free strap and the built-in vanity mirror.' },
+  { group: 'strap', n: 3, timing: 'Final day', file: '03-free-strap-last-chance',
+    subject: 'Last chance: your free strap',
+    preheader: 'Ends tonight: buy 2 Blush Digicams, get a beaded strap free.',
+    summary: 'Pink "ends tonight" email with the straps up top, the features, two product cards and a "Shop before midnight" button.' },
+  { group: 'bf', n: 4, timing: 'Black Friday launch', file: '04-black-friday-25-off-launch',
+    subject: 'Black Friday: 25% off everything',
+    preheader: 'Use code BC25 for 25% off every Blush Digicam, bundle and accessory.',
+    summary: 'Black background with a big 25% OFF, a BC25 code box, four products at the discounted price and the case as an add-on.' },
+  { group: 'bf', n: 5, timing: 'Black Friday last call', file: '05-black-friday-25-off-last-call',
+    subject: 'Last call: 25% off ends tonight',
+    preheader: 'Code BC25 expires at midnight. 25% off every Blush Digicam.',
+    summary: 'Pink "final hours" email with the BC25 code, three photos taken on the camera, a gift section and a closing midnight banner.' },
+];
+
+function el(tag, attrs = {}, ...kids) {
+  const e = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (k === 'class') e.className = v; else if (k === 'text') e.textContent = v; else e.setAttribute(k, v);
+  }
+  kids.flat().forEach(k => k && e.append(k));
+  return e;
+}
+
+async function copyText(text, statusEl, fallbackHost) {
+  try {
+    await navigator.clipboard.writeText(text);
+    statusEl.textContent = 'Copied';
+  } catch (err) {
+    let ta = fallbackHost.querySelector('textarea.fallback');
+    if (!ta) { ta = el('textarea', { class: 'fallback', readonly: '', 'aria-label': 'Email HTML' }); fallbackHost.append(ta); }
+    ta.value = text; ta.focus(); ta.select();
+    statusEl.textContent = 'Your browser blocked copying. The HTML is selected below: press Ctrl/Cmd+C.';
+  }
+  setTimeout(() => { if (statusEl.textContent === 'Copied') statusEl.textContent = ''; }, 2500);
+}
+
+function card(e) {
+  const status = el('div', { class: 'status', role: 'status', 'aria-live': 'polite' });
+  const info = el('div', { class: 'info' });
+
+  const copyBtn = el('button', { class: 'btn', type: 'button', id: 'copy-' + e.n, text: 'Copy HTML' });
+  copyBtn.addEventListener('click', () => {
+    const p = fetch('emails/' + e.file + '.html').then(r => { if (!r.ok) throw new Error(r.status); return r.text(); });
+    // Ask for the clipboard inside the click: hand it a promise of the text.
+    if (navigator.clipboard && window.ClipboardItem) {
+      navigator.clipboard.write([new ClipboardItem({ 'text/plain': p.then(t => new Blob([t], { type: 'text/plain' })) })])
+        .then(() => { status.textContent = 'Copied'; setTimeout(() => status.textContent = '', 2500); })
+        .catch(() => p.then(t => copyText(t, status, info)).catch(() => status.textContent = 'Could not load the HTML file. Reload the page and try again.'));
+    } else {
+      p.then(t => copyText(t, status, info)).catch(() => status.textContent = 'Could not load the HTML file. Reload the page and try again.');
+    }
+  });
+
+  const fullBtn = el('a', { class: 'btn ghost', href: 'previews/' + e.file + '.png', target: '_blank', rel: 'noopener', text: 'Full-size preview ↗' });
+
+  const field = (label, value) => {
+    const b = el('button', { class: 'mini', type: 'button', text: 'Copy' });
+    b.addEventListener('click', () => copyText(value, status, info));
+    return [el('dt', { text: label }), el('dd', {}, el('div', { class: 'copyable' }, el('span', { text: value }), b))];
+  };
+
+  info.append(
+    el('span', { class: 'step', text: `Email ${e.n} · ${e.timing}` }),
+    el('h3', { class: 'display', text: e.subject }),
+    el('dl', {}, ...field('Subject', e.subject), ...field('Preview text', e.preheader),
+      el('dt', { text: 'File' }), el('dd', { text: e.file + '.html' })),
+    el('p', { class: 'summary', text: e.summary }),
+    el('div', { class: 'actions' }, copyBtn, fullBtn),
+    status
+  );
+
+  const shot = el('div', { class: 'shot', tabindex: '0', 'aria-label': `Preview of email ${e.n}, scrollable` },
+    el('img', { src: 'previews/' + e.file + '.png', alt: `Full preview of email ${e.n}: ${e.subject}`, width: '680' }));
+
+  return el('article', { class: 'email', id: 'email-' + e.n }, shot, info);
+}
+
+const strap = document.getElementById('list-strap');
+const bf = document.getElementById('list-bf');
+EMAILS.forEach(e => (e.group === 'strap' ? strap : bf).append(card(e)));
+</script>
