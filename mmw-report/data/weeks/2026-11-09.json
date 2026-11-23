@@ -5,15 +5,15 @@
   },
   "source": "AdKit (Meta Ads)",
   "accountId": "act_1228742844209195",
-  "updatedAt": "2026-11-16T12:46:30Z",
+  "updatedAt": "2026-11-23T12:45:59Z",
   "ads": [
     {
       "id": "120248803222380767",
       "name": "video 1",
       "adset": "Leads | Broad + Exclusions | Sign",
       "campaign": "CS | Form Start | Updated 10/23",
-      "spend": 409.14,
-      "impressions": 10158,
+      "spend": 409.86,
+      "impressions": 10171,
       "link_clicks": 344,
       "landing_page_views": 318,
       "form_fills": 30,
@@ -25,8 +25,8 @@
       "name": "Print United",
       "adset": "Leads | Men Broad | Print Shop",
       "campaign": "CS | Form Start | Updated 10/23",
-      "spend": 369.79,
-      "impressions": 10946,
+      "spend": 370.13,
+      "impressions": 10959,
       "link_clicks": 218,
       "landing_page_views": 185,
       "form_fills": 11,
@@ -92,7 +92,7 @@
     },
     {
       "date": "2026-11-15",
-      "spend": 139.09,
+      "spend": 140.15,
       "form_fills": 7,
       "leads": 0,
       "schedule_cost_per": null

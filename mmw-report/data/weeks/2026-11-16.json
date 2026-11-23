@@ -1,0 +1,168 @@
+{
+  "week": {
+    "start": "2026-11-16",
+    "end": "2026-11-22"
+  },
+  "source": "AdKit (Meta Ads)",
+  "accountId": "act_1228742844209195",
+  "updatedAt": "2026-11-23T12:45:59Z",
+  "ads": [
+    {
+      "id": "120249027331370767",
+      "name": "Print Van",
+      "adset": "Leads | Men Broad | Print Shop",
+      "campaign": "CS | Form Start | Updated 10/23",
+      "spend": 298.57,
+      "impressions": 7518,
+      "link_clicks": 197,
+      "landing_page_views": 178,
+      "form_fills": 21,
+      "leads": 2,
+      "schedule_cost_per": 298.57
+    },
+    {
+      "id": "120249554361820767",
+      "name": "Leads | Print Shop Exhibit Version 2",
+      "adset": "Leads | Broad Men 50 +",
+      "campaign": "Leads | Print Shop | 11/4",
+      "spend": 254.4,
+      "impressions": 4977,
+      "link_clicks": 103,
+      "landing_page_views": 102,
+      "form_fills": 0,
+      "leads": 22,
+      "schedule_cost_per": 127.2
+    },
+    {
+      "id": "120249352027550767",
+      "name": "Leads | Print Shop Exhibit Original",
+      "adset": "Leads | Broad Men 50 +",
+      "campaign": "Leads | Print Shop | 11/4",
+      "spend": 157.64,
+      "impressions": 3159,
+      "link_clicks": 46,
+      "landing_page_views": 39,
+      "form_fills": 0,
+      "leads": 9,
+      "schedule_cost_per": null
+    },
+    {
+      "id": "120249027331380767",
+      "name": "Print United",
+      "adset": "Leads | Men Broad | Print Shop",
+      "campaign": "CS | Form Start | Updated 10/23",
+      "spend": 100.88,
+      "impressions": 2837,
+      "link_clicks": 68,
+      "landing_page_views": 57,
+      "form_fills": 8,
+      "leads": 6,
+      "schedule_cost_per": 100.88
+    },
+    {
+      "id": "120249554428810767",
+      "name": "Testimonial Video",
+      "adset": "Broad | Men 50 + Excluding Dallas/KC",
+      "campaign": "A | Video Views | 11/16",
+      "spend": 32.93,
+      "impressions": 2911,
+      "link_clicks": 11,
+      "landing_page_views": 10,
+      "form_fills": 0,
+      "leads": 0,
+      "schedule_cost_per": null
+    },
+    {
+      "id": "120248803222380767",
+      "name": "video 1",
+      "adset": "Leads | Broad + Exclusions | Sign",
+      "campaign": "CS | Form Start | Updated 10/23",
+      "spend": 29.71,
+      "impressions": 830,
+      "link_clicks": 23,
+      "landing_page_views": 22,
+      "form_fills": 2,
+      "leads": 0,
+      "schedule_cost_per": null
+    }
+  ],
+  "daily": [
+    {
+      "date": "2026-11-16",
+      "spend": 115.18,
+      "form_fills": 5,
+      "leads": 1,
+      "schedule_cost_per": null
+    },
+    {
+      "date": "2026-11-17",
+      "spend": 153.71,
+      "form_fills": 4,
+      "leads": 4,
+      "schedule_cost_per": 153.71
+    },
+    {
+      "date": "2026-11-18",
+      "spend": 119.45,
+      "form_fills": 4,
+      "leads": 7,
+      "schedule_cost_per": 59.725
+    },
+    {
+      "date": "2026-11-19",
+      "spend": 121.32,
+      "form_fills": 3,
+      "leads": 2,
+      "schedule_cost_per": 121.32
+    },
+    {
+      "date": "2026-11-20",
+      "spend": 119.18,
+      "form_fills": 4,
+      "leads": 8,
+      "schedule_cost_per": null
+    },
+    {
+      "date": "2026-11-21",
+      "spend": 82.92,
+      "form_fills": 4,
+      "leads": 6,
+      "schedule_cost_per": null
+    },
+    {
+      "date": "2026-11-22",
+      "spend": 162.37,
+      "form_fills": 7,
+      "leads": 11,
+      "schedule_cost_per": null
+    }
+  ],
+  "notes": {
+    "date": "2026-11-23",
+    "performanceSnapshot": [
+      "Nov 16 to Nov 22: 31 form fills, 39 leads and 4 booked appointments on $874 spent. That's $28.20 per form fill, $22.41 per lead and $218.53 per appointment.",
+      "The prior week (Nov 9 to 15) was 43 form fills, 2 leads and no appointments on $834 spent: $19.39 per form fill and $416.98 per lead. Leads rose from 2 to 39 and cost per lead fell 95%.",
+      "Cost per form fill went up because the new lead campaign's page doesn't record form starts. Its 31 leads count as leads but not as form fills."
+    ],
+    "whatWeChanged": [
+      "A new campaign, Leads | Print Shop | 11/4, started spending this week. Its ad set (men 25 to 65, excluding Kansas City and Dallas) runs two Print Shop Exhibit ads on $60 a day and optimizes for leads instead of form starts.",
+      "A testimonial video campaign (A | Video Views | 11/16) launched on $5 a day, shown to men 25 to 65 outside Kansas City and Dallas.",
+      "The Sign ad set is paused; it spent $29.71 this week before stopping. The Print Van ad is running again in the Print Shop ad set, whose budget is now $55 a day."
+    ],
+    "workingNotWorking": [
+      "Print Shop Exhibit ad set (new campaign): 31 leads at $13.29 each and 2 appointments ($206.02 each) on $412. Exhibit Version 2 brought in 22 leads at $11.56 each and both appointments; Exhibit Original brought in 9 at $17.52 each.",
+      "Print Shop ad set (original campaign): 8 leads at $49.93 each and 2 appointments ($199.73 each) on $399. Print United had 6 leads at $16.81 each and 1 appointment; Print Van had 2 leads at $149.29 each and 1 appointment.",
+      "Testimonial video: 1,292 completed views at about 3 cents each on $33.",
+      "Sign ad set: 2 form fills and no leads on $30 before it was paused."
+    ],
+    "nextSteps": [
+      "Move more budget to the Print Shop Exhibit campaign, which brought in 31 of the week's 39 leads at $13.29 each.",
+      "Within that campaign, favor Exhibit Version 2 ($11.56 per lead, 2 appointments) over the Original ($17.52 per lead, none).",
+      "Add the form start event to the new campaign's landing page so form fills are counted the same way in both campaigns.",
+      "Once the testimonial video has a few thousand viewers, show them the Exhibit Version 2 ad."
+    ],
+    "clientNeeds": [
+      "Please tell us how many of this week's 39 leads you reached and how many booked, so we can see which campaign brings in the best leads."
+    ]
+  }
+}
