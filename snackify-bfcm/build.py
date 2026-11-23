@@ -154,15 +154,13 @@ def sparkles(color, items=("☆", "✦", "◦", "✧")):
 
 
 def hero(bg, eyebrow_txt, eyebrow_c, title, title_c, sub, sub_c, deco_c, deco=("☆", "✦", "◦", "✧"), deco_r=("✧", "☆", "✦", "◦")):
-    return f"""<tr><td style="background:{bg};padding:40px 14px 8px;">
+    return f"""<tr><td class="px" style="background:{bg};padding:40px 40px 8px;">
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
-    {sparkles(deco_c, deco)}
     <td align="center" valign="top" style="padding:0 8px;">
       {eyebrow(eyebrow_txt, eyebrow_c)}
       {h(title, 50, title_c, 14)}
       {p(sub, sub_c, 19, 8, font=SERIF)}
     </td>
-    {sparkles(deco_c, deco_r)}
   </tr></table>
 </td></tr>"""
 
