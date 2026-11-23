@@ -31,7 +31,6 @@ YELLOW = "#FFD21F"
 
 BOX = f"{SITE}/collections/snack-boxes/products/celebration-box?variant=41809859149911"
 BOXES = f"{SITE}/collections/snack-boxes"
-PRICE, SALE = "$32.99", "$23.09"
 
 
 def shop(file, w=1200):
@@ -201,8 +200,8 @@ def tiles(items, bg_cell, title_c, body_c, icon_c, border=None):
 
 
 def feature_card(img, href, img_bg, eb, eb_c, title, desc, btn, btn_bg, card_bg, title_c, desc_c, price=True, strike_c="#999999"):
-    price_html = f"""<div style="margin:2px 0 10px;"><span style="font-family:{SERIF};font-size:34px;font-weight:800;color:{btn_bg};">{SALE}</span>
-      &nbsp;<span style="font-family:{SANS};font-size:17px;color:{strike_c};text-decoration:line-through;">{PRICE}</span></div>""" if price else ""
+    price_html = f"""<div style="margin:2px 0 10px;"><span style="font-family:{SERIF};font-size:34px;font-weight:800;color:{btn_bg};">30% off</span>
+      <br><span style="font-family:{SANS};font-size:13px;font-weight:800;letter-spacing:1.5px;color:{desc_c};">WITH CODE {CODE}</span></div>""" if price else ""
     return f"""<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:{card_bg};border-radius:18px;"><tr>
   <td class="stack" width="46%" valign="middle" style="padding:16px;">
     <a href="{href}"><img src="{img}" width="240" alt="{title}" style="width:100%;border-radius:14px;background:{img_bg};"></a>
@@ -279,7 +278,7 @@ e1 = f"""
 <tr><td style="background:#FFFFFF;padding:0 24px 10px;">
   {tiles([("🎁", "11&ndash;13 snacks", "Premium picks from emerging brands"),
           ("🎄", "13&ndash;16 servings", "Enough to share (or not)"),
-          ("✦", f"{SALE} today", f"Was {PRICE}. 30% off with code")],
+          ("✦", "30% off", f"With code {CODE}")],
          "#FFF0F3", INK, MUTED, RED)}
 </td></tr>
 <tr><td class="px" style="background:#FFFFFF;padding:20px 40px 44px;">
@@ -301,7 +300,7 @@ e2 = f"""
 </td></tr>
 <tr><td class="px" style="background:{CREAM};padding:40px 30px;">
   {feature_card(IMG['box'], BOX, RED, "Black Friday pick", RED, "Holiday Celebration Box",
-                "Festive bites from emerging brands. No elf required.", f"Grab it for {SALE}", RED, "#FFFFFF", INK, MUTED)}
+                "Festive bites from emerging brands. No elf required.", "Get 30% Off", RED, "#FFFFFF", INK, MUTED)}
 </td></tr>
 <tr><td class="px" align="center" style="background:{TEAL};padding:44px 40px 18px;">
   {eyebrow("Also 30% off", DEEP)}
@@ -340,7 +339,7 @@ e3 = f"""
     <div style="padding:18px 10px 8px;text-align:center;">
       {eyebrow("Our #1 holiday gift", RED, 6)}
       <div style="font-family:{SERIF};font-size:30px;line-height:34px;font-weight:800;color:{INK};margin-bottom:6px;">Holiday Celebration Box</div>
-      <div style="margin:0 0 10px;"><span style="font-family:{SERIF};font-size:32px;font-weight:800;color:{RED};">{SALE}</span>&nbsp;<span style="font-family:{SANS};font-size:16px;color:#999999;text-decoration:line-through;">{PRICE}</span></div>
+      <div style="margin:0 0 10px;"><span style="font-family:{SERIF};font-size:32px;font-weight:800;color:{RED};">30% off</span><br><span style="font-family:{SANS};font-size:13px;font-weight:800;letter-spacing:1.5px;color:{MUTED};">WITH CODE {CODE}</span></div>
       {p("11&ndash;13 premium snacks for team wins, thank-yous and holiday parties.", MUTED, 15, 18)}
       {pill("Jingle All the Snacks", BOX, RED)}
     </div>
@@ -412,7 +411,7 @@ e4 = f"""
 </td></tr>
 <tr><td class="px" style="background:#161617;padding:40px 30px;">
   {feature_card(IMG['box'], BOX, RED, "Cyber Monday pick", LIME, "Holiday Celebration Box",
-                "Festive, premium snacks from emerging brands. Ships free today.", f"Grab it for {SALE}", RED, CARD, "#FFFFFF", "#CCCCCC", strike_c="#777777")}
+                "Festive, premium snacks from emerging brands. Ships free today.", "Get 30% Off", RED, CARD, "#FFFFFF", "#CCCCCC", strike_c="#777777")}
 </td></tr>
 <tr><td class="px" align="center" style="background:{NIGHT};padding:42px 30px 10px;">
   {eyebrow("Hormbles Chormbles", LIME, 6)}
@@ -455,7 +454,7 @@ e5 = f"""
 </td></tr>
 {full_img(IMG['box_doodle'], BOX, "Holiday Celebration Box", RED, "18px 0 0")}
 <tr><td align="center" style="background:{RED};padding:6px 40px 42px;">
-  {pill(f"Grab the Box for {SALE}", BOX, "#FFFFFF", RED)}
+  {pill("Grab the Box for 30% Off", BOX, "#FFFFFF", RED)}
 </td></tr>
 <tr><td class="px" style="background:#FFFFFF;padding:40px 34px 10px;">
   {code_box(label="Last chance code", note="30% off + free shipping &middot; ends at 11:59 PM ET")}
