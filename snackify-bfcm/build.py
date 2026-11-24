@@ -3,6 +3,7 @@ import os
 
 OUT = "/home/user/creekside/snackify-bfcm"
 CODE = "SNACKFRIDAY"
+SHIPCODE = "CYBERMONDAY"
 SITE = "https://www.snackify.co"
 SHOP = "https://cdn.shopify.com/s/files/1/2616/9618/files/"
 KCF = "https://d3k81ch9hvuctc.cloudfront.net/company/Lxwg3D/images/"
@@ -232,10 +233,30 @@ def stat(big, small, bg, fg):
   </td></tr></table></td>"""
 
 
+def dual_code_box(dark=False, label="Two codes, one cart"):
+    c1 = LIME if dark else GREEN
+    c2 = "#FFFFFF" if dark else RED
+    t = "#FFFFFF" if dark else INK
+    s_ = "#BBBBBB" if dark else MUTED
+    bg = "#161617" if dark else "#FFFFFF"
+    def cell(code, color, note):
+        return f"""<td class="stack" width="50%" align="center" valign="top" style="padding:10px 6px;">
+      <div style="font-family:{SERIF};font-size:26px;line-height:34px;font-weight:800;letter-spacing:1px;color:{color};">{code}</div>
+      <div style="font-family:{SANS};font-size:14px;font-weight:700;color:{s_};">{note}</div></td>"""
+    return f"""<table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
+  <td align="center" style="background:{bg};border:2px dashed {c1};border-radius:14px;padding:18px 12px 12px;font-family:{SANS};">
+    <div style="font-size:13px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:{t};margin-bottom:4px;">{label}</div>
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
+      {cell(CODE, c1, "30% off every box")}
+      {cell(SHIPCODE, c2, "Free shipping, today only")}
+    </tr></table>
+  </td></tr></table>"""
+
+
 def terms(dark=False, ship=False):
     bg = NIGHT if dark else "#FFFFFF"
     c = "#8A8A8A" if dark else MUTED
-    extra = " Free shipping valid 11/30/2026 only. [Free shipping limits, if any.]" if ship else ""
+    extra = f" Free shipping with code {SHIPCODE} valid 11/30/2026 only. [Free shipping limits, if any.]" if ship else ""
     return f"""<tr><td class="px" align="center" style="background:{bg};padding:6px 40px 24px;font-family:{SANS};font-size:12px;line-height:18px;color:{c};">
   30% off with code {CODE} through 11/30/2026 at 11:59 PM ET.{extra} [Exclusions.]
 </td></tr>"""
@@ -389,7 +410,7 @@ def flavor(img, href, name):
 
 e4 = f"""
 {hero(NIGHT, "One day only &middot; Cyber Monday", LIME, "Cyber Monday", "#FFFFFF",
-      "30% off every box <b>plus free shipping</b>. Today only, and it all ends at midnight.", "#D8D8D8", LIME, ("❄", "✦", "☆", "✧"), ("☆", "✧", "❄", "✦"))}
+      f"30% off every box with <b>{CODE}</b>, plus <b>free shipping</b> with <b>{SHIPCODE}</b>. Today only.", "#D8D8D8", LIME, ("❄", "✦", "☆", "✧"), ("☆", "✧", "❄", "✦"))}
 <tr><td class="px" style="background:{NIGHT};padding:24px 44px 10px;">
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:{RED};border-radius:22px;"><tr><td>
     <a href="{BOX}"><img src="{IMG['box']}" width="512" alt="Holiday Celebration Box" style="width:100%;border-radius:22px;"></a>
@@ -400,16 +421,16 @@ e4 = f"""
 </td></tr>
 <tr><td style="background:{NIGHT};padding:10px 24px 10px;">
   {tiles([("✂", "30% off", f"Every box with code {CODE}"),
-          ("🚚", "Free shipping", "On every order, today only"),
+          ("🚚", "Free shipping", f"With code {SHIPCODE}, today only"),
           ("⏰", "Ends tonight", "Midnight ET, then it&rsquo;s gone")],
          CARD, "#FFFFFF", "#BBBBBB", LIME, "#2E2E30")}
 </td></tr>
 <tr><td class="px" style="background:{NIGHT};padding:26px 34px 44px;">
-  {code_box(dark=True, label="Cyber Monday code", note="30% off + free shipping &middot; ends at midnight")}
+  {dual_code_box(dark=True, label="Use both codes")}
 </td></tr>
 <tr><td class="px" style="background:#161617;padding:40px 30px;">
   {feature_card(IMG['box'], BOX, RED, "Cyber Monday pick", LIME, "Holiday Celebration Box",
-                "Festive, premium snacks from emerging brands. Ships free today.", "Get 30% Off", RED, CARD, "#FFFFFF", "#CCCCCC", strike_c="#777777")}
+                f"Festive, premium snacks from emerging brands. Ships free today with {SHIPCODE}.", "Get 30% Off", RED, CARD, "#FFFFFF", "#CCCCCC", strike_c="#777777")}
 </td></tr>
 <tr><td class="px" align="center" style="background:{NIGHT};padding:42px 30px 10px;">
   {eyebrow("Hormbles Chormbles", LIME, 6)}
@@ -443,7 +464,7 @@ def tick(n, label):
 
 e5 = f"""
 {hero(RED, "⏰ Final hours", "#FFE3EA", "Gone by<br>Midnight.", "#FFFFFF",
-      "30% off every box <b>and</b> free shipping both end tonight.", "#FFFFFF", "#FFFFFF")}
+      f"30% off with <b>{CODE}</b> and free shipping with <b>{SHIPCODE}</b> both end tonight.", "#FFFFFF", "#FFFFFF")}
 <tr><td align="center" style="background:{RED};padding:14px 20px 6px;">
   <!-- Swap for a live countdown GIF (e.g. Sendtric) ending 11/30 11:59 PM ET -->
   <table role="presentation" cellpadding="0" cellspacing="0" align="center"><tr>
@@ -455,7 +476,7 @@ e5 = f"""
   {pill("Grab the Box for 30% Off", BOX, "#FFFFFF", RED)}
 </td></tr>
 <tr><td class="px" style="background:#FFFFFF;padding:40px 34px 10px;">
-  {code_box(label="Last chance code", note="30% off + free shipping &middot; ends at 11:59 PM ET")}
+  {dual_code_box(label="Use both codes")}
 </td></tr>
 <tr><td class="px" align="center" style="background:#FFFFFF;padding:36px 30px 18px;">
   {h("Last-Minute Picks", 32, GREEN, 0, "h2")}
@@ -477,8 +498,8 @@ EMAILS = [
     ("01-early-access.html", "Snack Friday starts now (you're early)", "30% off every box with code SNACKFRIDAY. Shop before the rush.", e1, False),
     ("02-black-friday-hormbles.html", "Black Friday? It's Snack Friday! 30% Off", "Every box is 30% off with SNACKFRIDAY, plus meet Hormbles Chormbles.", e2, False),
     ("03-gift-guide.html", "Gifts they'll actually eat (30% off) 🎁", "The Holiday Celebration Box and more, all 30% off.", e3, False),
-    ("04-cyber-monday-hormbles-flavors.html", "Cyber Monday: 30% Off + FREE Shipping 🚚", "Two deals, one day. Ends at midnight.", e4, True),
-    ("05-last-call.html", "Gone by midnight: 30% off + free shipping", "Your last chance for SNACKFRIDAY savings.", e5, False),
+    ("04-cyber-monday-hormbles-flavors.html", "Cyber Monday: 30% Off + FREE Shipping 🚚", "SNACKFRIDAY for 30% off + CYBERMONDAY for free shipping. Today only.", e4, True),
+    ("05-last-call.html", "Gone by midnight: 30% off + free shipping", "Use SNACKFRIDAY + CYBERMONDAY before midnight.", e5, False),
 ]
 
 if __name__ == "__main__":
