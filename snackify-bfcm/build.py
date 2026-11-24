@@ -256,9 +256,9 @@ def dual_code_box(dark=False, label="Two codes, one cart"):
 def terms(dark=False, ship=False):
     bg = NIGHT if dark else "#FFFFFF"
     c = "#8A8A8A" if dark else MUTED
-    extra = f" Free shipping with code {SHIPCODE} valid 11/30/2026 only. [Free shipping limits, if any.]" if ship else ""
+    extra = f" Free shipping with code {SHIPCODE} valid 11/30/2026 only." if ship else ""
     return f"""<tr><td class="px" align="center" style="background:{bg};padding:6px 40px 24px;font-family:{SANS};font-size:12px;line-height:18px;color:{c};">
-  30% off with code {CODE} through 11/30/2026 at 11:59 PM ET.{extra} [Exclusions.]
+  30% off with code {CODE} through 11/30/2026 at 11:59 PM ET.{extra}
 </td></tr>"""
 
 
@@ -394,9 +394,6 @@ e3 = f"""
 <tr><td class="px" style="background:#FFFFFF;padding:24px 40px 20px;">
   {code_box()}
 </td></tr>
-<tr><td align="center" style="background:#FFFFFF;padding:0 40px 18px;">
-  {p("[Order by DATE for delivery before the holidays.]", MUTED, 14)}
-</td></tr>
 {terms()}
 """
 
@@ -465,12 +462,6 @@ def tick(n, label):
 e5 = f"""
 {hero(RED, "⏰ Final hours", "#FFE3EA", "Gone by<br>Midnight.", "#FFFFFF",
       f"30% off with <b>{CODE}</b> and free shipping with <b>{SHIPCODE}</b> both end tonight.", "#FFFFFF", "#FFFFFF")}
-<tr><td align="center" style="background:{RED};padding:14px 20px 6px;">
-  <!-- Swap for a live countdown GIF (e.g. Sendtric) ending 11/30 11:59 PM ET -->
-  <table role="presentation" cellpadding="0" cellspacing="0" align="center"><tr>
-    {tick("00", "DAYS")}{tick("05", "HRS")}{tick("59", "MIN")}
-  </tr></table>
-</td></tr>
 {full_img(IMG['box_doodle'], BOX, "Holiday Celebration Box", RED, "18px 0 0")}
 <tr><td align="center" style="background:{RED};padding:6px 40px 42px;">
   {pill("Grab the Box for 30% Off", BOX, "#FFFFFF", RED)}
