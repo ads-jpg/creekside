@@ -1,0 +1,38 @@
+To: dwolfe.j9@gmail.com
+Cc: tricia.leone@journey9.com
+Subject: Night Lark update, 8:45 pm ET: Google branded at 8.7x and capped; pause Min ROAS Winners
+
+Headline: Google branded is tonight's winner at 8.7x ROAS and is capped by budget. Meta delivered 4 purchases on $859.
+
+ACTION NEEDED
+1. Pause "NL | BFCM | Min ROAS 1.0 | Winners | 11/25". It has spent $342 since launch with zero purchases ($135 today).
+2. Raise Google "Search - Branded - 15 Jul" from $75 to $97/day (+30%). It lost 28% of impression share to budget today.
+3. Add Shopify totals so we can confirm blended MER before the next budget move.
+
+META, TODAY (NOV 27)
+Campaign | Budget | Spend | Purch | Cost/purch | ROAS
+Grey Waffle | $425 | $294.91 | 2 | $147 | 1.03x
+Black Friday 11/11 | $400 | $300.64 | 2 | $150 | 0.86x
+Retargeting BFCM 11/25 | $150 | $129.05 | 0 | n/a | 0.00x
+Min ROAS Winners 11/25 | $150 | $134.80 | 0 | n/a | 0.00x
+Total | $1,125 | $859.40 | 4 | $215 | 0.66x
+
+Frequency is healthy at 1.2 to 1.7 on all four. CPMs spiked: Black Friday 11/11 is $208 vs $133 last week (+56%) and Grey Waffle is $174 vs $135 (+29%). All four are active and eligible. New Video Test AI is confirmed off ($0 today).
+Last 7 days (Nov 20 to 26): $3,842 spend, 16 purchases, $240 per purchase, 0.51x ROAS.
+
+GOOGLE
+Today: $70.98 cost, 4 conversions, $620 value, 8.74x ROAS.
+Last 7 days: $284.98 cost, 14 conversions, $1,855 value, 6.51x ROAS.
+Branded is the only enabled campaign, so these are also the account totals.
+
+SHOPIFY
+Added by David. Shopify read access was not available for this update.
+
+EFFICIENCY AND RECOMMENDATION
+Total ad spend today is $930. Platform-attributed revenue is $1,185 (1.27x), which sets a floor for MER. MER reaches 1.5x at $1,396 of Shopify sales and 2x at $1,861.
+- Grey Waffle: hold at $425. Best Meta cost per purchase today. If MER is above 2x, raise to $510 (+20%).
+- Black Friday 11/11: hold at $400. Two purchases today after zero on Nov 26.
+- Retargeting BFCM: hold at $150. Two purchases since launch at $167 each. It cannot reach the $260 stop today.
+- Min ROAS Winners: pause. New budget $0.
+- Google branded: double down to $97/day.
+If MER comes in under 1.5x, return Grey Waffle to the morning budget of $390.
