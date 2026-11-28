@@ -1,13 +1,13 @@
 To: dwolfe.j9@gmail.com
 Cc: tricia.leone@journey9.com
-Subject: Night Lark update, 8:55 pm ET: Google branded at 8.7x and capped; pause Min ROAS Winners
+Subject: Night Lark update, 9:05 pm ET: MER 3.36x on Black Friday; scale Grey Waffle, pause Min ROAS Winners
 
-Headline: Google branded is tonight's winner at 8.7x ROAS and is capped by budget. Meta delivered 4 purchases on $879.
+Headline: Blended MER is 3.36x today, well above the 2x target. Shopify did $3,194 on 22 orders. Google branded is tonight's top channel at 8.7x ROAS and is capped by budget.
 
 ACTION NEEDED
-1. Pause "NL | BFCM | Min ROAS 1.0 | Winners | 11/25". It has spent $343 since launch with zero purchases ($137 today).
-2. Raise Google "Search - Branded - 15 Jul" from $75 to $97/day (+30%). It lost 28% of impression share to budget today.
-3. Add Shopify totals so we can confirm blended MER before the next budget move.
+1. Raise "NL | Grey Waffle" from $425 to $510/day (+20%). Today's blended MER is 3.36x, above the 2x target.
+2. Pause "NL | BFCM | Min ROAS 1.0 | Winners | 11/25". It has spent $343 since launch with zero purchases ($137 today).
+3. Raise Google "Search - Branded - 15 Jul" from $75 to $97/day (+30%). It lost 28% of impression share to budget today.
 
 META, TODAY (NOV 27)
 Campaign | Budget | Spend | Purch | Cost/purch | ROAS
@@ -34,13 +34,22 @@ Last 7 days including today (Nov 21 to 27): $348.92 cost, 15 conversions, $1,965
 Branded is the only enabled campaign, so these are also the account totals.
 
 SHOPIFY
-Added by David. Shopify read access was not available for this update.
+Today (Nov 27): $3,194.00 total sales on 22 orders. AOV $145.18. Best day of the week by 2.7x.
+
+Day | Total sales | Orders | AOV
+Nov 21 | $440.00 | 4 | $110.00
+Nov 22 | $1,183.00 | 9 | $131.44
+Nov 23 | $988.00 | 6 | $164.67
+Nov 24 | $620.00 | 5 | $124.00
+Nov 25 | $1,083.00 | 10 | $108.30
+Nov 26 | $570.00 | 5 | $114.00
+Nov 27 | $3,194.00 | 22 | $145.18
+7-day total | $8,078.00 | 61 | $132.43
 
 EFFICIENCY AND RECOMMENDATION
-Total ad spend today is $950. Platform-attributed revenue is $1,185 (1.25x), which sets a floor for MER. MER reaches 1.5x at $1,426 of Shopify sales and 2x at $1,901.
-- Grey Waffle: hold at $425. Best Meta cost per purchase today and over 7 days. If MER is above 2x, raise to $510 (+20%).
+Blended MER today is 3.36x ($3,194 on $950.44 of ad spend). The last 7 days are 1.75x ($8,078 on $4,627.89). Today clears the 2x target, so we scale the winner.
+- Grey Waffle: double down to $510 (+20%). Best Meta cost per purchase today and over 7 days.
 - Black Friday 11/11: hold at $400. Two purchases today after zero on Nov 26.
 - Retargeting BFCM: hold at $150. Two purchases since launch at $168 each. It cannot reach the $260 stop today.
 - Min ROAS Winners: pause. New budget $0.
-- Google branded: double down to $97/day.
-If MER comes in under 1.5x, return Grey Waffle to the morning budget of $390.
+- Google branded: double down to $97/day. ROAS of 8.74x is far above target.
